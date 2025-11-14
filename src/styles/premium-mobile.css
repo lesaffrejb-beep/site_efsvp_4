@@ -1,0 +1,738 @@
+/* ============================================
+   EFSVP - PREMIUM MOBILE POLISH
+   Harmonisation design mobile - Système cohérent
+   ============================================ */
+
+/* ========== 0. TOKENS MOBILE SUPPLÉMENTAIRES ========== */
+:root {
+  /* Spacing sections mobile */
+  --section-spacing-mobile: clamp(var(--space-16), 8vw, var(--space-24));
+  --section-gap-mobile: clamp(var(--space-12), 6vw, var(--space-20));
+
+  /* Container mobile */
+  --container-padding-mobile: var(--space-5); /* 1.25rem = 20px */
+
+  /* Success color (pour bouton "Copié!") - utilise une variante de la palette */
+  --success: #2d7d5e; /* Vert profond cohérent avec la palette terre */
+  --success-bg: rgba(45, 125, 94, 0.1);
+}
+
+/* ========== 1. GRILLE & SPACING MOBILE GLOBAL ========== */
+@media (max-width: 768px) {
+  /* Container: padding uniforme sur mobile */
+  .container {
+    padding-left: var(--container-padding-mobile);
+    padding-right: var(--container-padding-mobile);
+  }
+
+  /* Sections: spacing vertical harmonisé */
+  section {
+    padding: var(--section-spacing-mobile) 0;
+    margin-bottom: var(--section-gap-mobile);
+  }
+
+  /* Section headers: marges réduites sur mobile */
+  .section__header {
+    margin-bottom: var(--space-16);
+  }
+
+  .section__title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-6);
+  }
+
+  .section__subtitle {
+    font-size: var(--text-base);
+  }
+}
+
+/* ========== 2. HERO & CTA MOBILE ========== */
+@media (max-width: 768px) {
+  /* Hero: plus d'espace pour le contenu */
+  .hero__content {
+    padding-top: calc(var(--header-h) + var(--space-12));
+    padding-bottom: var(--space-12);
+    padding-left: var(--container-padding-mobile);
+    padding-right: var(--container-padding-mobile);
+  }
+
+  .hero__title {
+    font-size: clamp(2rem, 8vw, 2.75rem);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero__subtitle {
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-8);
+  }
+
+  .hero__baseline {
+    font-size: var(--text-sm);
+    margin-bottom: var(--space-8);
+  }
+
+  /* CTA Group: pas de sticky, flux normal */
+  .hero__cta-group {
+    position: relative !important;
+    margin-top: var(--space-8) !important;
+    margin-bottom: var(--space-12) !important;
+  }
+
+  /* CTA Hero: taille adaptée mobile */
+  .btn--hero {
+    padding: var(--space-4) var(--space-6) !important;
+    font-size: var(--text-base) !important;
+    min-width: 280px;
+  }
+}
+
+/* ========== 3. BLOC CHIFFRES (TRUST METRICS) ========== */
+@media (max-width: 768px) {
+  .hero__trust-metrics {
+    margin-top: var(--space-12) !important;
+    gap: var(--space-10) !important;
+    padding: var(--space-8) var(--container-padding-mobile) !important;
+  }
+
+  .hero__metric {
+    padding: 0 !important;
+  }
+
+  .hero__metric strong {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+    margin-bottom: var(--space-2) !important;
+  }
+
+  .hero__metric span {
+    font-size: var(--text-xs) !important;
+    letter-spacing: 0.15em !important;
+  }
+}
+
+/* ========== 4. SECTION "TROIS CRÉATIONS" - FLAGSHIP CASES ========== */
+@media (max-width: 768px) {
+  .flagship-cases {
+    padding: var(--section-spacing-mobile) 0 !important;
+  }
+
+  .flagship-cases__grid {
+    gap: var(--space-8) !important;
+  }
+
+  /* Case Card: harmonisation radius avec le système */
+  .case-card {
+    border-radius: var(--radius-lg) !important; /* 20px comme portfolio-card */
+    margin-bottom: var(--space-6);
+  }
+
+  .case-card__visual {
+    height: 180px !important;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
+  }
+
+  .case-card__content {
+    padding: var(--space-6) !important;
+  }
+
+  /* Badge type (ANNIVERSAIRE, PORTRAITS, etc.) - harmonisé avec filtres */
+  .case-card__badge {
+    padding: var(--space-2) var(--space-4) !important;
+    border-radius: var(--radius-full) !important;
+    font-size: var(--text-xs) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border: 1px solid var(--border) !important;
+    backdrop-filter: blur(8px);
+  }
+
+  .case-card__tag-featured {
+    border-radius: var(--radius-full) !important;
+    padding: var(--space-2) var(--space-4) !important;
+    font-size: var(--text-xs) !important;
+  }
+
+  /* Story section */
+  .case-card__story {
+    padding: var(--space-5) !important;
+    gap: var(--space-5) !important;
+    border-radius: var(--radius-md) !important;
+    margin-bottom: var(--space-6) !important;
+  }
+
+  .case-card__step-title {
+    font-size: var(--text-sm) !important;
+  }
+
+  .case-card__step p {
+    font-size: var(--text-sm) !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Contraste amélioré sur les gradients */
+  .case-card__title {
+    font-size: var(--text-xl) !important;
+    line-height: 1.3 !important;
+  }
+
+  .case-card__client {
+    font-size: var(--text-sm) !important;
+    margin-bottom: var(--space-5) !important;
+  }
+}
+
+/* ========== 5. SLIDER TÉMOIGNAGES ========== */
+@media (max-width: 768px) {
+  .testimonials {
+    padding: var(--section-spacing-mobile) 0 !important;
+  }
+
+  .testimonials__carousel {
+    padding-left: var(--container-padding-mobile);
+    padding-right: var(--container-padding-mobile);
+    padding-bottom: var(--space-16) !important;
+  }
+
+  /* Carte témoignage: harmonisation spacing */
+  .testimonial-card {
+    padding: var(--space-6) !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  /* Étoiles: spacing harmonisé */
+  .testimonial-card__stars {
+    display: flex;
+    gap: var(--space-1);
+    margin-bottom: var(--space-6) !important;
+  }
+
+  .testimonial-card__stars svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  /* Citation: taille et line-height optimisés mobile */
+  .testimonial-card__quote {
+    font-size: var(--text-xl) !important;
+    line-height: 1.5 !important;
+    margin-bottom: var(--space-6) !important;
+  }
+
+  /* Guillemets: à gérer dans le contenu JS, pas CSS */
+
+  /* Auteur section */
+  .testimonial-card__author {
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+    margin-top: var(--space-6);
+  }
+
+  .testimonial-card__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: var(--text-lg);
+    flex-shrink: 0;
+  }
+
+  .testimonial-card__info {
+    flex: 1;
+  }
+
+  .testimonial-card__name {
+    font-size: var(--text-base) !important;
+    margin-bottom: var(--space-1) !important;
+  }
+
+  .testimonial-card__role {
+    font-size: var(--text-sm) !important;
+    line-height: 1.5 !important;
+  }
+
+  .testimonial-card__context {
+    font-size: var(--text-xs) !important;
+    margin-top: var(--space-1) !important;
+  }
+
+  /* Dots de pagination Swiper: spacing harmonisé */
+  .swiper-pagination {
+    bottom: 0 !important;
+    margin-top: var(--space-8) !important;
+  }
+
+  .swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    margin: 0 var(--space-1) !important;
+    background: rgba(255, 255, 255, 0.3);
+    opacity: 1;
+    transition: all var(--duration-base) var(--ease-smooth);
+  }
+
+  .swiper-pagination-bullet-active {
+    background: var(--accent-gold);
+    width: 24px;
+    border-radius: var(--radius-full);
+  }
+}
+
+/* ========== 6. SECTION "ILS NOUS ONT FAIT CONFIANCE" - PORTFOLIO ========== */
+@media (max-width: 768px) {
+  .portfolio {
+    padding: var(--section-spacing-mobile) 0 !important;
+  }
+
+  /* Stats: alignement harmonisé */
+  .portfolio__stats {
+    gap: var(--space-3) !important;
+    margin-top: var(--space-6) !important;
+    margin-bottom: var(--space-12) !important;
+    flex-wrap: wrap;
+  }
+
+  .portfolio__stat {
+    font-size: var(--text-2xl) !important;
+  }
+
+  /* Filtres: harmonisés avec les badges des cartes */
+  .filters {
+    margin-bottom: var(--space-12) !important;
+    gap: var(--space-4) !important;
+  }
+
+  .filters__group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    justify-content: center;
+  }
+
+  .filter {
+    padding: var(--space-2) var(--space-4) !important;
+    border-radius: var(--radius-full) !important;
+    font-size: var(--text-xs) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase !important;
+    background-color: var(--surface-elevated) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text-secondary) !important;
+    transition: all var(--duration-base) var(--ease-smooth) !important;
+  }
+
+  .filter.is-active,
+  .filter:hover {
+    background-color: var(--primary) !important;
+    border-color: var(--primary) !important;
+    color: white !important;
+  }
+
+  /* Portfolio Grid: gap harmonisé */
+  .portfolio__grid {
+    gap: var(--space-6) !important;
+  }
+
+  /* Portfolio Cards: harmonisation */
+  .portfolio-card {
+    border-radius: var(--radius-lg) !important;
+  }
+
+  .portfolio-card__visual {
+    min-height: 220px !important;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0 !important;
+  }
+
+  .portfolio-card__content {
+    padding: var(--space-6) !important;
+  }
+
+  /* Tag: harmonisé avec les autres chips */
+  .portfolio-card__tag {
+    padding: var(--space-1) var(--space-3) !important;
+    border-radius: var(--radius-full) !important;
+    font-size: var(--text-xs) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
+    margin-bottom: var(--space-4) !important;
+  }
+
+  .portfolio-card__title {
+    font-size: var(--text-xl) !important;
+    margin-bottom: var(--space-3) !important;
+  }
+
+  .portfolio-card__client,
+  .portfolio-card__year {
+    font-size: var(--text-sm) !important;
+  }
+
+  .portfolio-card__description {
+    font-size: var(--text-sm) !important;
+    line-height: 1.6 !important;
+  }
+}
+
+/* ========== 7. BOUTON EMAIL "COPIÉ !" - FORMULAIRE CONTACT ========== */
+@media (max-width: 768px) {
+  .contact {
+    padding: var(--section-spacing-mobile) 0 !important;
+  }
+
+  .contact__layout {
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .contact__visual {
+    min-height: 200px;
+  }
+
+  /* Alternative contact section */
+  .contact__alt {
+    margin-top: var(--space-12) !important;
+    padding-top: var(--space-8) !important;
+    text-align: center;
+  }
+
+  .contact__alt-title {
+    font-size: var(--text-sm) !important;
+    margin-bottom: var(--space-6) !important;
+  }
+
+  /* Bouton email: inline-flex compact avec tokens cohérents */
+  .contact__alt-link.copy-email {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: var(--space-2) !important;
+    padding: var(--space-3) var(--space-5) !important;
+    border-radius: var(--radius-full) !important;
+    font-size: var(--text-base) !important;
+    font-weight: 600 !important;
+    color: var(--accent) !important;
+    background-color: var(--surface-elevated) !important;
+    border: 1px solid var(--border) !important;
+    transition: all var(--duration-base) var(--ease-smooth) !important;
+    margin: 0 auto var(--space-4) !important;
+  }
+
+  .contact__alt-link.copy-email:hover {
+    background-color: rgba(184, 68, 30, 0.08) !important;
+    border-color: var(--accent) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  /* État "Copié !" - utilise la couleur success de la palette */
+  .contact__alt-link.copy-email.copied {
+    background-color: var(--success-bg) !important;
+    border-color: var(--success) !important;
+    color: var(--success) !important;
+    pointer-events: none;
+  }
+
+  .copy-email__icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
+
+  .copy-email__success {
+    color: var(--success) !important;
+    font-weight: 700 !important;
+  }
+
+  /* Location text */
+  .contact__alt-location {
+    font-size: var(--text-sm) !important;
+    color: var(--text-secondary) !important;
+    margin-top: var(--space-4) !important;
+  }
+}
+
+/* ========== 8. FOOTER MOBILE ========== */
+@media (max-width: 768px) {
+  .footer {
+    padding: var(--space-20) 0 var(--space-8) !important;
+  }
+
+  .footer__main {
+    margin-bottom: var(--space-12);
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr !important;
+    gap: var(--space-10) !important;
+    margin-bottom: var(--space-12) !important;
+  }
+
+  /* Brand column */
+  .footer__col--brand {
+    margin-bottom: var(--space-8);
+  }
+
+  .footer__brand-text {
+    font-size: var(--text-base) !important;
+    line-height: 1.6 !important;
+    text-align: center;
+  }
+
+  /* Navigation columns */
+  .footer__title {
+    font-size: var(--text-base) !important;
+    margin-bottom: var(--space-4) !important;
+    text-align: center;
+  }
+
+  .footer__links {
+    text-align: center;
+  }
+
+  .footer__links li {
+    margin-bottom: var(--space-3) !important;
+  }
+
+  .footer__links a {
+    font-size: var(--text-base) !important;
+  }
+
+  /* Footer bottom */
+  .footer__bottom {
+    flex-direction: column;
+    gap: var(--space-4);
+    text-align: center;
+    padding-top: var(--space-8) !important;
+  }
+
+  .footer__copyright,
+  .footer__made {
+    font-size: var(--text-sm) !important;
+  }
+
+  /* Back to top button */
+  .footer__back-to-top {
+    position: fixed !important;
+    bottom: var(--space-6) !important;
+    right: var(--space-6) !important;
+    width: 56px !important;
+    height: 56px !important;
+    transform: none !important;
+    box-shadow: var(--shadow-xl) !important;
+  }
+
+  .footer__back-to-top:hover {
+    transform: translateY(-2px) !important;
+  }
+
+  .footer__back-to-top svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* ========== 9. FORMULAIRE CONTACT - AJUSTEMENTS MOBILES ========== */
+@media (max-width: 768px) {
+  .contact__form-container {
+    padding: var(--space-6);
+  }
+
+  .contact__title {
+    font-size: var(--text-2xl) !important;
+    margin-bottom: var(--space-4) !important;
+  }
+
+  .contact__subtitle {
+    font-size: var(--text-sm) !important;
+    margin-bottom: var(--space-8) !important;
+  }
+
+  .form__group {
+    margin-bottom: var(--space-6) !important;
+  }
+
+  .form__label {
+    font-size: var(--text-sm) !important;
+    margin-bottom: var(--space-2) !important;
+  }
+
+  .form__input,
+  .form__select,
+  .form__textarea {
+    font-size: var(--text-base) !important;
+    padding: var(--space-4) !important;
+    border-radius: var(--radius-md) !important;
+  }
+
+  /* CTA formulaire */
+  .btn--full {
+    width: 100%;
+    padding: var(--space-5) var(--space-6) !important;
+    font-size: var(--text-base) !important;
+  }
+}
+
+/* ========== 10. UTILITAIRES COMMUNS - CHIPS/BADGES ========== */
+/* Classe commune pour tous les chips/badges du site */
+.chip,
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background-color: var(--surface-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: all var(--duration-base) var(--ease-smooth);
+}
+
+.chip:hover,
+.badge:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.chip--active,
+.badge--active {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+/* ========== 11. SERVICES SECTION - MOBILE ========== */
+@media (max-width: 768px) {
+  .services {
+    padding: var(--section-spacing-mobile) 0 !important;
+  }
+
+  .services__grid {
+    gap: var(--space-6) !important;
+  }
+
+  .service-card {
+    padding: var(--space-6) !important;
+    border-radius: var(--radius-lg) !important;
+  }
+
+  .service-card__icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .service-card__badge {
+    font-size: var(--text-xs) !important;
+    padding: var(--space-2) var(--space-4) !important;
+    border-radius: var(--radius-full) !important;
+  }
+
+  .service-card__title {
+    font-size: var(--text-xl) !important;
+  }
+
+  .service-card__features {
+    gap: var(--space-3) !important;
+  }
+
+  .service-card__features li {
+    font-size: var(--text-sm) !important;
+  }
+}
+
+/* ========== 12. PROCESS SECTION - MOBILE ========== */
+@media (max-width: 768px) {
+  .process {
+    padding: var(--section-spacing-mobile) 0 !important;
+  }
+
+  .process__timeline {
+    gap: var(--space-8) !important;
+  }
+
+  .process__step {
+    padding: var(--space-6) !important;
+  }
+
+  .process__step-number {
+    font-size: var(--text-2xl) !important;
+    margin-bottom: var(--space-4) !important;
+  }
+
+  .process__step-title {
+    font-size: var(--text-xl) !important;
+    margin-bottom: var(--space-3) !important;
+  }
+
+  .process__step-duration {
+    font-size: var(--text-sm) !important;
+    margin-bottom: var(--space-4) !important;
+  }
+
+  .process__step-description {
+    font-size: var(--text-base) !important;
+    line-height: 1.6 !important;
+    margin-bottom: var(--space-5) !important;
+  }
+
+  .process__step-details {
+    gap: var(--space-2) !important;
+  }
+
+  .process__step-details li {
+    font-size: var(--text-sm) !important;
+  }
+
+  .process__badge {
+    font-size: var(--text-xs) !important;
+    padding: var(--space-2) var(--space-4) !important;
+    border-radius: var(--radius-full) !important;
+  }
+}
+
+/* ========== 13. FAQ SECTION - MOBILE ========== */
+@media (max-width: 768px) {
+  .faq {
+    padding: var(--section-spacing-mobile) 0 !important;
+  }
+
+  .faq__grid {
+    gap: var(--space-4) !important;
+  }
+
+  .faq__item {
+    margin-bottom: var(--space-3) !important;
+  }
+
+  .faq__question {
+    padding: var(--space-4) var(--space-5) !important;
+    font-size: var(--text-base) !important;
+  }
+
+  .faq__item.active .faq__question {
+    padding: var(--space-5) var(--space-6) !important;
+  }
+
+  .faq__icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .faq__answer {
+    padding: 0 var(--space-6) var(--space-6) !important;
+  }
+
+  .faq__answer p {
+    font-size: var(--text-sm) !important;
+    line-height: 1.6 !important;
+  }
+}
