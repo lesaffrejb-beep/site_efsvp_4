@@ -352,15 +352,14 @@
           <span class="hero__title-line hero__title-line--primary"
             >Vous avez déjà écrit l'histoire.</span
           >
-          <span class="hero__title-line hero__title-line--secondary"
-            >Nous la mettons en scène avec mesure.</span
-          >
         </h1>
 
-        <!-- Description premium -->
-        <p class="hero__subtitle" data-scroll>
-          Une direction narrative et musicale ciselée qui laisse respirer vos moments clés et
-          magnifie votre signature.
+        <h2 class="hero__subtitle hero__subtitle--emphasis" data-scroll>
+          On ne fera que vous relire.
+        </h2>
+
+        <p class="hero__baseline" data-scroll>
+          En français s'il vous plaît – studio de narration
         </p>
 
         <!-- CTA Principal -->
@@ -419,166 +418,9 @@
     <!-- Main Content -->
     <main id="main">
       <!-- ============================================
-             ACTE 2: BENTO GRID AUDIO
-             ============================================ -->
-      <section class="audio-section" id="creations" aria-labelledby="creations-title">
-        <div class="container">
-          <header class="section__header" data-scroll>
-            <h2 class="section__title" id="creations-title">Écoutez ce que nous créons</h2>
-            <p class="section__subtitle">Des récits qui touchent, portés par la musique</p>
-          </header>
-
-          <div class="bento-grid" data-scroll>
-            <!-- Audio Player 1 - Featured -->
-            <article class="bento-item bento-item--large" data-reveal="scale" data-lift>
-              <div class="audio-player audio-player--featured">
-                <div class="audio-player__artwork">
-                  <div
-                    class="audio-player__artwork-placeholder"
-                    style="
-                      background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
-                    "
-                  >
-                    <svg
-                      class="audio-player__icon"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      stroke-width="1.5"
-                    >
-                      <path
-                        d="M9 18V5l12-2v13M9 18c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3zm12-2c0 1.657-1.343 3-3 3s-3-1.343-3-3 1.343-3 3-3 3 1.343 3 3z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <div class="audio-player__info">
-                  <div class="audio-player__badge">Hymne officiel</div>
-                  <h3 class="audio-player__title">La force de la douceur</h3>
-                  <p class="audio-player__client">Département Maine-et-Loire · 2024</p>
-                </div>
-                <div class="audio-player__controls">
-                  <button class="audio-player__play" aria-label="Lecture" data-audio="sample-1">
-                    <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                    <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
-                    </svg>
-                  </button>
-                  <div class="audio-player__waveform" id="waveform-1"></div>
-                  <div class="audio-player__time">
-                    <span class="audio-player__current">0:00</span>
-                    <span class="audio-player__duration">3:45</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Info Card 1 -->
-            <article class="bento-item bento-item--card" data-reveal="scale" data-glow>
-              <div class="info-card">
-                <div class="info-card__number">3</div>
-                <h3 class="info-card__title">formats</h3>
-                <p class="info-card__text">Écriture · Audio · Live</p>
-                <div class="info-card__decoration"></div>
-              </div>
-            </article>
-
-            <!-- Audio Player 2 - Standard -->
-            <article class="bento-item bento-item--medium">
-              <div class="audio-player audio-player--standard">
-                <div class="audio-player__compact">
-                  <button
-                    class="audio-player__play-compact"
-                    aria-label="Lecture"
-                    data-audio="sample-2"
-                  >
-                    <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                    <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
-                    </svg>
-                  </button>
-                  <div class="audio-player__compact-info">
-                    <h4 class="audio-player__compact-title">Série promotionnelle</h4>
-                    <p class="audio-player__compact-client">SIVAL · 2025</p>
-                  </div>
-                </div>
-                <div class="audio-player__waveform" id="waveform-2"></div>
-              </div>
-            </article>
-
-            <!-- Quote Card -->
-            <article class="bento-item bento-item--medium">
-              <div class="quote-card">
-                <svg class="quote-card__icon" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z" />
-                </svg>
-                <blockquote class="quote-card__text">
-                  "J'ai vu des gens pleurer. C'était exactement ce que je voulais."
-                </blockquote>
-                <cite class="quote-card__author">— Cliente institutionnelle</cite>
-              </div>
-            </article>
-
-            <!-- Audio Player 3 - Compact -->
-            <article class="bento-item bento-item--medium">
-              <div class="audio-player audio-player--list">
-                <div class="audio-player__list-item">
-                  <button
-                    class="audio-player__play-small"
-                    aria-label="Lecture"
-                    data-audio="sample-3"
-                  >
-                    <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                    <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M6 4h4v16H6zM14 4h4v16h-4z" />
-                    </svg>
-                  </button>
-                  <div class="audio-player__list-info">
-                    <h4>Atelier Lacour</h4>
-                    <p>Métaphore forêt · 2024</p>
-                  </div>
-                </div>
-                <div class="audio-player__waveform-mini" id="waveform-3"></div>
-              </div>
-            </article>
-
-            <!-- Stats Card -->
-            <article class="bento-item bento-item--card">
-              <div class="info-card info-card--accent">
-                <div class="info-card__number">60+</div>
-                <h3 class="info-card__title">représentations</h3>
-                <p class="info-card__text">depuis 2022</p>
-              </div>
-            </article>
-          </div>
-
-          <div class="section__cta">
-            <a href="#portfolio" class="btn btn--secondary">
-              Découvrir tous nos projets
-              <svg
-                class="btn__icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================================
              ACTE 3: CAS ÉTENDARDS (Flagship Cases)
              ============================================ -->
-      <section class="flagship-cases" id="cases" aria-labelledby="cases-title">
+      <section class="flagship-cases" id="creations" aria-labelledby="cases-title">
         <div class="container">
           <header class="section__header" data-scroll>
             <h2 class="section__title" id="cases-title">
@@ -628,13 +470,6 @@
                     </p>
                   </div>
                 </div>
-
-                <button class="case-card__audio-btn" aria-label="Écouter extrait SIVAL" data-scroll-to="creations">
-                  <svg class="audio-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                  <span>Écouter 30s</span>
-                </button>
               </div>
             </article>
 
@@ -678,13 +513,6 @@
                     </p>
                   </div>
                 </div>
-
-                <button class="case-card__audio-btn" aria-label="Écouter extrait Atelier Lacour" data-scroll-to="creations">
-                  <svg class="audio-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                  <span>Écouter 30s</span>
-                </button>
               </div>
             </article>
 
@@ -734,17 +562,6 @@
                     </p>
                   </div>
                 </div>
-
-                <button
-                  class="case-card__audio-btn case-card__audio-btn--featured"
-                  aria-label="Écouter extrait État de nature"
-                  data-scroll-to="creations"
-                >
-                  <svg class="audio-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
-                  <span>Écouter 30s</span>
-                </button>
               </div>
             </article>
           </div>
@@ -772,7 +589,7 @@
       <section class="services" id="services">
         <div class="container">
           <header class="section__header" data-scroll>
-            <h2 class="section__title">Quatre formules, une signature</h2>
+            <h2 class="section__title">Trois formules, une signature</h2>
             <p class="section__subtitle">De l'écriture seule au spectacle complet</p>
           </header>
 
@@ -851,30 +668,6 @@
                 </svg>
               </a>
             </article>
-
-            <!-- Service 4 -->
-            <article class="service-card" data-scroll data-lift data-glow>
-              <div class="service-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                  <path
-                    d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"
-                  />
-                </svg>
-              </div>
-              <div class="service-card__badge">Sur devis</div>
-              <h3 class="service-card__title">Droits d'exploitation</h3>
-              <ul class="service-card__features">
-                <li>Publicité</li>
-                <li>Identité sonore</li>
-                <li>Campagnes</li>
-              </ul>
-              <a href="#contact" class="service-card__cta">
-                Découvrir
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-            </article>
           </div>
         </div>
       </section>
@@ -898,14 +691,6 @@
           <!-- Filters -->
           <div class="filters" role="region" aria-labelledby="filters-title">
             <h3 id="filters-title" class="sr-only">Filtres</h3>
-
-            <!-- Groupe CLIENT (tri par client) -->
-            <div class="filters__group" role="toolbar" aria-label="Filtrer par client">
-              <button class="filter is-active" data-filter-group="client" data-filter-value="all" aria-pressed="true">Tout</button>
-              <button class="filter" data-filter-group="client" data-filter-value="institution" aria-pressed="false">Institutions</button>
-              <button class="filter" data-filter-group="client" data-filter-value="entreprise" aria-pressed="false">Entreprises</button>
-              <button class="filter" data-filter-group="client" data-filter-value="spectacle" aria-pressed="false">Spectacles</button>
-            </div>
 
             <!-- Groupe TYPE (filtrage par type de projet) -->
             <div class="filters__group" role="toolbar" aria-label="Filtrer par type">
@@ -1349,41 +1134,12 @@
       </section>
 
       <!-- ============================================
-             STATS SECTION - CHIFFRES DE CONFIANCE
-             ============================================ -->
-      <section class="stats" aria-labelledby="stats-title">
-        <div class="container">
-          <header class="stats__header">
-            <h2 class="stats__title" id="stats-title">La preuve par les chiffres</h2>
-          </header>
-          <div class="stats__grid">
-            <div class="stat-card">
-              <div class="stat-card__number" data-count="60">60+</div>
-              <div class="stat-card__label">Représentations</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-card__number" data-count="15">15+</div>
-              <div class="stat-card__label">Projets institutionnels</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-card__number">1200€</div>
-              <div class="stat-card__label">À partir de</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-card__number" data-count="4">4</div>
-              <div class="stat-card__label">Années d'expérience terrain</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================================
              ACTE 7: FAQ PREMIUM
              ============================================ -->
       <section class="faq" id="faq" aria-labelledby="faq-title">
         <div class="container">
           <header class="section__header">
-            <h2 class="section__title" id="faq-title">Vos questions, nos réponses</h2>
+            <h2 class="section__title" id="faq-title">Les questions que nos clients posent vraiment</h2>
           </header>
 
           <!-- FAQ Grid -->
@@ -1391,7 +1147,7 @@
             <!-- Question 1 -->
             <article class="faq__item">
               <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-1">
-                <span class="faq__question-text">C'est quoi exactement ?</span>
+                <span class="faq__question-text">Quelle est votre spécificité ?</span>
                 <svg
                   class="faq__icon"
                   viewBox="0 0 24 24"
@@ -1420,7 +1176,7 @@
             <!-- Question 2 -->
             <article class="faq__item">
               <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-2">
-                <span class="faq__question-text">Allez-vous comprendre notre métier ?</span>
+                <span class="faq__question-text">Comment garantissez-vous la justesse du propos ?</span>
                 <svg
                   class="faq__icon"
                   viewBox="0 0 24 24"
@@ -1448,7 +1204,7 @@
             <!-- Question 3 -->
             <article class="faq__item">
               <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-3">
-                <span class="faq__question-text">Ce ne sera pas gênant ou cringe ?</span>
+                <span class="faq__question-text">Comment évitez-vous le ton institutionnel ?</span>
                 <svg
                   class="faq__icon"
                   viewBox="0 0 24 24"
@@ -1476,7 +1232,7 @@
             <!-- Question 4 -->
             <article class="faq__item">
               <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-4">
-                <span class="faq__question-text">Quels délais ?</span>
+                <span class="faq__question-text">Quels sont les délais de réalisation ?</span>
                 <svg
                   class="faq__icon"
                   viewBox="0 0 24 24"
@@ -1504,7 +1260,7 @@
             <!-- Question 5 -->
             <article class="faq__item">
               <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-5">
-                <span class="faq__question-text">Quel budget ?</span>
+                <span class="faq__question-text">Quel investissement prévoir ?</span>
                 <svg
                   class="faq__icon"
                   viewBox="0 0 24 24"
@@ -1532,7 +1288,7 @@
             <!-- Question 6 -->
             <article class="faq__item">
               <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-6">
-                <span class="faq__question-text">Et les droits ?</span>
+                <span class="faq__question-text">Et les droits d'exploitation ?</span>
                 <svg
                   class="faq__icon"
                   viewBox="0 0 24 24"
@@ -1549,9 +1305,13 @@
               <div class="faq__answer-wrapper">
                 <div class="faq__answer" id="faq-answer-6">
                   <p>
-                    Contrat de cession clair (durée/territoires/médias). Usage événementiel inclus.
-                    Droits d'exploitation commerciale (pub, identité sonore) : sur devis
-                    complémentaire. On adapte à vos besoins.
+                    Chaque projet inclut un contrat de cession clair précisant durée, territoires et médias d'utilisation.
+                    L'usage événementiel est systématiquement inclus dans nos formules de base.
+                  </p>
+                  <p>
+                    Pour les exploitations commerciales spécifiques — publicité, identité sonore d'entreprise,
+                    campagnes de communication à grande échelle — nous établissons un devis complémentaire
+                    sur mesure, adapté à vos besoins et à l'ampleur de la diffusion.
                   </p>
                 </div>
               </div>
@@ -1805,9 +1565,7 @@
           <div class="footer__grid">
             <!-- Col 1 - Brand -->
             <div class="footer__col footer__col--brand">
-              <h3 class="footer__logo">En français s'il vous plaît</h3>
-              <p class="footer__tagline">"Vous avez déjà écrit l'histoire"</p>
-              <p class="footer__baseline">Studio narratif & musical</p>
+              <p class="footer__brand-text">En français s'il vous plaît – Studio de narration</p>
             </div>
 
             <!-- Col 2 - Navigation -->
@@ -1832,25 +1590,6 @@
                 <li><a href="#confidentialite">Confidentialité</a></li>
                 <li><a href="#rgpd">RGPD</a></li>
               </ul>
-            </div>
-
-            <!-- Col 4 - Newsletter -->
-            <div class="footer__col">
-              <h4 class="footer__title">Restez inspiré</h4>
-              <p class="footer__newsletter-text">1 email/mois · Projets & coulisses</p>
-              <form class="footer__newsletter">
-                <input
-                  type="email"
-                  class="footer__newsletter-input"
-                  placeholder="Votre email"
-                  aria-label="Email pour newsletter"
-                />
-                <button type="submit" class="footer__newsletter-btn" aria-label="S'inscrire">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </form>
             </div>
           </div>
         </div>
