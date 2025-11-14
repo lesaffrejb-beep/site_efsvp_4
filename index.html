@@ -82,6 +82,7 @@
     <link rel="stylesheet" href="/src/styles/cookie-banner.css" />
     <link rel="stylesheet" href="/src/styles/landing-rebuild.css" />
     <link rel="stylesheet" href="/src/styles/ux-polish.css" />
+    <link rel="stylesheet" href="/src/styles/components-efsvp.css" />
 
     <!-- Critical CSS Inline -->
     <style>
@@ -198,152 +199,143 @@
          SECTION 1: HERO
          ============================================ -->
     <section class="hero" id="hero" aria-label="Page d'accueil et présentation">
-      <!-- Video Background Placeholder -->
-      <div class="hero__video-container hero-video-bg">
-        <div class="hero__video-placeholder"></div>
-        <div class="hero__overlay"></div>
-      </div>
-
-      <div class="hero__content">
-        <div class="hero__content-card">
-          <!-- Tagline principale -->
-          <h1 class="hero__title" data-scroll>
-            <span class="hero__title-line hero__title-line--primary"
-              >Vous avez déjà écrit l'histoire.</span
-            >
+      <div class="hero__container">
+        <div class="hero__content">
+          <h1 class="hero__headline">
+            Vous avez déjà écrit l'histoire.
           </h1>
-
-          <h2 class="hero__subtitle hero__subtitle--emphasis" data-scroll>
+          <p class="hero__subheadline">
             On ne fera que vous relire.
-          </h2>
-
-          <!-- Sous-texte promesse -->
-          <p class="hero__baseline hero__baseline--main" data-scroll>
-            Nous transformons vos moments clés en récits et musiques sur-mesure,<br />
-            pour que votre histoire reste dans les mémoires.
           </p>
+          <p class="hero__description">
+            Studio de création narrative et musicale sur-mesure.<br>
+            Pour vos moments clés : anniversaires, inaugurations, transitions.<br>
+            <strong>Écriture • Composition • Performance live.</strong>
+          </p>
+          <a href="#contact" class="cta cta--primary">
+            Partagez votre histoire
+          </a>
+        </div>
 
-          <!-- CTA Principal -->
-          <div class="hero__cta-group" data-scroll>
-            <a href="#contact" class="btn btn--primary btn--hero" data-glow>
-              <span>Partagez votre histoire</span>
-              <svg
-                class="btn__icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
-            <a href="#projets" class="btn btn--ghost">Voir nos créations</a>
+        <div class="hero__social-proof">
+          <p class="social-proof__label">Ils nous font confiance</p>
+          <div class="social-proof__logos">
+            <span class="prestige__logo-item">Département 49</span>
+            <span class="prestige__logo-item">SIVAL</span>
+            <span class="prestige__logo-item">CAPEB</span>
+            <span class="prestige__logo-item">Destination Angers</span>
+            <span class="social-proof__more">+8 autres</span>
           </div>
         </div>
       </div>
-
-      <button
-        class="hero__scroll"
-        id="hero-scroll"
-        aria-label="Faire défiler vers la section suivante"
-      >
-        <svg
-          class="hero__scroll-chevron"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          aria-hidden="true"
-        >
-          <polyline points="6 9 12 15 18 9"></polyline>
-        </svg>
-      </button>
     </section>
 
     <!-- Main Content -->
     <main id="main">
       <!-- ============================================
-           SECTION 2: PRESTIGE / LOGOS
+           SECTION 2: PROMESSE
            ============================================ -->
-      <section class="prestige section" id="prestige">
-        <div class="container">
-          <header class="section__header" data-scroll>
-            <h2 class="section__title">Ils nous ont déjà confié leur histoire</h2>
-          </header>
+      <section class="promise" id="promesse">
+        <div class="promise__container">
+          <h2 class="section-title">Ce que vous obtenez vraiment</h2>
 
-          <!-- Logos / Noms clients -->
-          <div class="prestige__logos" data-scroll>
-            <span class="prestige__logo-item">Département 49</span>
-            <span class="prestige__logo-separator">·</span>
-            <span class="prestige__logo-item">SIVAL</span>
-            <span class="prestige__logo-separator">·</span>
-            <span class="prestige__logo-item">CAPEB</span>
-            <span class="prestige__logo-separator">·</span>
-            <span class="prestige__logo-item">Destination Angers</span>
-            <span class="prestige__logo-separator">·</span>
-            <span class="prestige__logo-item">Réseau Cocagne</span>
-            <span class="prestige__logo-separator">·</span>
-            <span class="prestige__logo-item">PNR Loire-Anjou-Touraine</span>
+          <div class="promise__grid">
+            <article class="promise-card">
+              <div class="promise-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                </svg>
+              </div>
+              <h3 class="promise-card__title">Prestige</h3>
+              <p class="promise-card__description">
+                La classe d'avoir des auteurs-compositeurs professionnels.
+              </p>
+            </article>
+
+            <article class="promise-card">
+              <div class="promise-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
+              </div>
+              <h3 class="promise-card__title">Émotion</h3>
+              <p class="promise-card__description">
+                J'ai vu des gens pleurer.
+              </p>
+            </article>
+
+            <article class="promise-card">
+              <div class="promise-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"/>
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                  <line x1="12" y1="17" x2="12.01" y2="17"/>
+                </svg>
+              </div>
+              <h3 class="promise-card__title">Compréhension</h3>
+              <p class="promise-card__description">
+                Grâce à vous, tout le monde comprend qui on est.
+              </p>
+            </article>
           </div>
-
-          <!-- Micro-statistiques -->
-          <p class="prestige__stats" data-scroll>
-            <em>60+ représentations · 15+ projets institutionnels · 2 000+ spectateurs émus</em>
-          </p>
         </div>
       </section>
 
       <!-- ============================================
            SECTION 3: PROCESSUS
            ============================================ -->
-      <section class="process section" id="process">
-        <div class="container">
-          <header class="section__header" data-scroll>
-            <h2 class="section__title">Comment ça se passe</h2>
-          </header>
+      <section class="process" id="process">
+        <div class="process__container">
+          <h2 class="section-title section-title--light">
+            Un process clair. Des délais respectés.
+          </h2>
 
-          <div class="process__grid">
-            <!-- Étape 1: ÉCOUTER -->
-            <article class="process-card" data-scroll data-lift>
-              <div class="process-card__number">1</div>
-              <h3 class="process-card__title">ÉCOUTER</h3>
-              <p class="process-card__description">
-                1 à 2 semaines pour comprendre vos enjeux, vos publics, votre ton.
+          <div class="process__steps">
+            <article class="process-step">
+              <div class="process-step__number">1</div>
+              <h3 class="process-step__title">Collectage</h3>
+              <p class="process-step__duration">2 semaines</p>
+              <p class="process-step__description">
+                Entretiens • Immersion • Compréhension fine
               </p>
             </article>
 
-            <!-- Étape 2: ÉCRIRE -->
-            <article class="process-card" data-scroll data-lift>
-              <div class="process-card__number">2</div>
-              <h3 class="process-card__title">ÉCRIRE</h3>
-              <p class="process-card__description">
-                Écriture du texte, allers-retours inclus jusqu'à ce que ce soit juste.
+            <div class="process__connector"></div>
+
+            <article class="process-step">
+              <div class="process-step__number">2</div>
+              <h3 class="process-step__title">Création</h3>
+              <p class="process-step__duration">2-4 semaines</p>
+              <p class="process-step__description">
+                Écriture • Composition • 2 allers-retours inclus
               </p>
             </article>
 
-            <!-- Étape 3: CRÉER -->
-            <article class="process-card" data-scroll data-lift>
-              <div class="process-card__number">3</div>
-              <h3 class="process-card__title">CRÉER</h3>
-              <p class="process-card__description">
-                Composition musicale, maquettes, ajustements.
+            <div class="process__connector"></div>
+
+            <article class="process-step">
+              <div class="process-step__number">3</div>
+              <h3 class="process-step__title">Validation</h3>
+              <p class="process-step__duration">Vos délais</p>
+              <p class="process-step__description">
+                Vous validez texte et musique avant enregistrement
               </p>
             </article>
 
-            <!-- Étape 4: VIVRE -->
-            <article class="process-card" data-scroll data-lift>
-              <div class="process-card__number">4</div>
-              <h3 class="process-card__title">VIVRE</h3>
-              <p class="process-card__description">
-                Performance ou diffusion : le moment où tout le monde comprend qui vous êtes.
+            <div class="process__connector"></div>
+
+            <article class="process-step">
+              <div class="process-step__number">4</div>
+              <h3 class="process-step__title">Livraison</h3>
+              <p class="process-step__duration">Semaine finale</p>
+              <p class="process-step__description">
+                Audio pro • Texte • (Option : Performance live)
               </p>
             </article>
           </div>
 
-          <p class="process__recap" data-scroll>
-            <strong>Délai total :</strong> 3 à 8 semaines selon l'ambition.
+          <p class="process__reassurance">
+            Process balisé. SLA 48h. Jamais cringe.
           </p>
         </div>
       </section>
@@ -351,80 +343,67 @@
       <!-- ============================================
            SECTION 4: OFFRES / FORMULES
            ============================================ -->
-      <section class="services section" id="offres">
-        <div class="container">
-          <header class="section__header" data-scroll>
-            <h2 class="section__title">Vos formules</h2>
-          </header>
+      <section class="offers" id="offres">
+        <div class="offers__container">
+          <h2 class="section-title">Formules & Tarifs</h2>
 
-          <div class="services__grid">
-            <!-- Formule 1: ÉCRITURE SEULE -->
-            <article class="service-card" data-scroll data-lift>
-              <div class="service-card__header">
-                <h3 class="service-card__title">Écriture seule</h3>
-                <p class="service-card__price">À partir de 1 200 €</p>
+          <div class="offers__grid">
+            <article class="offer-card">
+              <div class="offer-card__header">
+                <h3 class="offer-card__name">Écriture seule</h3>
+                <p class="offer-card__price">
+                  À partir de <strong>1 200€</strong>
+                </p>
               </div>
-              <ul class="service-card__features">
-                <li>Texte sur-mesure</li>
-                <li>2–3 semaines</li>
-                <li>2 allers-retours inclus</li>
+              <ul class="offer-card__features">
+                <li>Texte professionnel</li>
+                <li>Validation par étapes</li>
+                <li>Délai : 2-3 semaines</li>
               </ul>
+              <a href="#contact" class="cta cta--secondary">
+                Découvrir
+              </a>
             </article>
 
-            <!-- Formule 2: CRÉATION COMPLÈTE -->
-            <article class="service-card" data-scroll data-lift>
-              <div class="service-card__header">
-                <h3 class="service-card__title">Création complète</h3>
-                <p class="service-card__price">À partir de 2 500 €</p>
+            <article class="offer-card offer-card--featured">
+              <div class="offer-card__badge">Recommandé</div>
+              <div class="offer-card__header">
+                <h3 class="offer-card__name">Création complète</h3>
+                <p class="offer-card__price">
+                  À partir de <strong>2 500€</strong>
+                </p>
               </div>
-              <ul class="service-card__features">
-                <li>Texte + composition musicale</li>
-                <li>Maquettes audio</li>
-                <li>3–4 semaines</li>
+              <ul class="offer-card__features">
+                <li>Texte + Composition</li>
+                <li>Enregistrement audio pro</li>
+                <li>Délai : 3-4 semaines</li>
               </ul>
+              <a href="#contact" class="cta cta--primary">
+                Partagez votre histoire
+              </a>
             </article>
 
-            <!-- Formule 3: PERFORMANCE LIVE -->
-            <article class="service-card service-card--featured" data-scroll data-lift>
-              <div class="service-card__badge">Signature</div>
-              <div class="service-card__header">
-                <h3 class="service-card__title">Performance live</h3>
-                <p class="service-card__price">À partir de 3 600 €</p>
+            <article class="offer-card">
+              <div class="offer-card__header">
+                <h3 class="offer-card__name">Performance live</h3>
+                <p class="offer-card__price">
+                  À partir de <strong>3 600€</strong>
+                </p>
               </div>
-              <ul class="service-card__features">
-                <li>Concert ou performance in situ</li>
-                <li>Coordination technique</li>
-                <li>4–5 semaines</li>
+              <ul class="offer-card__features">
+                <li>Création complète</li>
+                <li>Concert live (3-45min)</li>
+                <li>Délai : 4-5 semaines</li>
               </ul>
-            </article>
-
-            <!-- Formule 4: DROITS D'USAGE -->
-            <article class="service-card" data-scroll data-lift>
-              <div class="service-card__header">
-                <h3 class="service-card__title">Droits d'usage</h3>
-                <p class="service-card__price">Sur devis</p>
-              </div>
-              <ul class="service-card__features">
-                <li>Pub, vidéo, identité sonore</li>
-                <li>Conditions selon diffusion</li>
-              </ul>
+              <a href="#contact" class="cta cta--secondary">
+                Demander un devis
+              </a>
             </article>
           </div>
 
-          <!-- Lien explicatif tarifs -->
-          <div class="services__footer" data-scroll>
-            <a href="#tarifs-explications" class="services__link">Pourquoi ces tarifs ?</a>
-          </div>
-
-          <!-- Explications tarifs -->
-          <div class="services__explanation" id="tarifs-explications" data-scroll>
-            <p>
-              <strong>Nos tarifs reflètent :</strong> le temps consacré à l'écoute et à la
-              recherche, l'expertise narrative et musicale, les droits d'auteur, et la
-              coordination logistique pour les performances live. Chaque projet est unique — nous
-              adaptons nos formules à vos besoins et votre budget.
-            </p>
-          </div>
+          <p class="offers__note">
+            <strong>Spectacle 30-60 min</strong> & <strong>droits d'exploitation</strong> sur devis.
+          </p>
         </div>
       </section>
 
@@ -680,116 +659,62 @@
       </section>
 
       <!-- ============================================
-           SECTION 8: CTA FINAL + CONTACT
+           SECTION 8: CONTACT
            ============================================ -->
-      <section class="cta-final section section--cta" id="contact">
-        <div class="container">
-          <div class="cta-final__content" data-scroll>
-            <h2 class="cta-final__title">Toutes les bonnes histoires méritent d'être racontées.</h2>
-            <a href="#form" class="btn btn--primary btn--large">Partagez votre histoire</a>
-            <p class="cta-final__reassurance">
-              Réponse sous 48 h · Premier échange sans engagement.
-            </p>
+      <section class="contact" id="contact">
+        <div class="contact__container">
+          <div class="contact__content">
+            <h2 class="section-title section-title--light">
+              Toutes les bonnes histoires<br>méritent d'être racontées.
+            </h2>
+            <p class="contact__subtitle">La vôtre aussi.</p>
           </div>
 
-          <!-- Formulaire de contact -->
-          <div class="contact-form" id="form" data-scroll>
-            <h3 class="contact-form__title">Racontez-nous votre projet</h3>
-            <form class="form" id="contact-form" aria-label="Formulaire de contact">
-              <div class="form__row">
-                <div class="form__group">
-                  <label for="name" class="form__label">Nom & Prénom *</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    class="form__input"
-                    required
-                    aria-required="true"
-                  />
-                </div>
-
-                <div class="form__group">
-                  <label for="email" class="form__label">Email *</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="form__input"
-                    required
-                    aria-required="true"
-                  />
-                </div>
-              </div>
-
-              <div class="form__row">
-                <div class="form__group">
-                  <label for="organization" class="form__label">Organisation</label>
-                  <input type="text" id="organization" name="organization" class="form__input" />
-                </div>
-
-                <div class="form__group">
-                  <label for="formule" class="form__label">Formule envisagée</label>
-                  <select id="formule" name="formule" class="form__input form__select">
-                    <option value="">Sélectionner</option>
-                    <option value="ecriture">Écriture seule</option>
-                    <option value="complete">Création complète</option>
-                    <option value="performance">Performance live</option>
-                    <option value="droits">Droits d'usage</option>
-                    <option value="unsure">Je ne sais pas encore</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form__group">
-                <label for="message" class="form__label">Votre message *</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  class="form__input form__textarea"
-                  rows="6"
-                  required
-                  aria-required="true"
-                  placeholder="Parlez-nous de votre projet, vos enjeux, votre contexte..."
-                ></textarea>
-              </div>
-
-              <button type="submit" class="btn btn--primary btn--full">
-                <span class="btn__text">Envoyer le message</span>
-                <span class="btn__loader"></span>
-                <svg
-                  class="btn__icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </button>
-            </form>
-          </div>
-
-          <!-- Coordonnées alternatives -->
-          <div class="contact-alt" data-scroll>
-            <p class="contact-alt__intro">Ou contactez-nous directement :</p>
-            <button class="copy-email" id="copy-email" aria-label="Copier l'email dans le presse-papiers">
-              <svg
-                class="copy-email__icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.75"
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="name" class="form-label">Votre nom</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="form-input"
+                required
+                placeholder="Jean Dupont"
               >
-                <path
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              <span class="copy-email__text">contact@efsvp.fr</span>
-              <span class="copy-email__success" style="display: none">✓ Copié !</span>
+            </div>
+
+            <div class="form-group">
+              <label for="email" class="form-label">Votre email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                required
+                placeholder="jean@entreprise.fr"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="message" class="form-label">Votre histoire</label>
+              <textarea
+                id="message"
+                name="message"
+                class="form-input form-textarea"
+                required
+                rows="6"
+                placeholder="Parlez-nous de votre projet, de vos besoins, de votre moment clé..."
+              ></textarea>
+            </div>
+
+            <button type="submit" class="cta cta--primary cta--full">
+              Partagez votre histoire
             </button>
-            <p class="contact-alt__location">Basé à Angers · Partout en Francophonie</p>
-          </div>
+
+            <p class="form-reassurance">
+              Réponse sous 48h. Premier échange sans engagement.
+            </p>
+          </form>
         </div>
       </section>
     </main>
@@ -875,5 +800,6 @@
 
     <!-- Scripts -->
     <script type="module" src="/src/scripts/main.js"></script>
+    <script type="module" src="/src/scripts/components-efsvp.js"></script>
   </body>
 </html>

@@ -45,6 +45,15 @@
   --bg-dark: #0f141a; /* Fond sombre principal */
   --bg-dark-2: #141e26; /* Gradient hero/sections */
 
+  /* ===== Palette étendue (Mockup) ===== */
+  --terre-cuite: #b8441e; /* Terre cuite signature */
+  --encre-nuit: #1a2332; /* Bleu nuit pour sections sombres */
+  --parchemin: #f5e6d3; /* Beige chaud */
+  --ambre-forge: #e8924f; /* Ambre/orange chaud */
+  --charbon: #2d2d2d; /* Texte très sombre */
+  --hover-terre-cuite: #9a3618;
+  --hover-ambre: #d67d3a;
+
   /* ===== Accent aliases ===== */
   --accent: var(--primary);
   --accent-hover: var(--primary-hover);
