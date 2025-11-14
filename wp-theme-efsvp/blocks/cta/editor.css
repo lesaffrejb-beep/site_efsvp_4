@@ -1,9 +1,0 @@
-/**
- * CTA Block Editor Styles
- */
-
-.wp-block-efsvp-cta {
-  border: 2px dashed var(--border);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
-}

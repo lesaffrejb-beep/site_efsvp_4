@@ -1,9 +1,0 @@
-/**
- * Portfolio Block Editor Styles
- */
-
-.wp-block-efsvp-portfolio {
-  border: 2px dashed var(--border);
-  border-radius: var(--radius-md);
-  padding: var(--space-6);
-}
