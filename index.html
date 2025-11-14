@@ -57,7 +57,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Réduction des graisses chargées - Seulement les nécessaires -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&family=Cormorant:ital,wght@1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&family=Cormorant:ital,wght@1,600&display=swap"
       rel="stylesheet"
     />
     <!-- Preload des fonts critiques pour le Hero -->
@@ -164,32 +164,45 @@
           <span class="nav__logo-text">EfSVP</span>
         </a>
 
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list">
-            <li class="nav__item">
-              <a href="#projets" class="nav__link">Projets</a>
-            </li>
-            <li class="nav__item">
-              <a href="#offres" class="nav__link">Offres</a>
-            </li>
-            <li class="nav__item">
-              <a href="#process" class="nav__link">Process</a>
-            </li>
-            <li class="nav__item">
-              <a href="#faq" class="nav__link">FAQ</a>
-            </li>
-          </ul>
+        <div class="nav__actions">
+          <div class="nav__menu" id="nav-menu" role="navigation">
+            <ul class="nav__list">
+              <li class="nav__item">
+                <a href="#projets" class="nav__link">Projets</a>
+              </li>
+              <li class="nav__item">
+                <a href="#offres" class="nav__link">Offres</a>
+              </li>
+              <li class="nav__item">
+                <a href="#process" class="nav__link">Process</a>
+              </li>
+              <li class="nav__item">
+                <a href="#faq" class="nav__link">FAQ</a>
+              </li>
+            </ul>
+
+            <div class="nav__menu-cta">
+              <a href="#contact" class="cta cta--primary nav__cta-mobile">Partagez votre histoire</a>
+            </div>
+          </div>
+
+          <a href="#contact" class="cta cta--primary nav__cta">Partagez votre histoire</a>
+
+          <!-- Mobile Toggle -->
+          <button
+            class="nav__toggle"
+            id="nav-toggle"
+            aria-label="Ouvrir le menu"
+            aria-controls="nav-menu"
+            aria-expanded="false"
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
-
-        <a href="#contact" class="nav__cta btn btn--primary-small">Partagez votre histoire</a>
-
-        <!-- Mobile Toggle -->
-        <button class="nav__toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
       </div>
+      <div class="nav__overlay" id="nav-overlay" aria-hidden="true"></div>
     </nav>
 
     <!-- Skip to main content (Accessibility) -->
@@ -200,32 +213,46 @@
          ============================================ -->
     <section class="hero" id="hero" aria-label="Page d'accueil et présentation">
       <div class="hero__container">
-        <div class="hero__content">
-          <h1 class="hero__headline">
-            Vous avez déjà écrit l'histoire.
-          </h1>
-          <p class="hero__subheadline">
-            On ne fera que vous relire.
-          </p>
-          <p class="hero__description">
-            Studio de création narrative et musicale sur-mesure.<br>
-            Pour vos moments clés : anniversaires, inaugurations, transitions.<br>
-            <strong>Écriture • Composition • Performance live.</strong>
-          </p>
-          <a href="#contact" class="cta cta--primary">
-            Partagez votre histoire
-          </a>
-        </div>
-
-        <div class="hero__social-proof">
-          <p class="social-proof__label">Ils nous font confiance</p>
-          <div class="social-proof__logos">
-            <span class="prestige__logo-item">Département 49</span>
-            <span class="prestige__logo-item">SIVAL</span>
-            <span class="prestige__logo-item">CAPEB</span>
-            <span class="prestige__logo-item">Destination Angers</span>
-            <span class="social-proof__more">+8 autres</span>
+        <div class="hero__grid">
+          <div class="hero__content">
+            <h1 class="hero__headline">
+              Vous avez déjà écrit l'histoire.
+            </h1>
+            <p class="hero__subheadline">
+              On ne fera que vous relire.
+            </p>
+            <p class="hero__description">
+              Studio de création narrative et musicale sur-mesure.<br>
+              Pour vos moments clés : anniversaires, inaugurations, transitions.<br>
+              <strong>Écriture • Composition • Performance live.</strong>
+            </p>
+            <div class="hero__cta-group">
+              <a href="#contact" class="cta cta--primary">
+                Partagez votre histoire
+              </a>
+            </div>
           </div>
+
+          <aside class="hero__support" aria-label="Ils nous font confiance">
+            <p class="social-proof__label">Ils nous font confiance</p>
+            <ul class="client-badges" role="list">
+              <li class="client-badge">
+                <span class="client-badge__label">Département 49</span>
+              </li>
+              <li class="client-badge">
+                <span class="client-badge__label">SIVAL</span>
+              </li>
+              <li class="client-badge">
+                <span class="client-badge__label">CAPEB</span>
+              </li>
+              <li class="client-badge">
+                <span class="client-badge__label">Destination Angers</span>
+              </li>
+              <li class="client-badge client-badge--more">
+                <span class="client-badge__label">+8 autres</span>
+              </li>
+            </ul>
+          </aside>
         </div>
       </div>
     </section>

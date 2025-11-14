@@ -319,6 +319,7 @@ class App {
     const nav = document.getElementById('nav');
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
+    const navOverlay = document.getElementById('nav-overlay');
 
     // Show on scroll
     window.addEventListener('scroll', () => {
@@ -347,17 +348,42 @@ class App {
         lastFocusable = focusableElements[focusableElements.length - 1];
       };
 
+      const closeMenu = () => {
+        navToggle.setAttribute('aria-expanded', 'false');
+        navToggle.setAttribute('aria-label', 'Ouvrir le menu');
+        navMenu.classList.remove('active');
+        navOverlay?.classList.remove('is-active');
+        document.body.style.overflow = '';
+      };
+
+      const openMenu = () => {
+        navToggle.setAttribute('aria-expanded', 'true');
+        navToggle.setAttribute('aria-label', 'Fermer le menu');
+        navMenu.classList.add('active');
+        navOverlay?.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+
+        updateFocusableElements();
+        setTimeout(() => firstFocusable?.focus(), 100);
+      };
+
       navToggle.addEventListener('click', () => {
         const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-        navToggle.setAttribute('aria-expanded', !isExpanded);
-        navMenu.classList.toggle('active');
-        document.body.style.overflow = isExpanded ? '' : 'hidden';
 
-        // Focus premier élément quand le menu s'ouvre
-        if (!isExpanded) {
-          updateFocusableElements();
-          setTimeout(() => firstFocusable?.focus(), 100);
+        if (isExpanded) {
+          closeMenu();
+          navToggle.focus();
         } else {
+          openMenu();
+        }
+      });
+
+      navOverlay?.addEventListener('click', closeMenu);
+
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+          event.preventDefault();
+          closeMenu();
           navToggle.focus();
         }
       });
@@ -383,9 +409,7 @@ class App {
 
       navMenu.querySelectorAll('a').forEach((link) => {
         link.addEventListener('click', () => {
-          navToggle.setAttribute('aria-expanded', 'false');
-          navMenu.classList.remove('active');
-          document.body.style.overflow = '';
+          closeMenu();
         });
       });
     }
