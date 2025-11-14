@@ -303,7 +303,7 @@
               <a href="#process" class="nav__link">Process</a>
             </li>
             <li class="nav__item">
-              <a href="#faq" class="nav__link">FAQ</a>
+              <a href="#faq" class="nav__link">Questions fréquentes</a>
             </li>
           </ul>
         </div>
@@ -1579,7 +1579,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#portfolio">Portfolio</a></li>
                 <li><a href="#process">Process</a></li>
-                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#faq">Questions fréquentes</a></li>
                 <li><a href="#contact">Contact</a></li>
               </ul>
             </div>
@@ -1630,6 +1630,34 @@
         <h3 class="modal__title" id="modal-title">Message envoyé !</h3>
         <p class="modal__text">Merci <span id="modal-name"></span> ! On vous répond sous 48h.</p>
         <button class="btn btn--primary" id="modal-close">Continuer</button>
+      </div>
+    </div>
+
+    <!-- Project Detail Modal -->
+    <div
+      class="modal modal--project"
+      id="project-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-modal-title"
+    >
+      <div class="modal__overlay"></div>
+      <div class="modal__content modal__content--project">
+        <button class="modal__close" id="project-modal-close" aria-label="Fermer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div class="project-modal__header">
+          <span class="project-modal__tag" id="project-modal-tag"></span>
+          <h3 class="project-modal__title" id="project-modal-title"></h3>
+          <p class="project-modal__meta" id="project-modal-meta"></p>
+        </div>
+
+        <div class="project-modal__body">
+          <div class="project-modal__description" id="project-modal-description"></div>
+        </div>
       </div>
     </div>
 

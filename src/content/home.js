@@ -45,7 +45,7 @@ export const homeContent = {
       { label: `Créations`, href: `#creations` },
       { label: `Portfolio`, href: `#portfolio` },
       { label: `Process`, href: `#process` },
-      { label: `FAQ`, href: `#faq` },
+      { label: `Questions fréquentes`, href: `#faq` },
     ],
     cta: {
       label: `Démarrer votre projet`,

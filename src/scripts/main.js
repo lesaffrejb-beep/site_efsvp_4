@@ -18,6 +18,8 @@ import { AnimationsManager } from './modules/animations.js';
 import { ProgressBar } from './modules/progressBar.js';
 import { ProcessReveal } from './modules/processReveal.js';
 import { CookieConsent } from './modules/cookieConsent.js';
+import { CopyEmail } from './modules/copyEmail.js';
+import { ProjectModal } from './modules/projectModal.js';
 import { initHeroBlock } from './blocks/hero.js';
 import { initAudioBlock } from './blocks/audio.js';
 import { initPortfolioBlock } from './blocks/portfolio.js';
@@ -189,6 +191,9 @@ class App {
     // Portfolio filters
     initPortfolioBlock();
 
+    // Project Modal
+    this.modules.projectModal = new ProjectModal();
+
     // Testimonials carousel
     const testimonialsInstance = initTestimonialsBlock();
     if (testimonialsInstance) {
@@ -200,6 +205,9 @@ class App {
 
     // Contact Form
     this.initContactForm();
+
+    // Copy Email functionality
+    this.modules.copyEmail = new CopyEmail();
 
     // Stats Counter
     this.initStatsCounter();
@@ -447,22 +455,25 @@ class App {
       if (question && answer) {
         question.setAttribute('aria-controls', answer.id);
         question.setAttribute('aria-expanded', 'false');
+        question.setAttribute('role', 'button');
+        question.setAttribute('tabindex', '0');
       }
 
-      question?.addEventListener('click', () => {
+      // Click handler
+      const toggleFaq = () => {
         const isActive = item.classList.contains('active');
-
-        // Close others
-        faqItems.forEach((otherItem) => {
-          if (otherItem !== item) {
-            otherItem.classList.remove('active');
-            otherItem.querySelector('.faq__question')?.setAttribute('aria-expanded', 'false');
-          }
-        });
-
-        // Toggle current
         item.classList.toggle('active');
         question.setAttribute('aria-expanded', !isActive);
+      };
+
+      question?.addEventListener('click', toggleFaq);
+
+      // Keyboard support (Enter & Space)
+      question?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleFaq();
+        }
       });
     });
   }
