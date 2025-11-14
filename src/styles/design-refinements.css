@@ -1,0 +1,140 @@
+/* ============================================
+   EFSVP - DESIGN REFINEMENTS
+   Corrections et harmonisations finales (Nov 2025)
+   ============================================ */
+
+/* ========== 1. HARMONISATION CARTES PORTFOLIO ========== */
+
+/* Uniformiser le style des tags/badges entre toutes les cartes */
+.portfolio-card__tag {
+  background-color: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Améliorer le contraste du texte sur les gradients */
+.portfolio-card__content {
+  position: relative;
+}
+
+/* Assurer que le titre est bien visible */
+.portfolio-card__title {
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Harmoniser les ombres au hover avec les case-cards */
+.portfolio-card:hover {
+  box-shadow: var(--shadow-2xl) !important;
+}
+
+/* ========== 2. MENU MOBILE - AMÉLIORER VISIBILITÉ ========== */
+
+@media (max-width: 768px) {
+  /* Fond du menu : plus opaque et plus dense */
+  .nav__menu {
+    background: linear-gradient(
+      to bottom right,
+      rgba(29, 44, 59, 0.98) 0%,
+      rgba(45, 55, 72, 0.98) 50%,
+      rgba(25, 27, 38, 0.98) 100%
+    ) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+  }
+
+  /* Texte des liens : contraste amélioré */
+  .nav__link {
+    color: rgba(255, 255, 255, 0.95) !important;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .nav__link:hover {
+    color: var(--accent-gold) !important;
+  }
+
+  /* Croix de fermeture : toujours visible et au-dessus */
+  .nav__toggle {
+    position: relative !important;
+    z-index: 1002 !important;
+  }
+
+  .nav__toggle[aria-expanded='true'] span {
+    background-color: #ffffff !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Overlay semi-transparent derrière le menu */
+  .nav__menu::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+}
+
+/* ========== 3. FAQ ACCORDÉON - ASSURER AUCUN APERÇU ========== */
+
+/* S'assurer que les réponses sont complètement cachées quand fermées */
+.faq__answer-wrapper {
+  overflow: hidden !important;
+}
+
+.faq__answer {
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.faq__item:not(.active) .faq__answer {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* ========== 4. CONTRÔLE SPACING & ALIGNEMENTS ========== */
+
+/* Assurer un spacing vertical cohérent entre toutes les sections */
+section {
+  scroll-margin-top: calc(var(--header-h) + var(--space-4));
+}
+
+/* Alignement des titres de section */
+.section__title {
+  text-align: center;
+  max-width: var(--text-max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ========== 5. MICRO-FINITIONS ========== */
+
+/* Harmoniser tous les chips/badges du site */
+.case-card__badge,
+.portfolio-card__tag,
+.service-card__badge,
+.filter {
+  font-size: var(--text-xs) !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+  padding: var(--space-2) var(--space-4) !important;
+  border-radius: var(--radius-full) !important;
+}
+
+/* Assurer que tous les boutons ont un min-height pour l'accessibilité */
+button,
+.btn,
+a.btn {
+  min-height: 44px;
+}
+
+/* Focus visible harmonisé sur tous les éléments interactifs */
+a:focus-visible,
+button:focus-visible,
+.btn:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
+}
