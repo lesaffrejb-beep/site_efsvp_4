@@ -59,11 +59,49 @@ export class ErrorHandler {
       this.errors.shift();
     }
 
-    // Show user-friendly notification
-    this.showErrorNotification(errorInfo);
+    // Determine error severity
+    const severity = this.getErrorSeverity(errorInfo);
+
+    // Only show toast for critical errors
+    if (severity === 'critical') {
+      this.showErrorNotification(errorInfo);
+    }
 
     // Log to analytics (if available)
     this.logToAnalytics(errorInfo);
+  }
+
+  getErrorSeverity(errorInfo) {
+    const message = errorInfo.message || '';
+
+    // Ignore common non-critical errors
+    const nonCriticalPatterns = [
+      /ResizeObserver/i,
+      /Script error/i,
+      /Non-Error promise rejection/i,
+      /Loading chunk/i,
+      /hydration/i,
+      /webkit-masked-url/i,
+    ];
+
+    if (nonCriticalPatterns.some(pattern => pattern.test(message))) {
+      return 'info';
+    }
+
+    // Critical errors that should show notifications
+    const criticalPatterns = [
+      /is not defined/i,
+      /Cannot read propert/i,
+      /undefined is not a function/i,
+      /Failed to fetch/i,
+    ];
+
+    if (criticalPatterns.some(pattern => pattern.test(message))) {
+      return 'critical';
+    }
+
+    // Default: warning level (logged but not shown)
+    return 'warning';
   }
 
   handleResourceError(event) {
@@ -220,20 +258,21 @@ export class ErrorHandler {
       style.textContent = `
         .error-toast {
           position: fixed;
-          top: 24px;
-          right: 24px;
+          top: calc(var(--header-h, 76px) + 16px);
+          right: var(--space-6, 1.5rem);
           z-index: 10000;
-          background: #141C26;
-          border: 2px solid #B8441E;
-          border-radius: 12px;
-          padding: 16px;
+          background: var(--bg-dark, #0f141a);
+          border: 1.5px solid var(--primary, #b95a40);
+          border-radius: var(--radius-md, 12px);
+          padding: var(--space-4, 1rem);
           display: flex;
           align-items: flex-start;
-          gap: 12px;
-          max-width: 400px;
-          box-shadow: 0 12px 32px rgba(0, 0, 0, 0.42);
+          gap: var(--space-3, 0.75rem);
+          max-width: 420px;
+          box-shadow: var(--shadow-dark-card, 0 16px 40px rgba(0, 0, 0, 0.25));
+          backdrop-filter: blur(8px);
           transform: translateX(120%);
-          transition: transform 0.3s cubic-bezier(0.22, 0.9, 0.24, 1);
+          transition: transform 0.3s var(--ease-smooth, cubic-bezier(0.4, 0, 0.2, 1));
         }
 
         .error-toast--visible {
@@ -241,10 +280,11 @@ export class ErrorHandler {
         }
 
         .error-toast__icon {
-          width: 24px;
-          height: 24px;
-          color: #B8441E;
+          width: 20px;
+          height: 20px;
+          color: var(--primary, #b95a40);
           flex-shrink: 0;
+          margin-top: 2px;
         }
 
         .error-toast__icon svg {
@@ -257,32 +297,43 @@ export class ErrorHandler {
         }
 
         .error-toast__title {
+          font-family: var(--font-sans, 'Inter', sans-serif);
           font-weight: 600;
-          font-size: 14px;
-          color: #EAECEF;
-          margin-bottom: 4px;
+          font-size: var(--text-sm, 0.875rem);
+          color: var(--text-on-dark, #f7f5f2);
+          margin-bottom: var(--space-1, 0.25rem);
+          line-height: 1.4;
         }
 
         .error-toast__message {
-          font-size: 13px;
-          color: #9AA3AE;
+          font-family: var(--font-sans, 'Inter', sans-serif);
+          font-size: var(--text-xs, 0.75rem);
+          color: rgba(247, 245, 242, 0.7);
           margin: 0;
+          line-height: 1.5;
         }
 
         .error-toast__close {
-          width: 20px;
-          height: 20px;
-          color: #9AA3AE;
+          width: 18px;
+          height: 18px;
+          color: rgba(247, 245, 242, 0.6);
           background: none;
           border: none;
           cursor: pointer;
           padding: 0;
           flex-shrink: 0;
-          transition: color 0.2s;
+          transition: color var(--duration-base, 0.25s);
+          margin-top: 2px;
         }
 
         .error-toast__close:hover {
-          color: #EAECEF;
+          color: var(--text-on-dark, #f7f5f2);
+        }
+
+        .error-toast__close:focus-visible {
+          outline: 2px solid var(--primary, #b95a40);
+          outline-offset: 2px;
+          border-radius: var(--radius-xs, 4px);
         }
 
         .error-toast__close svg {
@@ -290,11 +341,11 @@ export class ErrorHandler {
           height: 100%;
         }
 
-        @media (max-width: 475px) {
+        @media (max-width: 640px) {
           .error-toast {
-            top: 16px;
-            right: 16px;
-            left: 16px;
+            top: calc(var(--header-h, 76px) + 12px);
+            right: var(--space-4, 1rem);
+            left: var(--space-4, 1rem);
             max-width: none;
           }
         }
