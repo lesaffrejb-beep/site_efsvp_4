@@ -52,7 +52,7 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Google Fonts - Preconnect + Preload for LCP optimization -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -60,197 +60,23 @@
       rel="stylesheet"
     />
 
-    <!-- JSON-LD Structured Data (Schema.org) - Award 2025 SEO -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "Organization",
-            "@id": "https://site-e-fsvp.vercel.app/#organization",
-            "name": "En français s'il vous plaît",
-            "alternateName": "EfSVP",
-            "url": "https://site-e-fsvp.vercel.app",
-            "logo": "https://site-e-fsvp.vercel.app/favicon.svg",
-            "description": "Studio de création narrative et musicale pour vos événements clés. Écriture, composition, performance live.",
-            "address": {
-              "@type": "PostalAddress",
-              "addressLocality": "Angers",
-              "addressRegion": "Pays de la Loire",
-              "addressCountry": "FR"
-            },
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "contactType": "Customer Service",
-              "availableLanguage": "French",
-              "email": "contact@efsvp.fr"
-            },
-            "areaServed": [
-              {
-                "@type": "GeoCircle",
-                "geoMidpoint": {
-                  "@type": "GeoCoordinates",
-                  "latitude": "47.4784",
-                  "longitude": "-0.5632",
-                  "name": "Angers, France"
-                },
-                "geoRadius": "100000"
-              },
-              {
-                "@type": "AdministrativeArea",
-                "name": "Pays de la Loire"
-              },
-              {
-                "@type": "Country",
-                "name": "France"
-              }
-            ],
-            "knowsAbout": [
-              "Création narrative",
-              "Composition musicale",
-              "Spectacles sur-mesure",
-              "Hymnes institutionnels",
-              "Patrimoine culturel Angers",
-              "Événementiel culturel"
-            ],
-            "priceRange": "€€€",
-            "sameAs": []
-          },
-          {
-            "@type": "WebSite",
-            "@id": "https://site-e-fsvp.vercel.app/#website",
-            "url": "https://site-e-fsvp.vercel.app",
-            "name": "En français s'il vous plaît",
-            "publisher": {
-              "@id": "https://site-e-fsvp.vercel.app/#organization"
-            }
-          },
-          {
-            "@type": "BreadcrumbList",
-            "@id": "https://site-e-fsvp.vercel.app/#breadcrumb",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Accueil",
-                "item": "https://site-e-fsvp.vercel.app"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Créations",
-                "item": "https://site-e-fsvp.vercel.app#creations"
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": "Portfolio",
-                "item": "https://site-e-fsvp.vercel.app#portfolio"
-              },
-              {
-                "@type": "ListItem",
-                "position": 4,
-                "name": "Contact",
-                "item": "https://site-e-fsvp.vercel.app#contact"
-              }
-            ]
-          },
-          {
-            "@type": "Event",
-            "@id": "https://site-e-fsvp.vercel.app/#event-etat-de-nature",
-            "name": "État de nature",
-            "description": "Spectacle immersif en pleine forêt, 35 minutes de déambulation avec texte poétique et musique live acoustique.",
-            "startDate": "2023-01-01",
-            "endDate": "2026-12-31",
-            "eventStatus": "https://schema.org/EventScheduled",
-            "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-            "location": {
-              "@type": "Place",
-              "name": "PNR Loire-Anjou-Touraine",
-              "address": {
-                "@type": "PostalAddress",
-                "addressRegion": "Loire-Anjou-Touraine",
-                "addressCountry": "FR"
-              }
-            },
-            "organizer": {
-              "@id": "https://site-e-fsvp.vercel.app/#organization"
-            },
-            "performer": {
-              "@id": "https://site-e-fsvp.vercel.app/#organization"
-            }
-          },
-          {
-            "@type": "CreativeWork",
-            "@id": "https://site-e-fsvp.vercel.app/#work-sival",
-            "name": "SIVAL — L'innovation agricole racontée",
-            "description": "Série de récits musicaux courts mettant en lumière des histoires humaines d'innovateurs lors du plus grand salon européen du secteur.",
-            "creator": {
-              "@id": "https://site-e-fsvp.vercel.app/#organization"
-            },
-            "datePublished": "2025",
-            "genre": "Narrative Series",
-            "inLanguage": "fr",
-            "keywords": "agriculture, innovation, narration, musique"
-          },
-          {
-            "@type": "CreativeWork",
-            "@id": "https://site-e-fsvp.vercel.app/#work-atelier-lacour",
-            "name": "Atelier Lacour — Métaphore de la forêt",
-            "description": "Performance narrative et musicale célébrant 25 ans d'artisanat et préparant une passation générationnelle.",
-            "creator": {
-              "@id": "https://site-e-fsvp.vercel.app/#organization"
-            },
-            "datePublished": "2024",
-            "genre": "Performance",
-            "inLanguage": "fr",
-            "keywords": "entreprise, anniversaire, transmission, artisanat"
-          },
-          {
-            "@type": "CreativeWork",
-            "@id": "https://site-e-fsvp.vercel.app/#work-hymne-maine-et-loire",
-            "name": "La force de la douceur",
-            "description": "Hymne officiel célébrant l'identité et les valeurs du département Maine-et-Loire.",
-            "creator": {
-              "@id": "https://site-e-fsvp.vercel.app/#organization"
-            },
-            "datePublished": "2024",
-            "genre": "Hymn",
-            "inLanguage": "fr",
-            "keywords": "hymne, département, identité, institution"
-          }
-        ]
-      }
-    </script>
-
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <!-- Design Tokens + System -->
+    <!-- CSS Files -->
     <link rel="stylesheet" href="/src/styles/design-tokens.css" />
     <link rel="stylesheet" href="/src/styles/design-system.css" />
-
-    <!-- Main Styles -->
     <link rel="stylesheet" href="/src/styles/styles.css" />
-
-    <!-- Premium Enhancements -->
     <link rel="stylesheet" href="/src/styles/premium-enhancements.css" />
-
-    <!-- Premium Unified - Excellence PR -->
     <link rel="stylesheet" href="/src/styles/premium-unified.css" />
-
-    <!-- Premium Mobile Polish -->
     <link rel="stylesheet" href="/src/styles/premium-mobile.css" />
-
-    <!-- Design Refinements - Final polish -->
     <link rel="stylesheet" href="/src/styles/design-refinements.css" />
-
-    <!-- Cookie Consent Banner -->
     <link rel="stylesheet" href="/src/styles/cookie-banner.css" />
+    <link rel="stylesheet" href="/src/styles/landing-rebuild.css" />
 
     <!-- Critical CSS Inline -->
     <style>
-      /* Preloader & Critical Styles */
+      /* Preloader */
       .preloader {
         position: fixed;
         top: 0;
@@ -320,7 +146,7 @@
     </div>
 
     <!-- ============================================
-         NAVIGATION PREMIUM STICKY
+         NAVIGATION
          ============================================ -->
     <nav class="nav" id="nav" aria-label="Navigation principale">
       <div class="nav__container">
@@ -331,21 +157,21 @@
         <div class="nav__menu" id="nav-menu">
           <ul class="nav__list">
             <li class="nav__item">
-              <a href="#creations" class="nav__link">Créations</a>
+              <a href="#projets" class="nav__link">Projets</a>
             </li>
             <li class="nav__item">
-              <a href="#portfolio" class="nav__link">Portfolio</a>
+              <a href="#offres" class="nav__link">Offres</a>
             </li>
             <li class="nav__item">
               <a href="#process" class="nav__link">Process</a>
             </li>
             <li class="nav__item">
-              <a href="#faq" class="nav__link">Questions fréquentes</a>
+              <a href="#faq" class="nav__link">FAQ</a>
             </li>
           </ul>
         </div>
 
-        <a href="#contact" class="nav__cta btn btn--primary-small">Démarrer votre projet</a>
+        <a href="#contact" class="nav__cta btn btn--primary-small">Partagez votre histoire</a>
 
         <!-- Mobile Toggle -->
         <button class="nav__toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false">
@@ -360,35 +186,18 @@
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
     <!-- ============================================
-         ACTE 1: HERO IMMERSIF - FULL BLEED avec Vidéo
+         SECTION 1: HERO
          ============================================ -->
     <section class="hero" id="hero" aria-label="Page d'accueil et présentation">
-      <!-- Video Background - Full Bleed -->
-      <div class="hero__video-container">
-        <!-- Fallback image (poster) -->
+      <!-- Video Background Placeholder -->
+      <div class="hero__video-container hero-video-bg">
         <div class="hero__video-placeholder"></div>
-
-        <!-- Vidéo en boucle (ajoutez votre fichier vidéo dans /public/media/) -->
-        <video
-          autoplay
-          muted
-          loop
-          playsinline
-          preload="metadata"
-          aria-label="Vidéo d'ambiance en arrière-plan"
-        >
-          <source src="/media/efsvp-hero.mp4" type="video/mp4" />
-          <source src="/media/efsvp-hero.webm" type="video/webm" />
-          <!-- Fallback si vidéo non supportée -->
-        </video>
-
-        <!-- Overlay pour améliorer lisibilité -->
         <div class="hero__overlay"></div>
       </div>
 
       <div class="hero__content">
         <div class="hero__content-card">
-          <!-- Titre principal - La Promesse -->
+          <!-- Tagline principale -->
           <h1 class="hero__title" data-scroll>
             <span class="hero__title-line hero__title-line--primary"
               >Vous avez déjà écrit l'histoire.</span
@@ -399,13 +208,10 @@
             On ne fera que vous relire.
           </h2>
 
-          <!-- Sous-titre explicite -->
+          <!-- Sous-texte promesse -->
           <p class="hero__baseline hero__baseline--main" data-scroll>
-            Création narrative et musicale sur mesure pour vos événements marquants
-          </p>
-
-          <p class="hero__baseline hero__baseline--secondary" data-scroll>
-            En français s'il vous plaît – studio de narration
+            Nous transformons vos moments clés en récits et musiques sur-mesure,<br />
+            pour que votre histoire reste dans les mémoires.
           </p>
 
           <!-- CTA Principal -->
@@ -422,27 +228,7 @@
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </a>
-          </div>
-
-          <!-- Contexte cible + budget -->
-          <p class="hero__context" data-scroll>
-            Pour institutions, entreprises et territoires — Prestations à partir de 1 200€
-          </p>
-        </div>
-
-        <!-- Métriques de confiance -->
-        <div class="hero__trust-metrics" data-scroll>
-          <div class="hero__metric" data-reveal="scale">
-            <strong>60+</strong>
-            <span>Représentations</span>
-          </div>
-          <div class="hero__metric" data-reveal="scale">
-            <strong>15+</strong>
-            <span>Projets institutionnels</span>
-          </div>
-          <div class="hero__metric" data-reveal="scale">
-            <strong>1200€</strong>
-            <span>À partir de</span>
+            <a href="#projets" class="btn btn--ghost">Voir nos créations</a>
           </div>
         </div>
       </div>
@@ -450,7 +236,7 @@
       <button
         class="hero__scroll"
         id="hero-scroll"
-        aria-label="Faire défiler vers la section Créations"
+        aria-label="Faire défiler vers la section suivante"
       >
         <svg
           class="hero__scroll-chevron"
@@ -470,517 +256,244 @@
     <!-- Main Content -->
     <main id="main">
       <!-- ============================================
-             ACTE 3: CAS ÉTENDARDS (Flagship Cases)
-             ============================================ -->
-      <section class="flagship-cases" id="creations" aria-labelledby="cases-title">
+           SECTION 2: PRESTIGE / LOGOS
+           ============================================ -->
+      <section class="prestige section" id="prestige">
         <div class="container">
           <header class="section__header" data-scroll>
-            <h2 class="section__title" id="cases-title">
-              Trois créations qui racontent notre approche
-            </h2>
-            <p class="section__subtitle">Problème · Approche · Effet</p>
+            <h2 class="section__title">Ils nous ont déjà confié leur histoire</h2>
           </header>
 
-          <div class="flagship-cases__grid">
-            <!-- Case 1: SIVAL -->
-            <article class="case-card" data-category="institutions" data-scroll data-lift>
-              <div class="case-card__visual">
-                <div
-                  class="case-card__gradient"
-                  style="--case-gradient: linear-gradient(135deg, color-mix(in srgb, var(--accent-gold) 88%, transparent) 0%, color-mix(in srgb, var(--accent-beige) 75%, transparent) 100%)"
-                ></div>
-                <div class="case-card__badge">Série narrative</div>
-              </div>
-              <div class="case-card__content">
-                <h3 class="case-card__title">SIVAL — L'innovation agricole racontée</h3>
-                <p class="case-card__client">Destination Angers · 2025</p>
-
-                <div class="case-card__story">
-                  <div class="case-card__step">
-                    <h4 class="case-card__step-title">
-                      <span class="case-card__step-icon" aria-hidden="true">🎯</span>
-                      <span class="case-card__step-label">Problème</span>
-                    </h4>
-                    <p class="case-card__step-text">
-                      Comment valoriser l'innovation agricole au-delà des chiffres et communiqués,
-                      lors du plus grand salon européen du secteur ?
-                    </p>
-                  </div>
-
-                  <div class="case-card__step">
-                    <h4 class="case-card__step-title">
-                      <span class="case-card__step-icon" aria-hidden="true">⚙️</span>
-                      <span class="case-card__step-label">Approche</span>
-                    </h4>
-                    <p class="case-card__step-text">
-                      Série de récits musicaux courts (3-5 min) mettant en lumière des histoires
-                      humaines d'innovateurs. Collectage sur site, composition sur mesure, diffusion
-                      lors des conférences.
-                    </p>
-                  </div>
-
-                  <div class="case-card__step">
-                    <h4 class="case-card__step-title">
-                      <span class="case-card__step-icon" aria-hidden="true">✨</span>
-                      <span class="case-card__step-label">Effet</span>
-                    </h4>
-                    <p class="case-card__step-text">
-                      <strong class="case-card__metric">8 récits diffusés</strong> auprès de
-                      <strong>2 000+ visiteurs</strong>. Reprise média (France Bleu, Ouest-France).
-                      NPS client : 9.2/10.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Case 2: Atelier Lacour -->
-            <article class="case-card" data-category="entreprises" data-scroll data-lift>
-              <div class="case-card__visual">
-                <div
-                  class="case-card__gradient"
-                  style="--case-gradient: linear-gradient(135deg, color-mix(in srgb, var(--charcoal) 90%, transparent) 0%, color-mix(in srgb, var(--primary) 78%, transparent) 100%)"
-                ></div>
-                <div class="case-card__badge">Anniversaire entreprise</div>
-              </div>
-              <div class="case-card__content">
-                <h3 class="case-card__title">Atelier Lacour — Métaphore de la forêt</h3>
-                <p class="case-card__client">Entreprise familiale · 2024</p>
-
-                <div class="case-card__story">
-                  <div class="case-card__step">
-                    <h4 class="case-card__step-title">
-                      <span class="case-card__step-icon" aria-hidden="true">🎯</span>
-                      <span class="case-card__step-label">Problème</span>
-                    </h4>
-                    <p class="case-card__step-text">
-                      Célébrer 25 ans d'artisanat et préparer une passation générationnelle
-                      sensible, sans tomber dans l'institutionnel ou l'émotionnel facile.
-                    </p>
-                  </div>
-
-                  <div class="case-card__step">
-                    <h4 class="case-card__step-title">
-                      <span class="case-card__step-icon" aria-hidden="true">⚙️</span>
-                      <span class="case-card__step-label">Approche</span>
-                    </h4>
-                    <p class="case-card__step-text">
-                      Métaphore forestière : racines (fondation), tronc (savoir-faire), branches
-                      (transmission). Texte poétique + composition instrumentale bois & cordes.
-                      Performance 18 min.
-                    </p>
-                  </div>
-
-                  <div class="case-card__step">
-                    <h4 class="case-card__step-title">
-                      <span class="case-card__step-icon" aria-hidden="true">✨</span>
-                      <span class="case-card__step-label">Effet</span>
-                    </h4>
-                    <p class="case-card__step-text">
-                      <strong class="case-card__metric">120 collaborateurs & partenaires</strong>
-                      réunis. Témoignage fondateur :
-                      <em>"C'était exactement ça, et je n'aurais jamais su le dire."</em>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <!-- Case 3: PNR Loire-Anjou-Touraine -->
-            <article
-              class="case-card case-card--featured"
-              data-category="spectacles"
-              data-scroll
-              data-lift
-            >
-              <div class="case-card__visual">
-                <div
-                  class="case-card__gradient"
-                  style="--case-gradient: linear-gradient(135deg, color-mix(in srgb, var(--primary) 90%, transparent) 0%, color-mix(in srgb, var(--accent) 75%, transparent) 100%)"
-                ></div>
-                <div class="case-card__badge">Spectacle immersif</div>
-                <div class="case-card__tag-featured">Création phare</div>
-              </div>
-              <div class="case-card__content">
-                <h3 class="case-card__title">État de nature — Spectacle en pleine forêt</h3>
-                <p class="case-card__client">PNR Loire-Anjou-Touraine · 2023 →</p>
-
-                <div class="case-card__story">
-                  <div class="case-card__step">
-                    <h4 class="case-card__step-title">
-                      <span class="case-card__step-icon" aria-hidden="true">🎯</span>
-                      <span class="case-card__step-label">Problème</span>
-                    </h4>
-                    <p class="case-card__step-text">
-                      Comment sensibiliser aux enjeux écologiques sans militantisme moralisateur, et
-                      créer une expérience marquante dans un lieu naturel protégé ?
-                    </p>
-                  </div>
-
-                  <div class="case-card__step">
-                    <h4 class="case-card__step-title">
-                      <span class="case-card__step-icon" aria-hidden="true">⚙️</span>
-                      <span class="case-card__step-label">Approche</span>
-                    </h4>
-                    <p class="case-card__step-text">
-                      Spectacle immersif 35 min en déambulation forestière. Texte poétique + musique
-                      live acoustique + dispositif lumière douce. Public 40 personnes max par
-                      représentation.
-                    </p>
-                  </div>
-
-                  <div class="case-card__step">
-                    <h4 class="case-card__step-title">
-                      <span class="case-card__step-icon" aria-hidden="true">✨</span>
-                      <span class="case-card__step-label">Effet</span>
-                    </h4>
-                    <p class="case-card__step-text">
-                      <strong class="case-card__metric">60+ représentations</strong> depuis 2023,
-                      <strong>2 400+ spectateurs</strong>. Taux satisfaction : 94%. Programmation
-                      reconduite 2025-2026.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </article>
+          <!-- Logos / Noms clients -->
+          <div class="prestige__logos" data-scroll>
+            <span class="prestige__logo-item">Département 49</span>
+            <span class="prestige__logo-separator">·</span>
+            <span class="prestige__logo-item">SIVAL</span>
+            <span class="prestige__logo-separator">·</span>
+            <span class="prestige__logo-item">CAPEB</span>
+            <span class="prestige__logo-separator">·</span>
+            <span class="prestige__logo-item">Destination Angers</span>
+            <span class="prestige__logo-separator">·</span>
+            <span class="prestige__logo-item">Réseau Cocagne</span>
+            <span class="prestige__logo-separator">·</span>
+            <span class="prestige__logo-item">PNR Loire-Anjou-Touraine</span>
           </div>
 
-          <div class="flagship-cases__cta">
-            <a href="#portfolio" class="btn btn--secondary">
-              Voir tous les projets
-              <svg
-                class="btn__icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
-          </div>
+          <!-- Micro-statistiques -->
+          <p class="prestige__stats" data-scroll>
+            <em>60+ représentations · 15+ projets institutionnels · 2 000+ spectateurs émus</em>
+          </p>
         </div>
       </section>
 
       <!-- ============================================
-             ACTE 4: SERVICES PREMIUM
-             ============================================ -->
-      <section class="services" id="services">
+           SECTION 3: PROCESSUS
+           ============================================ -->
+      <section class="process section" id="process">
         <div class="container">
           <header class="section__header" data-scroll>
-            <h2 class="section__title">Trois formules, une signature</h2>
-            <p class="section__subtitle">De l'écriture seule au spectacle complet</p>
+            <h2 class="section__title">Comment ça se passe</h2>
+          </header>
+
+          <div class="process__grid">
+            <!-- Étape 1: ÉCOUTER -->
+            <article class="process-card" data-scroll data-lift>
+              <div class="process-card__number">1</div>
+              <h3 class="process-card__title">ÉCOUTER</h3>
+              <p class="process-card__description">
+                1 à 2 semaines pour comprendre vos enjeux, vos publics, votre ton.
+              </p>
+            </article>
+
+            <!-- Étape 2: ÉCRIRE -->
+            <article class="process-card" data-scroll data-lift>
+              <div class="process-card__number">2</div>
+              <h3 class="process-card__title">ÉCRIRE</h3>
+              <p class="process-card__description">
+                Écriture du texte, allers-retours inclus jusqu'à ce que ce soit juste.
+              </p>
+            </article>
+
+            <!-- Étape 3: CRÉER -->
+            <article class="process-card" data-scroll data-lift>
+              <div class="process-card__number">3</div>
+              <h3 class="process-card__title">CRÉER</h3>
+              <p class="process-card__description">
+                Composition musicale, maquettes, ajustements.
+              </p>
+            </article>
+
+            <!-- Étape 4: VIVRE -->
+            <article class="process-card" data-scroll data-lift>
+              <div class="process-card__number">4</div>
+              <h3 class="process-card__title">VIVRE</h3>
+              <p class="process-card__description">
+                Performance ou diffusion : le moment où tout le monde comprend qui vous êtes.
+              </p>
+            </article>
+          </div>
+
+          <p class="process__recap" data-scroll>
+            <strong>Délai total :</strong> 3 à 8 semaines selon l'ambition.
+          </p>
+        </div>
+      </section>
+
+      <!-- ============================================
+           SECTION 4: OFFRES / FORMULES
+           ============================================ -->
+      <section class="services section" id="offres">
+        <div class="container">
+          <header class="section__header" data-scroll>
+            <h2 class="section__title">Vos formules</h2>
           </header>
 
           <div class="services__grid">
-            <!-- Service 1 -->
-            <article class="service-card" data-scroll data-lift data-glow>
-              <div class="service-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path
-                    d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"
-                  />
-                </svg>
+            <!-- Formule 1: ÉCRITURE SEULE -->
+            <article class="service-card" data-scroll data-lift>
+              <div class="service-card__header">
+                <h3 class="service-card__title">Écriture seule</h3>
+                <p class="service-card__price">À partir de 1 200 €</p>
               </div>
-              <div class="service-card__badge">À partir de 1 200€</div>
-              <h3 class="service-card__title">L'essentiel : votre histoire captée en mots</h3>
               <ul class="service-card__features">
-                <li>Texte professionnel</li>
-                <li>2-3 semaines</li>
-                <li>Validation incluse</li>
+                <li>Texte sur-mesure</li>
+                <li>2–3 semaines</li>
+                <li>2 allers-retours inclus</li>
               </ul>
-              <a href="#contact" class="service-card__cta">
-                Découvrir
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
             </article>
 
-            <!-- Service 2 -->
-            <article class="service-card" data-scroll data-lift data-glow>
-              <div class="service-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path
-                    d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z"
-                  />
-                </svg>
+            <!-- Formule 2: CRÉATION COMPLÈTE -->
+            <article class="service-card" data-scroll data-lift>
+              <div class="service-card__header">
+                <h3 class="service-card__title">Création complète</h3>
+                <p class="service-card__price">À partir de 2 500 €</p>
               </div>
-              <div class="service-card__badge">À partir de 2 500€</div>
-              <h3 class="service-card__title">L'immersion : votre histoire en mots et en musique</h3>
               <ul class="service-card__features">
-                <li>Texte + composition</li>
-                <li>Enregistrement pro</li>
-                <li>3-4 semaines</li>
+                <li>Texte + composition musicale</li>
+                <li>Maquettes audio</li>
+                <li>3–4 semaines</li>
               </ul>
-              <a href="#contact" class="service-card__cta">
-                Découvrir
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
             </article>
 
-            <!-- Service 3 - Featured -->
-            <article class="service-card service-card--featured" data-scroll data-lift data-glow>
-              <div class="service-card__featured-badge">Notre signature</div>
-              <div class="service-card__icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
-                  <path
-                    d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"
-                  />
-                </svg>
+            <!-- Formule 3: PERFORMANCE LIVE -->
+            <article class="service-card service-card--featured" data-scroll data-lift>
+              <div class="service-card__badge">Signature</div>
+              <div class="service-card__header">
+                <h3 class="service-card__title">Performance live</h3>
+                <p class="service-card__price">À partir de 3 600 €</p>
               </div>
-              <div class="service-card__badge service-card__badge--featured">
-                À partir de 3 600€
-              </div>
-              <h3 class="service-card__title">L'expérience : votre histoire jouée en live</h3>
               <ul class="service-card__features">
-                <li>Concert sur-mesure</li>
-                <li>3-45 minutes</li>
-                <li>4-5 semaines</li>
+                <li>Concert ou performance in situ</li>
+                <li>Coordination technique</li>
+                <li>4–5 semaines</li>
               </ul>
-              <a href="#contact" class="service-card__cta service-card__cta--featured">
-                Découvrir
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
+            </article>
+
+            <!-- Formule 4: DROITS D'USAGE -->
+            <article class="service-card" data-scroll data-lift>
+              <div class="service-card__header">
+                <h3 class="service-card__title">Droits d'usage</h3>
+                <p class="service-card__price">Sur devis</p>
+              </div>
+              <ul class="service-card__features">
+                <li>Pub, vidéo, identité sonore</li>
+                <li>Conditions selon diffusion</li>
+              </ul>
             </article>
           </div>
 
-          <!-- Mini-formulaire contextuel -->
-          <div class="services__quick-form" data-scroll>
-            <div class="quick-form-card">
-              <h3 class="quick-form-card__title">Intéressé par une formule ?</h3>
-              <p class="quick-form-card__subtitle">Recevez un devis personnalisé</p>
+          <!-- Lien explicatif tarifs -->
+          <div class="services__footer" data-scroll>
+            <a href="#tarifs-explications" class="services__link">Pourquoi ces tarifs ?</a>
+          </div>
 
-              <form class="quick-form" id="quick-quote-form">
-                <div class="quick-form__row">
-                  <div class="form__group">
-                    <label for="quick-name" class="form__label">Nom Prénom *</label>
-                    <input
-                      type="text"
-                      id="quick-name"
-                      name="nom"
-                      class="form__input"
-                      required
-                      aria-required="true"
-                      autocomplete="name"
-                    />
-                  </div>
-
-                  <div class="form__group">
-                    <label for="quick-organisation" class="form__label">Organisation *</label>
-                    <input
-                      type="text"
-                      id="quick-organisation"
-                      name="organisation"
-                      class="form__input"
-                      required
-                      aria-required="true"
-                      autocomplete="organization"
-                    />
-                  </div>
-                </div>
-
-                <div class="quick-form__row">
-                  <div class="form__group">
-                    <label for="quick-email" class="form__label">Email *</label>
-                    <input
-                      type="email"
-                      id="quick-email"
-                      name="email"
-                      class="form__input"
-                      required
-                      aria-required="true"
-                      autocomplete="email"
-                    />
-                  </div>
-
-                  <div class="form__group">
-                    <label for="quick-formule" class="form__label">Formule envisagée</label>
-                    <select id="quick-formule" name="formule" class="form__input form__select">
-                      <option value="">Sélectionner</option>
-                      <option value="essentiel">L'essentiel</option>
-                      <option value="immersion">L'immersion</option>
-                      <option value="experience">L'expérience</option>
-                      <option value="unsure">Je ne sais pas encore</option>
-                    </select>
-                  </div>
-                </div>
-
-                <button type="submit" class="btn btn--primary btn--full">
-                  <span class="btn__text">Recevoir un devis</span>
-                  <span class="btn__loader"></span>
-                  <svg
-                    class="btn__icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </form>
-            </div>
+          <!-- Explications tarifs -->
+          <div class="services__explanation" id="tarifs-explications" data-scroll>
+            <p>
+              <strong>Nos tarifs reflètent :</strong> le temps consacré à l'écoute et à la
+              recherche, l'expertise narrative et musicale, les droits d'auteur, et la
+              coordination logistique pour les performances live. Chaque projet est unique — nous
+              adaptons nos formules à vos besoins et votre budget.
+            </p>
           </div>
         </div>
       </section>
 
       <!-- ============================================
-             ACTE 4: PORTFOLIO IMMERSIF
-             ============================================ -->
-      <section class="portfolio" id="portfolio">
+           SECTION 5: CASE STUDIES / PROJETS
+           ============================================ -->
+      <section class="projects section" id="projets">
         <div class="container">
           <header class="section__header" data-scroll>
-            <h2 class="section__title">Ils nous ont fait confiance</h2>
-            <div class="portfolio__stats">
-              <div class="portfolio__stat" data-counter="60">60+</div>
-              <span>représentations</span>
-              <span class="portfolio__separator">·</span>
-              <div class="portfolio__stat" data-counter="15">15+</div>
-              <span>institutions</span>
-            </div>
+            <h2 class="section__title">Quelques histoires que nous avons racontées</h2>
           </header>
 
-          <!-- Filters -->
-          <div class="filters" role="region" aria-labelledby="filters-title">
-            <h3 id="filters-title" class="sr-only">Filtres</h3>
-
-            <!-- Groupe TYPE (filtrage par type de projet) -->
-            <div class="filters__group" role="toolbar" aria-label="Filtrer par type">
-              <button class="filter is-active" data-filter-group="type" data-filter-value="all" aria-pressed="true">Tous les types</button>
-              <button class="filter" data-filter-group="type" data-filter-value="brand" aria-pressed="false">Hymnes & marque</button>
-              <button class="filter" data-filter-group="type" data-filter-value="mediation" aria-pressed="false">Spectacles & médiations</button>
-              <button class="filter" data-filter-group="type" data-filter-value="immersive" aria-pressed="false">Formats immersifs</button>
-            </div>
-          </div>
-
-          <!-- Portfolio Grid -->
-          <div class="portfolio__grid">
-            <!-- Project 1 -->
-            <article class="portfolio-card" data-category="institutions" data-client="institution" data-type="brand" data-scroll data-lift>
-              <div class="portfolio-card__visual">
-                <div class="portfolio-card__overlay"></div>
+          <div class="projects__grid">
+            <!-- Projet 1: SIVAL -->
+            <article class="project-card" data-scroll data-lift>
+              <div class="project-card__visual">
                 <div
-                  class="portfolio-card__color"
+                  class="project-card__gradient"
+                  style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--accent-gold) 88%, transparent) 0%, color-mix(in srgb, var(--accent-beige) 75%, transparent) 100%)"
+                ></div>
+                <div class="project-card__badge">Série narrative</div>
+              </div>
+              <div class="project-card__content">
+                <h3 class="project-card__title">SIVAL 2025</h3>
+                <p class="project-card__baseline">L'innovation agricole racontée</p>
+                <p class="project-card__metrics">8 récits · 2 000 visiteurs</p>
+                <a href="#" class="project-card__link">Voir le projet</a>
+              </div>
+            </article>
+
+            <!-- Projet 2: Atelier Lacour -->
+            <article class="project-card" data-scroll data-lift>
+              <div class="project-card__visual">
+                <div
+                  class="project-card__gradient"
+                  style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--charcoal) 90%, transparent) 0%, color-mix(in srgb, var(--primary) 78%, transparent) 100%)"
+                ></div>
+                <div class="project-card__badge">Anniversaire entreprise</div>
+              </div>
+              <div class="project-card__content">
+                <h3 class="project-card__title">Atelier Lacour</h3>
+                <p class="project-card__baseline">Métaphore de la forêt — 25 ans</p>
+                <p class="project-card__metrics">1 performance · 80 invités</p>
+                <a href="#" class="project-card__link">Voir le projet</a>
+              </div>
+            </article>
+
+            <!-- Projet 3: Département 49 -->
+            <article class="project-card" data-scroll data-lift>
+              <div class="project-card__visual">
+                <div
+                  class="project-card__gradient"
                   style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--primary) 94%, transparent) 0%, color-mix(in srgb, var(--accent-gold) 88%, transparent) 100%)"
                 ></div>
+                <div class="project-card__badge">Hymne officiel</div>
               </div>
-              <div class="portfolio-card__content">
-                <span class="portfolio-card__tag">Hymne officiel</span>
-                <h3 class="portfolio-card__title">La force de la douceur</h3>
-                <p class="portfolio-card__client">Département Maine-et-Loire</p>
-                <p class="portfolio-card__year">2024</p>
-                <p class="portfolio-card__description">
-                  Hymne officiel célébrant l'identité et les valeurs du département. Performance
-                  inaugurale devant 500 invités.
-                </p>
+              <div class="project-card__content">
+                <h3 class="project-card__title">La force de la douceur</h3>
+                <p class="project-card__baseline">Hymne du Département Maine-et-Loire</p>
+                <p class="project-card__metrics">1 performance inaugurale · 500 invités</p>
+                <a href="#" class="project-card__link">Voir le projet</a>
               </div>
             </article>
 
-            <!-- Project 2 -->
-            <article class="portfolio-card" data-category="entreprises" data-client="institution" data-type="brand" data-scroll data-lift>
-              <div class="portfolio-card__visual">
-                <div class="portfolio-card__overlay"></div>
+            <!-- Projet 4: État de nature -->
+            <article class="project-card" data-scroll data-lift>
+              <div class="project-card__visual">
                 <div
-                  class="portfolio-card__color"
-                  style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--accent-gold) 90%, transparent) 0%, color-mix(in srgb, var(--accent-beige) 85%, transparent) 100%)"
+                  class="project-card__gradient"
+                  style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--secondary) 85%, transparent) 0%, color-mix(in srgb, var(--accent-beige) 70%, transparent) 100%)"
                 ></div>
+                <div class="project-card__badge">Spectacle immersif</div>
               </div>
-              <div class="portfolio-card__content">
-                <span class="portfolio-card__tag">Récit narratif</span>
-                <h3 class="portfolio-card__title">Série promotionnelle agricole</h3>
-                <p class="portfolio-card__client">Destination Angers / SIVAL</p>
-                <p class="portfolio-card__year">2025</p>
-                <p class="portfolio-card__description">
-                  Récits musicaux pour valoriser l'innovation agricole lors du plus grand salon
-                  européen.
-                </p>
-              </div>
-            </article>
-
-            <!-- Project 3 -->
-            <article class="portfolio-card" data-category="entreprises" data-client="entreprise" data-type="brand" data-scroll data-lift>
-              <div class="portfolio-card__visual">
-                <div class="portfolio-card__overlay"></div>
-                <div
-                  class="portfolio-card__color"
-                  style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--charcoal) 92%, transparent) 0%, color-mix(in srgb, var(--primary) 80%, transparent) 100%)"
-                ></div>
-              </div>
-              <div class="portfolio-card__content">
-                <span class="portfolio-card__tag">Anniversaire</span>
-                <h3 class="portfolio-card__title">25 ans & passation</h3>
-                <p class="portfolio-card__client">Atelier Lacour</p>
-                <p class="portfolio-card__year">2024</p>
-                <p class="portfolio-card__description">
-                  Métaphore de la forêt pour célébrer un quart de siècle et préparer la
-                  transmission.
-                </p>
-              </div>
-            </article>
-
-            <!-- Project 4 -->
-            <article class="portfolio-card" data-category="institutions" data-client="institution" data-type="mediation" data-scroll data-lift>
-              <div class="portfolio-card__visual">
-                <div class="portfolio-card__overlay"></div>
-                <div
-                  class="portfolio-card__color"
-                  style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--accent-beige) 88%, transparent) 0%, color-mix(in srgb, var(--accent-gold) 72%, transparent) 100%)"
-                ></div>
-              </div>
-              <div class="portfolio-card__content">
-                <span class="portfolio-card__tag">Portraits</span>
-                <h3 class="portfolio-card__title">Histoires de résilience</h3>
-                <p class="portfolio-card__client">Réseau Cocagne</p>
-                <p class="portfolio-card__year">2024</p>
-                <p class="portfolio-card__description">
-                  Collectage et mise en musique de parcours de réinsertion pour un réseau national.
-                </p>
-              </div>
-            </article>
-
-            <!-- Project 5 -->
-            <article class="portfolio-card" data-category="spectacles" data-client="institution" data-type="immersive" data-scroll data-lift>
-              <div class="portfolio-card__visual">
-                <div class="portfolio-card__overlay"></div>
-                <div
-                  class="portfolio-card__color"
-                  style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--primary) 88%, transparent) 0%, color-mix(in srgb, var(--accent-2) 70%, transparent) 100%)"
-                ></div>
-              </div>
-              <div class="portfolio-card__content">
-                <span class="portfolio-card__tag">Spectacle</span>
-                <h3 class="portfolio-card__title">État de nature</h3>
-                <p class="portfolio-card__client">PNR Loire-Anjou-Touraine</p>
-                <p class="portfolio-card__year">2023 →</p>
-                <p class="portfolio-card__description">
-                  Spectacle immersif joué plus de 40 fois en pleine nature. Création phare du
-                  studio.
-                </p>
-              </div>
-            </article>
-
-            <!-- Project 6 -->
-            <article class="portfolio-card" data-category="institutions" data-client="institution" data-type="immersive" data-scroll data-lift>
-              <div class="portfolio-card__visual">
-                <div class="portfolio-card__overlay"></div>
-                <div
-                  class="portfolio-card__color"
-                  style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--ink) 92%, transparent) 0%, color-mix(in srgb, var(--charcoal) 85%, transparent) 100%)"
-                ></div>
-              </div>
-              <div class="portfolio-card__content">
-                <span class="portfolio-card__tag">Immersif</span>
-                <h3 class="portfolio-card__title">Déambulation historique XVe s.</h3>
-                <p class="portfolio-card__client">Ville de Clisson</p>
-                <p class="portfolio-card__year">2023</p>
-                <p class="portfolio-card__description">
-                  Récit immersif médiéval pour faire revivre l'histoire de la cité aux visiteurs.
-                </p>
+              <div class="project-card__content">
+                <h3 class="project-card__title">État de nature</h3>
+                <p class="project-card__baseline">Déambulation poétique en forêt</p>
+                <p class="project-card__metrics">60+ représentations · PNR Loire-Anjou-Touraine</p>
+                <a href="#" class="project-card__link">Voir le projet</a>
               </div>
             </article>
           </div>
@@ -988,590 +501,207 @@
       </section>
 
       <!-- ============================================
-             ACTE 5: PROCESS IMMERSIF
-             ============================================ -->
-      <section class="process" id="process" aria-labelledby="process-title">
+           SECTION 6: TÉMOIGNAGES
+           ============================================ -->
+      <section class="testimonials section section--dark" id="testimonials">
         <div class="container">
           <header class="section__header" data-scroll>
-            <h2 class="section__title" id="process-title">Comment ça marche</h2>
-            <p class="section__subtitle">Un process simple et rassurant en 4 étapes</p>
+            <h2 class="section__title">Ce qu'ils en disent</h2>
           </header>
 
-          <div class="process__timeline">
-            <!-- Step 1 -->
-            <article class="process__step" data-scroll>
-              <div class="process__step-number">
-                <span>01</span>
-              </div>
-              <div class="process__step-content">
-                <div class="process__step-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path
-                      d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z"
-                    />
-                  </svg>
-                </div>
-                <h3 class="process__step-title">Écoute</h3>
-                <p class="process__step-duration">2 semaines</p>
-                <p class="process__step-description">
-                  Vous nous racontez votre histoire, vos enjeux. Nous collectons, écoutons,
-                  immergeons.
-                </p>
-                <ul class="process__step-details">
-                  <li>Entretiens approfondis</li>
-                  <li>Documents et archives</li>
-                  <li>Immersion terrain si besoin</li>
-                </ul>
-              </div>
-              <div class="process__connector"></div>
+          <div class="testimonials__grid">
+            <!-- Témoignage 1 -->
+            <article class="testimonial-card" data-scroll data-lift>
+              <blockquote class="testimonial-card__quote">
+                « J'ai vu des gens pleurer. Personne ne s'attendait à ça. »
+              </blockquote>
+              <p class="testimonial-card__author">
+                Directrice communication, Département Maine-et-Loire
+              </p>
             </article>
 
-            <!-- Step 2 -->
-            <article class="process__step" data-scroll>
-              <div class="process__step-number">
-                <span>02</span>
-              </div>
-              <div class="process__step-content">
-                <div class="process__step-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path
-                      d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                    />
-                  </svg>
-                </div>
-                <h3 class="process__step-title">Création</h3>
-                <p class="process__step-duration">3-6 semaines</p>
-                <p class="process__step-description">
-                  Nous écrivons et composons votre récit. Un processus créatif rigoureux et
-                  transparent.
-                </p>
-                <ul class="process__step-details">
-                  <li>Écriture du texte</li>
-                  <li>Composition musicale</li>
-                  <li>Enregistrement professionnel</li>
-                </ul>
-              </div>
-              <div class="process__connector"></div>
+            <!-- Témoignage 2 -->
+            <article class="testimonial-card" data-scroll data-lift>
+              <blockquote class="testimonial-card__quote">
+                « Vous avez réussi à mettre des mots sur ce qu'on ressentait sans pouvoir
+                l'exprimer. »
+              </blockquote>
+              <p class="testimonial-card__author">Fondateur, Atelier Lacour</p>
             </article>
 
-            <!-- Step 3 -->
-            <article class="process__step" data-scroll>
-              <div class="process__step-number">
-                <span>03</span>
-              </div>
-              <div class="process__step-content">
-                <div class="process__step-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 class="process__step-title">Validation</h3>
-                <p class="process__step-duration">Inclus</p>
-                <p class="process__step-description">
-                  2 allers-retours inclus. Vous validez chaque étape, nous ajustons avec vous.
-                </p>
-                <ul class="process__step-details">
-                  <li>Version 1 → Retours</li>
-                  <li>Ajustements</li>
-                  <li>Version 2 → Validation finale</li>
-                </ul>
-                <span class="process__badge">Transparence totale</span>
-              </div>
-              <div class="process__connector"></div>
+            <!-- Témoignage 3 -->
+            <article class="testimonial-card" data-scroll data-lift>
+              <blockquote class="testimonial-card__quote">
+                « Enfin un format qui donne envie d'écouter nos innovations. »
+              </blockquote>
+              <p class="testimonial-card__author">Chef de projet, Destination Angers</p>
             </article>
-
-            <!-- Step 4 -->
-            <article class="process__step" data-scroll>
-              <div class="process__step-number">
-                <span>04</span>
-              </div>
-              <div class="process__step-content">
-                <div class="process__step-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path
-                      d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
-                    />
-                  </svg>
-                </div>
-                <h3 class="process__step-title">Performance</h3>
-                <p class="process__step-duration">Jour J</p>
-                <p class="process__step-description">
-                  Nous venons jouer chez vous ou nous livrons l'enregistrement audio HD.
-                </p>
-                <ul class="process__step-details">
-                  <li>Performance live</li>
-                  <li>Audio HD professionnel</li>
-                  <li>Captation vidéo (option)</li>
-                </ul>
-                <span class="process__badge">Clé en main</span>
-              </div>
-            </article>
-          </div>
-
-          <div class="section__cta">
-            <a href="#contact" class="btn btn--primary btn--large">
-              Démarrer votre projet
-              <svg
-                class="btn__icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </a>
           </div>
         </div>
       </section>
 
       <!-- ============================================
-             ACTE 6: TÉMOIGNAGES
-             ============================================ -->
-      <section class="testimonials">
+           SECTION 7: FAQ
+           ============================================ -->
+      <section class="faq section" id="faq">
         <div class="container">
-          <header class="section__header">
-            <h2 class="section__title">Ce qu'ils disent</h2>
+          <header class="section__header" data-scroll>
+            <h2 class="section__title">Vous vous demandez peut-être…</h2>
           </header>
 
-          <!-- Swiper Carousel -->
-          <div class="swiper testimonials__carousel">
-            <div class="swiper-wrapper">
-              <!-- Testimonial 1 -->
-              <div class="swiper-slide">
-                <article class="testimonial-card">
-                  <div class="testimonial-card__stars">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                  </div>
-                  <blockquote class="testimonial-card__quote">
-                    « J'ai vu des gens pleurer. C'était exactement ce que je voulais sans savoir que
-                    ça existait. »
-                  </blockquote>
-                  <div class="testimonial-card__author">
-                    <div class="testimonial-card__avatar">M</div>
-                    <div class="testimonial-card__info">
-                      <cite class="testimonial-card__name">Marie Dupont</cite>
-                      <p class="testimonial-card__role">
-                        Directrice Communication · Département Maine-et-Loire<br /><span
-                          class="testimonial-card__context"
-                          >Hymne officiel "La force de la douceur" (2024)</span
-                        >
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <!-- Testimonial 2 -->
-              <div class="swiper-slide">
-                <article class="testimonial-card">
-                  <div class="testimonial-card__stars">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                  </div>
-                  <blockquote class="testimonial-card__quote">
-                    « Ils ont compris notre métier en deux semaines mieux que certains partenaires
-                    historiques. »
-                  </blockquote>
-                  <div class="testimonial-card__author">
-                    <div class="testimonial-card__avatar">P</div>
-                    <div class="testimonial-card__info">
-                      <cite class="testimonial-card__name">Pierre Martin</cite>
-                      <p class="testimonial-card__role">
-                        Directeur · Atelier Lacour<br /><span class="testimonial-card__context"
-                          >Récit 25 ans & passation (2024)</span
-                        >
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </div>
-
-              <!-- Testimonial 3 -->
-              <div class="swiper-slide">
-                <article class="testimonial-card">
-                  <div class="testimonial-card__stars">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path
-                        d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
-                      />
-                    </svg>
-                  </div>
-                  <blockquote class="testimonial-card__quote">
-                    « Dignité, vérité, émotion. Jamais gênant, toujours juste. Une approche rare et
-                    précieuse. »
-                  </blockquote>
-                  <div class="testimonial-card__author">
-                    <div class="testimonial-card__avatar">S</div>
-                    <div class="testimonial-card__info">
-                      <cite class="testimonial-card__name">Sophie Bernard</cite>
-                      <p class="testimonial-card__role">
-                        Responsable Événementiel · Réseau Cocagne<br /><span
-                          class="testimonial-card__context"
-                          >Portraits de réinsertion (2024)</span
-                        >
-                      </p>
-                    </div>
-                  </div>
-                </article>
-              </div>
-            </div>
-
-            <!-- Navigation -->
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ============================================
-             ACTE 7: FAQ PREMIUM
-             ============================================ -->
-      <section class="faq" id="faq" aria-labelledby="faq-title">
-        <div class="container">
-          <header class="section__header">
-            <h2 class="section__title" id="faq-title">FAQ</h2>
-          </header>
-
-          <!-- FAQ Grid -->
-          <div class="faq__grid">
+          <div class="faq__list">
             <!-- Question 1 -->
-            <article class="faq__item">
-              <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-1">
-                <span class="faq__question-text">Quelle est votre spécificité ?</span>
+            <div class="faq-item" data-scroll>
+              <button class="faq-item__question" aria-expanded="false">
+                <span>Allez-vous vraiment comprendre notre métier ?</span>
                 <svg
-                  class="faq__icon"
+                  class="faq-item__icon"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
                 >
-                  <path d="M6 9l6 6 6-6" />
+                  <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
-              <div class="faq__answer-wrapper">
-                <div class="faq__answer" id="faq-answer-1">
-                  <p>
-                    Des auteurs-compositeurs écrivent et jouent votre histoire pour vos moments clés
-                    (2-60 min). C'est du sur-mesure narratif et musical : nous collectons votre
-                    histoire, l'écrivons avec dignité, la composons musicalement, puis la jouons en
-                    concert ou vous livrons l'enregistrement professionnel.
-                  </p>
-                </div>
+              <div class="faq-item__answer">
+                <p>
+                  Oui. Nous prenons 1 à 2 semaines pour vous écouter, observer, comprendre votre
+                  vocabulaire et vos enjeux. Nous ne racontons jamais une histoire qui n'est pas
+                  la vôtre. Nos clients nous font confiance parce que nous savons poser les bonnes
+                  questions et traduire leur réalité en émotions justes.
+                </p>
               </div>
-            </article>
+            </div>
 
             <!-- Question 2 -->
-            <article class="faq__item">
-              <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-2">
-                <span class="faq__question-text">Comment garantissez-vous la justesse du propos ?</span>
+            <div class="faq-item" data-scroll>
+              <button class="faq-item__question" aria-expanded="false">
+                <span>Est-ce que ce ne sera pas gênant pour nos équipes ?</span>
                 <svg
-                  class="faq__icon"
+                  class="faq-item__icon"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
                 >
-                  <path d="M6 9l6 6 6-6" />
+                  <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
-              <div class="faq__answer-wrapper">
-                <div class="faq__answer" id="faq-answer-2">
-                  <p>
-                    On passe 2 semaines à capter vos enjeux : entretiens, immersion, documents.
-                    Validation par étapes (2 allers-retours inclus). Nos clients disent souvent :
-                    "Ils ont compris mieux que nos partenaires historiques."
-                  </p>
-                </div>
+              <div class="faq-item__answer">
+                <p>
+                  Non. Nous intervenons avec discrétion et bienveillance. Nos entretiens se font
+                  dans le respect du temps et de la pudeur de chacun. Le résultat final valorise
+                  toujours vos équipes et votre culture d'entreprise — jamais l'inverse.
+                </p>
               </div>
-            </article>
+            </div>
 
             <!-- Question 3 -->
-            <article class="faq__item">
-              <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-3">
-                <span class="faq__question-text">Comment évitez-vous le ton institutionnel ?</span>
+            <div class="faq-item" data-scroll>
+              <button class="faq-item__question" aria-expanded="false">
+                <span>Et si nous changeons d'avis en cours de route ?</span>
                 <svg
-                  class="faq__icon"
+                  class="faq-item__icon"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
                 >
-                  <path d="M6 9l6 6 6-6" />
+                  <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
-              <div class="faq__answer-wrapper">
-                <div class="faq__answer" id="faq-answer-3">
-                  <p>
-                    Jamais. On vise dignité, vérité, émotion maîtrisée. Vous validez tout avant.
-                    Notre approche est celle d'auteurs professionnels, pas d'animateurs. Le résultat
-                    est prestige culturel, pas karaoké d'entreprise.
-                  </p>
-                </div>
+              <div class="faq-item__answer">
+                <p>
+                  C'est normal. Nous incluons 2 allers-retours dans toutes nos formules. Si vous
+                  voulez ajuster le ton, ajouter un élément ou changer une direction narrative,
+                  nous nous adaptons. L'important, c'est que vous soyez fiers du résultat final.
+                </p>
               </div>
-            </article>
+            </div>
 
             <!-- Question 4 -->
-            <article class="faq__item">
-              <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-4">
-                <span class="faq__question-text">Quels sont les délais de réalisation ?</span>
+            <div class="faq-item" data-scroll>
+              <button class="faq-item__question" aria-expanded="false">
+                <span>Travaillez-vous uniquement en Pays de la Loire ?</span>
                 <svg
-                  class="faq__icon"
+                  class="faq-item__icon"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
                 >
-                  <path d="M6 9l6 6 6-6" />
+                  <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
-              <div class="faq__answer-wrapper">
-                <div class="faq__answer" id="faq-answer-4">
-                  <p>
-                    3 à 8 semaines selon complexité (écriture seule : 2-3 semaines ; création
-                    complète : 3-4 semaines ; performance live : 4-5 semaines). Planning écrit dès
-                    le départ. Nous respectons les deadlines.
-                  </p>
-                </div>
+              <div class="faq-item__answer">
+                <p>
+                  Non. Nous sommes basés à Angers, mais nous intervenons partout en francophonie.
+                  L'essentiel de notre travail (écriture, composition) peut se faire à distance.
+                  Pour les performances live, nous nous déplaçons selon vos besoins.
+                </p>
               </div>
-            </article>
+            </div>
 
             <!-- Question 5 -->
-            <article class="faq__item">
-              <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-5">
-                <span class="faq__question-text">Quel investissement prévoir ?</span>
+            <div class="faq-item" data-scroll>
+              <button class="faq-item__question" aria-expanded="false">
+                <span>Peut-on réutiliser le texte ou la musique ensuite ?</span>
                 <svg
-                  class="faq__icon"
+                  class="faq-item__icon"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
                 >
-                  <path d="M6 9l6 6 6-6" />
+                  <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
               </button>
-              <div class="faq__answer-wrapper">
-                <div class="faq__answer" id="faq-answer-5">
-                  <p>
-                    À partir de 1 200€ (texte seul), 2 500€ (création complète audio), 3 600€
-                    (performance live). Budget moyen : 3 500 - 7 000€. Devis sur-mesure selon durée,
-                    complexité, déplacements.
-                  </p>
-                </div>
+              <div class="faq-item__answer">
+                <p>
+                  Oui, sous conditions. Les formules incluent un usage défini (événement,
+                  diffusion interne, etc.). Pour une réutilisation commerciale (pub, vidéo,
+                  identité sonore), nous établissons un contrat de droits d'usage adapté. Nous
+                  restons toujours flexibles et transparents sur les tarifs.
+                </p>
               </div>
-            </article>
-
-            <!-- Question 6 -->
-            <article class="faq__item">
-              <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-6">
-                <span class="faq__question-text">Et les droits d'exploitation ?</span>
-                <svg
-                  class="faq__icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </button>
-              <div class="faq__answer-wrapper">
-                <div class="faq__answer" id="faq-answer-6">
-                  <p>
-                    Chaque projet inclut un contrat de cession clair précisant durée, territoires et médias d'utilisation.
-                    L'usage événementiel est systématiquement inclus dans nos formules de base.
-                  </p>
-                  <p>
-                    Pour les exploitations commerciales spécifiques — publicité, identité sonore d'entreprise,
-                    campagnes de communication à grande échelle — nous établissons un devis complémentaire
-                    sur mesure, adapté à vos besoins et à l'ampleur de la diffusion.
-                  </p>
-                </div>
-              </div>
-            </article>
-
-            <!-- Question 7 -->
-            <article class="faq__item">
-              <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-7">
-                <span class="faq__question-text">Travaillez-vous en France entière ?</span>
-                <svg
-                  class="faq__icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </button>
-              <div class="faq__answer-wrapper">
-                <div class="faq__answer" id="faq-answer-7">
-                  <p>
-                    Oui. Basés à Angers, nous nous déplaçons partout en France et francophonie.
-                    Rencontres initiales possibles en visio. Performance sur site ou livraison audio
-                    selon formule.
-                  </p>
-                </div>
-              </div>
-            </article>
-
-            <!-- Question 8 -->
-            <article class="faq__item">
-              <button class="faq__question" aria-expanded="false" aria-controls="faq-answer-8">
-                <span class="faq__question-text">Peut-on écouter des exemples avant ?</span>
-                <svg
-                  class="faq__icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M6 9l6 6 6-6" />
-                </svg>
-              </button>
-              <div class="faq__answer-wrapper">
-                <div class="faq__answer" id="faq-answer-8">
-                  <p>
-                    Absolument. Écoutez nos extraits audio ci-dessus et parcourez notre portfolio.
-                    Premier échange offert : on vous montre comment ça marche avec un projet concret
-                    similaire au vôtre.
-                  </p>
-                </div>
-              </div>
-            </article>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- ============================================
-             ACTE 8: CONTACT PREMIUM
-             ============================================ -->
-      <section class="contact" id="contact" aria-labelledby="contact-title">
+           SECTION 8: CTA FINAL + CONTACT
+           ============================================ -->
+      <section class="cta-final section section--cta" id="contact">
         <div class="container">
-          <div class="contact__layout">
-            <!-- Left Side - Visual & Quote -->
-            <div class="contact__visual">
-              <div class="contact__visual-bg"></div>
-              <blockquote class="contact__quote">
-                « Toutes les bonnes histoires méritent d'être racontées. »
-              </blockquote>
-              <div class="contact__decoration"></div>
-            </div>
+          <div class="cta-final__content" data-scroll>
+            <h2 class="cta-final__title">Toutes les bonnes histoires méritent d'être racontées.</h2>
+            <a href="#form" class="btn btn--primary btn--large">Partagez votre histoire</a>
+            <p class="cta-final__reassurance">
+              Réponse sous 48 h · Premier échange sans engagement.
+            </p>
+          </div>
 
-            <!-- Right Side - Form -->
-            <div class="contact__form-container">
-              <header class="contact__header">
-                <h2 class="contact__title" id="contact-title">La vôtre commence maintenant</h2>
-                <p class="contact__subtitle">Réponse sous 48h · Premier échange offert</p>
-              </header>
-
-              <form class="contact__form" id="contact-form">
+          <!-- Formulaire de contact -->
+          <div class="contact-form" id="form" data-scroll>
+            <h3 class="contact-form__title">Racontez-nous votre projet</h3>
+            <form class="form" id="contact-form" aria-label="Formulaire de contact">
+              <div class="form__row">
                 <div class="form__group">
-                  <label for="nom" class="form__label">Prénom Nom *</label>
+                  <label for="name" class="form__label">Nom & Prénom *</label>
                   <input
                     type="text"
-                    id="nom"
-                    name="nom"
+                    id="name"
+                    name="name"
                     class="form__input"
                     required
                     aria-required="true"
-                    autocomplete="name"
                   />
-                  <span class="form__error"></span>
                 </div>
 
                 <div class="form__group">
-                  <label for="email" class="form__label">Email professionnel *</label>
+                  <label for="email" class="form__label">Email *</label>
                   <input
                     type="email"
                     id="email"
@@ -1579,142 +709,84 @@
                     class="form__input"
                     required
                     aria-required="true"
-                    autocomplete="email"
                   />
-                  <span class="form__error"></span>
                 </div>
-
-                <div class="form__group">
-                  <label for="organisation" class="form__label">Organisation *</label>
-                  <input
-                    type="text"
-                    id="organisation"
-                    name="organisation"
-                    class="form__input"
-                    required
-                    aria-required="true"
-                    autocomplete="organization"
-                  />
-                  <span class="form__error"></span>
-                </div>
-
-                <div class="form__group">
-                  <label for="type-projet" class="form__label">Type de projet *</label>
-                  <select
-                    id="type-projet"
-                    name="type-projet"
-                    class="form__input form__select"
-                    required
-                    aria-required="true"
-                  >
-                    <option value="">Sélectionner</option>
-                    <option value="anniversaire">Anniversaire</option>
-                    <option value="inauguration">Inauguration</option>
-                    <option value="spectacle">Spectacle</option>
-                    <option value="hymne">Hymne / Identité</option>
-                    <option value="autre">Autre</option>
-                  </select>
-                  <span class="form__error"></span>
-                </div>
-
-                <div class="form__group">
-                  <label for="date" class="form__label">Date envisagée</label>
-                  <input type="date" id="date" name="date" class="form__input" />
-                </div>
-
-                <div class="form__group">
-                  <label for="budget" class="form__label">Budget estimé</label>
-                  <div class="form__range-container">
-                    <input
-                      type="range"
-                      id="budget"
-                      name="budget"
-                      class="form__range"
-                      min="3000"
-                      max="30000"
-                      step="1000"
-                      value="10000"
-                    />
-                    <output class="form__range-value" for="budget">~10 000€</output>
-                  </div>
-                </div>
-
-                <div class="form__group">
-                  <label for="message" class="form__label">Parlez-nous de votre projet *</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    class="form__input form__textarea"
-                    rows="5"
-                    maxlength="500"
-                    required
-                    aria-required="true"
-                  ></textarea>
-                  <span class="form__counter">0/500</span>
-                  <span class="form__error"></span>
-                </div>
-
-                <div class="form__checkbox">
-                  <input
-                    type="checkbox"
-                    id="consent"
-                    name="consent"
-                    required
-                    aria-required="true"
-                  />
-                  <label for="consent">
-                    J'accepte d'être recontacté pour échanger sur mon projet
-                  </label>
-                </div>
-
-                <button type="submit" class="btn btn--primary btn--large btn--full">
-                  <span class="btn__text">Partagez votre histoire</span>
-                  <span class="btn__loader"></span>
-                  <svg
-                    class="btn__icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </form>
-
-              <!-- Alternative Contact -->
-              <div class="contact__alt">
-                <p class="contact__alt-title">Ou contactez-nous directement</p>
-                <button
-                  type="button"
-                  data-copy-email
-                  class="contact__alt-link copy-email"
-                  title="Cliquer pour copier l'email"
-                >
-                  <svg
-                    class="copy-email__icon"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                  >
-                    <path
-                      d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                  <span class="copy-email__text">contact@efsvp.fr</span>
-                  <span class="copy-email__success" style="display: none">✓ Copié !</span>
-                </button>
-                <p class="contact__alt-location">Basé à Angers · Partout en Francophonie</p>
               </div>
-            </div>
+
+              <div class="form__row">
+                <div class="form__group">
+                  <label for="organization" class="form__label">Organisation</label>
+                  <input type="text" id="organization" name="organization" class="form__input" />
+                </div>
+
+                <div class="form__group">
+                  <label for="formule" class="form__label">Formule envisagée</label>
+                  <select id="formule" name="formule" class="form__input form__select">
+                    <option value="">Sélectionner</option>
+                    <option value="ecriture">Écriture seule</option>
+                    <option value="complete">Création complète</option>
+                    <option value="performance">Performance live</option>
+                    <option value="droits">Droits d'usage</option>
+                    <option value="unsure">Je ne sais pas encore</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form__group">
+                <label for="message" class="form__label">Votre message *</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  class="form__input form__textarea"
+                  rows="6"
+                  required
+                  aria-required="true"
+                  placeholder="Parlez-nous de votre projet, vos enjeux, votre contexte..."
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--full">
+                <span class="btn__text">Envoyer le message</span>
+                <span class="btn__loader"></span>
+                <svg
+                  class="btn__icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+            </form>
+          </div>
+
+          <!-- Coordonnées alternatives -->
+          <div class="contact-alt" data-scroll>
+            <p class="contact-alt__intro">Ou contactez-nous directement :</p>
+            <button class="copy-email" id="copy-email" aria-label="Copier l'email dans le presse-papiers">
+              <svg
+                class="copy-email__icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+              >
+                <path
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              <span class="copy-email__text">contact@efsvp.fr</span>
+              <span class="copy-email__success" style="display: none">✓ Copié !</span>
+            </button>
+            <p class="contact-alt__location">Basé à Angers · Partout en Francophonie</p>
           </div>
         </div>
       </section>
     </main>
 
     <!-- ============================================
-         FOOTER PREMIUM
+         FOOTER
          ============================================ -->
     <footer class="footer">
       <div class="container">
@@ -1723,29 +795,27 @@
             <!-- Col 1 - Brand -->
             <div class="footer__col footer__col--brand">
               <p class="footer__brand-text">En français s'il vous plaît – Studio de narration</p>
+              <p class="footer__tagline">Angers, Pays de la Loire</p>
             </div>
 
             <!-- Col 2 - Navigation -->
             <div class="footer__col">
               <h4 class="footer__title">Navigation</h4>
               <ul class="footer__links">
-                <li><a href="#creations">Créations</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#projets">Projets</a></li>
+                <li><a href="#offres">Offres</a></li>
                 <li><a href="#process">Process</a></li>
-                <li><a href="#faq">Questions fréquentes</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
               </ul>
             </div>
 
-            <!-- Col 3 - Legal -->
+            <!-- Col 3 - Contact -->
             <div class="footer__col">
-              <h4 class="footer__title">Informations</h4>
+              <h4 class="footer__title">Contact</h4>
               <ul class="footer__links">
-                <li><a href="#mentions">Mentions légales</a></li>
-                <li><a href="#cgv">CGV</a></li>
-                <li><a href="#confidentialite">Confidentialité</a></li>
-                <li><a href="#rgpd">RGPD</a></li>
+                <li><a href="mailto:contact@efsvp.fr">contact@efsvp.fr</a></li>
+                <li>Angers, Pays de la Loire</li>
               </ul>
             </div>
           </div>
@@ -1756,7 +826,6 @@
           <p class="footer__copyright">
             © 2025 En français s'il vous plaît · Tous droits réservés
           </p>
-          <p class="footer__made">Made with <span class="footer__heart">♥</span> in Angers</p>
           <button class="footer__back-to-top" id="back-to-top" aria-label="Retour en haut">
             <svg
               class="footer__back-to-top-icon"
@@ -1794,97 +863,6 @@
         <button class="btn btn--primary" id="modal-close">Continuer</button>
       </div>
     </div>
-
-    <!-- Project Detail Modal -->
-    <div
-      class="modal modal--project"
-      id="project-modal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="project-modal-title"
-    >
-      <div class="modal__overlay"></div>
-      <div class="modal__content modal__content--project">
-        <button class="modal__close" id="project-modal-close" aria-label="Fermer">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.75"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-
-        <div class="project-modal__header">
-          <span class="project-modal__tag" id="project-modal-tag"></span>
-          <h3 class="project-modal__title" id="project-modal-title"></h3>
-          <p class="project-modal__meta" id="project-modal-meta"></p>
-        </div>
-
-        <div class="project-modal__body">
-          <div class="project-modal__description" id="project-modal-description"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- RGPD Consent Banner -->
-    <aside
-      class="cookie-banner"
-      id="cookie-banner"
-      role="dialog"
-      aria-label="Gestion des cookies"
-      aria-hidden="true"
-    >
-      <div class="cookie-banner__content">
-        <div class="cookie-banner__text">
-          <h2 class="cookie-banner__title">Respect de votre vie privée</h2>
-          <p class="cookie-banner__description">
-            Nous n'utilisons aucun cookie publicitaire ou de tracking. Ce site fonctionne sans
-            collecte de données personnelles. En poursuivant votre navigation, vous acceptez
-            l'utilisation de cookies techniques nécessaires au bon fonctionnement du site.
-          </p>
-        </div>
-        <div class="cookie-banner__actions">
-          <button
-            class="btn btn--secondary-small cookie-banner__btn"
-            id="cookie-accept"
-            aria-label="Accepter et fermer"
-          >
-            J'ai compris
-          </button>
-          <button
-            class="cookie-banner__link"
-            id="cookie-reject"
-            aria-label="Refuser les cookies optionnels"
-          >
-            Refuser
-          </button>
-        </div>
-      </div>
-    </aside>
-
-    <!-- Floating CTA Button -->
-    <a
-      href="#contact"
-      class="floating-cta"
-      id="floating-cta"
-      aria-label="Discutons de votre projet"
-    >
-      <svg
-        class="floating-cta__icon"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        aria-hidden="true"
-      >
-        <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-      </svg>
-      <span class="floating-cta__text">Discutons de votre projet</span>
-    </a>
 
     <!-- Scripts -->
     <script type="module" src="/src/scripts/main.js"></script>

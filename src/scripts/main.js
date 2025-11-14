@@ -20,6 +20,7 @@ import { ProcessReveal } from './modules/processReveal.js';
 import { CookieConsent } from './modules/cookieConsent.js';
 import { CopyEmail } from './modules/copyEmail.js';
 import { ProjectModal } from './modules/projectModal.js';
+import { FAQ } from './modules/faq.js';
 import { initHeroBlock } from './blocks/hero.js';
 import { initAudioBlock } from './blocks/audio.js';
 import { initPortfolioBlock } from './blocks/portfolio.js';
@@ -445,40 +446,8 @@ class App {
 
   // ========== FAQ ==========
   initFAQ() {
-    const faqItems = document.querySelectorAll('.faq__item');
-
-    faqItems.forEach((item, index) => {
-      const question = item.querySelector('.faq__question');
-      const answer = item.querySelector('.faq__answer');
-
-      // Ajouter IDs uniques et aria-controls si pas déjà présents
-      if (answer && !answer.id) {
-        answer.id = `faq-answer-${index}`;
-      }
-      if (question && answer) {
-        question.setAttribute('aria-controls', answer.id);
-        question.setAttribute('aria-expanded', 'false');
-        question.setAttribute('role', 'button');
-        question.setAttribute('tabindex', '0');
-      }
-
-      // Click handler
-      const toggleFaq = () => {
-        const isActive = item.classList.contains('active');
-        item.classList.toggle('active');
-        question.setAttribute('aria-expanded', !isActive);
-      };
-
-      question?.addEventListener('click', toggleFaq);
-
-      // Keyboard support (Enter & Space)
-      question?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleFaq();
-        }
-      });
-    });
+    // Use new FAQ module
+    this.modules.faq = new FAQ();
   }
 
   // ========== CONTACT FORM PREMIUM ==========
