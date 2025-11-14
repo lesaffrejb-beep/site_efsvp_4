@@ -1,5 +1,6 @@
 /**
  * FAQ Module - Accordion interaction
+ * Améliorations accessibilité ARIA
  */
 export class FAQ {
   constructor() {
@@ -10,12 +11,32 @@ export class FAQ {
   init() {
     if (this.items.length === 0) return;
 
-    this.items.forEach((item) => {
+    this.items.forEach((item, index) => {
       const question = item.querySelector('.faq-item__question');
-      if (!question) return;
+      const answer = item.querySelector('.faq-item__answer');
+
+      if (!question || !answer) return;
+
+      // Générer des IDs uniques pour aria-controls
+      const answerId = `faq-answer-${index}`;
+      answer.id = answerId;
+      question.setAttribute('aria-controls', answerId);
+
+      // Ajouter rôle region pour le contenu
+      answer.setAttribute('role', 'region');
+      answer.setAttribute('aria-labelledby', `faq-question-${index}`);
+      question.id = `faq-question-${index}`;
 
       question.addEventListener('click', () => {
         this.toggleItem(item, question);
+      });
+
+      // Support clavier (Enter & Space)
+      question.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.toggleItem(item, question);
+        }
       });
     });
   }

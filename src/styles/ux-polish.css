@@ -1,0 +1,646 @@
+/* ============================================
+   UX POLISH & MICRO-INTERACTIONS
+   EfSVP 2025 - Performance & Accessibilité
+   ============================================ */
+
+/* ===== 1. BOUTONS - MICRO-INTERACTIONS ===== */
+
+/* Tous les boutons - Hover élégant */
+.btn {
+  position: relative;
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth),
+    background-color var(--duration-base) var(--ease-smooth);
+  will-change: transform;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 16px -4px rgba(184, 68, 30, 0.25),
+    0 4px 8px -2px rgba(184, 68, 30, 0.15);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow:
+    0 4px 8px -2px rgba(184, 68, 30, 0.2),
+    0 2px 4px -1px rgba(184, 68, 30, 0.1);
+}
+
+/* Focus visible pour l'accessibilité */
+.btn:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+  transform: translateY(-2px);
+}
+
+/* Boutons primaires - Intensité accrue au hover */
+.btn--primary:hover,
+.btn--hero:hover {
+  background: linear-gradient(135deg, #a33c1a 0%, #d07f44 100%);
+}
+
+/* Boutons ghost - Remplissage subtil au hover */
+.btn--ghost {
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    background-color var(--duration-base) var(--ease-smooth),
+    border-color var(--duration-base) var(--ease-smooth);
+}
+
+.btn--ghost:hover {
+  background: color-mix(in srgb, var(--primary) 8%, transparent);
+  border-color: var(--primary);
+}
+
+/* Boutons de navigation */
+.nav__link {
+  position: relative;
+  transition: color var(--duration-base) var(--ease-smooth);
+}
+
+.nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--primary);
+  transition: width var(--duration-base) var(--ease-smooth);
+}
+
+.nav__link:hover::after,
+.nav__link[aria-current="page"]::after {
+  width: 100%;
+}
+
+.nav__link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* CTA Nav */
+.nav__cta:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 4px;
+}
+
+/* ===== 2. CARTES - MICRO-INTERACTIONS ===== */
+
+/* Process Cards - Hover élégant */
+.process-card {
+  will-change: transform;
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth),
+    border-color var(--duration-base) var(--ease-smooth),
+    background-color var(--duration-base) var(--ease-smooth);
+}
+
+.process-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 12px 24px -8px rgba(15, 21, 29, 0.12),
+    0 6px 12px -4px rgba(15, 21, 29, 0.08);
+  background: color-mix(in srgb, var(--surface-elevated) 98%, var(--primary));
+}
+
+.process-card:focus-within {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+/* Service Cards - Hover avec scale subtil */
+.service-card {
+  will-change: transform;
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth),
+    border-color var(--duration-base) var(--ease-smooth),
+    background-color var(--duration-base) var(--ease-smooth);
+}
+
+.service-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow:
+    0 16px 32px -8px rgba(15, 21, 29, 0.15),
+    0 8px 16px -4px rgba(15, 21, 29, 0.1);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--primary) 4%, var(--surface-elevated)) 0%,
+    var(--surface-elevated) 100%
+  );
+}
+
+.service-card--featured:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow:
+    0 20px 40px -10px rgba(184, 68, 30, 0.2),
+    0 10px 20px -5px rgba(184, 68, 30, 0.15);
+}
+
+/* Project Cards - Hover avec effet de profondeur */
+.project-card {
+  will-change: transform;
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth),
+    border-color var(--duration-base) var(--ease-smooth);
+}
+
+.project-card:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow:
+    0 20px 40px -12px rgba(15, 21, 29, 0.18),
+    0 10px 20px -6px rgba(15, 21, 29, 0.12);
+}
+
+/* Testimonial Cards - Hover subtil pour dark section */
+.testimonial-card {
+  will-change: transform;
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    background-color var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  background: color-mix(in srgb, var(--surface-elevated) 12%, transparent);
+  box-shadow:
+    0 16px 32px -8px rgba(0, 0, 0, 0.3),
+    0 8px 16px -4px rgba(0, 0, 0, 0.2);
+}
+
+/* ===== 3. FAQ - ANIMATIONS FLUIDES ===== */
+
+/* Question button - Hover effect */
+.faq-item__question {
+  transition:
+    color var(--duration-base) var(--ease-smooth),
+    background-color var(--duration-base) var(--ease-smooth),
+    padding-left var(--duration-base) var(--ease-smooth);
+}
+
+.faq-item__question:hover {
+  color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 3%, transparent);
+  padding-left: 0.5rem;
+}
+
+.faq-item__question:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 8px;
+}
+
+/* Icon rotation - Plus fluide */
+.faq-item__icon {
+  transition:
+    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    stroke var(--duration-base) var(--ease-smooth);
+}
+
+.faq-item__question:hover .faq-item__icon {
+  stroke: var(--primary);
+}
+
+.faq-item__question[aria-expanded='true'] .faq-item__icon {
+  transform: rotate(180deg);
+  stroke: var(--primary);
+}
+
+/* Answer - Animation d'ouverture plus fluide */
+.faq-item__answer {
+  overflow: hidden;
+  transition:
+    max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.35s ease-out,
+    padding-bottom 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+}
+
+.faq-item__question[aria-expanded='true'] + .faq-item__answer {
+  opacity: 1;
+}
+
+/* ===== 4. HERO - FADE-IN AU CHARGEMENT ===== */
+
+/* Hero content - Initial state */
+.hero__content-card {
+  animation: heroFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+@keyframes heroFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero scroll button - Subtle bounce */
+.hero__scroll {
+  animation: heroBounce 2s ease-in-out 2s infinite;
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    opacity var(--duration-base) var(--ease-smooth);
+}
+
+.hero__scroll:hover {
+  transform: translateY(4px);
+  opacity: 1;
+}
+
+.hero__scroll:focus-visible {
+  outline: 2px solid var(--text-on-dark);
+  outline-offset: 4px;
+  border-radius: 50%;
+}
+
+@keyframes heroBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* ===== 5. NAVIGATION - COMPORTEMENT SMOOTH ===== */
+
+.nav {
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.nav.visible {
+  transform: translateY(0);
+  box-shadow: 0 4px 16px -4px rgba(15, 21, 29, 0.1);
+}
+
+/* Mobile menu toggle - Animation du hamburger */
+.nav__toggle {
+  transition: transform var(--duration-base) var(--ease-smooth);
+}
+
+.nav__toggle:hover {
+  transform: scale(1.1);
+}
+
+.nav__toggle:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.nav__toggle span {
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s ease;
+}
+
+.nav__toggle[aria-expanded='true'] span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav__toggle[aria-expanded='true'] span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav__toggle[aria-expanded='true'] span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ===== 6. LIENS & INTERACTIONS ===== */
+
+/* Project card links - Hover arrow movement */
+.project-card__link {
+  transition:
+    gap var(--duration-base) var(--ease-smooth),
+    color var(--duration-base) var(--ease-smooth);
+}
+
+.project-card__link:hover {
+  color: color-mix(in srgb, var(--primary) 80%, var(--charcoal));
+}
+
+.project-card__link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Services link */
+.services__link {
+  transition:
+    border-color var(--duration-base) var(--ease-smooth),
+    color var(--duration-base) var(--ease-smooth),
+    padding-left var(--duration-base) var(--ease-smooth);
+}
+
+.services__link:hover {
+  padding-left: 4px;
+}
+
+.services__link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+/* Copy email button - Interaction smooth */
+.copy-email {
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    background-color var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth);
+}
+
+.copy-email:hover {
+  transform: translateY(-2px);
+  background: color-mix(in srgb, var(--primary) 5%, transparent);
+  box-shadow: 0 6px 12px -4px rgba(15, 21, 29, 0.1);
+}
+
+.copy-email:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+/* Back to top button */
+.footer__back-to-top {
+  transition:
+    transform var(--duration-base) var(--ease-smooth),
+    background-color var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth);
+}
+
+.footer__back-to-top:hover {
+  transform: translateY(-3px);
+  background: var(--primary);
+  box-shadow: 0 8px 16px -4px rgba(184, 68, 30, 0.3);
+}
+
+.footer__back-to-top:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+/* ===== 7. FORMULAIRES - FOCUS & VALIDATION ===== */
+
+.form__input,
+.form__textarea,
+.form__select {
+  transition:
+    border-color var(--duration-base) var(--ease-smooth),
+    box-shadow var(--duration-base) var(--ease-smooth),
+    background-color var(--duration-base) var(--ease-smooth);
+}
+
+.form__input:hover,
+.form__textarea:hover,
+.form__select:hover {
+  border-color: color-mix(in srgb, var(--primary) 60%, var(--border));
+  background: color-mix(in srgb, var(--primary) 2%, var(--surface-elevated));
+}
+
+.form__input:focus,
+.form__textarea:focus,
+.form__select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--primary) 15%, transparent),
+    0 2px 8px -2px rgba(184, 68, 30, 0.1);
+  background: var(--bg);
+}
+
+/* Invalid state */
+.form__input:invalid:not(:placeholder-shown),
+.form__textarea:invalid:not(:placeholder-shown) {
+  border-color: #dc2626;
+}
+
+.form__input:invalid:not(:placeholder-shown):focus,
+.form__textarea:invalid:not(:placeholder-shown):focus {
+  box-shadow:
+    0 0 0 3px rgba(220, 38, 38, 0.15),
+    0 2px 8px -2px rgba(220, 38, 38, 0.1);
+}
+
+/* ===== 8. MODAL - ANIMATIONS ===== */
+
+.modal {
+  transition: opacity 0.3s ease;
+}
+
+.modal.active .modal__content {
+  animation: modalSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modalSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ===== 9. SKIP LINK - ACCESSIBILITÉ ===== */
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 10000;
+  padding: 0.75rem 1.5rem;
+  background: var(--primary);
+  color: var(--text-inverse);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid var(--charcoal);
+  outline-offset: 4px;
+}
+
+/* ===== 10. PRESTIGE LOGOS - HOVER ===== */
+
+.prestige__logo-item {
+  transition:
+    opacity var(--duration-base) var(--ease-smooth),
+    transform var(--duration-base) var(--ease-smooth),
+    color var(--duration-base) var(--ease-smooth);
+}
+
+.prestige__logo-item:hover {
+  opacity: 1;
+  transform: scale(1.05);
+  color: var(--primary);
+}
+
+/* ===== 11. PERFORMANCE - REDUCE MOTION ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero__content-card {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .hero__scroll {
+    animation: none;
+  }
+
+  .process-card:hover,
+  .service-card:hover,
+  .project-card:hover,
+  .testimonial-card:hover {
+    transform: none;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+}
+
+/* ===== 12. ACCESSIBILITÉ - CONTRASTES ===== */
+
+/* Ensure good contrast on dark sections */
+.section--dark {
+  /* Use CSS custom properties for easy overrides */
+  --text-on-dark: #EAECEF;
+  --text-on-dark-secondary: #B8BFCA;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn {
+    border: 2px solid currentColor;
+  }
+
+  .process-card,
+  .service-card,
+  .project-card,
+  .testimonial-card {
+    border-width: 2px;
+  }
+
+  .faq-item {
+    border-bottom-width: 2px;
+  }
+}
+
+/* ===== 13. TOUCH DEVICES - OPTIMIZATIONS ===== */
+
+@media (hover: none) and (pointer: coarse) {
+  /* Désactiver les hover effects sur mobile */
+  .btn:hover,
+  .process-card:hover,
+  .service-card:hover,
+  .project-card:hover,
+  .testimonial-card:hover {
+    transform: none;
+  }
+
+  /* Augmenter les zones de touche */
+  .btn {
+    min-height: 44px;
+    padding: 0.875rem 1.75rem;
+  }
+
+  .faq-item__question {
+    min-height: 60px;
+  }
+
+  .nav__link {
+    padding: 1rem;
+  }
+
+  /* Supprimer les animations de hover */
+  .nav__link::after {
+    display: none;
+  }
+}
+
+/* ===== 14. FOCUS INDICATORS - GLOBAL ===== */
+
+/* Ensure all interactive elements have visible focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+/* Remove default outline for mouse users */
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+select:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ===== 15. LOADING STATES ===== */
+
+.btn[disabled],
+.btn.loading {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn.loading {
+  position: relative;
+  color: transparent;
+}
+
+.btn.loading .btn__loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid transparent;
+  border-top-color: currentColor;
+  border-radius: 50%;
+  animation: btnSpin 0.6s linear infinite;
+  color: var(--text-inverse);
+}
+
+@keyframes btnSpin {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}

@@ -52,12 +52,20 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
-    <!-- Google Fonts -->
+    <!-- Google Fonts - Optimisé pour performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Réduction des graisses chargées - Seulement les nécessaires -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&family=Cormorant:ital,wght@1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&family=Cormorant:ital,wght@1,600&display=swap"
       rel="stylesheet"
+    />
+    <!-- Preload des fonts critiques pour le Hero -->
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
 
     <!-- Swiper CSS -->
@@ -73,6 +81,7 @@
     <link rel="stylesheet" href="/src/styles/design-refinements.css" />
     <link rel="stylesheet" href="/src/styles/cookie-banner.css" />
     <link rel="stylesheet" href="/src/styles/landing-rebuild.css" />
+    <link rel="stylesheet" href="/src/styles/ux-polish.css" />
 
     <!-- Critical CSS Inline -->
     <style>
