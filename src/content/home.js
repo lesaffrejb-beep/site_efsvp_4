@@ -6,26 +6,26 @@
 export const homeContent = {
   hero: {
     title: {
-      line1: '',
-      line2: '',
+      line1: "Vous avez déjà écrit l'histoire.",
+      line2: 'Nous la mettons en scène avec mesure.',
     },
-    subtitle: '',
+    subtitle: 'Une direction narrative et musicale ciselée qui laisse respirer vos moments clés et magnifie votre signature.',
     primaryCta: {
-      label: '',
+      label: 'Partagez votre histoire',
       targetId: '#contact',
     },
     metrics: [
       {
-        value: '',
-        label: '',
+        value: '60+',
+        label: 'Représentations',
       },
       {
-        value: '',
-        label: '',
+        value: '15+',
+        label: 'Projets institutionnels',
       },
       {
-        value: '',
-        label: '',
+        value: '1200€',
+        label: 'À partir de',
       },
     ],
   },

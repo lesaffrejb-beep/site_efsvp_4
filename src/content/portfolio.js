@@ -5,10 +5,10 @@
 
 export const portfolioContent = {
   section: {
-    title: '',
+    title: 'Ils nous ont fait confiance',
     stats: [
-      { value: '', label: '' },
-      { value: '', label: '' },
+      { value: '60+', label: 'représentations' },
+      { value: '15+', label: 'institutions' },
     ],
   },
 
@@ -30,11 +30,11 @@ export const portfolioContent = {
   projects: [
     {
       id: 'hymne-maine-et-loire',
-      tag: '',
-      title: '',
-      client: '',
-      year: '',
-      description: '',
+      tag: 'Hymne officiel',
+      title: 'La force de la douceur',
+      client: 'Département Maine-et-Loire',
+      year: '2024',
+      description: "Hymne officiel célébrant l'identité et les valeurs du département. Performance inaugurale devant 500 invités.",
       categories: {
         category: 'institutions',
         client: 'institution',
@@ -44,11 +44,11 @@ export const portfolioContent = {
     },
     {
       id: 'sival',
-      tag: '',
-      title: '',
-      client: '',
-      year: '',
-      description: '',
+      tag: 'Récit narratif',
+      title: 'Série promotionnelle agricole',
+      client: 'Destination Angers / SIVAL',
+      year: '2025',
+      description: "Récits musicaux pour valoriser l'innovation agricole lors du plus grand salon européen.",
       categories: {
         category: 'entreprises',
         client: 'institution',
@@ -58,11 +58,11 @@ export const portfolioContent = {
     },
     {
       id: 'atelier-lacour',
-      tag: '',
-      title: '',
-      client: '',
-      year: '',
-      description: '',
+      tag: 'Anniversaire',
+      title: '25 ans & passation',
+      client: 'Atelier Lacour',
+      year: '2024',
+      description: 'Métaphore de la forêt pour célébrer un quart de siècle et préparer la transmission.',
       categories: {
         category: 'entreprises',
         client: 'entreprise',
@@ -72,11 +72,11 @@ export const portfolioContent = {
     },
     {
       id: 'reseau-cocagne',
-      tag: '',
-      title: '',
-      client: '',
-      year: '',
-      description: '',
+      tag: 'Portraits',
+      title: 'Histoires de résilience',
+      client: 'Réseau Cocagne',
+      year: '2024',
+      description: 'Collectage et mise en musique de parcours de réinsertion pour un réseau national.',
       categories: {
         category: 'institutions',
         client: 'institution',
@@ -86,11 +86,11 @@ export const portfolioContent = {
     },
     {
       id: 'etat-de-nature',
-      tag: '',
-      title: '',
-      client: '',
-      year: '',
-      description: '',
+      tag: 'Spectacle',
+      title: 'État de nature',
+      client: 'PNR Loire-Anjou-Touraine',
+      year: '2023 →',
+      description: 'Spectacle immersif joué plus de 40 fois en pleine nature. Création phare du studio.',
       categories: {
         category: 'spectacles',
         client: 'institution',
@@ -100,11 +100,11 @@ export const portfolioContent = {
     },
     {
       id: 'clisson',
-      tag: '',
-      title: '',
-      client: '',
-      year: '',
-      description: '',
+      tag: 'Immersif',
+      title: 'Déambulation historique XVe s.',
+      client: 'Ville de Clisson',
+      year: '2023',
+      description: "Récit immersif médiéval pour faire revivre l'histoire de la cité aux visiteurs.",
       categories: {
         category: 'institutions',
         client: 'institution',

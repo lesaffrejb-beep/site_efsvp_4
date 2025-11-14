@@ -22,6 +22,7 @@ import { initHeroBlock } from './blocks/hero.js';
 import { initAudioBlock } from './blocks/audio.js';
 import { initPortfolioBlock } from './blocks/portfolio.js';
 import { initTestimonialsBlock } from './blocks/testimonials.js';
+import { initAllContent } from './content-init.js';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -76,19 +77,22 @@ class App {
       // 1. Preloader
       await this.handlePreloader();
 
-      // 2. Lazy Loading (avant tout le reste)
+      // 2. Content Layer - Injection du contenu (AVANT tout le reste)
+      initAllContent();
+
+      // 3. Lazy Loading
       this.initLazyLoading();
 
-      // 3. Core modules
+      // 4. Core modules
       this.initCore();
 
-      // 4. Section modules
+      // 5. Section modules
       this.initSections();
 
-      // 5. Animations premium
+      // 6. Animations premium
       this.initAnimations();
 
-      // 6. Start
+      // 7. Start
       this.start();
 
       console.log('✅ EfSVP Premium Site - Loaded successfully');

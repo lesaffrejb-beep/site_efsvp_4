@@ -5,9 +5,9 @@
 
 export const contactContent = {
   section: {
-    title: '',
-    subtitle: '',
-    quote: '',
+    title: 'La vôtre commence maintenant',
+    subtitle: 'Réponse sous 48h · Premier échange offert',
+    quote: "Toutes les bonnes histoires méritent d'être racontées.",
   },
 
   form: {
@@ -15,28 +15,28 @@ export const contactContent = {
       {
         id: 'nom',
         type: 'text',
-        label: '',
+        label: 'Prénom Nom',
         required: true,
         autocomplete: 'name',
       },
       {
         id: 'email',
         type: 'email',
-        label: '',
+        label: 'Email professionnel',
         required: true,
         autocomplete: 'email',
       },
       {
         id: 'organisation',
         type: 'text',
-        label: '',
+        label: 'Organisation',
         required: true,
         autocomplete: 'organization',
       },
       {
         id: 'type-projet',
         type: 'select',
-        label: '',
+        label: 'Type de projet',
         required: true,
         options: [
           { value: '', label: 'Sélectionner' },
@@ -50,13 +50,13 @@ export const contactContent = {
       {
         id: 'date',
         type: 'date',
-        label: '',
+        label: 'Date envisagée',
         required: false,
       },
       {
         id: 'budget',
         type: 'range',
-        label: '',
+        label: 'Budget estimé',
         min: 3000,
         max: 30000,
         step: 1000,
@@ -66,7 +66,7 @@ export const contactContent = {
       {
         id: 'message',
         type: 'textarea',
-        label: '',
+        label: 'Parlez-nous de votre projet',
         rows: 5,
         maxLength: 500,
         required: true,
@@ -74,22 +74,22 @@ export const contactContent = {
       {
         id: 'consent',
         type: 'checkbox',
-        label: '',
+        label: 'J'accepte d'être recontacté pour échanger sur mon projet',
         required: true,
       },
     ],
-    submitLabel: '',
+    submitLabel: 'Partagez votre histoire',
   },
 
   alternativeContact: {
-    title: '',
+    title: 'Ou contactez-nous directement',
     email: 'contact@efsvp.fr',
-    location: '',
+    location: 'Basé à Angers · Partout en Francophonie',
   },
 
   successModal: {
-    title: '',
-    message: '', // avec placeholder {name}
+    title: 'Message envoyé !',
+    message: 'Merci {name} ! On vous répond sous 48h.',
     ctaLabel: 'Continuer',
   },
 };

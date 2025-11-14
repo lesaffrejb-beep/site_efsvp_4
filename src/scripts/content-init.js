@@ -1,0 +1,527 @@
+/**
+ * ============================================
+ * CONTENT INITIALIZATION - Content Layer Injection
+ * Injecte le contenu depuis src/content/* dans le DOM
+ * ============================================
+ */
+
+import { homeContent } from '../content/home.js';
+import { highlightsContent } from '../content/highlights.js';
+import { casesContent } from '../content/cases.js';
+import { servicesContent } from '../content/services.js';
+import { portfolioContent } from '../content/portfolio.js';
+import { processContent } from '../content/process.js';
+import { testimonialsContent } from '../content/testimonials.js';
+import { statsContent } from '../content/stats.js';
+import { faqContent } from '../content/faq.js';
+import { contactContent } from '../content/contact.js';
+import { footerContent } from '../content/footer.js';
+import { cookieContent } from '../content/cookie.js';
+
+/**
+ * Injecte le contenu de la navigation
+ */
+export function initNavContent() {
+  const { navigation } = homeContent;
+
+  // Logo
+  const logoEl = document.querySelector('.nav__logo');
+  if (logoEl) {
+    logoEl.textContent = navigation.logo;
+  }
+
+  // Links
+  const navLinks = document.querySelectorAll('.nav__link');
+  navLinks.forEach((link, index) => {
+    if (navigation.links[index]) {
+      link.textContent = navigation.links[index].label;
+      link.href = navigation.links[index].href;
+    }
+  });
+
+  // CTA
+  const navCta = document.querySelector('.nav__cta');
+  if (navCta) {
+    navCta.textContent = navigation.cta.label;
+    navCta.href = navigation.cta.href;
+  }
+}
+
+/**
+ * Injecte le contenu du Hero
+ */
+export function initHeroContent() {
+  const { hero } = homeContent;
+
+  // Titre
+  const titleLine1 = document.querySelector('.hero__title--line1');
+  const titleLine2 = document.querySelector('.hero__title--line2');
+  if (titleLine1) titleLine1.textContent = hero.title.line1;
+  if (titleLine2) titleLine2.textContent = hero.title.line2;
+
+  // Sous-titre
+  const subtitle = document.querySelector('.hero__subtitle');
+  if (subtitle) subtitle.textContent = hero.subtitle;
+
+  // CTA principal
+  const primaryCta = document.querySelector('.hero__cta--primary');
+  if (primaryCta) {
+    primaryCta.textContent = hero.primaryCta.label;
+    primaryCta.href = hero.primaryCta.targetId;
+  }
+
+  // Métriques
+  const metrics = document.querySelectorAll('.hero__metric');
+  metrics.forEach((metric, index) => {
+    if (hero.metrics[index]) {
+      const value = metric.querySelector('.hero__metric-value');
+      const label = metric.querySelector('.hero__metric-label');
+      if (value) value.textContent = hero.metrics[index].value;
+      if (label) label.textContent = hero.metrics[index].label;
+    }
+  });
+}
+
+/**
+ * Injecte le contenu de la section Highlights (Bento Audio)
+ */
+export function initHighlightsContent() {
+  const { section, audioPlayers, infoCards, quote, cta } = highlightsContent;
+
+  // Titre de section
+  const sectionTitle = document.querySelector('.audio-section__title');
+  const sectionSubtitle = document.querySelector('.audio-section__subtitle');
+  if (sectionTitle) sectionTitle.textContent = section.title;
+  if (sectionSubtitle) sectionSubtitle.textContent = section.subtitle;
+
+  // Audio players - on injecte uniquement les textes, pas les players audio eux-mêmes
+  // (les players sont gérés par le module audioPlayer.js)
+  audioPlayers.forEach((player, index) => {
+    const playerEl = document.querySelector(`[data-audio-id="${player.id}"]`);
+    if (playerEl) {
+      const badge = playerEl.querySelector('.audio-player__badge');
+      const title = playerEl.querySelector('.audio-player__title');
+      const client = playerEl.querySelector('.audio-player__client');
+      const duration = playerEl.querySelector('.audio-player__duration');
+
+      if (badge && player.badge) badge.textContent = player.badge;
+      if (title) title.textContent = player.title;
+      if (client) client.textContent = player.client;
+      if (duration && player.duration) duration.textContent = player.duration;
+    }
+  });
+
+  // Info Cards
+  const infoCardElements = document.querySelectorAll('.info-card');
+  infoCardElements.forEach((card, index) => {
+    if (infoCards[index]) {
+      const number = card.querySelector('.info-card__number');
+      const title = card.querySelector('.info-card__title');
+      const text = card.querySelector('.info-card__text');
+
+      if (number) number.textContent = infoCards[index].number;
+      if (title) title.textContent = infoCards[index].title;
+      if (text) text.textContent = infoCards[index].text;
+    }
+  });
+
+  // Quote Card
+  const quoteText = document.querySelector('.quote-card__text');
+  const quoteAuthor = document.querySelector('.quote-card__author');
+  if (quoteText) quoteText.textContent = quote.text;
+  if (quoteAuthor) quoteAuthor.textContent = quote.author;
+
+  // CTA
+  const ctaBtn = document.querySelector('.audio-section__cta');
+  if (ctaBtn) {
+    ctaBtn.textContent = cta.label;
+    ctaBtn.href = cta.href;
+  }
+}
+
+/**
+ * Injecte le contenu des cas étendards
+ */
+export function initCasesContent() {
+  const { section, cases, cta } = casesContent;
+
+  // Titre de section
+  const sectionTitle = document.querySelector('.cases__title');
+  const sectionSubtitle = document.querySelector('.cases__subtitle');
+  if (sectionTitle) sectionTitle.textContent = section.title;
+  if (sectionSubtitle) sectionSubtitle.textContent = section.subtitle;
+
+  // Cases
+  cases.forEach((caseData) => {
+    const caseCard = document.querySelector(`[data-case-id="${caseData.id}"]`);
+    if (caseCard) {
+      const badge = caseCard.querySelector('.case-card__badge');
+      const title = caseCard.querySelector('.case-card__title');
+      const client = caseCard.querySelector('.case-card__client');
+      const tagFeatured = caseCard.querySelector('.case-card__tag-featured');
+      const problem = caseCard.querySelector('.case-card__problem');
+      const approach = caseCard.querySelector('.case-card__approach');
+      const effect = caseCard.querySelector('.case-card__effect');
+
+      if (badge) badge.textContent = caseData.badge;
+      if (title) title.textContent = caseData.title;
+      if (client) client.textContent = caseData.client;
+      if (tagFeatured && caseData.tagFeatured) tagFeatured.textContent = caseData.tagFeatured;
+      if (problem) problem.textContent = caseData.problem;
+      if (approach) approach.textContent = caseData.approach;
+      if (effect) effect.textContent = caseData.effect;
+    }
+  });
+
+  // CTA
+  const ctaBtn = document.querySelector('.cases__cta');
+  if (ctaBtn) {
+    ctaBtn.textContent = cta.label;
+    ctaBtn.href = cta.href;
+  }
+}
+
+/**
+ * Injecte le contenu des services
+ */
+export function initServicesContent() {
+  const { section, services } = servicesContent;
+
+  // Titre de section
+  const sectionTitle = document.querySelector('.services__title');
+  const sectionSubtitle = document.querySelector('.services__subtitle');
+  if (sectionTitle) sectionTitle.textContent = section.title;
+  if (sectionSubtitle) sectionSubtitle.textContent = section.subtitle;
+
+  // Services
+  services.forEach((service) => {
+    const serviceCard = document.querySelector(`[data-service-id="${service.id}"]`);
+    if (serviceCard) {
+      const title = serviceCard.querySelector('.service-card__title');
+      const badge = serviceCard.querySelector('.service-card__badge');
+      const badgeFeatured = serviceCard.querySelector('.service-card__badge-featured');
+      const ctaLabel = serviceCard.querySelector('.service-card__cta');
+
+      if (title) title.textContent = service.title;
+      if (badge) badge.textContent = service.badge;
+      if (badgeFeatured && service.badgeFeatured) badgeFeatured.textContent = service.badgeFeatured;
+      if (ctaLabel) {
+        ctaLabel.textContent = service.ctaLabel;
+        ctaLabel.href = service.ctaHref;
+      }
+
+      // Features
+      const featuresContainer = serviceCard.querySelector('.service-card__features');
+      if (featuresContainer && service.features.length > 0) {
+        featuresContainer.innerHTML = service.features.map((feature) => `<li>${feature}</li>`).join('');
+      }
+    }
+  });
+}
+
+/**
+ * Injecte le contenu du portfolio
+ */
+export function initPortfolioContent() {
+  const { section, projects } = portfolioContent;
+
+  // Titre de section
+  const sectionTitle = document.querySelector('.portfolio__title');
+  if (sectionTitle) sectionTitle.textContent = section.title;
+
+  // Stats
+  const stats = document.querySelectorAll('.portfolio__stat');
+  stats.forEach((stat, index) => {
+    if (section.stats[index]) {
+      const value = stat.querySelector('.portfolio__stat-value');
+      const label = stat.querySelector('.portfolio__stat-label');
+      if (value) value.textContent = section.stats[index].value;
+      if (label) label.textContent = section.stats[index].label;
+    }
+  });
+
+  // Projects - génération dynamique
+  const portfolioGrid = document.querySelector('.portfolio__grid');
+  if (portfolioGrid && projects.length > 0) {
+    portfolioGrid.innerHTML = projects
+      .map(
+        (project) => `
+      <article class="portfolio-card"
+               data-category="${project.categories.category}"
+               data-client="${project.categories.client}"
+               data-type="${project.categories.type}"
+               style="background: ${project.gradient};">
+        <span class="portfolio-card__tag">${project.tag}</span>
+        <h3 class="portfolio-card__title">${project.title}</h3>
+        <p class="portfolio-card__client">${project.client} · ${project.year}</p>
+        <p class="portfolio-card__description">${project.description}</p>
+      </article>
+    `
+      )
+      .join('');
+  }
+}
+
+/**
+ * Injecte le contenu du process
+ */
+export function initProcessContent() {
+  const { section, steps, cta } = processContent;
+
+  // Titre de section
+  const sectionTitle = document.querySelector('.process__title');
+  const sectionSubtitle = document.querySelector('.process__subtitle');
+  if (sectionTitle) sectionTitle.textContent = section.title;
+  if (sectionSubtitle) sectionSubtitle.textContent = section.subtitle;
+
+  // Steps
+  steps.forEach((step, index) => {
+    const stepEl = document.querySelectorAll('.process__step')[index];
+    if (stepEl) {
+      const number = stepEl.querySelector('.process__step-number');
+      const title = stepEl.querySelector('.process__step-title');
+      const duration = stepEl.querySelector('.process__step-duration');
+      const description = stepEl.querySelector('.process__step-description');
+      const badge = stepEl.querySelector('.process__step-badge');
+      const detailsList = stepEl.querySelector('.process__step-details');
+
+      if (number) number.textContent = step.number;
+      if (title) title.textContent = step.title;
+      if (duration) duration.textContent = step.duration;
+      if (description) description.textContent = step.description;
+      if (badge && step.badge) badge.textContent = step.badge;
+      if (detailsList && step.details.length > 0) {
+        detailsList.innerHTML = step.details.map((detail) => `<li>${detail}</li>`).join('');
+      }
+    }
+  });
+
+  // CTA
+  const ctaBtn = document.querySelector('.process__cta');
+  if (ctaBtn) {
+    ctaBtn.textContent = cta.label;
+    ctaBtn.href = cta.href;
+  }
+}
+
+/**
+ * Injecte le contenu des témoignages
+ */
+export function initTestimonialsContent() {
+  const { section, testimonials } = testimonialsContent;
+
+  // Titre de section
+  const sectionTitle = document.querySelector('.testimonials__title');
+  if (sectionTitle) sectionTitle.textContent = section.title;
+
+  // Testimonials - génération dynamique dans le swiper
+  const testimonialsWrapper = document.querySelector('.testimonials__carousel .swiper-wrapper');
+  if (testimonialsWrapper && testimonials.length > 0) {
+    testimonialsWrapper.innerHTML = testimonials
+      .map(
+        (testimonial) => `
+      <div class="swiper-slide">
+        <article class="testimonial-card">
+          <div class="testimonial-card__rating" aria-label="${testimonial.rating} étoiles">
+            ${'★'.repeat(testimonial.rating)}
+          </div>
+          <blockquote class="testimonial-card__quote">"${testimonial.quote}"</blockquote>
+          <footer class="testimonial-card__footer">
+            <div class="testimonial-card__avatar">${testimonial.avatar}</div>
+            <div class="testimonial-card__author">
+              <cite class="testimonial-card__name">${testimonial.name}</cite>
+              <p class="testimonial-card__role">${testimonial.role} · ${testimonial.organization}</p>
+              <p class="testimonial-card__context">${testimonial.context}</p>
+            </div>
+          </footer>
+        </article>
+      </div>
+    `
+      )
+      .join('');
+  }
+}
+
+/**
+ * Injecte le contenu des stats
+ */
+export function initStatsContent() {
+  const { section, stats } = statsContent;
+
+  // Titre de section
+  const sectionTitle = document.querySelector('.stats__title');
+  if (sectionTitle) sectionTitle.textContent = section.title;
+
+  // Stats
+  stats.forEach((stat, index) => {
+    const statCard = document.querySelectorAll('.stat-card')[index];
+    if (statCard) {
+      const value = statCard.querySelector('.stat-card__value');
+      const label = statCard.querySelector('.stat-card__label');
+
+      if (value) {
+        value.textContent = stat.value;
+        if (stat.count !== null) {
+          value.setAttribute('data-count', stat.count);
+        }
+      }
+      if (label) label.textContent = stat.label;
+    }
+  });
+}
+
+/**
+ * Injecte le contenu de la FAQ
+ */
+export function initFaqContent() {
+  const { section, items } = faqContent;
+
+  // Titre de section
+  const sectionTitle = document.querySelector('.faq__title');
+  if (sectionTitle) sectionTitle.textContent = section.title;
+
+  // FAQ Items - génération dynamique
+  const faqContainer = document.querySelector('.faq__list');
+  if (faqContainer && items.length > 0) {
+    faqContainer.innerHTML = items
+      .map(
+        (item, index) => `
+      <article class="faq__item">
+        <button class="faq__question"
+                aria-expanded="false"
+                aria-controls="${item.id}-answer">
+          ${item.question}
+          <span class="faq__icon" aria-hidden="true">+</span>
+        </button>
+        <div class="faq__answer" id="${item.id}-answer">
+          <p>${item.answer}</p>
+        </div>
+      </article>
+    `
+      )
+      .join('');
+  }
+}
+
+/**
+ * Injecte le contenu du contact
+ */
+export function initContactContent() {
+  const { section, form, alternativeContact, successModal } = contactContent;
+
+  // Titre de section
+  const sectionTitle = document.querySelector('.contact__title');
+  const sectionSubtitle = document.querySelector('.contact__subtitle');
+  const sectionQuote = document.querySelector('.contact__quote');
+  if (sectionTitle) sectionTitle.textContent = section.title;
+  if (sectionSubtitle) sectionSubtitle.textContent = section.subtitle;
+  if (sectionQuote) sectionQuote.textContent = section.quote;
+
+  // Champs de formulaire - labels
+  form.fields.forEach((field) => {
+    const input = document.getElementById(field.id);
+    const label = document.querySelector(`label[for="${field.id}"]`);
+    if (label && field.label) {
+      label.textContent = field.label;
+    }
+  });
+
+  // Submit button
+  const submitBtn = document.querySelector('.contact-form__submit');
+  if (submitBtn) submitBtn.textContent = form.submitLabel;
+
+  // Contact alternatif
+  const altTitle = document.querySelector('.contact__alt-title');
+  const altLocation = document.querySelector('.contact__location');
+  if (altTitle) altTitle.textContent = alternativeContact.title;
+  if (altLocation) altLocation.textContent = alternativeContact.location;
+
+  // Success Modal
+  const modalTitle = document.querySelector('#success-modal .modal__title');
+  const modalMessage = document.querySelector('#success-modal .modal__message');
+  const modalCta = document.querySelector('#success-modal .modal__cta');
+  if (modalTitle) modalTitle.textContent = successModal.title;
+  if (modalMessage) {
+    // Le message contient {name} qui sera remplacé dynamiquement lors de la soumission
+    modalMessage.setAttribute('data-message-template', successModal.message);
+  }
+  if (modalCta) modalCta.textContent = successModal.ctaLabel;
+}
+
+/**
+ * Injecte le contenu du footer
+ */
+export function initFooterContent() {
+  const { brand, newsletter, bottom } = footerContent;
+
+  // Brand
+  const logo = document.querySelector('.footer__logo');
+  const tagline = document.querySelector('.footer__tagline');
+  const baseline = document.querySelector('.footer__baseline');
+  if (logo) logo.textContent = brand.logo;
+  if (tagline) tagline.textContent = brand.tagline;
+  if (baseline) baseline.textContent = brand.baseline;
+
+  // Newsletter
+  const newsletterTitle = document.querySelector('.footer__newsletter-title');
+  const newsletterDesc = document.querySelector('.footer__newsletter-desc');
+  const newsletterPlaceholder = document.querySelector('.footer__newsletter-input');
+  if (newsletterTitle) newsletterTitle.textContent = newsletter.title;
+  if (newsletterDesc) newsletterDesc.textContent = newsletter.description;
+  if (newsletterPlaceholder) newsletterPlaceholder.placeholder = newsletter.placeholder;
+
+  // Bottom
+  const copyright = document.querySelector('.footer__copyright');
+  const made = document.querySelector('.footer__made');
+  if (copyright) copyright.textContent = bottom.copyright;
+  if (made) {
+    // Remplacer {heart} par le symbole ♥
+    made.innerHTML = bottom.made.replace('{heart}', '<span aria-label="coeur">♥</span>');
+  }
+}
+
+/**
+ * Injecte le contenu du cookie banner
+ */
+export function initCookieContent() {
+  const { title, description, buttons } = cookieContent;
+
+  const cookieBanner = document.querySelector('.cookie-banner');
+  if (cookieBanner) {
+    const cookieTitle = cookieBanner.querySelector('.cookie-banner__title');
+    const cookieDesc = cookieBanner.querySelector('.cookie-banner__description');
+    const acceptBtn = cookieBanner.querySelector('#cookie-accept');
+    const rejectBtn = cookieBanner.querySelector('#cookie-reject');
+
+    if (cookieTitle) cookieTitle.textContent = title;
+    if (cookieDesc) cookieDesc.textContent = description;
+    if (acceptBtn) acceptBtn.textContent = buttons.accept;
+    if (rejectBtn) rejectBtn.textContent = buttons.reject;
+  }
+}
+
+/**
+ * Initialise tout le contenu du site
+ * À appeler AVANT l'initialisation des modules interactifs
+ */
+export function initAllContent() {
+  try {
+    initNavContent();
+    initHeroContent();
+    initHighlightsContent();
+    initCasesContent();
+    initServicesContent();
+    initPortfolioContent();
+    initProcessContent();
+    initTestimonialsContent();
+    initStatsContent();
+    initFaqContent();
+    initContactContent();
+    initFooterContent();
+    initCookieContent();
+
+    console.log('✅ Content layer initialized successfully');
+  } catch (error) {
+    console.error('❌ Error initializing content layer:', error);
+  }
+}

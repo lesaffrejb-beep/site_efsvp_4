@@ -5,56 +5,56 @@
 
 export const highlightsContent = {
   section: {
-    title: '',
-    subtitle: '',
+    title: 'Écoutez ce que nous créons',
+    subtitle: 'Des récits qui touchent, portés par la musique',
   },
 
   audioPlayers: [
     {
       id: 'audio-1',
       type: 'featured',
-      badge: '',
-      title: '',
-      client: '',
-      duration: '',
+      badge: 'Hymne officiel',
+      title: 'La force de la douceur',
+      client: 'Département Maine-et-Loire · 2024',
+      duration: '3:45',
       audioSrc: '', // TODO: chemin vers fichier audio
     },
     {
       id: 'audio-2',
       type: 'standard',
-      title: '',
-      client: '',
+      title: 'Série promotionnelle',
+      client: 'SIVAL · 2025',
       audioSrc: '',
     },
     {
       id: 'audio-3',
       type: 'compact',
-      title: '',
-      client: '',
+      title: 'Atelier Lacour',
+      client: 'Métaphore forêt · 2024',
       audioSrc: '',
     },
   ],
 
   infoCards: [
     {
-      number: '',
-      title: '',
-      text: '',
+      number: '3',
+      title: 'formats',
+      text: 'Écriture · Audio · Live',
     },
     {
-      number: '',
-      title: '',
-      text: '',
+      number: '60+',
+      title: 'représentations',
+      text: 'depuis 2022',
     },
   ],
 
   quote: {
-    text: '',
-    author: '',
+    text: 'J'ai vu des gens pleurer. C'était exactement ce que je voulais.',
+    author: '— Cliente institutionnelle',
   },
 
   cta: {
-    label: '',
+    label: 'Découvrir tous nos projets',
     href: '#portfolio',
   },
 };
