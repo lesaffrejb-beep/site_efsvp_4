@@ -7,7 +7,7 @@ export const footerContent = {
   brand: {
     logo: `En français s'il vous plaît`,
     tagline: `Vous avez déjà écrit l'histoire`,
-    baseline: `Studio narratif & musical`,
+    baseline: `Studio de narration & musique sur-mesure`,
   },
 
   navigation: {

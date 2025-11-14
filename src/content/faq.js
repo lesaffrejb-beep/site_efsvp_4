@@ -11,43 +11,33 @@ export const faqContent = {
   items: [
     {
       id: `faq-1`,
-      question: `C'est quoi exactement ?`,
-      answer: `Des auteurs-compositeurs écrivent et jouent votre histoire pour vos moments clés (2-60 min). C'est du sur-mesure narratif et musical : nous collectons votre histoire, l'écrivons avec dignité, la composons musicalement, puis la jouons en concert ou vous livrons l'enregistrement professionnel.`,
+      question: `Est-ce que vous allez vraiment comprendre notre métier ?`,
+      answer: `Oui. On commence toujours par un temps d'écoute et de collecte : documents, chiffres, rencontres terrain. On ne plaque pas un récit tout fait : on part de ce que vous vivez et on le met en forme.`,
     },
     {
       id: `faq-2`,
-      question: `Allez-vous comprendre notre métier ?`,
-      answer: `On passe 2 semaines à capter vos enjeux : entretiens, immersion, documents. Validation par étapes (2 allers-retours inclus). Nos clients disent souvent : "Ils ont compris mieux que nos partenaires historiques."`,
+      question: `Est-ce que ça ne va pas être gênant ou "cringe" ?`,
+      answer: `Non. Notre ligne est simple : dignité, exactitude, émotion maîtrisée. Vous validez le texte et la musique avant toute performance. L'objectif n'est pas de faire un show sur nous, mais un moment juste pour vous.`,
     },
     {
       id: `faq-3`,
-      question: `Ce ne sera pas gênant ou cringe ?`,
-      answer: `Jamais. On vise dignité, vérité, émotion maîtrisée. Vous validez tout avant. Notre approche est celle d'auteurs professionnels, pas d'animateurs. Le résultat est prestige culturel, pas karaoké d'entreprise.`,
+      question: `Quels délais faut-il prévoir ?`,
+      answer: `En général, il faut compter entre 3 et 8 semaines entre le premier échange et le spectacle, selon la complexité du sujet et le format choisi.`,
     },
     {
       id: `faq-4`,
-      question: `Quels délais ?`,
-      answer: `3 à 8 semaines selon complexité (écriture seule : 2-3 semaines ; création complète : 3-4 semaines ; performance live : 4-5 semaines). Planning écrit dès le départ. Nous respectons les deadlines.`,
+      question: `Comment fonctionnent les droits d'exploitation ?`,
+      answer: `Nous cadrons les droits dans un contrat simple : ce que vous pouvez faire avec le texte, la musique et les éventuelles captations (durée, territoires, supports). Cela fait partie intégrante du devis.`,
     },
     {
       id: `faq-5`,
-      question: `Quel budget ?`,
-      answer: `À partir de 1 200€ (texte seul), 2 500€ (création complète audio), 3 600€ (performance live). Budget moyen : 3 500 - 7 000€. Devis sur-mesure selon durée, complexité, déplacements.`,
+      question: `Est-ce que vous vous déplacez partout ?`,
+      answer: `Nous sommes basés en Pays de la Loire, mais nous nous déplaçons dans toute la France et en francophonie, selon les projets. Les modalités (transport, technique) sont discutées dès le départ.`,
     },
     {
       id: `faq-6`,
-      question: `Et les droits ?`,
-      answer: `Contrat de cession clair (durée/territoires/médias). Usage événementiel inclus. Droits d'exploitation commerciale (pub, identité sonore) : sur devis complémentaire. On adapte à vos besoins.`,
-    },
-    {
-      id: `faq-7`,
-      question: `Travaillez-vous en France entière ?`,
-      answer: `Oui. Basés à Angers, nous nous déplaçons partout en France et francophonie. Rencontres initiales possibles en visio. Performance sur site ou livraison audio selon formule.`,
-    },
-    {
-      id: `faq-8`,
-      question: `Peut-on écouter des exemples avant ?`,
-      answer: `Absolument. Écoutez nos extraits audio ci-dessus et parcourez notre portfolio. Premier échange offert : on vous montre comment ça marche avec un projet concret similaire au vôtre.`,
+      question: `Et si nous avons déjà un prestataire technique (son/lumière) ?`,
+      answer: `Parfait. Nous travaillons avec vos équipes techniques en amont grâce à une fiche de scène précise, pour que tout soit fluide le jour J.`,
     },
   ],
 };

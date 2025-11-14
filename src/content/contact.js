@@ -5,8 +5,8 @@
 
 export const contactContent = {
   section: {
-    title: `La vôtre commence maintenant`,
-    subtitle: `Réponse sous 48h · Premier échange offert`,
+    title: `Parlons de votre histoire`,
+    subtitle: `En quelques questions, dites-nous ce qui compte pour vous. Nous revenons vers vous sous 48 h avec une première idée de récit.`,
     quote: `Toutes les bonnes histoires méritent d'être racontées.`,
   },
 
@@ -15,58 +15,58 @@ export const contactContent = {
       {
         id: `nom`,
         type: `text`,
-        label: `Prénom Nom`,
+        label: `Votre nom`,
         required: true,
         autocomplete: `name`,
       },
       {
         id: `email`,
         type: `email`,
-        label: `Email professionnel`,
+        label: `Email`,
         required: true,
         autocomplete: `email`,
       },
       {
         id: `organisation`,
         type: `text`,
-        label: `Organisation`,
+        label: `Structure / institution`,
         required: true,
         autocomplete: `organization`,
       },
       {
         id: `type-projet`,
         type: `select`,
-        label: `Type de projet`,
+        label: `Contexte`,
         required: true,
         options: [
           { value: ``, label: `Sélectionner` },
           { value: `anniversaire`, label: `Anniversaire` },
           { value: `inauguration`, label: `Inauguration` },
-          { value: `spectacle`, label: `Spectacle` },
-          { value: `hymne`, label: `Hymne / Identité` },
+          { value: `transformation`, label: `Transformation` },
+          { value: `territoire`, label: `Territoire` },
           { value: `autre`, label: `Autre` },
         ],
       },
       {
         id: `date`,
         type: `date`,
-        label: `Date envisagée`,
+        label: `Date ou période de l'événement`,
         required: false,
       },
       {
         id: `budget`,
         type: `range`,
-        label: `Budget estimé`,
-        min: 3000,
-        max: 30000,
-        step: 1000,
-        defaultValue: 10000,
+        label: `Budget approximatif`,
+        min: 1000,
+        max: 20000,
+        step: 500,
+        defaultValue: 5000,
         required: false,
       },
       {
         id: `message`,
         type: `textarea`,
-        label: `Parlez-nous de votre projet`,
+        label: `Ce que vous aimeriez voir apparaître dans le récit`,
         rows: 5,
         maxLength: 500,
         required: true,
@@ -78,7 +78,7 @@ export const contactContent = {
         required: true,
       },
     ],
-    submitLabel: `Partagez votre histoire`,
+    submitLabel: `Envoyer mon histoire`,
   },
 
   alternativeContact: {
@@ -89,7 +89,7 @@ export const contactContent = {
 
   successModal: {
     title: `Message envoyé !`,
-    message: `Merci {name} ! On vous répond sous 48h.`,
+    message: `Merci ! Votre histoire nous est bien parvenue. Nous revenons vers vous très vite.`,
     ctaLabel: `Continuer`,
   },
 };
