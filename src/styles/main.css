@@ -950,6 +950,20 @@ button {
   }
 }
 
+/* Hero Support / Social Proof */
+.hero__support {
+  position: relative;
+  z-index: var(--z-base);
+}
+
+.social-proof__label {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--text-tertiary);
+}
+
 /* Client Badges */
 .client-badges {
   list-style: none;
@@ -975,12 +989,118 @@ button {
 .client-badge:hover .client-badge__label {
   background: var(--bg-tertiary);
   border-color: var(--border-color-strong);
+  transform: translateY(-2px);
 }
 
 .client-badge--more .client-badge__label {
   background: var(--bg-accent);
   color: var(--text-accent);
   font-weight: var(--font-medium);
+}
+
+/* ============================================
+   CLIENTS MARQUEE SECTION - Premium Logo Scroll
+   ============================================ */
+
+.clients-marquee {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  padding: var(--space-12) 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.clients-marquee__label {
+  text-align: center;
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-8);
+}
+
+.clients-marquee__track {
+  display: flex;
+  gap: var(--space-16);
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+}
+
+.clients-marquee__track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.clients-marquee__item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-4) var(--space-6);
+  min-width: 180px;
+  height: 80px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  transition: all var(--transition-base);
+  cursor: default;
+}
+
+.clients-marquee__item:hover {
+  background: var(--bg-primary);
+  border-color: var(--color-primary-500);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.clients-marquee__logo {
+  font-size: var(--text-lg);
+  font-weight: var(--font-semibold);
+  color: var(--text-secondary);
+  text-align: center;
+  letter-spacing: var(--tracking-wide);
+  transition: color var(--transition-base);
+}
+
+.clients-marquee__item:hover .clients-marquee__logo {
+  color: var(--text-primary);
+}
+
+/* Duplicate track for seamless loop */
+.clients-marquee__wrapper {
+  display: flex;
+  gap: var(--space-16);
+}
+
+@media (max-width: 767px) {
+  .clients-marquee {
+    padding: var(--space-8) 0;
+  }
+
+  .clients-marquee__track {
+    gap: var(--space-8);
+    animation-duration: 30s;
+  }
+
+  .clients-marquee__item {
+    min-width: 140px;
+    height: 60px;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .clients-marquee__logo {
+    font-size: var(--text-base);
+  }
 }
 
 /* Promise Cards */
