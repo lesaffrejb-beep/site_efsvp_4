@@ -12,6 +12,7 @@ export class HeroManager {
 
     this.video = this.hero.querySelector('.hero__video-placeholder video');
     this.content = this.hero.querySelector('.hero__content');
+    this.ctaGroup = this.hero.querySelector('.hero__cta-group');
     this.tagline = this.hero.querySelectorAll('.hero__tagline .typewriter-line');
     this.scrollIndicator = this.hero.querySelector('.hero__scroll');
 
@@ -23,6 +24,7 @@ export class HeroManager {
       this.setupVideo();
     }
     this.setupAnimations();
+    this.setupVisibilityObserver();
     if (this.scrollIndicator) {
       this.setupScrollIndicator();
     }
@@ -45,6 +47,29 @@ export class HeroManager {
         );
       });
     }
+  }
+
+  setupVisibilityObserver() {
+    if (!this.hero || !this.ctaGroup) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            this.hero.classList.remove('hero--cta-hidden');
+          } else if (entry.boundingClientRect.top < 0) {
+            this.hero.classList.add('hero--cta-hidden');
+          }
+        });
+      },
+      {
+        threshold: 0.2,
+      }
+    );
+
+    observer.observe(this.hero);
   }
 
   setupAnimations() {
