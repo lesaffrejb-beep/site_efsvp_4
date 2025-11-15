@@ -74,10 +74,11 @@
     <!-- CSS Master File - Unified Design System -->
     <link rel="stylesheet" href="/src/styles/main.css" />
 
-    <!-- Component-specific styles (Navigation, Modals, Cookies) -->
+    <!-- Component-specific styles (Navigation, Modals, Cookies, Hero) -->
     <link rel="stylesheet" href="/src/styles/progressive-nav.css" />
     <link rel="stylesheet" href="/src/styles/project-modal.css" />
     <link rel="stylesheet" href="/src/styles/cookie-banner.css" />
+    <link rel="stylesheet" href="/src/styles/premium-hero.css" />
 
     <!-- Critical CSS Inline -->
     <style>
@@ -209,35 +210,58 @@
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
     <!-- ============================================
-         SECTION 1: HERO
+         SECTION 1: PREMIUM HERO - "L'Encre Vivante"
          ============================================ -->
-    <section class="hero section overflow-hidden book-hero" id="hero" aria-label="Page d'accueil et présentation">
-      <div class="book-hero__canvas-container" id="book-hero-canvas"></div>
-      <div class="hero__container container">
-        <div class="hero__grid">
-          <div class="hero__content text-center mx-auto max-w-4xl animate-fade-in">
-            <p class="hero__eyebrow body-small uppercase tracking-wider text-accent mb-6">
-              En français s'il vous plaît - studio de narration
-            </p>
-            <h1 class="hero__headline heading-1 text-primary mb-8">
-              Vous avez déjà écrit l'histoire.
-              <span class="hero__headline-sub text-secondary mt-4">
-                On ne fera que vous relire.
-              </span>
-            </h1>
-            <p class="hero__description body-large text-secondary mx-auto mb-12">
-              <strong class="text-accent">Écriture • Composition • Performance live.</strong>
-            </p>
-            <div class="hero__cta-group flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <a href="#contact" class="cta cta--primary btn btn-primary btn-lg">
-                Partagez votre histoire
-              </a>
-              <a href="#projets" class="btn btn-secondary btn-lg">
-                Découvrir nos projets
-              </a>
-            </div>
-          </div>
+    <section class="premium-hero section" id="hero" aria-label="Page d'accueil et présentation">
+      <!-- Canvas 3D Container -->
+      <div class="premium-hero__canvas-container" id="premium-hero-canvas"></div>
+
+      <!-- Content -->
+      <div class="premium-hero__content">
+        <!-- Logos Clients -->
+        <div class="premium-hero__logos" data-logos>
+          <span class="premium-hero__logo">Département 49</span>
+          <span class="premium-hero__logo">SIVAL</span>
+          <span class="premium-hero__logo">CAPEB</span>
+          <span class="premium-hero__logo">Destination Angers</span>
         </div>
+
+        <!-- Titre Principal -->
+        <h1 class="premium-hero__title" data-title>
+          <span class="premium-hero__title-line">
+            <span class="premium-hero__title-word">Vos</span>
+            <span class="premium-hero__title-word">moments</span>
+            <span class="premium-hero__title-word">clés</span>
+          </span>
+          <span class="premium-hero__title-line">
+            <span class="premium-hero__title-word">méritent</span>
+            <span class="premium-hero__title-word">une</span>
+            <span class="premium-hero__title-word">histoire</span>
+          </span>
+        </h1>
+
+        <!-- Sous-titre -->
+        <p class="premium-hero__subtitle" data-subtitle>
+          Studio de création narrative et musicale sur-mesure.<br>
+          <strong>Anniversaires • Inaugurations • Transitions.</strong>
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="premium-hero__cta-group" data-cta>
+          <a href="#projets" class="premium-hero__cta premium-hero__cta--primary">
+            Découvrir nos créations
+            <span class="premium-hero__arrow" aria-hidden="true">→</span>
+          </a>
+          <a href="#contact" class="premium-hero__cta premium-hero__cta--secondary">
+            Discuter de votre projet
+          </a>
+        </div>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="premium-hero__scroll-indicator" data-scroll-indicator>
+        <span class="premium-hero__scroll-text">Découvrir</span>
+        <div class="premium-hero__scroll-line"></div>
       </div>
     </section>
 
