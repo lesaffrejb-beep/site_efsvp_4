@@ -27,8 +27,6 @@ import { initAudioBlock } from './blocks/audio.js';
 import { initPortfolioBlock } from './blocks/portfolio.js';
 import { initTestimonialsBlock } from './blocks/testimonials.js';
 import { initAllContent } from './content-init.js';
-import { initPremiumHero } from './modules/premiumHero.js';
-import { initPremiumHeroAnimations } from './modules/premiumHeroAnimations.js';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -186,17 +184,6 @@ class App {
   }
 
   initSections() {
-    // Initialize Premium Hero 3D + Animations
-    const premiumHeroInstance = initPremiumHero();
-    const premiumHeroAnimationsInstance = initPremiumHeroAnimations();
-
-    if (premiumHeroInstance) {
-      this.modules.premiumHero = premiumHeroInstance;
-    }
-    if (premiumHeroAnimationsInstance) {
-      this.modules.premiumHeroAnimations = premiumHeroAnimationsInstance;
-    }
-
     const heroContext = initHeroBlock({ modules: this.modules });
     this.modules = heroContext.modules;
 

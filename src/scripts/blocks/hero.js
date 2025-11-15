@@ -2,7 +2,7 @@ import { HeroManager } from '../modules/hero.js';
 import { CopyEmail } from '../modules/copyEmail.js';
 import { KnowledgeVoicePlayer } from '../modules/knowledgeVoice.js';
 
-const HERO_SELECTORS = ['.hero', '.efsvp-hero'];
+const HERO_SELECTORS = ['.signature-hero', '.hero', '.efsvp-hero'];
 
 const hasHeroSection = (root = document) => HERO_SELECTORS.some((selector) => root.querySelector(selector));
 

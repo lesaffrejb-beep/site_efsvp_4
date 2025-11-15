@@ -78,7 +78,7 @@
     <link rel="stylesheet" href="/src/styles/progressive-nav.css" />
     <link rel="stylesheet" href="/src/styles/project-modal.css" />
     <link rel="stylesheet" href="/src/styles/cookie-banner.css" />
-    <link rel="stylesheet" href="/src/styles/premium-hero.css" />
+    <link rel="stylesheet" href="/src/styles/hero-signature.css" />
 
     <!-- Critical CSS Inline -->
     <style>
@@ -212,57 +212,66 @@
     <!-- ============================================
          SECTION 1: PREMIUM HERO - "L'Encre Vivante"
          ============================================ -->
-    <section class="premium-hero section" id="hero" aria-label="Page d'accueil et présentation">
-      <!-- Canvas 3D Container -->
-      <div class="premium-hero__canvas-container" id="premium-hero-canvas"></div>
+    <section class="signature-hero section" id="hero" aria-label="Page d'accueil et présentation">
+      <div class="signature-hero__inner">
+        <p class="signature-hero__eyebrow" data-hero-eyebrow></p>
 
-      <!-- Content -->
-      <div class="premium-hero__content">
-        <!-- Logos Clients -->
-        <div class="premium-hero__logos" data-logos>
-          <span class="premium-hero__logo">Département 49</span>
-          <span class="premium-hero__logo">SIVAL</span>
-          <span class="premium-hero__logo">CAPEB</span>
-          <span class="premium-hero__logo">Destination Angers</span>
+        <div class="signature-hero__signature-wrapper">
+          <h1 class="signature-hero__title">
+            <span class="sr-only" data-hero-signature-label></span>
+            <svg
+              class="signature-hero__signature-svg"
+              viewBox="0 0 960 260"
+              role="presentation"
+              aria-hidden="true"
+            >
+              <path
+                class="signature-hero__signature-path"
+                data-signature-path
+                d="M40 150c20-90 100-90 120-10 6 20-12 50-38 40-18-6-6-34 10-38m56-12c24-58 104-60 142-6 18 26 10 64-22 62-28-2-34-50 4-66m88-12c20-22 44-30 68-14 12 8 16 26 2 32-20 10-28-16-12-26m80-18c26-52 90-56 128-6 18 26 12 62-20 70-30 8-46-36-12-58m102-10c22-26 62-36 92-18 16 12 16 40-10 50-26 10-38-24-16-40m96-12c22-14 46-20 64-6 12 8 14 28-6 38-18 8-28-14-14-24m78-16c22-48 88-56 124-8 16 20 14 54-18 62-28 8-42-32-10-52"
+              ></path>
+            </svg>
+            <span class="signature-hero__ink-drop" data-ink-drop aria-hidden="true"></span>
+            <span class="signature-hero__ink-line" aria-hidden="true">
+              <span class="signature-hero__ink-fill" data-ink-fill></span>
+            </span>
+          </h1>
         </div>
 
-        <!-- Titre Principal -->
-        <h1 class="premium-hero__title" data-title>
-          <span class="premium-hero__title-line">
-            <span class="premium-hero__title-word">Vos</span>
-            <span class="premium-hero__title-word">moments</span>
-            <span class="premium-hero__title-word">clés</span>
-          </span>
-          <span class="premium-hero__title-line">
-            <span class="premium-hero__title-word">méritent</span>
-            <span class="premium-hero__title-word">une</span>
-            <span class="premium-hero__title-word">histoire</span>
-          </span>
-        </h1>
-
-        <!-- Sous-titre -->
-        <p class="premium-hero__subtitle" data-subtitle>
-          Studio de création narrative et musicale sur-mesure.<br>
-          <strong>Anniversaires • Inaugurations • Transitions.</strong>
-        </p>
-
-        <!-- CTA Buttons -->
-        <div class="premium-hero__cta-group" data-cta>
-          <a href="#projets" class="premium-hero__cta premium-hero__cta--primary">
-            Découvrir nos créations
-            <span class="premium-hero__arrow" aria-hidden="true">→</span>
-          </a>
-          <a href="#contact" class="premium-hero__cta premium-hero__cta--secondary">
-            Discuter de votre projet
-          </a>
+        <div class="signature-hero__baseline">
+          <p class="signature-hero__baseline-line" data-hero-baseline-line>
+            <span data-hero-baseline-lead></span>
+          </p>
+          <p class="signature-hero__baseline-line signature-hero__baseline-line--secondary" data-hero-baseline-line>
+            <span data-hero-baseline-items></span>
+          </p>
         </div>
+
+        <div class="signature-hero__cta-group">
+          <a class="cta cta--primary signature-hero__cta signature-hero__cta--primary" href="#contact"></a>
+          <a class="cta cta--secondary signature-hero__cta signature-hero__cta--secondary" href="#projets"></a>
+        </div>
+
+        <button class="signature-hero__scroll" type="button" data-hero-scroll aria-label="Faire défiler vers la suite">
+          <span class="signature-hero__scroll-label" data-hero-scroll-label></span>
+          <span class="signature-hero__scroll-line" aria-hidden="true"></span>
+        </button>
       </div>
 
-      <!-- Scroll Indicator -->
-      <div class="premium-hero__scroll-indicator" data-scroll-indicator>
-        <span class="premium-hero__scroll-text">Découvrir</span>
-        <div class="premium-hero__scroll-line"></div>
-      </div>
+      <noscript>
+        <style>
+          .signature-hero__baseline,
+          .signature-hero__cta-group,
+          .signature-hero__scroll {
+            display: none !important;
+          }
+        </style>
+        <div class="signature-hero__noscript">
+          <h1>En français s’il vous plaît</h1>
+          <p>Studio de création narrative et musicale sur-mesure.</p>
+          <p>Anniversaires • Inaugurations • Transitions.</p>
+        </div>
+      </noscript>
     </section>
 
     <!-- ============================================

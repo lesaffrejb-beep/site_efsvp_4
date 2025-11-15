@@ -1,0 +1,289 @@
+/* ============================================
+   HERO SIGNATURE - Ligne manuscrite + baseline
+   ============================================ */
+
+.signature-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(var(--space-16), 12vh, var(--space-32)) var(--container-padding);
+  background: radial-gradient(circle at 18% 20%, rgba(185, 90, 64, 0.22), transparent 55%),
+    linear-gradient(160deg, rgba(26, 35, 50, 0.98) 0%, rgba(10, 12, 18, 0.94) 100%);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+.signature-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 82% 12%, rgba(255, 255, 255, 0.08), transparent 45%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.signature-hero__inner {
+  position: relative;
+  z-index: 1;
+  width: min(960px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(var(--space-8), 4vh, var(--space-12));
+}
+
+.signature-hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 1.4vw, 1rem);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: rgba(255, 255, 255, 0.72);
+  margin: 0;
+}
+
+.signature-hero__signature-wrapper {
+  position: relative;
+  padding-bottom: clamp(var(--space-10), 8vh, var(--space-16));
+}
+
+.signature-hero__title {
+  position: relative;
+  margin: 0;
+}
+
+.signature-hero__signature-svg {
+  width: min(90vw, 860px);
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.signature-hero__signature-path {
+  fill: none;
+  stroke: var(--color-neutral-50);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.32));
+}
+
+.signature-hero__ink-drop {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px 999px 70% 70%;
+  background: var(--color-neutral-50);
+  left: clamp(64%, 56vw, 70%);
+  top: calc(100% - 28px);
+  transform: translate(-50%, -160%);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
+}
+
+.signature-hero__ink-line {
+  position: absolute;
+  left: clamp(54%, 52vw, 66%);
+  bottom: -4px;
+  width: clamp(180px, 28vw, 340px);
+  height: 4px;
+  background: rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.signature-hero__ink-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--color-neutral-50);
+  transform-origin: left center;
+  transform: scaleX(1);
+}
+
+.signature-hero__baseline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  text-align: center;
+}
+
+.signature-hero__baseline-line {
+  font-family: var(--font-body);
+  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.signature-hero__baseline-line--secondary {
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  color: rgba(232, 146, 79, 0.92);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.signature-hero__cta-group {
+  display: flex;
+  gap: var(--space-4);
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.signature-hero__cta {
+  min-width: clamp(200px, 32vw, 240px);
+  justify-content: center;
+}
+
+.signature-hero__cta--primary {
+  background: linear-gradient(135deg, #f2cf9b 0%, #e8924f 100%);
+  color: var(--color-neutral-900);
+  box-shadow: 0 12px 30px rgba(185, 90, 64, 0.35);
+}
+
+.signature-hero__cta--primary:hover,
+.signature-hero__cta--primary:focus-visible {
+  color: var(--color-neutral-900);
+}
+
+.signature-hero__cta--secondary {
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  color: rgba(255, 255, 255, 0.88);
+  background-color: transparent;
+}
+
+.signature-hero__cta--secondary:hover,
+.signature-hero__cta--secondary:focus-visible {
+  border-color: rgba(232, 146, 79, 0.8);
+  color: rgba(255, 255, 255, 0.96);
+  background: rgba(232, 146, 79, 0.12);
+}
+
+.signature-hero__scroll {
+  appearance: none;
+  border: none;
+  background: none;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  margin: clamp(var(--space-8), 8vh, var(--space-12)) auto 0;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.signature-hero__scroll-label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.signature-hero__scroll-line {
+  width: 1px;
+  height: 48px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(232, 146, 79, 0.8) 100%);
+}
+
+.signature-hero__noscript {
+  margin-top: var(--space-12);
+  padding: var(--space-8);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.9);
+  text-align: center;
+}
+
+.signature-hero__noscript h1 {
+  font-family: 'Playfair Display', var(--font-display);
+  font-size: 2rem;
+  margin-bottom: var(--space-4);
+}
+
+.signature-hero__noscript p {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-body);
+}
+
+@media (max-width: 900px) {
+  .signature-hero {
+    min-height: auto;
+    padding-top: calc(var(--space-24) + var(--space-8));
+  }
+
+  .signature-hero__signature-svg {
+    width: min(95vw, 720px);
+  }
+
+  .signature-hero__ink-drop {
+    left: 68%;
+    width: 16px;
+    height: 16px;
+  }
+
+  .signature-hero__ink-line {
+    left: 58%;
+    width: clamp(160px, 40vw, 300px);
+  }
+}
+
+@media (max-width: 600px) {
+  .signature-hero {
+    padding: var(--space-16) var(--space-6) var(--space-24);
+  }
+
+  .signature-hero__inner {
+    gap: var(--space-8);
+  }
+
+  .signature-hero__eyebrow {
+    letter-spacing: 0.18em;
+  }
+
+  .signature-hero__signature-wrapper {
+    padding-bottom: var(--space-10);
+  }
+
+  .signature-hero__signature-svg {
+    width: 100%;
+  }
+
+  .signature-hero__ink-drop {
+    left: 72%;
+    top: calc(100% - 20px);
+  }
+
+  .signature-hero__ink-line {
+    left: 62%;
+    bottom: -2px;
+    width: clamp(140px, 60vw, 260px);
+  }
+
+  .signature-hero__baseline-line {
+    font-size: clamp(1.05rem, 4.2vw, 1.35rem);
+  }
+
+  .signature-hero__baseline-line--secondary {
+    letter-spacing: 0.18em;
+  }
+
+  .signature-hero__cta-group {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .signature-hero__cta {
+    width: 100%;
+  }
+
+  .signature-hero__scroll {
+    margin-top: var(--space-10);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signature-hero__scroll-line {
+    background: rgba(255, 255, 255, 0.5);
+  }
+}

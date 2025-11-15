@@ -6,6 +6,7 @@
  */
 
 import { homeContent } from '../content/home.js';
+import { siteContent } from '../data/content.js';
 import { highlightsContent } from '../content/highlights.js';
 import { casesContent } from '../content/cases.js';
 import { servicesContent } from '../content/services.js';
@@ -57,35 +58,49 @@ export function initNavContent() {
  * Injecte le contenu du Hero
  */
 export function initHeroContent() {
-  const { hero } = homeContent;
+  const { hero } = siteContent;
 
-  // Titre
-  const titleLine1 = document.querySelector('.hero__title--line1');
-  const titleLine2 = document.querySelector('.hero__title--line2');
-  if (titleLine1) titleLine1.textContent = hero.title.line1;
-  if (titleLine2) titleLine2.textContent = hero.title.line2;
-
-  // Sous-titre
-  const subtitle = document.querySelector('.hero__subtitle');
-  if (subtitle) subtitle.textContent = hero.subtitle;
-
-  // CTA principal
-  const primaryCta = document.querySelector('.hero__cta--primary');
-  if (primaryCta) {
-    primaryCta.textContent = hero.primaryCta.label;
-    primaryCta.href = hero.primaryCta.targetId;
+  const eyebrow = document.querySelector('[data-hero-eyebrow]');
+  if (eyebrow && hero?.eyebrow) {
+    eyebrow.textContent = hero.eyebrow;
   }
 
-  // Métriques
-  const metrics = document.querySelectorAll('.hero__metric');
-  metrics.forEach((metric, index) => {
-    if (hero.metrics[index]) {
-      const value = metric.querySelector('.hero__metric-value');
-      const label = metric.querySelector('.hero__metric-label');
-      if (value) value.textContent = hero.metrics[index].value;
-      if (label) label.textContent = hero.metrics[index].label;
-    }
-  });
+  const signatureSrLabel = document.querySelector('[data-hero-signature-label]');
+  if (signatureSrLabel && hero?.signature?.label) {
+    signatureSrLabel.textContent = hero.signature.label;
+  }
+
+  const baselineLead = document.querySelector('[data-hero-baseline-lead]');
+  if (baselineLead && hero?.baseline?.lead) {
+    baselineLead.textContent = hero.baseline.lead;
+  }
+
+  const baselineItems = document.querySelector('[data-hero-baseline-items]');
+  if (baselineItems && hero?.baseline?.moments?.length) {
+    baselineItems.textContent = hero.baseline.moments.join(' • ');
+  }
+
+  const primaryCta = document.querySelector('.signature-hero__cta--primary');
+  if (primaryCta && hero?.ctaPrimary) {
+    primaryCta.textContent = hero.ctaPrimary.label;
+    primaryCta.href = hero.ctaPrimary.href;
+  }
+
+  const secondaryCta = document.querySelector('.signature-hero__cta--secondary');
+  if (secondaryCta && hero?.ctaSecondary) {
+    secondaryCta.textContent = hero.ctaSecondary.label;
+    secondaryCta.href = hero.ctaSecondary.href;
+  }
+
+  const scrollLabel = document.querySelector('[data-hero-scroll-label]');
+  if (scrollLabel && hero?.scroll?.label) {
+    scrollLabel.textContent = hero.scroll.label;
+  }
+
+  const scrollTrigger = document.querySelector('[data-hero-scroll]');
+  if (scrollTrigger && hero?.scroll?.target) {
+    scrollTrigger.dataset.scrollTarget = hero.scroll.target;
+  }
 }
 
 /**

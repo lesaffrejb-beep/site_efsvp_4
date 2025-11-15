@@ -9,21 +9,27 @@ export const siteContent = {
   // ===== HERO =====
   hero: {
     eyebrow: "Studio de création narrative & musicale",
-    headline: "Vous avez déjà écrit l'histoire.",
-    headlineSub: "On ne fera que vous relire.",
-    description: `Studio de création narrative et musicale sur-mesure.
-Pour vos moments clés : anniversaires, inaugurations, transitions.
-**Écriture • Composition • Performance live.**`,
-    ctaPrimary: "Partagez votre histoire",
-    ctaSecondary: "Découvrir nos projets",
-    socialProofLabel: "Ils nous font confiance",
-    clients: [
-      "Département 49",
-      "SIVAL",
-      "CAPEB",
-      "Destination Angers",
-      "+8 autres"
-    ]
+    signature: {
+      label: "En français s’il vous plaît",
+      description:
+        "Nom du studio affiché comme une signature manuscrite animée au chargement",
+    },
+    baseline: {
+      lead: "Studio de création narrative et musicale sur-mesure.",
+      moments: ["Anniversaires", "Inaugurations", "Transitions"],
+    },
+    ctaPrimary: {
+      label: "Partagez votre histoire",
+      href: "#contact",
+    },
+    ctaSecondary: {
+      label: "Découvrir nos projets",
+      href: "#projets",
+    },
+    scroll: {
+      label: "Découvrir",
+      target: "#projets",
+    },
   },
 
   // ===== PROMESSE / BENEFITS =====

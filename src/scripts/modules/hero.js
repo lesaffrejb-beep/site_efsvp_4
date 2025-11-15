@@ -1,146 +1,212 @@
 /**
- * Hero Manager
- * Vidéo background + animations premium
+ * Signature Hero Manager
+ * Gère l'animation de la signature manuscrite et les reveals associés.
  */
 
 import { gsap } from 'gsap';
 
+const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
+
 export class HeroManager {
   constructor() {
-    this.hero = document.querySelector('.hero');
+    this.hero = document.querySelector('.signature-hero');
     if (!this.hero) return;
 
-    this.video = this.hero.querySelector('.hero__video-placeholder video');
-    this.content = this.hero.querySelector('.hero__content');
-    this.ctaGroup = this.hero.querySelector('.hero__cta-group');
-    this.tagline = this.hero.querySelectorAll('.hero__tagline .typewriter-line');
-    this.scrollIndicator = this.hero.querySelector('.hero__scroll');
+    this.signaturePath = this.hero.querySelector('[data-signature-path]');
+    this.inkDrop = this.hero.querySelector('[data-ink-drop]');
+    this.inkFill = this.hero.querySelector('[data-ink-fill]');
+    this.baselineLines = this.hero.querySelectorAll('[data-hero-baseline-line]');
+    this.ctaGroup = this.hero.querySelector('.signature-hero__cta-group');
+    this.scrollTrigger = this.hero.querySelector('[data-hero-scroll]');
+
+    this.prefersReducedMotion = window.matchMedia(REDUCED_MOTION_QUERY);
+    this.animation = null;
 
     this.init();
   }
 
   init() {
-    if (this.video) {
-      this.setupVideo();
+    this.hero.classList.add('signature-hero--animated');
+    this.setupReducedMotionListener();
+
+    if (this.prefersReducedMotion.matches) {
+      this.applyReducedMotionState();
+    } else {
+      this.setupAnimation();
     }
-    this.setupAnimations();
-    this.setupVisibilityObserver();
-    if (this.scrollIndicator) {
-      this.setupScrollIndicator();
-    }
+
+    this.setupScrollIndicator();
   }
 
-  setupVideo() {
-    // Autoplay avec fallback
-    const playPromise = this.video.play();
-
-    if (playPromise !== undefined) {
-      playPromise.catch((error) => {
-        console.log('Autoplay prevented:', error);
-        // Fallback: play on user interaction
-        document.addEventListener(
-          'click',
-          () => {
-            this.video.play();
-          },
-          { once: true }
-        );
-      });
-    }
-  }
-
-  setupVisibilityObserver() {
-    if (!this.hero || !this.ctaGroup) {
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            this.hero.classList.remove('hero--cta-hidden');
-          } else if (entry.boundingClientRect.top < 0) {
-            this.hero.classList.add('hero--cta-hidden');
-          }
-        });
-      },
-      {
-        threshold: 0.2,
+  setupReducedMotionListener() {
+    const handlePreferenceChange = (event) => {
+      if (event.matches) {
+        this.applyReducedMotionState();
+      } else {
+        this.setupAnimation();
       }
-    );
+    };
 
-    observer.observe(this.hero);
+    if (typeof this.prefersReducedMotion.addEventListener === 'function') {
+      this.prefersReducedMotion.addEventListener('change', handlePreferenceChange);
+    } else if (typeof this.prefersReducedMotion.addListener === 'function') {
+      // Safari fallback
+      this.prefersReducedMotion.addListener(handlePreferenceChange);
+    }
   }
 
-  setupAnimations() {
-    // Animations d'entrée sobres
-    const tl = gsap.timeline({
-      delay: 0.5,
+  applyReducedMotionState() {
+    if (this.animation) {
+      this.animation.kill();
+      this.animation = null;
+    }
+
+    if (this.signaturePath) {
+      const length = this.signaturePath.getTotalLength();
+      this.signaturePath.style.strokeDasharray = `${length}`;
+      this.signaturePath.style.strokeDashoffset = '0';
+    }
+
+    if (this.inkFill) {
+      gsap.set(this.inkFill, { scaleX: 1, transformOrigin: 'left center' });
+    }
+
+    if (this.inkDrop) {
+      gsap.set(this.inkDrop, { autoAlpha: 0, yPercent: 0 });
+    }
+
+    if (this.baselineLines.length) {
+      gsap.set(this.baselineLines, { autoAlpha: 1, y: 0 });
+    }
+
+    if (this.ctaGroup) {
+      gsap.set(this.ctaGroup, { autoAlpha: 1, y: 0 });
+    }
+  }
+
+  setupAnimation() {
+    if (!this.signaturePath) return;
+
+    if (this.animation) {
+      this.animation.kill();
+    }
+
+    const length = this.signaturePath.getTotalLength();
+
+    gsap.set(this.signaturePath, {
+      strokeDasharray: length,
+      strokeDashoffset: length,
     });
 
-    // Fade in content
-    tl.from(this.content, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: 'power3.out',
+    if (this.inkDrop) {
+      gsap.set(this.inkDrop, { autoAlpha: 0, yPercent: -140 });
+    }
+
+    if (this.inkFill) {
+      gsap.set(this.inkFill, { scaleX: 0, transformOrigin: 'left center' });
+    }
+
+    if (this.baselineLines.length) {
+      gsap.set(this.baselineLines, { autoAlpha: 0, y: 12 });
+    }
+
+    if (this.ctaGroup) {
+      gsap.set(this.ctaGroup, { autoAlpha: 0, y: 16 });
+    }
+
+    const timeline = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+    timeline.to(this.signaturePath, {
+      strokeDashoffset: 0,
+      duration: 1.6,
     });
 
-    // Tagline lignes une par une (sobre, pas typewriter complexe)
-    if (this.tagline.length > 0) {
-      tl.from(
-        this.tagline,
+    if (this.inkDrop) {
+      timeline.to(
+        this.inkDrop,
         {
-          opacity: 0,
-          y: 20,
-          duration: 0.6,
-          stagger: 0.2,
-          ease: 'power2.out',
+          autoAlpha: 1,
+          yPercent: 0,
+          duration: 0.4,
+          ease: 'power2.in',
         },
-        '-=0.5'
+        '-=0.05'
       );
     }
 
-    // Parallax vidéo sur scroll (sobre)
-    if (this.video) {
-      gsap.to(this.video.parentElement, {
-        yPercent: 20,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: this.hero,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true,
+    if (this.inkFill) {
+      timeline.to(
+        this.inkFill,
+        {
+          scaleX: 1,
+          duration: 0.45,
+          ease: 'power1.out',
         },
-      });
+        this.inkDrop ? '-=0.15' : '-=0.2'
+      );
     }
+
+    if (this.inkDrop) {
+      timeline.to(
+        this.inkDrop,
+        {
+          autoAlpha: 0,
+          duration: 0.3,
+          ease: 'power1.out',
+        },
+        '-=0.1'
+      );
+    }
+
+    if (this.baselineLines.length) {
+      timeline.to(
+        this.baselineLines,
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.5,
+          stagger: 0.1,
+        },
+        '-=0.05'
+      );
+    }
+
+    if (this.ctaGroup) {
+      timeline.to(
+        this.ctaGroup,
+        {
+          autoAlpha: 1,
+          y: 0,
+          duration: 0.45,
+          ease: 'power2.out',
+        },
+        '-=0.2'
+      );
+    }
+
+    this.animation = timeline;
   }
 
   setupScrollIndicator() {
-    // Hide on scroll
-    gsap.to(this.scrollIndicator, {
-      opacity: 0,
-      scrollTrigger: {
-        trigger: this.hero,
-        start: 'top top',
-        end: '+=300',
-        scrub: true,
-      },
-    });
+    if (!this.scrollTrigger) return;
 
-    // Click scroll to #creations section
-    this.scrollIndicator.addEventListener('click', () => {
-      const creationsSection = document.querySelector('#creations');
-      if (creationsSection) {
-        window.lenis?.scrollTo(creationsSection, {
-          offset: -100,
-          duration: 1.5,
-        });
+    this.scrollTrigger.addEventListener('click', (event) => {
+      event.preventDefault();
+      const targetSelector = this.scrollTrigger.dataset.scrollTarget;
+      if (!targetSelector) return;
+
+      const target = document.querySelector(targetSelector);
+      if (!target) return;
+
+      if (window.lenis) {
+        window.lenis.scrollTo(target, { offset: -80, duration: 1.2 });
+      } else {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
   }
 
   start() {
-    // Entry animations déjà lancées dans init
+    // L'animation principale est déclenchée dans setupAnimation()
   }
 }
