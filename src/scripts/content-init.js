@@ -77,7 +77,8 @@ export function initHeroContent() {
 
   const baselineItems = document.querySelector('[data-hero-baseline-items]');
   if (baselineItems && hero?.baseline?.moments?.length) {
-    baselineItems.textContent = hero.baseline.moments.join(' • ');
+    const itemsText = hero.baseline.moments.join(' • ');
+    baselineItems.textContent = itemsText.endsWith('.') ? itemsText : `${itemsText}.`;
   }
 
   const primaryCta = document.querySelector('.signature-hero__cta--primary');

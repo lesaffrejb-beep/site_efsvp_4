@@ -1,16 +1,16 @@
 /* ============================================
-   HERO SIGNATURE - Ligne manuscrite + baseline
+   HERO SIGNATURE - Encre manuscrite premium
    ============================================ */
 
 .signature-hero {
   position: relative;
-  min-height: 100vh;
+  min-height: clamp(540px, 100vh, 820px);
+  padding: clamp(var(--space-16), 12vh, var(--space-32)) var(--container-padding);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(var(--space-16), 12vh, var(--space-32)) var(--container-padding);
-  background: radial-gradient(circle at 18% 20%, rgba(185, 90, 64, 0.22), transparent 55%),
-    linear-gradient(160deg, rgba(26, 35, 50, 0.98) 0%, rgba(10, 12, 18, 0.94) 100%);
+  background: linear-gradient(145deg, rgba(255, 248, 241, 0.92) 0%, rgba(253, 242, 231, 0.92) 45%, rgba(247, 229, 212, 0.94) 100%),
+    var(--bg-accent);
   color: var(--text-primary);
   overflow: hidden;
 }
@@ -19,116 +19,177 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 82% 12%, rgba(255, 255, 255, 0.08), transparent 45%);
+  background:
+    radial-gradient(circle at 18% 16%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 52%),
+    radial-gradient(circle at 82% 10%, rgba(185, 90, 64, 0.08) 0%, rgba(185, 90, 64, 0) 55%),
+    linear-gradient(120deg, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0) 65%);
   pointer-events: none;
-  mix-blend-mode: screen;
 }
 
+.signature-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+      0deg,
+      rgba(26, 35, 50, 0.015) 0,
+      rgba(26, 35, 50, 0.015) 1px,
+      transparent 1px,
+      transparent 10px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(26, 35, 50, 0.012) 0,
+      rgba(26, 35, 50, 0.012) 1px,
+      transparent 1px,
+      transparent 14px
+    );
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.hero__inner,
 .signature-hero__inner {
   position: relative;
   z-index: 1;
-  width: min(960px, 100%);
+  width: min(1120px, 100%);
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(var(--space-8), 4vh, var(--space-12));
-}
-
-.signature-hero__eyebrow {
-  font-family: var(--font-body);
-  font-size: clamp(0.875rem, 1.4vw, 1rem);
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  color: rgba(255, 255, 255, 0.72);
-  margin: 0;
-}
-
-.signature-hero__signature-wrapper {
-  position: relative;
-  padding-bottom: clamp(var(--space-10), 8vh, var(--space-16));
-}
-
-.signature-hero__title {
-  position: relative;
-  margin: 0;
-}
-
-.signature-hero__signature-svg {
-  width: min(90vw, 860px);
-  height: auto;
-  display: block;
-  margin: 0 auto;
-}
-
-.signature-hero__signature-path {
-  fill: none;
-  stroke: var(--color-neutral-50);
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 16px 30px rgba(0, 0, 0, 0.32));
-}
-
-.signature-hero__ink-drop {
-  position: absolute;
-  width: 18px;
-  height: 18px;
-  border-radius: 999px 999px 70% 70%;
-  background: var(--color-neutral-50);
-  left: clamp(64%, 56vw, 70%);
-  top: calc(100% - 28px);
-  transform: translate(-50%, -160%);
-  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
-}
-
-.signature-hero__ink-line {
-  position: absolute;
-  left: clamp(54%, 52vw, 66%);
-  bottom: -4px;
-  width: clamp(180px, 28vw, 340px);
-  height: 4px;
-  background: rgba(255, 255, 255, 0.14);
-  border-radius: 999px;
-  overflow: hidden;
-}
-
-.signature-hero__ink-fill {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--color-neutral-50);
-  transform-origin: left center;
-  transform: scaleX(1);
-}
-
-.signature-hero__baseline {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
+  display: grid;
+  justify-items: center;
+  gap: clamp(var(--space-8), 5vh, var(--space-12));
   text-align: center;
 }
 
+.hero__signature-wrapper,
+.signature-hero__signature-wrapper {
+  width: min(980px, 100%);
+  padding-bottom: clamp(var(--space-10), 8vh, var(--space-16));
+}
+
+.hero__signature {
+  position: relative;
+  margin: 0;
+  display: inline-flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.hero__signature-svg {
+  width: min(96vw, 980px);
+  height: auto;
+  display: block;
+  margin-inline: auto;
+}
+
+.hero__signature-path,
+.signature-hero__signature-path {
+  fill: none;
+  stroke: var(--text-primary);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 18px 28px rgba(26, 35, 50, 0.2));
+}
+
+.hero__ink-drop,
+.signature-hero__ink-drop {
+  position: absolute;
+  width: clamp(18px, 1.9vw, 24px);
+  height: clamp(18px, 1.9vw, 24px);
+  border-radius: 46% 46% 58% 58%;
+  background: var(--text-primary);
+  bottom: calc(-1 * clamp(36px, 6vh, 48px));
+  right: clamp(3%, 8vw, 72px);
+  transform: translateY(-140%);
+  filter: drop-shadow(0 14px 24px rgba(26, 35, 50, 0.28));
+  pointer-events: none;
+}
+
+.hero__ink-channel {
+  position: relative;
+  width: min(520px, 70vw);
+  height: clamp(18px, 3.4vw, 28px);
+  border-radius: 999px;
+  background: rgba(26, 35, 50, 0.12);
+  box-shadow: inset 0 12px 22px rgba(26, 35, 50, 0.14), 0 18px 30px rgba(26, 35, 50, 0.12);
+  overflow: hidden;
+}
+
+.hero__ink-channel::after {
+  content: '';
+  position: absolute;
+  inset-inline: 12%;
+  top: 4px;
+  height: 6px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 100%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.hero__ink-fill,
+.signature-hero__ink-fill {
+  --ink-ripple-x: 50%;
+  --ink-ripple-y: 50%;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  transform: scaleX(1);
+  will-change: transform;
+  position: relative;
+  isolation: isolate;
+  background:
+    radial-gradient(
+      120% 160% at var(--ink-ripple-x) var(--ink-ripple-y),
+      rgba(26, 35, 50, 0.92) 0%,
+      rgba(26, 35, 50, 0.78) 40%,
+      rgba(26, 35, 50, 0.52) 72%,
+      rgba(26, 35, 50, 0) 100%
+    ),
+    linear-gradient(115deg, rgba(26, 35, 50, 0.85) 0%, rgba(26, 35, 50, 0.76) 45%, rgba(26, 35, 50, 0.92) 100%);
+}
+
+.hero__ink-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0) 70%);
+  mix-blend-mode: screen;
+  opacity: 0.65;
+}
+
+.hero__baseline {
+  margin: 0;
+  display: grid;
+  gap: var(--space-2);
+  justify-items: center;
+}
+
+.hero__baseline-line,
 .signature-hero__baseline-line {
   font-family: var(--font-body);
-  font-size: clamp(1.15rem, 2.2vw, 1.6rem);
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0;
+  display: block;
+  font-size: clamp(1.25rem, 2.6vw, 1.9rem);
+  line-height: 1.55;
+  color: var(--text-primary);
 }
 
+.hero__baseline-line--moments,
 .signature-hero__baseline-line--secondary {
-  font-size: clamp(1rem, 1.6vw, 1.3rem);
-  color: rgba(232, 146, 79, 0.92);
+  font-size: clamp(1rem, 1.9vw, 1.3rem);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: rgba(26, 35, 50, 0.7);
 }
 
+.hero__cta,
 .signature-hero__cta-group {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-4);
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
 }
 
 .signature-hero__cta {
@@ -137,29 +198,31 @@
 }
 
 .signature-hero__cta--primary {
-  background: linear-gradient(135deg, #f2cf9b 0%, #e8924f 100%);
+  background: linear-gradient(130deg, #f4d7b2 0%, #e6a872 48%, #d8804c 100%);
   color: var(--color-neutral-900);
-  box-shadow: 0 12px 30px rgba(185, 90, 64, 0.35);
+  box-shadow: 0 16px 34px rgba(217, 142, 92, 0.34);
 }
 
 .signature-hero__cta--primary:hover,
 .signature-hero__cta--primary:focus-visible {
   color: var(--color-neutral-900);
+  transform: translateY(-1px);
 }
 
 .signature-hero__cta--secondary {
-  border: 1px solid rgba(255, 255, 255, 0.32);
-  color: rgba(255, 255, 255, 0.88);
-  background-color: transparent;
+  border: 1px solid rgba(26, 35, 50, 0.18);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(8px);
 }
 
 .signature-hero__cta--secondary:hover,
 .signature-hero__cta--secondary:focus-visible {
-  border-color: rgba(232, 146, 79, 0.8);
-  color: rgba(255, 255, 255, 0.96);
-  background: rgba(232, 146, 79, 0.12);
+  border-color: rgba(26, 35, 50, 0.32);
+  background: rgba(255, 255, 255, 0.65);
 }
 
+.hero__scroll,
 .signature-hero__scroll {
   appearance: none;
   border: none;
@@ -168,122 +231,130 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-2);
-  margin: clamp(var(--space-8), 8vh, var(--space-12)) auto 0;
+  margin-top: clamp(var(--space-8), 8vh, var(--space-12));
   cursor: pointer;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(26, 35, 50, 0.6);
 }
 
+.hero__scroll-label,
 .signature-hero__scroll-label {
   font-family: var(--font-body);
   font-size: 0.875rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
 }
 
+.hero__scroll-line,
 .signature-hero__scroll-line {
   width: 1px;
   height: 48px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(232, 146, 79, 0.8) 100%);
+  background: linear-gradient(180deg, rgba(26, 35, 50, 0) 0%, rgba(26, 35, 50, 0.5) 100%);
 }
 
+.hero__noscript,
 .signature-hero__noscript {
-  margin-top: var(--space-12);
+  margin-top: var(--space-10);
   padding: var(--space-8);
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.08);
-  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 40px rgba(26, 35, 50, 0.12);
+  color: var(--text-primary);
   text-align: center;
 }
 
+.hero__noscript h1,
 .signature-hero__noscript h1 {
   font-family: 'Playfair Display', var(--font-display);
-  font-size: 2rem;
-  margin-bottom: var(--space-4);
+  font-size: clamp(1.8rem, 5vw, 2.3rem);
+  margin-bottom: var(--space-3);
 }
 
+.hero__noscript p,
 .signature-hero__noscript p {
   margin: 0 0 var(--space-2);
   font-family: var(--font-body);
 }
 
+.hero__noscript-cta {
+  margin-top: var(--space-4);
+}
+
 @media (max-width: 900px) {
   .signature-hero {
     min-height: auto;
-    padding-top: calc(var(--space-24) + var(--space-8));
-  }
-
-  .signature-hero__signature-svg {
-    width: min(95vw, 720px);
-  }
-
-  .signature-hero__ink-drop {
-    left: 68%;
-    width: 16px;
-    height: 16px;
-  }
-
-  .signature-hero__ink-line {
-    left: 58%;
-    width: clamp(160px, 40vw, 300px);
-  }
-}
-
-@media (max-width: 600px) {
-  .signature-hero {
     padding: var(--space-16) var(--space-6) var(--space-24);
   }
 
+  .hero__inner,
   .signature-hero__inner {
-    gap: var(--space-8);
+    gap: var(--space-6);
   }
 
-  .signature-hero__eyebrow {
-    letter-spacing: 0.18em;
-  }
-
+  .hero__signature-wrapper,
   .signature-hero__signature-wrapper {
     padding-bottom: var(--space-10);
   }
 
-  .signature-hero__signature-svg {
-    width: 100%;
+  .hero__signature-svg {
+    width: min(100%, 760px);
   }
 
+  .hero__ink-channel {
+    width: min(440px, 82vw);
+    height: clamp(16px, 6vw, 22px);
+  }
+
+  .hero__ink-drop,
   .signature-hero__ink-drop {
-    left: 72%;
-    top: calc(100% - 20px);
+    right: clamp(8%, 14vw, 96px);
+    bottom: calc(-1 * clamp(30px, 6vh, 40px));
   }
 
-  .signature-hero__ink-line {
-    left: 62%;
-    bottom: -2px;
-    width: clamp(140px, 60vw, 260px);
-  }
-
+  .hero__baseline-line,
   .signature-hero__baseline-line {
-    font-size: clamp(1.05rem, 4.2vw, 1.35rem);
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
   }
 
+  .hero__baseline-line--moments,
   .signature-hero__baseline-line--secondary {
-    letter-spacing: 0.18em;
+    letter-spacing: 0.08em;
+    font-size: clamp(0.95rem, 4.4vw, 1.2rem);
   }
 
+  .hero__cta,
   .signature-hero__cta-group {
     flex-direction: column;
-    gap: var(--space-3);
+    width: 100%;
   }
 
   .signature-hero__cta {
     width: 100%;
   }
+}
 
+@media (max-width: 560px) {
+  .hero__signature-svg {
+    width: min(100%, 640px);
+  }
+
+  .hero__ink-channel {
+    width: min(360px, 90vw);
+  }
+
+  .hero__scroll,
   .signature-hero__scroll {
-    margin-top: var(--space-10);
+    margin-top: var(--space-8);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .hero__ink-fill,
+  .signature-hero__ink-fill {
+    transition: none !important;
+  }
+
+  .hero__scroll-line,
   .signature-hero__scroll-line {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(26, 35, 50, 0.35);
   }
 }

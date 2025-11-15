@@ -15,12 +15,20 @@ export class HeroManager {
     this.signaturePath = this.hero.querySelector('[data-signature-path]');
     this.inkDrop = this.hero.querySelector('[data-ink-drop]');
     this.inkFill = this.hero.querySelector('[data-ink-fill]');
+    this.inkChannel = this.hero.querySelector('.hero__ink-channel');
     this.baselineLines = this.hero.querySelectorAll('[data-hero-baseline-line]');
     this.ctaGroup = this.hero.querySelector('.signature-hero__cta-group');
     this.scrollTrigger = this.hero.querySelector('[data-hero-scroll]');
 
     this.prefersReducedMotion = window.matchMedia(REDUCED_MOTION_QUERY);
+    this.pointerMedia = window.matchMedia('(pointer: fine)');
     this.animation = null;
+    this.inkInteractionEnabled = false;
+
+    this.handlePointerMove = this.handlePointerMove.bind(this);
+    this.handlePointerLeave = this.handlePointerLeave.bind(this);
+    this.updateInkInteraction = this.updateInkInteraction.bind(this);
+    this.handleResize = this.handleResize.bind(this);
 
     this.init();
   }
@@ -45,6 +53,8 @@ export class HeroManager {
       } else {
         this.setupAnimation();
       }
+
+      this.updateInkInteraction();
     };
 
     if (typeof this.prefersReducedMotion.addEventListener === 'function') {
@@ -53,6 +63,16 @@ export class HeroManager {
       // Safari fallback
       this.prefersReducedMotion.addListener(handlePreferenceChange);
     }
+
+    if (this.pointerMedia) {
+      if (typeof this.pointerMedia.addEventListener === 'function') {
+        this.pointerMedia.addEventListener('change', this.updateInkInteraction);
+      } else if (typeof this.pointerMedia.addListener === 'function') {
+        this.pointerMedia.addListener(this.updateInkInteraction);
+      }
+    }
+
+    window.addEventListener('resize', this.handleResize, { passive: true });
   }
 
   applyReducedMotionState() {
@@ -82,6 +102,8 @@ export class HeroManager {
     if (this.ctaGroup) {
       gsap.set(this.ctaGroup, { autoAlpha: 1, y: 0 });
     }
+
+    this.teardownInkInteraction();
   }
 
   setupAnimation() {
@@ -90,6 +112,8 @@ export class HeroManager {
     if (this.animation) {
       this.animation.kill();
     }
+
+    this.teardownInkInteraction();
 
     const length = this.signaturePath.getTotalLength();
 
@@ -184,6 +208,10 @@ export class HeroManager {
       );
     }
 
+    timeline.call(() => {
+      this.setupInkInteraction();
+    });
+
     this.animation = timeline;
   }
 
@@ -208,5 +236,84 @@ export class HeroManager {
 
   start() {
     // L'animation principale est déclenchée dans setupAnimation()
+  }
+
+  shouldEnableInkInteraction() {
+    if (!this.inkFill || !this.inkChannel) return false;
+    if (this.prefersReducedMotion?.matches) return false;
+    if (window.innerWidth < 1024) return false;
+    if (this.pointerMedia && !this.pointerMedia.matches) return false;
+    return true;
+  }
+
+  setupInkInteraction() {
+    if (!this.shouldEnableInkInteraction()) {
+      this.teardownInkInteraction();
+      return;
+    }
+
+    if (this.inkInteractionEnabled) return;
+
+    this.inkChannel.addEventListener('pointermove', this.handlePointerMove);
+    this.inkChannel.addEventListener('pointerleave', this.handlePointerLeave);
+    this.inkInteractionEnabled = true;
+  }
+
+  teardownInkInteraction() {
+    if (!this.inkInteractionEnabled) return;
+
+    this.inkChannel.removeEventListener('pointermove', this.handlePointerMove);
+    this.inkChannel.removeEventListener('pointerleave', this.handlePointerLeave);
+    this.inkInteractionEnabled = false;
+
+    if (this.inkFill) {
+      gsap.to(this.inkFill, {
+        duration: 0.6,
+        ease: 'power2.out',
+        '--ink-ripple-x': '50%',
+        '--ink-ripple-y': '50%',
+      });
+    }
+  }
+
+  updateInkInteraction() {
+    if (this.shouldEnableInkInteraction()) {
+      this.setupInkInteraction();
+    } else {
+      this.teardownInkInteraction();
+    }
+  }
+
+  handlePointerMove(event) {
+    if (!this.inkInteractionEnabled || !this.inkChannel || !this.inkFill) return;
+
+    const rect = this.inkChannel.getBoundingClientRect();
+    const x = ((event.clientX - rect.left) / rect.width) * 100;
+    const y = ((event.clientY - rect.top) / rect.height) * 100;
+
+    const clampedX = Math.max(0, Math.min(100, x));
+    const clampedY = Math.max(0, Math.min(100, y));
+
+    gsap.to(this.inkFill, {
+      duration: 0.6,
+      ease: 'power2.out',
+      '--ink-ripple-x': `${clampedX}%`,
+      '--ink-ripple-y': `${clampedY}%`,
+    });
+  }
+
+  handlePointerLeave() {
+    if (!this.inkInteractionEnabled || !this.inkFill) return;
+
+    gsap.to(this.inkFill, {
+      duration: 0.8,
+      ease: 'power2.out',
+      '--ink-ripple-x': '50%',
+      '--ink-ripple-y': '50%',
+    });
+  }
+
+  handleResize() {
+    this.updateInkInteraction();
   }
 }

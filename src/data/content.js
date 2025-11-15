@@ -16,15 +16,15 @@ export const siteContent = {
     },
     baseline: {
       lead: "Studio de création narrative et musicale sur-mesure.",
-      moments: ["Anniversaires", "Inaugurations", "Transitions"],
+      moments: ["Anniversaires", "Inaugurations", "Moments fondateurs"],
     },
     ctaPrimary: {
-      label: "Partagez votre histoire",
-      href: "#contact",
+      label: "Découvrir nos créations",
+      href: "#projets",
     },
     ctaSecondary: {
-      label: "Découvrir nos projets",
-      href: "#projets",
+      label: "Discuter de votre projet",
+      href: "#contact",
     },
     scroll: {
       label: "Découvrir",
