@@ -71,26 +71,23 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
-    <!-- CSS Files -->
-    <link rel="stylesheet" href="/src/styles/tokens.css" />
-    <link rel="stylesheet" href="/src/styles/utilities.css" />
-    <link rel="stylesheet" href="/src/styles/design-tokens.css" />
-    <link rel="stylesheet" href="/src/styles/design-system.css" />
+    <!-- CSS Files - Optimized & Consolidated -->
+    <!-- Design System (tokens, utilities, base styles) -->
+    <link rel="stylesheet" href="/src/styles/design-system-unified.css" />
+
+    <!-- Core Styles -->
     <link rel="stylesheet" href="/src/styles/styles.css" />
-    <link rel="stylesheet" href="/src/styles/premium-enhancements.css" />
-    <link rel="stylesheet" href="/src/styles/premium-unified.css" />
-    <link rel="stylesheet" href="/src/styles/premium-mobile.css" />
-    <link rel="stylesheet" href="/src/styles/design-refinements.css" />
-    <link rel="stylesheet" href="/src/styles/cookie-banner.css" />
-    <link rel="stylesheet" href="/src/styles/landing-rebuild.css" />
-    <link rel="stylesheet" href="/src/styles/ux-polish.css" />
     <link rel="stylesheet" href="/src/styles/components-efsvp.css" />
+
+    <!-- Layout Fixes (centrage, alignement) -->
+    <link rel="stylesheet" href="/src/styles/layout-fixes.css" />
+
+    <!-- Navigation & UI -->
     <link rel="stylesheet" href="/src/styles/progressive-nav.css" />
     <link rel="stylesheet" href="/src/styles/project-modal.css" />
-    <link rel="stylesheet" href="/src/styles/accessibility-fixes.css" />
-    <!-- UI Audit: Mobile-first design system refinement -->
-    <link rel="stylesheet" href="/src/styles/mobile-first-ui-audit.css" />
-    <!-- DRIBBBLE-GRADE TRANSFORMATION - Must be last to override all -->
+    <link rel="stylesheet" href="/src/styles/cookie-banner.css" />
+
+    <!-- Dribbble-grade enhancements (must be last) -->
     <link rel="stylesheet" href="/src/styles/dribbble-grade.css" />
     <link rel="stylesheet" href="/src/styles/dribbble-sections.css" />
 
@@ -461,7 +458,7 @@
 
           <div class="projects__grid">
             <!-- Projet 1: SIVAL -->
-            <article class="project-card" data-scroll data-lift>
+            <article class="project-card" data-scroll data-lift data-project-id="sival-2025">
               <div class="project-card__visual">
                 <div
                   class="project-card__gradient"
@@ -478,7 +475,7 @@
             </article>
 
             <!-- Projet 2: Atelier Lacour -->
-            <article class="project-card" data-scroll data-lift>
+            <article class="project-card" data-scroll data-lift data-project-id="atelier-lacour">
               <div class="project-card__visual">
                 <div
                   class="project-card__gradient"
@@ -495,7 +492,7 @@
             </article>
 
             <!-- Projet 3: Département 49 -->
-            <article class="project-card" data-scroll data-lift>
+            <article class="project-card" data-scroll data-lift data-project-id="departement-49">
               <div class="project-card__visual">
                 <div
                   class="project-card__gradient"
@@ -512,7 +509,7 @@
             </article>
 
             <!-- Projet 4: État de nature -->
-            <article class="project-card" data-scroll data-lift>
+            <article class="project-card" data-scroll data-lift data-project-id="etat-de-nature">
               <div class="project-card__visual">
                 <div
                   class="project-card__gradient"
@@ -819,6 +816,54 @@
         </div>
       </div>
     </footer>
+
+    <!-- ============================================
+         PROJECT MODAL
+         ============================================ -->
+    <div
+      class="project-modal"
+      id="project-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="project-modal-title"
+      aria-hidden="true"
+    >
+      <div class="modal-overlay"></div>
+      <div class="modal-container">
+        <button
+          class="modal-close"
+          id="project-modal-close"
+          aria-label="Fermer la modale"
+        >
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modal-tags">
+              <span class="tag" id="project-modal-tag">Hymne officiel</span>
+            </div>
+            <h2 class="modal-title" id="project-modal-title">Titre du projet</h2>
+            <p class="modal-subtitle" id="project-modal-meta">Client · Année</p>
+          </div>
+
+          <div class="modal-body">
+            <div class="modal-description" id="project-modal-description">
+              <p>Description du projet...</p>
+            </div>
+
+            <div class="modal-stats" id="project-modal-stats" style="display: none;">
+              <h3>Informations</h3>
+              <dl class="stats-grid" id="project-modal-stats-content">
+                <!-- Stats dynamiques -->
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Success Modal -->
     <div
