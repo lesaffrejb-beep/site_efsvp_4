@@ -599,14 +599,30 @@
       <section class="faq section" id="faq">
         <div class="container">
           <header class="section__header" data-scroll>
+            <div class="faq__trust-badge">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+              <span>Réponse sous 48h garantie</span>
+            </div>
             <h2 class="section__title">Vous vous demandez peut-être…</h2>
+            <p class="faq__intro">
+              Toutes les questions qu'on nous pose régulièrement. Si vous ne trouvez pas votre réponse,
+              <a href="#contact" class="faq__intro-link">écrivez-nous directement</a>.
+            </p>
           </header>
 
           <div class="faq__list">
             <!-- Question 1 -->
-            <div class="faq-item" data-scroll>
+            <div class="faq-item faq-item--popular" data-scroll>
+              <div class="faq-item__badge">Populaire</div>
               <button class="faq-item__question" aria-expanded="false">
-                <span>Allez-vous vraiment comprendre notre métier ?</span>
+                <div class="faq-item__question-content">
+                  <svg class="faq-item__theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                  </svg>
+                  <span>Allez-vous vraiment comprendre notre métier ?</span>
+                </div>
                 <svg
                   class="faq-item__icon"
                   viewBox="0 0 24 24"
@@ -619,7 +635,7 @@
               </button>
               <div class="faq-item__answer">
                 <p>
-                  Oui. Nous prenons 1 à 2 semaines pour vous écouter, observer, comprendre votre
+                  <strong>Oui.</strong> Nous prenons <strong>1 à 2 semaines</strong> pour vous écouter, observer, comprendre votre
                   vocabulaire et vos enjeux. Nous ne racontons jamais une histoire qui n'est pas
                   la vôtre. Nos clients nous font confiance parce que nous savons poser les bonnes
                   questions et traduire leur réalité en émotions justes.
@@ -628,9 +644,15 @@
             </div>
 
             <!-- Question 2 -->
-            <div class="faq-item" data-scroll>
+            <div class="faq-item faq-item--popular" data-scroll>
+              <div class="faq-item__badge">Populaire</div>
               <button class="faq-item__question" aria-expanded="false">
-                <span>Est-ce que ce ne sera pas gênant pour nos équipes ?</span>
+                <div class="faq-item__question-content">
+                  <svg class="faq-item__theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                  </svg>
+                  <span>Est-ce que ce ne sera pas gênant pour nos équipes ?</span>
+                </div>
                 <svg
                   class="faq-item__icon"
                   viewBox="0 0 24 24"
@@ -643,7 +665,7 @@
               </button>
               <div class="faq-item__answer">
                 <p>
-                  Non. Nous intervenons avec discrétion et bienveillance. Nos entretiens se font
+                  <strong>Non.</strong> Nous intervenons avec <strong>discrétion et bienveillance</strong>. Nos entretiens se font
                   dans le respect du temps et de la pudeur de chacun. Le résultat final valorise
                   toujours vos équipes et votre culture d'entreprise — jamais l'inverse.
                 </p>
@@ -653,7 +675,12 @@
             <!-- Question 3 -->
             <div class="faq-item" data-scroll>
               <button class="faq-item__question" aria-expanded="false">
-                <span>Et si nous changeons d'avis en cours de route ?</span>
+                <div class="faq-item__question-content">
+                  <svg class="faq-item__theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                  </svg>
+                  <span>Et si nous changeons d'avis en cours de route ?</span>
+                </div>
                 <svg
                   class="faq-item__icon"
                   viewBox="0 0 24 24"
@@ -666,7 +693,7 @@
               </button>
               <div class="faq-item__answer">
                 <p>
-                  C'est normal. Nous incluons 2 allers-retours dans toutes nos formules. Si vous
+                  <strong>C'est normal.</strong> Nous incluons <strong>2 allers-retours</strong> dans toutes nos formules. Si vous
                   voulez ajuster le ton, ajouter un élément ou changer une direction narrative,
                   nous nous adaptons. L'important, c'est que vous soyez fiers du résultat final.
                 </p>
@@ -676,7 +703,12 @@
             <!-- Question 4 -->
             <div class="faq-item" data-scroll>
               <button class="faq-item__question" aria-expanded="false">
-                <span>Travaillez-vous uniquement en Pays de la Loire ?</span>
+                <div class="faq-item__question-content">
+                  <svg class="faq-item__theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                  </svg>
+                  <span>Travaillez-vous uniquement en Pays de la Loire ?</span>
+                </div>
                 <svg
                   class="faq-item__icon"
                   viewBox="0 0 24 24"
@@ -689,7 +721,7 @@
               </button>
               <div class="faq-item__answer">
                 <p>
-                  Non. Nous sommes basés à Angers, mais nous intervenons partout en francophonie.
+                  <strong>Non.</strong> Nous sommes basés à Angers, mais nous intervenons <strong>partout en francophonie</strong>.
                   L'essentiel de notre travail (écriture, composition) peut se faire à distance.
                   Pour les performances live, nous nous déplaçons selon vos besoins.
                 </p>
@@ -699,7 +731,12 @@
             <!-- Question 5 -->
             <div class="faq-item" data-scroll>
               <button class="faq-item__question" aria-expanded="false">
-                <span>Peut-on réutiliser le texte ou la musique ensuite ?</span>
+                <div class="faq-item__question-content">
+                  <svg class="faq-item__theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  </svg>
+                  <span>Peut-on réutiliser le texte ou la musique ensuite ?</span>
+                </div>
                 <svg
                   class="faq-item__icon"
                   viewBox="0 0 24 24"
@@ -712,12 +749,25 @@
               </button>
               <div class="faq-item__answer">
                 <p>
-                  Oui, sous conditions. Les formules incluent un usage défini (événement,
+                  <strong>Oui, sous conditions.</strong> Les formules incluent un usage défini (événement,
                   diffusion interne, etc.). Pour une réutilisation commerciale (pub, vidéo,
                   identité sonore), nous établissons un contrat de droits d'usage adapté. Nous
-                  restons toujours flexibles et transparents sur les tarifs.
+                  restons toujours <strong>flexibles et transparents</strong> sur les tarifs.
                 </p>
               </div>
+            </div>
+          </div>
+
+          <!-- FAQ CTA -->
+          <div class="faq__cta" data-scroll>
+            <div class="faq__cta-content">
+              <h3 class="faq__cta-title">Vous avez une autre question ?</h3>
+              <p class="faq__cta-text">
+                Nous adorons discuter de nos projets. Posez-nous vos questions sans engagement.
+              </p>
+              <a href="#contact" class="cta cta--primary">
+                Partagez votre histoire
+              </a>
             </div>
           </div>
         </div>
