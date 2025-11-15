@@ -211,7 +211,8 @@
     <!-- ============================================
          SECTION 1: HERO
          ============================================ -->
-    <section class="hero section gradient-subtle overflow-hidden" id="hero" aria-label="Page d'accueil et présentation">
+    <section class="hero section overflow-hidden book-hero" id="hero" aria-label="Page d'accueil et présentation">
+      <div class="book-hero__canvas-container" id="book-hero-canvas"></div>
       <div class="hero__container container">
         <div class="hero__grid">
           <div class="hero__content text-center mx-auto max-w-4xl animate-fade-in">
@@ -234,64 +235,6 @@
               <a href="#projets" class="btn btn-secondary btn-lg">
                 Découvrir nos projets
               </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================
-         SECTION 1B: HERO 2 - IMMERSIVE EXPERIENCE
-         ============================================ -->
-    <section class="hero-immersive section section--dark" id="hero-experience" aria-label="Expérience immersive EfSVP">
-      <div class="hero-immersive__backdrop" aria-hidden="true">
-        <span class="hero-immersive__glow hero-immersive__glow--primary"></span>
-        <span class="hero-immersive__glow hero-immersive__glow--secondary"></span>
-        <span class="hero-immersive__grid"></span>
-      </div>
-      <div class="hero-immersive__container container">
-        <div class="hero-immersive__layout">
-          <div class="hero-immersive__content" data-scroll>
-            <span class="hero-immersive__eyebrow">Vision 2025 → 2026</span>
-            <h2 class="hero-immersive__title">
-              Des récits sculptés en 3D
-              <span class="hero-immersive__title-highlight">pour hypnotiser vos publics.</span>
-            </h2>
-            <p class="hero-immersive__description">
-              Nous orchestrons une scénographie narrative complète&nbsp;: strates sonores, visuels volumétriques,
-              dramaturgie live. Une expérience haute couture qui place votre histoire au centre d'un univers immersif.
-            </p>
-            <div class="hero-immersive__cta-group">
-              <a href="#projets" class="cta cta--ghost">Explorer nos expériences</a>
-              <a href="#process" class="cta cta--primary">Découvrir notre process</a>
-            </div>
-            <dl class="hero-immersive__facts" aria-label="Détails clés">
-              <div class="hero-immersive__fact">
-                <dt>Direction artistique</dt>
-                <dd>Signature EfSVP, écriture, musique, scénographie.</dd>
-              </div>
-              <div class="hero-immersive__fact">
-                <dt>Technologie sensible</dt>
-                <dd>Immersion sonore spatialisée, projections sculptées.</dd>
-              </div>
-            </dl>
-          </div>
-
-          <div class="hero-immersive__stage" aria-hidden="true">
-            <div class="hero-immersive__rig">
-              <div class="hero-immersive__card hero-immersive__card--main">
-                <span class="hero-immersive__card-label">Live storytelling</span>
-                <span class="hero-immersive__card-title">Spectacle signature</span>
-                <span class="hero-immersive__card-meta">1200&nbsp;€ → production sur-mesure</span>
-              </div>
-              <div class="hero-immersive__card hero-immersive__card--secondary">
-                <span class="hero-immersive__chip">Écriture originale</span>
-                <span class="hero-immersive__chip">Musique live</span>
-                <span class="hero-immersive__chip">Narration holographique</span>
-              </div>
-              <div class="hero-immersive__orb hero-immersive__orb--accent"></div>
-              <div class="hero-immersive__orb hero-immersive__orb--light"></div>
-              <div class="hero-immersive__shadow"></div>
             </div>
           </div>
         </div>
@@ -706,6 +649,7 @@
               <p class="contact__response">Réponse sous 48h garantie.</p>
 
               <div class="contact__direct">
+                <p class="contact__location">Basé à Angers · Partout en Francophonie</p>
                 <p class="contact__direct-label">Ou écrivez-nous directement</p>
                 <button
                   type="button"
@@ -726,7 +670,6 @@
                   <span class="copy-email__success" aria-hidden="true" aria-live="polite">Copié !</span>
                   <span class="copy-email__error" aria-hidden="true">Copie impossible</span>
                 </button>
-                <p class="contact__location">Basé à Angers · Partout en Francophonie</p>
               </div>
             </div>
 
@@ -873,8 +816,8 @@
           <div class="footer__grid">
             <!-- Col 1 - Brand -->
             <div class="footer__col footer__col--brand">
-              <p class="footer__brand-text">En français s'il vous plaît – Studio de narration</p>
-              <p class="footer__tagline">Angers, Pays de la Loire</p>
+              <p class="footer__brand-name">En français s'il vous plaît</p>
+              <p class="footer__brand-subtitle">Studio de narration</p>
             </div>
 
             <!-- Col 2 - Navigation -->
@@ -892,9 +835,24 @@
             <!-- Col 3 - Contact -->
             <div class="footer__col">
               <h4 class="footer__title">Contact</h4>
-              <ul class="footer__links">
-                <li><a href="mailto:contact@efsvp.fr">contact@efsvp.fr</a></li>
-                <li>Angers, Pays de la Loire</li>
+              <ul class="footer__links footer__links--contact">
+                <li>
+                  <a href="tel:+33778794064" class="footer__contact-link">
+                    <svg class="footer__contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                    </svg>
+                    07 78 79 40 64
+                  </a>
+                </li>
+                <li>
+                  <a href="mailto:contact@efsvp.fr" class="footer__contact-link">
+                    <svg class="footer__contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                      <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    contact@efsvp.fr
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
@@ -902,9 +860,16 @@
 
         <!-- Footer Bottom -->
         <div class="footer__bottom">
-          <p class="footer__copyright">
-            © 2025 En français s'il vous plaît · Tous droits réservés
-          </p>
+          <div class="footer__bottom-left">
+            <p class="footer__copyright">
+              © 2025 En français s'il vous plaît · Tous droits réservés
+            </p>
+            <p class="footer__made">
+              Made in Angers with <svg class="footer__heart-icon" viewBox="0 0 24 24" fill="currentColor" aria-label="amour">
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+              </svg>
+            </p>
+          </div>
           <button class="footer__back-to-top" id="back-to-top" aria-label="Retour en haut">
             <svg
               class="footer__back-to-top-icon"

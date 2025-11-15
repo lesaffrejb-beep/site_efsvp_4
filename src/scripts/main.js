@@ -27,6 +27,7 @@ import { initAudioBlock } from './blocks/audio.js';
 import { initPortfolioBlock } from './blocks/portfolio.js';
 import { initTestimonialsBlock } from './blocks/testimonials.js';
 import { initAllContent } from './content-init.js';
+import { initBookHero } from './modules/bookHero.js';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -184,6 +185,9 @@ class App {
   }
 
   initSections() {
+    // Initialize BookHero 3D
+    initBookHero();
+
     const heroContext = initHeroBlock({ modules: this.modules });
     this.modules = heroContext.modules;
 
