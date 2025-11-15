@@ -287,8 +287,17 @@ export function initPortfolioContent() {
     projectsGrid.innerHTML = sortedProjects
       .map((project) => {
         const period = project.period ? project.period : project.year;
-        const themes = project.themes.slice(0, 2);
         const statusLabel = statusLabels[project.status] || project.status;
+        const sectorChip = project.sector
+          ? `<span class="project-card__chip project-card__chip--sector">${project.sector}</span>`
+          : '';
+        const typologyChip = project.typology
+          ? `<span class="project-card__chip project-card__chip--typology">${project.typology}</span>`
+          : '';
+        const themeTags = project.themes
+          .slice(0, 2)
+          .map((theme) => `<span class="project-card__tag">${theme}</span>`)
+          .join('');
 
         return `
           <article class="project-card"
@@ -296,24 +305,37 @@ export function initPortfolioContent() {
                    data-typology="${project.typology}"
                    data-sector="${project.sector}"
                    data-status="${project.status}">
-            <header class="project-card__header">
-              <span class="project-card__client">${project.client}</span>
-              <span class="project-card__year">${period}</span>
-            </header>
-            <h3 class="project-card__title">${project.title}</h3>
-            <p class="project-card__tagline">${project.tagline}</p>
-            <p class="project-card__description">${project.shortDescription}</p>
-            <div class="project-card__themes">
-              ${themes
-                .map((theme) => `<span class="project-card__chip">${theme}</span>`)
-                .join('')}
+            <div class="project-card__media">
+              <div class="project-card__media-glow"></div>
+              <div class="project-card__media-meta">
+                <span class="project-card__format">${project.format}</span>
+                ${themeTags ? `<div class="project-card__tags">${themeTags}</div>` : ''}
+              </div>
+              <span class="project-card__media-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M8 5v14l11-7-11-7z" stroke-linejoin="round" stroke-linecap="round"></path>
+                </svg>
+              </span>
             </div>
-            <div class="project-card__footer">
+            <div class="project-card__content">
+              <div class="project-card__meta">
+                <span class="project-card__client">${project.client}</span>
+                <span class="project-card__year">${period}</span>
+              </div>
+              <h3 class="project-card__title">${project.title}</h3>
+              <p class="project-card__tagline">${project.tagline}</p>
+              <p class="project-card__description">${project.shortDescription}</p>
+              <div class="project-card__chips">
+                ${sectorChip}
+                ${typologyChip}
+              </div>
+            </div>
+            <footer class="project-card__footer">
               <span class="project-card__status project-card__status--${project.status}">${statusLabel}</span>
               <button type="button" class="project-card__link" aria-label="Voir le projet ${project.title}">
                 Voir le projet
               </button>
-            </div>
+            </footer>
           </article>
         `;
       })
@@ -334,7 +356,14 @@ export function initProcessContent() {
   if (eyebrow) eyebrow.textContent = section.eyebrow;
   if (title) title.textContent = section.title;
   if (subtitle) subtitle.textContent = section.subtitle;
-  if (note) note.textContent = section.note;
+  if (note) {
+    if (section.note) {
+      note.textContent = section.note;
+      note.hidden = false;
+    } else {
+      note.remove();
+    }
+  }
 
   const stepElements = document.querySelectorAll('.process__step');
   steps.forEach((step, index) => {

@@ -2,30 +2,10 @@
          RÉFÉRENCE COMPLÈTE - CHEMINS ABSOLUS DES FICHIERS
 ================================================================================
 
-RAPPORT D'AUDIT (à lire):
+RAPPORT D'AUDIT (archivés)
 ──────────────────────────────────────────────────────────────────────────
-README_AUDIT.md
-  Chemin: /home/user/eFsvp_maquette/README_AUDIT.md
-  Fonction: Guide d'utilisation des rapports
-  Taille: 5.9 KB
-
-AUDIT_SUMMARY.txt
-  Chemin: /home/user/eFsvp_maquette/AUDIT_SUMMARY.txt
-  Fonction: Résumé exécutif avec 8 problèmes critiques
-  Taille: 18 KB
-  Temps: 10 min
-
-AUDIT_COMPARISON.md
-  Chemin: /home/user/eFsvp_maquette/AUDIT_COMPARISON.md
-  Fonction: Analyse détaillée section par section
-  Taille: 14 KB
-  Temps: 30 min
-
-ACTION_PLAN.md
-  Chemin: /home/user/eFsvp_maquette/ACTION_PLAN.md
-  Fonction: Plan d'action avec code exemple
-  Taille: 9.2 KB
-  Phases: 3 (Critique, Majeure, Polish)
+Les documents d'audit historiques (README_AUDIT, ACTION_PLAN, AUDIT_COMPARISON, etc.) ont été archivés en novembre 2025 pour
+ alléger le dépôt. Seuls les livrables actifs présents dans `/docs/` sont maintenus.
 
 AUDIT_ISSUES.json
   Chemin: /home/user/eFsvp_maquette/AUDIT_ISSUES.json

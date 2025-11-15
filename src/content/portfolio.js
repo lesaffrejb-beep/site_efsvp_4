@@ -1,34 +1,16 @@
 import { projectsCollection } from './projects/index.js';
 
-const uniqueValues = (key) => {
-  return Array.from(new Set(projectsCollection.map((project) => project[key]))).sort();
-};
-
-const buildOptions = (values, { includeAllLabel }) => [
-  { label: includeAllLabel, value: 'all', active: true },
-  ...values.map((value) => ({ label: value, value })),
-];
-
-const filterGroups = [
-  {
-    id: 'typology',
-    label: 'Typologie',
-    options: buildOptions(uniqueValues('typology'), { includeAllLabel: 'Toutes les typologies' }),
-  },
-  {
-    id: 'sector',
-    label: 'Secteur',
-    options: buildOptions(uniqueValues('sector'), { includeAllLabel: 'Tous les secteurs' }),
-  },
-  {
-    id: 'status',
-    label: 'Statut',
-    options: [
-      { label: 'Tous les statuts', value: 'all', active: true },
-      { label: 'Livrés', value: 'delivered' },
-      { label: 'En production', value: 'in_production' },
-    ],
-  },
+const sectorFilterOptions = [
+  { label: 'Tous les secteurs', value: 'all', active: true },
+  { label: 'Agriculture', value: 'Agriculture' },
+  { label: 'Artisanat', value: 'Artisanat' },
+  { label: 'BTP', value: 'BTP' },
+  { label: 'Environnement', value: 'Environnement' },
+  { label: 'Mobilité', value: 'Mobilité' },
+  { label: 'Patrimoine', value: 'Patrimoine' },
+  { label: 'Spectacle vivant', value: 'Spectacle vivant' },
+  { label: 'Territoire', value: 'Territoire' },
+  { label: 'Économie sociale et solidaire', value: 'Économie sociale et solidaire' },
 ];
 
 export const portfolioContent = {
@@ -42,6 +24,12 @@ export const portfolioContent = {
     { value: '60+', label: 'représentations' },
     { value: '15+', label: 'institutions et entreprises accompagnées' },
   ],
-  filters: filterGroups,
+  filters: [
+    {
+      id: 'sector',
+      label: 'Secteur',
+      options: sectorFilterOptions,
+    },
+  ],
   projects: projectsCollection,
 };

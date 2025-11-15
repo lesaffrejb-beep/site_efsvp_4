@@ -79,7 +79,6 @@ export const contactContent = {
       },
     ],
     submitLabel: `Partagez votre histoire`,
-    note: `Réponse sous 48h · Premier échange sans engagement.`,
   },
 
   alternativeContact: {

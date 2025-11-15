@@ -55,10 +55,16 @@ export class FAQ {
         if (otherQuestion) {
           otherQuestion.setAttribute('aria-expanded', 'false');
         }
+        otherItem.classList.remove('is-open');
       }
     });
 
     // Toggle current item
     question.setAttribute('aria-expanded', !isExpanded);
+    if (!isExpanded) {
+      item.classList.add('is-open');
+    } else {
+      item.classList.remove('is-open');
+    }
   }
 }

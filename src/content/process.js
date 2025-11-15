@@ -8,7 +8,7 @@ export const processContent = {
     eyebrow: `Méthode`,
     title: `Un process clair. Des délais respectés.`,
     subtitle: `Quatre étapes balisées pour transformer votre matière en récit vivant, sans mauvaise surprise.`,
-    note: `Chaque jalon est validé ensemble. Réponse sous 48h pour tous vos retours.`,
+    note: ``,
   },
 
   steps: [
