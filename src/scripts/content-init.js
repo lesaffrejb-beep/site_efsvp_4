@@ -65,42 +65,50 @@ export function initHeroContent() {
     eyebrow.textContent = hero.eyebrow;
   }
 
-  const signatureSrLabel = document.querySelector('[data-hero-signature-label]');
-  if (signatureSrLabel && hero?.signature?.label) {
-    signatureSrLabel.textContent = hero.signature.label;
+  const signatureLabel = document.querySelector('[data-hero-signature-label]');
+  if (signatureLabel && hero?.signature?.label) {
+    signatureLabel.textContent = hero.signature.label;
   }
 
-  const baselineLead = document.querySelector('[data-hero-baseline-lead]');
-  if (baselineLead && hero?.baseline?.lead) {
-    baselineLead.textContent = hero.baseline.lead;
+  const baseline = document.querySelector('[data-hero-baseline]');
+  if (baseline && hero?.baseline) {
+    const lead = hero.baseline.lead ?? '';
+    const joinedMoments = Array.isArray(hero.baseline.moments)
+      ? hero.baseline.moments.join(' • ')
+      : '';
+    const baselineText = [lead, joinedMoments]
+      .filter(Boolean)
+      .join(' ')
+      .trim();
+    baseline.textContent = baselineText.endsWith('.') ? baselineText : `${baselineText}.`;
   }
 
-  const baselineItems = document.querySelector('[data-hero-baseline-items]');
-  if (baselineItems && hero?.baseline?.moments?.length) {
-    const itemsText = hero.baseline.moments.join(' • ');
-    baselineItems.textContent = itemsText.endsWith('.') ? itemsText : `${itemsText}.`;
-  }
-
-  const primaryCta = document.querySelector('.signature-hero__cta--primary');
+  const primaryCta = document.querySelector('.hero__cta-button--primary');
   if (primaryCta && hero?.ctaPrimary) {
     primaryCta.textContent = hero.ctaPrimary.label;
     primaryCta.href = hero.ctaPrimary.href;
   }
 
-  const secondaryCta = document.querySelector('.signature-hero__cta--secondary');
+  const secondaryCta = document.querySelector('.hero__cta-button--secondary');
   if (secondaryCta && hero?.ctaSecondary) {
     secondaryCta.textContent = hero.ctaSecondary.label;
     secondaryCta.href = hero.ctaSecondary.href;
   }
 
-  const scrollLabel = document.querySelector('[data-hero-scroll-label]');
-  if (scrollLabel && hero?.scroll?.label) {
-    scrollLabel.textContent = hero.scroll.label;
-  }
+  const scrollIndicator = document.querySelector('[data-hero-scroll]');
+  if (scrollIndicator && hero?.scroll) {
+    if (hero.scroll.target) {
+      scrollIndicator.dataset.scrollTarget = hero.scroll.target;
+    }
 
-  const scrollTrigger = document.querySelector('[data-hero-scroll]');
-  if (scrollTrigger && hero?.scroll?.target) {
-    scrollTrigger.dataset.scrollTarget = hero.scroll.target;
+    const scrollLabel = scrollIndicator.querySelector('[data-hero-scroll-label]');
+    if (scrollLabel && hero.scroll.label) {
+      scrollLabel.textContent = hero.scroll.label;
+    }
+
+    if (hero.scroll.label) {
+      scrollIndicator.setAttribute('aria-label', hero.scroll.label);
+    }
   }
 }
 

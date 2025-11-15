@@ -212,59 +212,45 @@
     <!-- ============================================
          SECTION 1: PREMIUM HERO - "L'Encre Vivante"
          ============================================ -->
-    <section class="signature-hero hero hero--ink section" id="hero" aria-label="En français s'il vous plaît">
-      <div class="signature-hero__inner hero__inner">
+    <section id="hero" class="hero hero--ink section" data-block="hero-ink" aria-label="En français s'il vous plaît">
+      <div class="hero__inner">
+        <p class="hero__eyebrow" data-hero-eyebrow></p>
+
         <div class="hero__signature-wrapper">
-          <h1 class="hero__signature">
+          <h1 class="hero__signature" aria-describedby="hero-baseline">
             <span class="sr-only" data-hero-signature-label></span>
-            <svg
-              class="hero__signature-svg"
-              viewBox="0 0 1200 320"
-              role="presentation"
-              aria-hidden="true"
-            >
+            <svg class="hero__signature-svg" viewBox="0 0 840 220" role="presentation" aria-hidden="true">
               <path
                 class="hero__signature-path"
-                data-signature-path
-                d="M32 186c26-78 118-102 176-38 20 24 18 70-16 78-32 8-46-34-16-58 36-28 100-32 144 12 28 28 32 80-10 100-34 16-72-6-72-54 0-58 74-86 136-40 40 30 54 96 8 128-38 26-92 10-112-44-22-60 38-120 132-94 46 12 76 52 74 96-4 66-76 102-140 58-50-34-60-120 16-160 66-34 152-2 188 66 30 58 6 132-72 152-78 20-156-42-156-136 0-92 88-154 188-124 68 20 120 84 114 156-6 92-96 152-200 120-86-26-144-118-124-208 18-82 98-138 202-126 78 10 146 74 148 162 2 104-94 184-216 158-96-20-170-122-150-224 18-88 110-158 226-146 88 10 168 82 176 184 8 108-98 198-236 172-96-18-180-120-166-232 12-92 108-174 238-162 100 8 190 92 198 200 10 120-110 220-260 194"
+                data-hero-signature-path
+                d="M25 146c18-58 82-70 118-27 14 18 12 50-11 56-20 5-32-24-11-40 24-18 68-22 96 9 19 21 20 58-7 72-23 11-50-4-50-38 0-42 50-60 96-28 28 20 36 68 6 90-27 20-64 8-78-32-16-44 26-88 92-68 32 10 54 38 52 70-3 48-52 74-98 42-36-24-44-86 12-116 48-24 110-2 136 48 21 42 4 96-52 110-56 14-108-32-108-98 0-66 60-110 132-88 48 14 84 60 80 110-4 68-68 112-140 90-60-18-102-86-88-154 12-62 74-114 156-104 60 8 112 58 120 124 6 72-66 132-150 118-68-12-128-80-118-154 8-64 72-122 156-112 68 8 120 60 126 128 6 76-70 142-166 128"
               ></path>
             </svg>
-            <span class="hero__ink-drop" data-ink-drop aria-hidden="true"></span>
           </h1>
         </div>
 
         <div class="hero__ink-channel" aria-hidden="true">
-          <div class="hero__ink-fill" data-ink-fill></div>
+          <div class="hero__ink-fill" data-hero-ink-fill></div>
+          <div class="hero__ink-drop" data-hero-ink-drop></div>
         </div>
 
-        <p class="hero__baseline">
-          <span class="hero__baseline-line" data-hero-baseline-line>
-            <span data-hero-baseline-lead></span>
-          </span>
-          <span
-            class="hero__baseline-line hero__baseline-line--moments signature-hero__baseline-line--secondary"
-            data-hero-baseline-line
-          >
-            <span data-hero-baseline-items></span>
-          </span>
-        </p>
+        <p id="hero-baseline" class="hero__baseline" data-hero-baseline></p>
 
-        <div class="hero__cta signature-hero__cta-group">
-          <a class="cta cta--primary signature-hero__cta signature-hero__cta--primary" href="#contact"></a>
-          <a class="cta cta--secondary signature-hero__cta signature-hero__cta--secondary" href="#projets"></a>
+        <div class="hero__cta">
+          <a class="cta cta--primary hero__cta-button hero__cta-button--primary" href="#projets"></a>
+          <a class="cta cta--secondary hero__cta-button hero__cta-button--secondary" href="#contact"></a>
         </div>
 
-        <button class="hero__scroll signature-hero__scroll" type="button" data-hero-scroll aria-label="Faire défiler vers la suite">
-          <span class="hero__scroll-label signature-hero__scroll-label" data-hero-scroll-label></span>
-          <span class="hero__scroll-line signature-hero__scroll-line" aria-hidden="true"></span>
+        <button class="hero__scroll-indicator" type="button" data-hero-scroll aria-label="Découvrir la suite">
+          <span class="hero__scroll-label" data-hero-scroll-label></span>
+          <span class="hero__scroll-icon" aria-hidden="true"></span>
         </button>
       </div>
 
       <noscript>
-        <div class="hero__noscript signature-hero__noscript">
+        <div class="hero__noscript">
           <h1>En français s’il vous plaît</h1>
-          <p>Studio de création narrative et musicale sur-mesure.</p>
-          <p>Anniversaires • Inaugurations • Moments fondateurs.</p>
+          <p>Studio de création narrative et musicale sur-mesure. Anniversaires • Inaugurations • Moments fondateurs.</p>
           <p class="hero__noscript-cta">
             <a class="cta cta--primary" href="#projets">Découvrir nos créations</a>
           </p>

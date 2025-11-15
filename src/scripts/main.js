@@ -22,7 +22,7 @@ import { CookieConsent } from './modules/cookieConsent.js';
 import { CopyEmail } from './modules/copyEmail.js';
 import { ProjectModal } from './modules/projectModal.js';
 import { FAQ } from './modules/faq.js';
-import { initHeroBlock } from './blocks/hero.js';
+import { initHeroInkBlock } from './blocks/heroInk.js';
 import { initAudioBlock } from './blocks/audio.js';
 import { initPortfolioBlock } from './blocks/portfolio.js';
 import { initTestimonialsBlock } from './blocks/testimonials.js';
@@ -184,7 +184,7 @@ class App {
   }
 
   initSections() {
-    const heroContext = initHeroBlock({ modules: this.modules });
+    const heroContext = initHeroInkBlock({ modules: this.modules });
     this.modules = heroContext.modules;
 
     const audioContext = initAudioBlock(heroContext);
@@ -228,7 +228,7 @@ class App {
   }
 
   start() {
-    this.modules.hero?.start();
+    this.modules.heroInk?.start?.();
 
     // Performance monitoring
     this.logPerformanceMetrics();
