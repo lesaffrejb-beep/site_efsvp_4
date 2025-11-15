@@ -1,0 +1,1288 @@
+/* ============================================
+   DRIBBBLE-STYLE REFACTOR — EfSVP v3
+   Refonte esthétique complète pour un rendu "Dribbble-grade"
+   Focus : Typographie premium, Soft UI, Glassmorphism
+   ============================================ */
+
+/* ============================================
+   ÉTAPE 1 : DESIGN TOKENS (Variables CSS)
+   ============================================ */
+
+/* Import des polices Google Fonts - Inter (corps) et Manrope (titres) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Manrope:wght@600;700;800&display=swap');
+
+:root {
+  /* ===== 1. PALETTE DE COULEURS "DRIBBBLE" ===== */
+
+  /* Couleurs de base — Soft & Modern */
+  --color-background: #FDFDFD; /* Blanc très légèrement cassé, pas pur */
+  --color-text-primary: #1A1B25; /* Un noir doux, pas #000 */
+  --color-text-secondary: #5B5D6E; /* Pour le texte moins important */
+  --color-primary-accent: #0052FF; /* Un bleu vif et moderne pour les CTA et les liens */
+  --color-border-subtle: #EAEAEB; /* Pour les bordures et séparateurs fins */
+  --color-background-muted: #F5F5F7; /* Pour les fonds de section alternés */
+
+  /* Couleurs étendues pour états et variantes */
+  --color-primary-accent-hover: #0046DD; /* Hover state du bleu */
+  --color-primary-accent-light: #E6EFFF; /* Fond clair pour badges/tags */
+  --color-text-tertiary: #9B9CAA; /* Texte très désaturé */
+  --color-white-pure: #FFFFFF; /* Blanc pur pour élévation */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+
+  /* ===== 2. TYPOGRAPHIE "PREMIUM" ===== */
+
+  --font-family-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-family-heading: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Échelle typographique fluide */
+  --font-size-xs: 0.75rem;   /* 12px */
+  --font-size-sm: 0.875rem;  /* 14px */
+  --font-size-base: 1rem;    /* 16px */
+  --font-size-md: 1.125rem;  /* 18px */
+  --font-size-lg: 1.5rem;    /* 24px */
+  --font-size-xl: 2.25rem;   /* 36px */
+  --font-size-xxl: 3.5rem;   /* 56px */
+  --font-size-hero: clamp(2.5rem, 5vw, 4rem); /* Fluide pour le hero */
+
+  /* Line Heights */
+  --leading-tight: 1.1;    /* Titres principaux */
+  --leading-snug: 1.3;     /* Sous-titres */
+  --leading-normal: 1.5;   /* Corps de texte */
+  --leading-relaxed: 1.7;  /* Texte confortable */
+
+  /* Font Weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* ===== 3. ESPACEMENT (WHITESPACE) — Grille de 8px ===== */
+
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 1rem;     /* 16px */
+  --space-4: 1.5rem;   /* 24px */
+  --space-5: 2rem;     /* 32px */
+  --space-6: 3rem;     /* 48px */
+  --space-7: 4rem;     /* 64px */
+  --space-8: 6rem;     /* 96px */
+  --space-9: 8rem;     /* 128px */
+
+  /* ===== 4. STYLES DE COMPOSANTS (SOFT UI) ===== */
+
+  /* Border Radius — Coins arrondis subtils */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-xl: 24px;
+  --border-radius-full: 9999px;
+
+  /* Ombres subtiles modernes (Soft UI) */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.07), 0 4px 15px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(0, 0, 0, 0.06);
+
+  /* Ombre colorée pour le bouton primaire */
+  --shadow-primary: 0 8px 20px rgba(0, 82, 255, 0.2);
+  --shadow-primary-hover: 0 12px 28px rgba(0, 82, 255, 0.3);
+
+  /* ===== 5. TRANSITIONS & ANIMATIONS ===== */
+
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   ÉTAPE 2 : REFONTE DU BODY ET TYPOGRAPHIE GLOBALE
+   ============================================ */
+
+body {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  background-color: var(--color-background);
+  line-height: var(--leading-relaxed);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: var(--font-weight-regular);
+}
+
+/* Headings — Tous utilisent Manrope */
+h1, h2, h3, h4, h5, h6,
+.heading-1, .heading-2, .heading-3 {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-3);
+  color: var(--color-text-primary);
+}
+
+h1, .heading-1 {
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-extrabold);
+  letter-spacing: -0.02em;
+}
+
+h2, .heading-2, .section-title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
+}
+
+h3, .heading-3 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Paragraphs */
+p, .body-text {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-normal);
+  margin-bottom: var(--space-3);
+}
+
+p strong {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+/* Links */
+a {
+  color: var(--color-primary-accent);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--color-primary-accent-hover);
+}
+
+/* Small text */
+.body-small, small {
+  font-size: var(--font-size-sm);
+  line-height: var(--leading-normal);
+}
+
+.body-large {
+  font-size: var(--font-size-md);
+  line-height: var(--leading-relaxed);
+}
+
+/* Sections — Augmenter l'espacement */
+section {
+  padding-top: var(--space-8);
+  padding-bottom: var(--space-8);
+}
+
+section .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: var(--space-4);
+  padding-right: var(--space-4);
+}
+
+/* ============================================
+   ÉTAPE 3 : REFONTE DE LA NAVBAR (Le point critique)
+   ============================================ */
+
+/* Navigation principale */
+.nav {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  /* L'effet "Dribbble" — Glassmorphism */
+  background-color: rgba(253, 253, 253, 0.8); /* Fond translucide */
+  backdrop-filter: blur(12px); /* Effet de verre dépoli */
+  -webkit-backdrop-filter: blur(12px); /* Safari support */
+
+  /* Remplacer le fond sombre par une bordure subtile */
+  border-bottom: 1px solid var(--color-border-subtle);
+
+  padding: var(--space-3) 0;
+  transition: background-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-slow);
+}
+
+/* État au scroll (ajouté via JS avec classe .scrolled) */
+.nav.scrolled,
+.nav.visible {
+  background-color: rgba(253, 253, 253, 0.95);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Container de la navbar */
+.nav__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.nav__logo {
+  font-family: var(--font-family-heading);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.nav__logo:hover {
+  color: var(--color-primary-accent);
+}
+
+.nav__logo-text {
+  display: inline-block;
+}
+
+/* Navigation links */
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__link {
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--border-radius-md);
+  transition: color var(--transition-base), background-color var(--transition-base);
+  display: inline-block;
+}
+
+.nav__link:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-background-muted);
+}
+
+.nav__link.active {
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+  background-color: var(--color-background-muted);
+}
+
+/* CTA dans la navbar */
+.nav__cta {
+  margin-left: var(--space-3);
+}
+
+/* Menu mobile (si applicable) */
+.nav__toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: var(--space-2);
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nav__toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  border-radius: 2px;
+  transition: all var(--transition-base);
+}
+
+@media (max-width: 1023px) {
+  .nav__toggle {
+    display: flex;
+  }
+
+  .nav__menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 400px;
+    height: 100vh;
+    background-color: var(--color-white-pure);
+    box-shadow: var(--shadow-xl);
+    padding: var(--space-6) var(--space-4);
+    transition: right var(--transition-slow);
+    overflow-y: auto;
+  }
+
+  .nav__menu.active {
+    right: 0;
+  }
+
+  .nav__list {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-3);
+  }
+
+  .nav__link {
+    width: 100%;
+    font-size: var(--font-size-base);
+  }
+
+  .nav__cta {
+    display: none; /* Caché sur mobile, montré dans le menu */
+  }
+
+  .nav__menu-cta {
+    margin-top: var(--space-5);
+  }
+}
+
+/* ============================================
+   ÉTAPE 4 : BOUTONS (CTA) — Soft UI
+   ============================================ */
+
+.cta, .btn {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--border-radius-md);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  border: none;
+  white-space: nowrap;
+}
+
+/* Bouton primaire — Accent bleu */
+.cta--primary, .btn-primary {
+  background-color: var(--color-primary-accent);
+  color: var(--color-white-pure);
+  box-shadow: var(--shadow-primary);
+}
+
+.cta--primary:hover, .btn-primary:hover {
+  background-color: var(--color-primary-accent-hover);
+  box-shadow: var(--shadow-primary-hover);
+  transform: translateY(-2px);
+  color: var(--color-white-pure);
+}
+
+.cta--primary:active, .btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Bouton secondaire — Outline */
+.cta--secondary, .btn-secondary {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: 1.5px solid var(--color-border-subtle);
+  box-shadow: var(--shadow-sm);
+}
+
+.cta--secondary:hover, .btn-secondary:hover {
+  background-color: var(--color-background-muted);
+  border-color: var(--color-text-secondary);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+  color: var(--color-text-primary);
+}
+
+/* Taille large */
+.btn-lg {
+  padding: var(--space-4) var(--space-6);
+  font-size: var(--font-size-md);
+}
+
+/* CTA pleine largeur */
+.cta--full {
+  width: 100%;
+}
+
+/* ============================================
+   ÉTAPE 5 : REFONTE DES COMPOSANTS (CARTES)
+   ============================================ */
+
+/* Cartes génériques — Soft UI */
+.promise-card,
+.offer-card,
+.project-card,
+.testimonial-card,
+.process-step {
+  background-color: var(--color-white-pure);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: var(--space-5);
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  overflow: hidden;
+}
+
+.promise-card:hover,
+.offer-card:hover,
+.project-card:hover,
+.testimonial-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Cartes Promise */
+.promise-card__icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary-accent-light);
+  border-radius: var(--border-radius-md);
+  color: var(--color-primary-accent);
+  margin-bottom: var(--space-4);
+}
+
+.promise-card__icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.promise-card__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-2);
+}
+
+.promise-card__description {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin-bottom: 0;
+}
+
+/* Cartes Offres */
+.offer-card {
+  position: relative;
+}
+
+.offer-card--featured {
+  border: 2px solid var(--color-primary-accent);
+  box-shadow: var(--shadow-lg);
+}
+
+.offer-card__badge {
+  position: absolute;
+  top: var(--space-3);
+  right: var(--space-3);
+  background-color: var(--color-primary-accent);
+  color: var(--color-white-pure);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--border-radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.offer-card__header {
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.offer-card__name {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-2);
+}
+
+.offer-card__price {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+}
+
+.offer-card__price strong {
+  font-size: var(--font-size-xl);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-bold);
+}
+
+.offer-card__features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-5) 0;
+}
+
+.offer-card__features li {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  padding: var(--space-2) 0;
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.offer-card__features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary-accent);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Cartes Projets */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card__visual {
+  position: relative;
+  height: 200px;
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--space-4);
+  overflow: hidden;
+}
+
+.project-card__gradient {
+  width: 100%;
+  height: 100%;
+  background: var(--card-gradient, linear-gradient(135deg, var(--color-primary-accent-light) 0%, var(--color-background-muted) 100%));
+}
+
+.project-card__badge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--border-radius-full);
+}
+
+.project-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card__title {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-2);
+}
+
+.project-card__baseline {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-2);
+}
+
+.project-card__metrics {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-3);
+}
+
+.project-card__link {
+  color: var(--color-primary-accent);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  margin-top: auto;
+}
+
+.project-card__link:hover {
+  color: var(--color-primary-accent-hover);
+  text-decoration: underline;
+}
+
+/* Cartes Témoignages */
+.testimonial-card {
+  background-color: var(--color-white-pure);
+  border-left: 4px solid var(--color-primary-accent);
+}
+
+.testimonial-card__quote {
+  font-size: var(--font-size-md);
+  font-style: italic;
+  line-height: var(--leading-relaxed);
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-4) 0;
+}
+
+.testimonial-card__author {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-medium);
+  margin: 0;
+}
+
+/* ============================================
+   ÉTAPE 6 : SECTIONS SPÉCIFIQUES
+   ============================================ */
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(135deg, var(--color-background) 0%, var(--color-background-muted) 100%);
+  padding-top: calc(var(--space-9) + 76px); /* Hauteur navbar + padding */
+  padding-bottom: var(--space-9);
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.hero__headline {
+  font-size: var(--font-size-hero);
+  font-weight: var(--font-weight-extrabold);
+  line-height: var(--leading-tight);
+  margin-bottom: var(--space-4);
+  color: var(--color-text-primary);
+}
+
+.hero__headline-sub {
+  display: block;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-top: var(--space-3);
+}
+
+.hero__description {
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  max-width: 700px;
+  margin-bottom: var(--space-6);
+}
+
+.hero__eyebrow {
+  color: var(--color-primary-accent);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Sections sombres */
+.section--dark {
+  background-color: var(--color-text-primary);
+  color: var(--color-white-pure);
+}
+
+.section--dark .section__title {
+  color: var(--color-white-pure);
+}
+
+.section--dark p {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Promesse Section */
+.promise {
+  background-color: var(--color-background);
+  padding: var(--space-8) 0;
+}
+
+.promise__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.promise__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+/* Process Section */
+.process {
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, #0F1419 100%);
+  color: var(--color-white-pure);
+  padding: var(--space-8) 0;
+}
+
+.process__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.process__steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.process-step {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  flex: 1;
+  min-width: 200px;
+  max-width: 280px;
+  text-align: center;
+}
+
+.process-step__number {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-primary-accent);
+  color: var(--color-white-pure);
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  margin: 0 auto var(--space-3);
+}
+
+.process-step__title {
+  font-size: var(--font-size-lg);
+  color: var(--color-white-pure);
+  margin-bottom: var(--space-2);
+}
+
+.process-step__duration {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-2);
+}
+
+.process-step__description {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: var(--leading-normal);
+  margin: 0;
+}
+
+.process__connector {
+  width: 40px;
+  height: 2px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+  flex-shrink: 0;
+}
+
+.process__reassurance {
+  text-align: center;
+  font-size: var(--font-size-md);
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: var(--font-weight-medium);
+  margin-top: var(--space-6);
+}
+
+/* Section Titles */
+.section-title, .section__title {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  margin-bottom: var(--space-6);
+  color: var(--color-text-primary);
+}
+
+.section-title--light {
+  color: var(--color-white-pure);
+}
+
+/* Offers Section */
+.offers {
+  background-color: var(--color-background-muted);
+  padding: var(--space-8) 0;
+}
+
+.offers__container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.offers__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+.offers__note {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-6);
+}
+
+/* Projects Section */
+.projects {
+  background-color: var(--color-background);
+  padding: var(--space-8) 0;
+}
+
+.projects__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: var(--space-8) 0;
+}
+
+.testimonials__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+}
+
+/* FAQ Section */
+.faq {
+  background-color: var(--color-background);
+  padding: var(--space-8) 0;
+}
+
+.faq__list {
+  max-width: 800px;
+  margin: var(--space-6) auto 0;
+}
+
+.faq-item {
+  background-color: var(--color-white-pure);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-3);
+  overflow: hidden;
+  transition: box-shadow var(--transition-base);
+}
+
+.faq-item:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.faq-item__question {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: var(--space-4);
+  text-align: left;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  transition: color var(--transition-base);
+}
+
+.faq-item__question:hover {
+  color: var(--color-primary-accent);
+}
+
+.faq-item__icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  transition: transform var(--transition-base);
+}
+
+.faq-item__question[aria-expanded="true"] .faq-item__icon {
+  transform: rotate(180deg);
+}
+
+.faq-item__answer {
+  padding: 0 var(--space-4) var(--space-4);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--transition-slow), padding var(--transition-slow);
+}
+
+.faq-item__question[aria-expanded="true"] + .faq-item__answer {
+  max-height: 500px;
+  padding: 0 var(--space-4) var(--space-4);
+}
+
+.faq-item__answer p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+  margin: 0;
+}
+
+/* Contact Section */
+.contact {
+  background: linear-gradient(135deg, var(--color-text-primary) 0%, #0F1419 100%);
+  color: var(--color-white-pure);
+  padding: var(--space-8) 0;
+}
+
+.contact__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.contact__content {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.contact__subtitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary-accent);
+  margin-top: var(--space-3);
+}
+
+/* Formulaire */
+.contact-form {
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-6);
+}
+
+.form-group {
+  margin-bottom: var(--space-4);
+}
+
+.form-label {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--space-2);
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  padding: var(--space-3);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius-md);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--color-white-pure);
+  transition: border-color var(--transition-base), background-color var(--transition-base);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-primary-accent);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-reassurance {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: var(--space-4);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-text-primary);
+  color: rgba(255, 255, 255, 0.8);
+  padding: var(--space-7) 0 var(--space-5);
+}
+
+.footer__main {
+  margin-bottom: var(--space-5);
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-6);
+}
+
+.footer__brand-text {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white-pure);
+  margin-bottom: var(--space-2);
+}
+
+.footer__tagline {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.footer__title {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white-pure);
+  margin-bottom: var(--space-3);
+}
+
+.footer__links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer__links li {
+  margin-bottom: var(--space-2);
+}
+
+.footer__links a {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+.footer__links a:hover {
+  color: var(--color-primary-accent);
+}
+
+.footer__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-5);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer__copyright {
+  font-size: var(--font-size-sm);
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+.footer__back-to-top {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transition-base);
+}
+
+.footer__back-to-top:hover {
+  background-color: var(--color-primary-accent);
+  transform: translateY(-2px);
+}
+
+.footer__back-to-top-icon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-white-pure);
+}
+
+/* ============================================
+   RESPONSIVE — Mobile First
+   ============================================ */
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-hero: clamp(2rem, 8vw, 3rem);
+    --font-size-xxl: 2.5rem;
+    --font-size-xl: 1.75rem;
+  }
+
+  section {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-7);
+  }
+
+  .hero {
+    padding-top: calc(var(--space-7) + 76px);
+    padding-bottom: var(--space-7);
+    min-height: auto;
+  }
+
+  .promise__grid,
+  .offers__grid,
+  .projects__grid,
+  .testimonials__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .process__steps {
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .process__connector {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  .footer__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    gap: var(--space-4);
+    text-align: center;
+  }
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+
+.text-center {
+  text-align: center;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.max-w-4xl {
+  max-width: 896px;
+}
+
+.mb-6 {
+  margin-bottom: var(--space-4);
+}
+
+.mb-8 {
+  margin-bottom: var(--space-5);
+}
+
+.mb-12 {
+  margin-bottom: var(--space-6);
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-4 {
+  gap: var(--space-3);
+}
+
+.gap-6 {
+  gap: var(--space-4);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.tracking-wider {
+  letter-spacing: 0.1em;
+}
+
+/* Client badges */
+.client-badges {
+  margin: 0;
+  padding: 0;
+}
+
+.client-badge {
+  list-style: none;
+}
+
+.client-badge__label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-secondary);
+  background-color: var(--color-background-muted);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--border-radius-md);
+  display: inline-block;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.8s var(--ease-out-expo) forwards;
+}
+
+/* Scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
