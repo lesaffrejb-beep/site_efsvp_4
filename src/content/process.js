@@ -5,8 +5,10 @@
 
 export const processContent = {
   section: {
-    title: `Comment nous travaillons`,
-    subtitle: `Un processus en 4 étapes, transparent de bout en bout`,
+    eyebrow: `Méthode`,
+    title: `Un process clair. Des délais respectés.`,
+    subtitle: `Quatre étapes balisées pour transformer votre matière en récit vivant, sans mauvaise surprise.`,
+    note: `Chaque jalon est validé ensemble. Réponse sous 48h pour tous vos retours.`,
   },
 
   steps: [
@@ -14,7 +16,7 @@ export const processContent = {
       number: `01`,
       title: `Écouter & cadrer`,
       duration: `1 à 2 semaines`,
-      description: `On commence par vous écouter : documents, rencontres, terrain. On clarifie l'angle du récit et ce que vous voulez que les gens retiennent.`,
+      description: `Immersion dans votre réalité : documents, chiffres, rencontres terrain. On fixe l'angle narratif et les livrables.`,
       details: [
         `Entretiens avec vos équipes`,
         `Analyse de documents et archives`,
@@ -27,7 +29,7 @@ export const processContent = {
       number: `02`,
       title: `Écrire & valider`,
       duration: `1 à 2 semaines`,
-      description: `Nous écrivons un texte que vous lisez, commentez et validez. Deux allers-retours sont inclus pour ajuster le ton et les nuances.`,
+      description: `Rédaction du texte et première lecture partagée. Deux allers-retours inclus pour ajuster ton, vocabulaire et rythme.`,
       details: [
         `Rédaction du premier jet`,
         `Validation et retours (V1)`,
@@ -40,7 +42,7 @@ export const processContent = {
       number: `03`,
       title: `Composer & enregistrer`,
       duration: `1 à 2 semaines`,
-      description: `Nous composons la musique et enregistrons la pièce. Vous validez les maquettes avant le mix final et les répétitions.`,
+      description: `Composition originale, maquettes partagées, enregistrement studio. Vous validez chaque étape avant le mix final.`,
       details: [
         `Composition musicale originale`,
         `Maquettes et validation`,
@@ -53,7 +55,7 @@ export const processContent = {
       number: `04`,
       title: `Jouer & prolonger`,
       duration: `Le jour J + après`,
-      description: `Nous jouons le spectacle chez vous. Ensuite, vous pouvez prolonger la vie de l'œuvre : captation, diffusion, réutilisation.`,
+      description: `Performance live ou remise de l'œuvre. Nous préparons la suite : captation, diffusion, droits d’exploitation.`,
       details: [
         `Performance live sur site`,
         `Captation vidéo (option)`,
@@ -65,7 +67,7 @@ export const processContent = {
   ],
 
   cta: {
-    label: `Démarrer votre projet`,
+    label: `Partagez votre histoire`,
     href: `#contact`,
   },
 };

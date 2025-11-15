@@ -12,6 +12,10 @@ export class FormValidator {
     this.fields = new Map();
     this.isSubmitting = false;
     this.submitBtn = null;
+    this.successFeedback = null;
+    this.defaultButtonLabel = 'Partagez votre histoire';
+    this.defaultIconMarkup = '';
+    this.feedbackTimeout = null;
 
     if (!this.form) {
       console.error('FormValidator: form element not provided');
@@ -57,6 +61,22 @@ export class FormValidator {
     this.form.addEventListener('submit', (e) => this.handleSubmit(e));
 
     this.submitBtn = this.form.querySelector('button[type="submit"]');
+    this.successFeedback = this.form.closest('.contact__card')?.querySelector('.contact__feedback');
+    const defaultLabel = this.submitBtn?.querySelector('.btn__text')?.textContent?.trim();
+    if (defaultLabel) {
+      this.defaultButtonLabel = defaultLabel;
+    }
+
+    const defaultIcon = this.submitBtn?.querySelector('.btn__icon');
+    if (defaultIcon) {
+      this.defaultIconMarkup = defaultIcon.innerHTML;
+    }
+
+    if (this.successFeedback) {
+      this.successFeedback.hidden = true;
+      this.successFeedback.setAttribute('aria-hidden', 'true');
+      this.successFeedback.classList.remove('is-visible');
+    }
   }
 
   getValidationRules(field) {
@@ -250,6 +270,8 @@ export class FormValidator {
 
     if (this.isSubmitting) return;
 
+    this.hideSuccessFeedback();
+
     // Validate all fields
     let isValid = true;
     let firstErrorField = null;
@@ -296,6 +318,7 @@ export class FormValidator {
 
     // All valid - proceed with submission
     this.isSubmitting = true;
+    this.hideSuccessFeedback();
     this.setButtonState('loading');
 
     try {
@@ -303,14 +326,14 @@ export class FormValidator {
       const formData = new FormData(this.form);
       const data = Object.fromEntries(formData);
 
-      console.log('📮 Form data:', data);
+      console.warn('📮 Form data:', data);
 
       // Simulate API call (replace with real endpoint)
       await this.submitToAPI(data);
 
       // Success
       this.setButtonState('success');
-      this.showSuccessModal(data);
+      this.showSuccessFeedback(data);
 
       // Reset form
       setTimeout(() => {
@@ -322,7 +345,7 @@ export class FormValidator {
       console.error('Form submission error:', error);
 
       this.setButtonState('error');
-      this.showErrorModal(error);
+      this.showErrorToast(error);
 
       setTimeout(() => {
         this.setButtonState('default');
@@ -385,6 +408,7 @@ export class FormValidator {
               <path d="M20 6L9 17l-5-5"/>
             </svg>
           `;
+          icon.style.display = '';
         }
         break;
 
@@ -397,55 +421,69 @@ export class FormValidator {
       case 'default':
       default:
         this.submitBtn.disabled = false;
-        if (text) text.textContent = 'Partagez votre histoire';
+        if (text) text.textContent = this.defaultButtonLabel;
         if (icon) {
-          icon.innerHTML = `
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M5 12h14M12 5l7 7-7 7"/>
-            </svg>
-          `;
+          if (this.defaultIconMarkup) {
+            icon.innerHTML = this.defaultIconMarkup;
+          } else {
+            icon.innerHTML = `
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+              </svg>
+            `;
+          }
+          icon.style.display = '';
         }
         break;
     }
   }
 
-  showSuccessModal(data) {
-    const modal = document.getElementById('success-modal');
-    if (!modal) return;
+  showSuccessFeedback(data = {}) {
+    if (!this.successFeedback) return;
 
-    const nameSpan = document.getElementById('modal-name');
-    if (nameSpan && data.nom) {
-      nameSpan.textContent = data.nom.split(' ')[0]; // First name only
+    clearTimeout(this.feedbackTimeout);
+
+    const nameSpan = this.successFeedback.querySelector('[data-feedback-name]');
+    if (nameSpan) {
+      const firstName = data.nom ? data.nom.trim().split(' ')[0] : '';
+      if (firstName) {
+        nameSpan.textContent = ` ${firstName}`;
+        nameSpan.removeAttribute('hidden');
+      } else {
+        nameSpan.textContent = '';
+        nameSpan.setAttribute('hidden', '');
+      }
     }
 
-    modal.classList.add('active');
+    this.successFeedback.hidden = false;
+    this.successFeedback.setAttribute('aria-hidden', 'false');
 
-    // Animate modal content
-    const content = modal.querySelector('.modal__content');
-    if (content) {
-      gsap.fromTo(
-        content,
-        { scale: 0.8, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' }
-      );
-    }
+    requestAnimationFrame(() => {
+      this.successFeedback.classList.add('is-visible');
+    });
 
-    // Close button
-    const closeBtn = document.getElementById('modal-close');
-    const overlay = modal.querySelector('.modal__overlay');
-
-    const closeModal = () => {
-      modal.classList.remove('active');
-    };
-
-    closeBtn?.addEventListener('click', closeModal);
-    overlay?.addEventListener('click', closeModal);
-
-    // Auto-close after 5s
-    setTimeout(closeModal, 5000);
+    this.feedbackTimeout = setTimeout(() => {
+      this.hideSuccessFeedback();
+    }, 8000);
   }
 
-  showErrorModal(error) {
+  hideSuccessFeedback() {
+    if (!this.successFeedback) return;
+
+    clearTimeout(this.feedbackTimeout);
+    this.feedbackTimeout = null;
+
+    this.successFeedback.classList.remove('is-visible');
+    this.successFeedback.setAttribute('aria-hidden', 'true');
+
+    setTimeout(() => {
+      if (this.successFeedback && !this.successFeedback.classList.contains('is-visible')) {
+        this.successFeedback.hidden = true;
+      }
+    }, 250);
+  }
+
+  showErrorToast(error) {
     // Show error toast instead of modal with specific message
     const toast = document.createElement('div');
     toast.className = 'error-toast error-toast--visible';

@@ -45,6 +45,12 @@ export function initNavContent() {
     navCta.textContent = navigation.cta.label;
     navCta.href = navigation.cta.href;
   }
+
+  const navCtaMobile = document.querySelector('.nav__cta-mobile');
+  if (navCtaMobile) {
+    navCtaMobile.textContent = navigation.cta.label;
+    navCtaMobile.href = navigation.cta.href;
+  }
 }
 
 /**
@@ -223,41 +229,94 @@ export function initServicesContent() {
  * Injecte le contenu du portfolio
  */
 export function initPortfolioContent() {
-  const { section, projects } = portfolioContent;
+  const { section, metrics, filters, projects } = portfolioContent;
 
-  // Titre de section
-  const sectionTitle = document.querySelector('.portfolio__title');
-  if (sectionTitle) sectionTitle.textContent = section.title;
+  const eyebrow = document.querySelector('.projects__eyebrow');
+  const title = document.querySelector('.projects__title');
+  const description = document.querySelector('.projects__description');
+  if (eyebrow) eyebrow.textContent = section.eyebrow;
+  if (title) title.textContent = section.title;
+  if (description) description.textContent = section.description;
 
-  // Stats
-  const stats = document.querySelectorAll('.portfolio__stat');
-  stats.forEach((stat, index) => {
-    if (section.stats[index]) {
-      const value = stat.querySelector('.portfolio__stat-value');
-      const label = stat.querySelector('.portfolio__stat-label');
-      if (value) value.textContent = section.stats[index].value;
-      if (label) label.textContent = section.stats[index].label;
-    }
+  const metricElements = document.querySelectorAll('.projects__metric');
+  metricElements.forEach((metricEl, index) => {
+    if (!metrics[index]) return;
+    const value = metricEl.querySelector('.projects__metric-value');
+    const label = metricEl.querySelector('.projects__metric-label');
+    if (value) value.textContent = metrics[index].value;
+    if (label) label.textContent = metrics[index].label;
   });
 
-  // Projects - génération dynamique
-  const portfolioGrid = document.querySelector('.portfolio__grid');
-  if (portfolioGrid && projects.length > 0) {
-    portfolioGrid.innerHTML = projects
+  const filtersContainer = document.querySelector('.projects__filters');
+  if (filtersContainer && filters?.length) {
+    filtersContainer.innerHTML = filters
       .map(
-        (project) => `
-      <article class="portfolio-card"
-               data-category="${project.categories.category}"
-               data-client="${project.categories.client}"
-               data-type="${project.categories.type}"
-               style="background: ${project.gradient};">
-        <span class="portfolio-card__tag">${project.tag}</span>
-        <h3 class="portfolio-card__title">${project.title}</h3>
-        <p class="portfolio-card__client">${project.client} · ${project.year}</p>
-        <p class="portfolio-card__description">${project.description}</p>
-      </article>
-    `
+        (group) => `
+        <div class="projects-filter" data-filter-group="${group.id}">
+          <span class="projects-filter__label">${group.label}</span>
+          <div class="projects-filter__options">
+            ${group.options
+              .map(
+                (option) => `
+                  <button class="projects-filter__option${option.active ? ' is-active' : ''}"
+                          type="button"
+                          data-filter-group="${group.id}"
+                          data-filter-value="${option.value}"
+                          aria-pressed="${option.active ? 'true' : 'false'}">
+                    ${option.label}
+                  </button>
+                `
+              )
+              .join('')}
+          </div>
+        </div>
+      `
       )
+      .join('');
+  }
+
+  const projectsGrid = document.querySelector('.projects__grid');
+  if (projectsGrid && projects.length > 0) {
+    const statusLabels = {
+      delivered: 'Livré',
+      in_production: 'En production',
+    };
+
+    const sortedProjects = [...projects].sort((a, b) => a.order - b.order);
+
+    projectsGrid.innerHTML = sortedProjects
+      .map((project) => {
+        const period = project.period ? project.period : project.year;
+        const themes = project.themes.slice(0, 2);
+        const statusLabel = statusLabels[project.status] || project.status;
+
+        return `
+          <article class="project-card"
+                   data-project-id="${project.slug}"
+                   data-typology="${project.typology}"
+                   data-sector="${project.sector}"
+                   data-status="${project.status}">
+            <header class="project-card__header">
+              <span class="project-card__client">${project.client}</span>
+              <span class="project-card__year">${period}</span>
+            </header>
+            <h3 class="project-card__title">${project.title}</h3>
+            <p class="project-card__tagline">${project.tagline}</p>
+            <p class="project-card__description">${project.shortDescription}</p>
+            <div class="project-card__themes">
+              ${themes
+                .map((theme) => `<span class="project-card__chip">${theme}</span>`)
+                .join('')}
+            </div>
+            <div class="project-card__footer">
+              <span class="project-card__status project-card__status--${project.status}">${statusLabel}</span>
+              <button type="button" class="project-card__link" aria-label="Voir le projet ${project.title}">
+                Voir le projet
+              </button>
+            </div>
+          </article>
+        `;
+      })
       .join('');
   }
 }
@@ -268,35 +327,40 @@ export function initPortfolioContent() {
 export function initProcessContent() {
   const { section, steps, cta } = processContent;
 
-  // Titre de section
-  const sectionTitle = document.querySelector('.process__title');
-  const sectionSubtitle = document.querySelector('.process__subtitle');
-  if (sectionTitle) sectionTitle.textContent = section.title;
-  if (sectionSubtitle) sectionSubtitle.textContent = section.subtitle;
+  const eyebrow = document.querySelector('.process__eyebrow');
+  const title = document.querySelector('.process__title');
+  const subtitle = document.querySelector('.process__subtitle');
+  const note = document.querySelector('.process__note');
+  if (eyebrow) eyebrow.textContent = section.eyebrow;
+  if (title) title.textContent = section.title;
+  if (subtitle) subtitle.textContent = section.subtitle;
+  if (note) note.textContent = section.note;
 
-  // Steps
+  const stepElements = document.querySelectorAll('.process__step');
   steps.forEach((step, index) => {
-    const stepEl = document.querySelectorAll('.process__step')[index];
-    if (stepEl) {
-      const number = stepEl.querySelector('.process__step-number');
-      const title = stepEl.querySelector('.process__step-title');
-      const duration = stepEl.querySelector('.process__step-duration');
-      const description = stepEl.querySelector('.process__step-description');
-      const badge = stepEl.querySelector('.process__step-badge');
-      const detailsList = stepEl.querySelector('.process__step-details');
+    const stepEl = stepElements[index];
+    if (!stepEl) return;
 
-      if (number) number.textContent = step.number;
-      if (title) title.textContent = step.title;
-      if (duration) duration.textContent = step.duration;
-      if (description) description.textContent = step.description;
-      if (badge && step.badge) badge.textContent = step.badge;
-      if (detailsList && step.details.length > 0) {
-        detailsList.innerHTML = step.details.map((detail) => `<li>${detail}</li>`).join('');
-      }
+    const number = stepEl.querySelector('.process__step-number');
+    const titleEl = stepEl.querySelector('.process__step-title');
+    const duration = stepEl.querySelector('.process__step-duration');
+    const description = stepEl.querySelector('.process__step-description');
+    const badge = stepEl.querySelector('.process__step-badge');
+    const detailsList = stepEl.querySelector('.process__step-details');
+
+    if (number) number.textContent = step.number;
+    if (titleEl) titleEl.textContent = step.title;
+    if (duration) duration.textContent = step.duration;
+    if (description) description.textContent = step.description;
+    if (badge) {
+      badge.textContent = step.badge || '';
+      badge.style.display = step.badge ? 'inline-flex' : 'none';
+    }
+    if (detailsList) {
+      detailsList.innerHTML = step.details.map((detail) => `<li>${detail}</li>`).join('');
     }
   });
 
-  // CTA
   const ctaBtn = document.querySelector('.process__cta');
   if (ctaBtn) {
     ctaBtn.textContent = cta.label;
@@ -378,7 +442,9 @@ export function initFaqContent() {
 
   // Titre de section
   const sectionTitle = document.querySelector('.faq__title');
+  const sectionSubtitle = document.querySelector('.faq__subtitle');
   if (sectionTitle) sectionTitle.textContent = section.title;
+  if (sectionSubtitle && section.subtitle) sectionSubtitle.textContent = section.subtitle;
 
   // FAQ Items - génération dynamique
   const faqContainer = document.querySelector('.faq__list');
@@ -388,12 +454,13 @@ export function initFaqContent() {
         (item, index) => `
       <article class="faq__item">
         <button class="faq__question"
+                id="${item.id}-question"
                 aria-expanded="false"
                 aria-controls="${item.id}-answer">
-          ${item.question}
-          <span class="faq__icon" aria-hidden="true">+</span>
+          <span class="faq__question-label">${item.question}</span>
+          <span class="faq__icon" aria-hidden="true"></span>
         </button>
-        <div class="faq__answer" id="${item.id}-answer">
+        <div class="faq__answer" id="${item.id}-answer" role="region" aria-labelledby="${item.id}-question">
           <p>${item.answer}</p>
         </div>
       </article>
@@ -407,45 +474,69 @@ export function initFaqContent() {
  * Injecte le contenu du contact
  */
 export function initContactContent() {
-  const { section, form, alternativeContact, successModal } = contactContent;
+  const { section, form, alternativeContact, successState } = contactContent;
 
-  // Titre de section
   const sectionTitle = document.querySelector('.contact__title');
   const sectionSubtitle = document.querySelector('.contact__subtitle');
-  const sectionQuote = document.querySelector('.contact__quote');
+  const sectionResponse = document.querySelector('.contact__response');
   if (sectionTitle) sectionTitle.textContent = section.title;
   if (sectionSubtitle) sectionSubtitle.textContent = section.subtitle;
-  if (sectionQuote) sectionQuote.textContent = section.quote;
+  if (sectionResponse && section.responseTime) sectionResponse.textContent = section.responseTime;
 
-  // Champs de formulaire - labels
   form.fields.forEach((field) => {
     const input = document.getElementById(field.id);
     const label = document.querySelector(`label[for="${field.id}"]`);
     if (label && field.label) {
       label.textContent = field.label;
     }
+    if (input && typeof field.defaultValue !== 'undefined') {
+      input.value = field.defaultValue;
+    }
+    if (input && typeof field.placeholder === 'string') {
+      input.placeholder = field.placeholder;
+    }
+    if (input && typeof field.min !== 'undefined') {
+      input.setAttribute('min', field.min);
+    }
+    if (input && typeof field.max !== 'undefined') {
+      input.setAttribute('max', field.max);
+    }
+    if (input && typeof field.step !== 'undefined') {
+      input.setAttribute('step', field.step);
+    }
+    if (input && field.type === 'select' && field.options) {
+      input.innerHTML = field.options
+        .map((option) => `<option value="${option.value}">${option.label}</option>`)
+        .join('');
+    }
   });
 
-  // Submit button
   const submitBtn = document.querySelector('.contact-form__submit');
-  if (submitBtn) submitBtn.textContent = form.submitLabel;
+  if (submitBtn) {
+    const textEl = submitBtn.querySelector('.btn__text');
+    if (textEl) textEl.textContent = form.submitLabel;
+  }
 
-  // Contact alternatif
-  const altTitle = document.querySelector('.contact__alt-title');
+  const formNote = document.querySelector('.contact__form-note');
+  if (formNote && form.note) formNote.textContent = form.note;
+
+  const altLabel = document.querySelector('.contact__direct-label');
   const altLocation = document.querySelector('.contact__location');
-  if (altTitle) altTitle.textContent = alternativeContact.title;
+  if (altLabel) altLabel.textContent = alternativeContact.title;
   if (altLocation) altLocation.textContent = alternativeContact.location;
 
-  // Success Modal
-  const modalTitle = document.querySelector('#success-modal .modal__title');
-  const modalMessage = document.querySelector('#success-modal .modal__message');
-  const modalCta = document.querySelector('#success-modal .modal__cta');
-  if (modalTitle) modalTitle.textContent = successModal.title;
-  if (modalMessage) {
-    // Le message contient {name} qui sera remplacé dynamiquement lors de la soumission
-    modalMessage.setAttribute('data-message-template', successModal.message);
+  const emailButton = document.querySelector('[data-copy-email]');
+  if (emailButton) {
+    const email = alternativeContact.email;
+    emailButton.setAttribute('data-email', email);
+    const emailText = emailButton.querySelector('.copy-email__text');
+    if (emailText) emailText.textContent = email;
   }
-  if (modalCta) modalCta.textContent = successModal.ctaLabel;
+
+  const feedbackTitle = document.querySelector('.contact__feedback-title');
+  const feedbackText = document.querySelector('.contact__feedback-text');
+  if (feedbackTitle) feedbackTitle.textContent = successState.title;
+  if (feedbackText) feedbackText.textContent = successState.message;
 }
 
 /**

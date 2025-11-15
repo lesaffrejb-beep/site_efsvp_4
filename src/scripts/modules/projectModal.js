@@ -6,7 +6,7 @@
  * ============================================
  */
 
-import { projectsData } from '../../data/projects.js';
+import { projectsBySlug } from '../../content/projects/index.js';
 
 export class ProjectModal {
   constructor() {
@@ -15,7 +15,7 @@ export class ProjectModal {
     this.overlay = null;
     this.projectCards = [];
     this.currentProject = null;
-    this.projectsData = projectsData;
+    this.projectsData = projectsBySlug;
 
     this.init();
   }
@@ -120,42 +120,57 @@ export class ProjectModal {
     const statsEl = document.getElementById('project-modal-stats');
     const statsContentEl = document.getElementById('project-modal-stats-content');
 
-    if (tagEl) tagEl.textContent = project.type || 'Projet';
+    if (tagEl) tagEl.textContent = project.format || 'Projet';
     if (titleEl) titleEl.textContent = project.title;
 
     // Meta: Client · Année
-    const metaText = [project.client, project.year].filter(Boolean).join(' · ');
+    const metaParts = [project.client];
+    if (project.period) {
+      metaParts.push(project.period);
+    } else if (project.year) {
+      metaParts.push(String(project.year));
+    }
+    if (project.location) {
+      metaParts.push(project.location);
+    }
+    const metaText = metaParts.filter(Boolean).join(' · ');
     if (metaEl) metaEl.textContent = metaText;
 
     // Description
+    const taglineEl = document.getElementById('project-modal-tagline');
+    if (taglineEl) {
+      taglineEl.textContent = project.tagline || '';
+      taglineEl.style.display = project.tagline ? 'block' : 'none';
+    }
+
     if (descEl) {
-      // Convertir le texte brut en paragraphes HTML
-      const paragraphs = project.description
+      const paragraphs = project.longDescription
         .split('\n\n')
-        .filter(p => p.trim())
-        .map(p => `<p>${p.trim()}</p>`)
+        .filter((p) => p.trim())
+        .map((p) => `<p>${p.trim()}</p>`)
         .join('');
       descEl.innerHTML = paragraphs;
     }
 
-    // Stats (si disponibles)
-    if (statsEl && statsContentEl && project.stats) {
-      const statsHTML = Object.entries(project.stats)
-        .map(([key, value]) => {
-          const label = this.formatStatLabel(key);
-          return `
+    if (statsEl && statsContentEl) {
+      const details = this.buildProjectDetails(project);
+      if (details.length > 0) {
+        const statsHTML = details
+          .map(
+            ({ label, value }) => `
             <div class="stat-item">
               <dt>${label}</dt>
               <dd>${value}</dd>
             </div>
-          `;
-        })
-        .join('');
+          `
+          )
+          .join('');
 
-      statsContentEl.innerHTML = statsHTML;
-      statsEl.style.display = 'block';
-    } else if (statsEl) {
-      statsEl.style.display = 'none';
+        statsContentEl.innerHTML = statsHTML;
+        statsEl.style.display = 'block';
+      } else {
+        statsEl.style.display = 'none';
+      }
     }
 
     // Ouvrir la modale
@@ -169,20 +184,36 @@ export class ProjectModal {
     }, 100);
   }
 
-  formatStatLabel(key) {
-    const labels = {
-      duration: 'Durée',
-      team: 'Équipe',
-      deliverables: 'Livrables',
-      audience: 'Public',
-      format: 'Format',
-      performance: 'Performance',
-      immersion: 'Immersion',
-      restitutions: 'Restitutions',
-      representations: 'Représentations',
-      collectage: 'Collectage'
-    };
-    return labels[key] || key.charAt(0).toUpperCase() + key.slice(1);
+  buildProjectDetails(project) {
+    const details = [];
+
+    if (project.sector) {
+      details.push({ label: 'Secteur', value: project.sector });
+    }
+    if (project.typology) {
+      details.push({ label: 'Typologie', value: project.typology });
+    }
+    if (project.themes?.length) {
+      details.push({ label: 'Thèmes', value: project.themes.join(' • ') });
+    }
+    if (project.roles?.length) {
+      details.push({ label: 'Rôles', value: project.roles.join(' • ') });
+    }
+    if (project.devices?.length) {
+      details.push({ label: 'Dispositifs', value: project.devices.join(' • ') });
+    }
+    if (project.partners?.length) {
+      details.push({ label: 'Partenaires', value: project.partners.join(', ') });
+    }
+    if (project.playsCount) {
+      details.push({ label: 'Représentations', value: `${project.playsCount}+` });
+    }
+    details.push({
+      label: 'Statut',
+      value: project.status === 'in_production' ? 'En production' : 'Livré',
+    });
+
+    return details;
   }
 
   closeModal() {

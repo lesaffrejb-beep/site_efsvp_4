@@ -7,7 +7,7 @@ export const contactContent = {
   section: {
     title: `Parlons de votre histoire`,
     subtitle: `En quelques questions, dites-nous ce qui compte pour vous. Nous revenons vers vous sous 48 h avec une première idée de récit.`,
-    quote: `Toutes les bonnes histoires méritent d'être racontées.`,
+    responseTime: `Réponse sous 48h garantie.`,
   },
 
   form: {
@@ -78,18 +78,18 @@ export const contactContent = {
         required: true,
       },
     ],
-    submitLabel: `Envoyer mon histoire`,
+    submitLabel: `Partagez votre histoire`,
+    note: `Réponse sous 48h · Premier échange sans engagement.`,
   },
 
   alternativeContact: {
-    title: `Ou contactez-nous directement`,
+    title: `Ou écrivez-nous directement`,
     email: `contact@efsvp.fr`,
     location: `Basé à Angers · Partout en Francophonie`,
   },
 
-  successModal: {
+  successState: {
     title: `Message envoyé !`,
     message: `Merci ! Votre histoire nous est bien parvenue. Nous revenons vers vous très vite.`,
-    ctaLabel: `Continuer`,
   },
 };

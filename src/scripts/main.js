@@ -495,25 +495,6 @@ class App {
     // Initialize premium form validator
     this.modules.formValidator = new FormValidator(form);
 
-    // Modal close handlers
-    const modal = document.getElementById('success-modal');
-    const modalClose = document.getElementById('modal-close');
-    const modalOverlay = modal?.querySelector('.modal__overlay');
-
-    const closeModal = () => {
-      modal?.classList.remove('active');
-    };
-
-    modalClose?.addEventListener('click', closeModal);
-    modalOverlay?.addEventListener('click', closeModal);
-
-    // Escape key to close modal
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal?.classList.contains('active')) {
-        closeModal();
-      }
-    });
-
     // Quick quote form (mini-formulaire)
     this.initQuickQuoteForm();
   }
@@ -537,18 +518,6 @@ class App {
 
       // In a real implementation, send to backend
       console.log('Quick quote form submitted:', data);
-
-      // Show success message
-      const modal = document.getElementById('success-modal');
-      const modalName = document.getElementById('modal-name');
-
-      if (modalName && data.nom) {
-        modalName.textContent = data.nom.split(' ')[0];
-      }
-
-      if (modal) {
-        modal.classList.add('active');
-      }
 
       // Reset form
       quickForm.reset();

@@ -5,7 +5,8 @@
 
 export const faqContent = {
   section: {
-    title: `Vos questions, nos réponses`,
+    title: `FAQ`,
+    subtitle: `Les réponses directes aux questions que l’on nous pose le plus souvent.`,
   },
 
   items: [

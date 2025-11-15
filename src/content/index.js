@@ -15,3 +15,4 @@ export { faqContent } from './faq.js';
 export { contactContent } from './contact.js';
 export { footerContent } from './footer.js';
 export { cookieContent } from './cookie.js';
+export { projectsCollection, projectsBySlug } from './projects/index.js';

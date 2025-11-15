@@ -42,13 +42,15 @@ export const homeContent = {
   navigation: {
     logo: `EfSVP`,
     links: [
-      { label: `Créations`, href: `#creations` },
-      { label: `Portfolio`, href: `#portfolio` },
+      { label: `Accueil`, href: `#hero` },
+      { label: `Offres`, href: `#offres` },
+      { label: `Projets`, href: `#projets` },
       { label: `Process`, href: `#process` },
-      { label: `Questions fréquentes`, href: `#faq` },
+      { label: `FAQ`, href: `#faq` },
+      { label: `Contact`, href: `#contact` },
     ],
     cta: {
-      label: `Démarrer votre projet`,
+      label: `Partagez votre histoire`,
       href: `#contact`,
     },
   },

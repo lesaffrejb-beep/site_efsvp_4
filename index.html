@@ -158,29 +158,34 @@
         <a href="#hero" class="nav__logo" aria-label="Retour à l'accueil">
           <span class="nav__logo-text">EfSVP</span>
         </a>
+        <div class="nav__menu" id="nav-menu" role="navigation" aria-label="Sections principales">
+          <ul class="nav__list">
+            <li class="nav__item">
+              <a href="#hero" class="nav__link">Accueil</a>
+            </li>
+            <li class="nav__item">
+              <a href="#offres" class="nav__link">Offres</a>
+            </li>
+            <li class="nav__item">
+              <a href="#projets" class="nav__link">Projets</a>
+            </li>
+            <li class="nav__item">
+              <a href="#process" class="nav__link">Process</a>
+            </li>
+            <li class="nav__item">
+              <a href="#faq" class="nav__link">FAQ</a>
+            </li>
+            <li class="nav__item">
+              <a href="#contact" class="nav__link">Contact</a>
+            </li>
+          </ul>
+
+          <div class="nav__menu-cta">
+            <a href="#contact" class="cta cta--primary nav__cta-mobile">Partagez votre histoire</a>
+          </div>
+        </div>
 
         <div class="nav__actions">
-          <div class="nav__menu" id="nav-menu" role="navigation">
-            <ul class="nav__list">
-              <li class="nav__item">
-                <a href="#projets" class="nav__link">Projets</a>
-              </li>
-              <li class="nav__item">
-                <a href="#offres" class="nav__link">Offres</a>
-              </li>
-              <li class="nav__item">
-                <a href="#process" class="nav__link">Process</a>
-              </li>
-              <li class="nav__item">
-                <a href="#faq" class="nav__link">FAQ</a>
-              </li>
-            </ul>
-
-            <div class="nav__menu-cta">
-              <a href="#contact" class="cta cta--primary nav__cta-mobile">Partagez votre histoire</a>
-            </div>
-          </div>
-
           <a href="#contact" class="cta cta--primary nav__cta">Partagez votre histoire</a>
 
           <!-- Mobile Toggle -->
@@ -351,57 +356,90 @@
            ============================================ -->
       <section class="process" id="process">
         <div class="process__container">
-          <h2 class="section-title section-title--light">
-            Un process clair. Des délais respectés.
-          </h2>
+          <header class="process__header" data-scroll>
+            <span class="process__eyebrow">Méthode</span>
+            <h2 class="process__title">Un process clair. Des délais respectés.</h2>
+            <p class="process__subtitle">
+              Quatre étapes balisées pour transformer votre matière en récit vivant, sans mauvaise surprise.
+            </p>
+          </header>
 
-          <div class="process__steps">
-            <article class="process-step">
-              <div class="process-step__number">1</div>
-              <h3 class="process-step__title">Collectage</h3>
-              <p class="process-step__duration">2 semaines</p>
-              <p class="process-step__description">
-                Entretiens • Immersion • Compréhension fine
+          <div class="process__grid" data-scroll>
+            <article class="process__step">
+              <div class="process__step-heading">
+                <span class="process__step-number">01</span>
+                <span class="process__step-duration">1 à 2 semaines</span>
+              </div>
+              <h3 class="process__step-title">Écouter & cadrer</h3>
+              <p class="process__step-description">
+                Immersion dans votre réalité : documents, chiffres, rencontres terrain. On fixe l'angle narratif et les livrables.
               </p>
+              <ul class="process__step-details">
+                <li>Entretiens avec vos équipes</li>
+                <li>Analyse de documents et archives</li>
+                <li>Immersion terrain si nécessaire</li>
+                <li>Cadrage de l'angle narratif</li>
+              </ul>
             </article>
 
-            <div class="process__connector"></div>
-
-            <article class="process-step">
-              <div class="process-step__number">2</div>
-              <h3 class="process-step__title">Création</h3>
-              <p class="process-step__duration">2-4 semaines</p>
-              <p class="process-step__description">
-                Écriture • Composition • 2 allers-retours inclus
+            <article class="process__step">
+              <div class="process__step-heading">
+                <span class="process__step-number">02</span>
+                <span class="process__step-duration">1 à 2 semaines</span>
+              </div>
+              <h3 class="process__step-title">Écrire & valider</h3>
+              <p class="process__step-description">
+                Rédaction du texte et première lecture partagée. Deux allers-retours inclus pour ajuster ton, vocabulaire et rythme.
               </p>
+              <ul class="process__step-details">
+                <li>Rédaction du premier jet</li>
+                <li>Validation et retours (V1)</li>
+                <li>Ajustements et affinements</li>
+                <li>Validation finale (V2)</li>
+              </ul>
+              <span class="process__step-badge">2 allers-retours inclus</span>
             </article>
 
-            <div class="process__connector"></div>
-
-            <article class="process-step">
-              <div class="process-step__number">3</div>
-              <h3 class="process-step__title">Validation</h3>
-              <p class="process-step__duration">Vos délais</p>
-              <p class="process-step__description">
-                Vous validez texte et musique avant enregistrement
+            <article class="process__step">
+              <div class="process__step-heading">
+                <span class="process__step-number">03</span>
+                <span class="process__step-duration">1 à 2 semaines</span>
+              </div>
+              <h3 class="process__step-title">Composer & enregistrer</h3>
+              <p class="process__step-description">
+                Composition originale, maquettes partagées, enregistrement studio. Vous validez chaque étape avant le mix final.
               </p>
+              <ul class="process__step-details">
+                <li>Composition musicale originale</li>
+                <li>Maquettes et validation</li>
+                <li>Enregistrement professionnel</li>
+                <li>Mix et mastering</li>
+              </ul>
             </article>
 
-            <div class="process__connector"></div>
-
-            <article class="process-step">
-              <div class="process-step__number">4</div>
-              <h3 class="process-step__title">Livraison</h3>
-              <p class="process-step__duration">Semaine finale</p>
-              <p class="process-step__description">
-                Audio pro • Texte • (Option : Performance live)
+            <article class="process__step">
+              <div class="process__step-heading">
+                <span class="process__step-number">04</span>
+                <span class="process__step-duration">Jour J + suivi</span>
+              </div>
+              <h3 class="process__step-title">Jouer & prolonger</h3>
+              <p class="process__step-description">
+                Performance live ou remise de l'œuvre. Nous préparons la suite : captation, diffusion, droits d’exploitation.
               </p>
+              <ul class="process__step-details">
+                <li>Performance live sur site</li>
+                <li>Captation vidéo (option)</li>
+                <li>Fichiers audio HD livrés</li>
+                <li>Droits d'exploitation définis</li>
+              </ul>
+              <span class="process__step-badge">Clé en main</span>
             </article>
           </div>
 
-          <p class="process__reassurance">
-            Process balisé. SLA 48h. Jamais cringe.
-          </p>
+          <div class="process__footer" data-scroll>
+            <p class="process__note">Process balisé. Réponse sous 48h à chaque étape.</p>
+            <a href="#contact" class="btn btn-primary btn-lg process__cta">Partagez votre histoire</a>
+          </div>
         </div>
       </section>
 
@@ -476,80 +514,30 @@
            SECTION 5: CASE STUDIES / PROJETS
            ============================================ -->
       <section class="projects section" id="projets">
-        <div class="container">
-          <header class="section__header" data-scroll>
-            <h2 class="section__title">Quelques histoires que nous avons racontées</h2>
+        <div class="projects__container">
+          <header class="projects__header" data-scroll>
+            <span class="projects__eyebrow">Projets récents</span>
+            <div class="projects__headline">
+              <h2 class="projects__title">Quelques histoires que nous avons racontées</h2>
+              <p class="projects__description">
+                Chaque projet est écrit à partir de votre réalité : collectage, écriture, musique et mise en voix pour une expérience qui vous ressemble.
+              </p>
+            </div>
+            <div class="projects__metrics">
+              <div class="projects__metric">
+                <span class="projects__metric-value">60+</span>
+                <span class="projects__metric-label">représentations</span>
+              </div>
+              <div class="projects__metric">
+                <span class="projects__metric-value">15+</span>
+                <span class="projects__metric-label">institutions et entreprises accompagnées</span>
+              </div>
+            </div>
           </header>
 
-          <div class="projects__grid">
-            <!-- Projet 1: SIVAL -->
-            <article class="project-card" data-scroll data-lift data-project-id="sival-2025">
-              <div class="project-card__visual">
-                <div
-                  class="project-card__gradient"
-                  style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--accent-gold) 88%, transparent) 0%, color-mix(in srgb, var(--accent-beige) 75%, transparent) 100%)"
-                ></div>
-                <div class="project-card__badge">Série narrative</div>
-              </div>
-              <div class="project-card__content">
-                <h3 class="project-card__title">SIVAL 2025</h3>
-                <p class="project-card__baseline">L'innovation agricole racontée</p>
-                <p class="project-card__metrics">8 récits · 2 000 visiteurs</p>
-                <a href="#" class="project-card__link">Voir le projet</a>
-              </div>
-            </article>
+          <div class="projects__filters" data-scroll></div>
 
-            <!-- Projet 2: Atelier Lacour -->
-            <article class="project-card" data-scroll data-lift data-project-id="atelier-lacour">
-              <div class="project-card__visual">
-                <div
-                  class="project-card__gradient"
-                  style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--charcoal) 90%, transparent) 0%, color-mix(in srgb, var(--primary) 78%, transparent) 100%)"
-                ></div>
-                <div class="project-card__badge">Anniversaire entreprise</div>
-              </div>
-              <div class="project-card__content">
-                <h3 class="project-card__title">Atelier Lacour</h3>
-                <p class="project-card__baseline">Métaphore de la forêt — 25 ans</p>
-                <p class="project-card__metrics">1 performance · 80 invités</p>
-                <a href="#" class="project-card__link">Voir le projet</a>
-              </div>
-            </article>
-
-            <!-- Projet 3: Département 49 -->
-            <article class="project-card" data-scroll data-lift data-project-id="departement-49">
-              <div class="project-card__visual">
-                <div
-                  class="project-card__gradient"
-                  style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--primary) 94%, transparent) 0%, color-mix(in srgb, var(--accent-gold) 88%, transparent) 100%)"
-                ></div>
-                <div class="project-card__badge">Hymne officiel</div>
-              </div>
-              <div class="project-card__content">
-                <h3 class="project-card__title">La force de la douceur</h3>
-                <p class="project-card__baseline">Hymne du Département Maine-et-Loire</p>
-                <p class="project-card__metrics">1 performance inaugurale · 500 invités</p>
-                <a href="#" class="project-card__link">Voir le projet</a>
-              </div>
-            </article>
-
-            <!-- Projet 4: État de nature -->
-            <article class="project-card" data-scroll data-lift data-project-id="etat-de-nature">
-              <div class="project-card__visual">
-                <div
-                  class="project-card__gradient"
-                  style="--card-gradient: linear-gradient(135deg, color-mix(in srgb, var(--secondary) 85%, transparent) 0%, color-mix(in srgb, var(--accent-beige) 70%, transparent) 100%)"
-                ></div>
-                <div class="project-card__badge">Spectacle immersif</div>
-              </div>
-              <div class="project-card__content">
-                <h3 class="project-card__title">État de nature</h3>
-                <p class="project-card__baseline">Déambulation poétique en forêt</p>
-                <p class="project-card__metrics">60+ représentations · PNR Loire-Anjou-Touraine</p>
-                <a href="#" class="project-card__link">Voir le projet</a>
-              </div>
-            </article>
-          </div>
+          <div class="projects__grid" data-scroll></div>
         </div>
       </section>
 
@@ -597,179 +585,15 @@
            SECTION 7: FAQ
            ============================================ -->
       <section class="faq section" id="faq">
-        <div class="container">
-          <header class="section__header" data-scroll>
-            <div class="faq__trust-badge">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-              </svg>
-              <span>Réponse sous 48h garantie</span>
-            </div>
-            <h2 class="section__title">Vous vous demandez peut-être…</h2>
-            <p class="faq__intro">
-              Toutes les questions qu'on nous pose régulièrement. Si vous ne trouvez pas votre réponse,
-              <a href="#contact" class="faq__intro-link">écrivez-nous directement</a>.
+        <div class="faq__container">
+          <header class="faq__header" data-scroll>
+            <h2 class="faq__title">FAQ</h2>
+            <p class="faq__subtitle">
+              Les réponses directes aux questions que l’on nous pose le plus souvent.
             </p>
           </header>
 
-          <div class="faq__list">
-            <!-- Question 1 -->
-            <div class="faq-item faq-item--popular" data-scroll>
-              <div class="faq-item__badge">Populaire</div>
-              <button class="faq-item__question" aria-expanded="false">
-                <div class="faq-item__question-content">
-                  <svg class="faq-item__theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                  </svg>
-                  <span>Allez-vous vraiment comprendre notre métier ?</span>
-                </div>
-                <svg
-                  class="faq-item__icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-              <div class="faq-item__answer">
-                <p>
-                  <strong>Oui.</strong> Nous prenons <strong>1 à 2 semaines</strong> pour vous écouter, observer, comprendre votre
-                  vocabulaire et vos enjeux. Nous ne racontons jamais une histoire qui n'est pas
-                  la vôtre. Nos clients nous font confiance parce que nous savons poser les bonnes
-                  questions et traduire leur réalité en émotions justes.
-                </p>
-              </div>
-            </div>
-
-            <!-- Question 2 -->
-            <div class="faq-item faq-item--popular" data-scroll>
-              <div class="faq-item__badge">Populaire</div>
-              <button class="faq-item__question" aria-expanded="false">
-                <div class="faq-item__question-content">
-                  <svg class="faq-item__theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
-                  </svg>
-                  <span>Est-ce que ce ne sera pas gênant pour nos équipes ?</span>
-                </div>
-                <svg
-                  class="faq-item__icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-              <div class="faq-item__answer">
-                <p>
-                  <strong>Non.</strong> Nous intervenons avec <strong>discrétion et bienveillance</strong>. Nos entretiens se font
-                  dans le respect du temps et de la pudeur de chacun. Le résultat final valorise
-                  toujours vos équipes et votre culture d'entreprise — jamais l'inverse.
-                </p>
-              </div>
-            </div>
-
-            <!-- Question 3 -->
-            <div class="faq-item" data-scroll>
-              <button class="faq-item__question" aria-expanded="false">
-                <div class="faq-item__question-content">
-                  <svg class="faq-item__theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
-                  </svg>
-                  <span>Et si nous changeons d'avis en cours de route ?</span>
-                </div>
-                <svg
-                  class="faq-item__icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-              <div class="faq-item__answer">
-                <p>
-                  <strong>C'est normal.</strong> Nous incluons <strong>2 allers-retours</strong> dans toutes nos formules. Si vous
-                  voulez ajuster le ton, ajouter un élément ou changer une direction narrative,
-                  nous nous adaptons. L'important, c'est que vous soyez fiers du résultat final.
-                </p>
-              </div>
-            </div>
-
-            <!-- Question 4 -->
-            <div class="faq-item" data-scroll>
-              <button class="faq-item__question" aria-expanded="false">
-                <div class="faq-item__question-content">
-                  <svg class="faq-item__theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                  </svg>
-                  <span>Travaillez-vous uniquement en Pays de la Loire ?</span>
-                </div>
-                <svg
-                  class="faq-item__icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-              <div class="faq-item__answer">
-                <p>
-                  <strong>Non.</strong> Nous sommes basés à Angers, mais nous intervenons <strong>partout en francophonie</strong>.
-                  L'essentiel de notre travail (écriture, composition) peut se faire à distance.
-                  Pour les performances live, nous nous déplaçons selon vos besoins.
-                </p>
-              </div>
-            </div>
-
-            <!-- Question 5 -->
-            <div class="faq-item" data-scroll>
-              <button class="faq-item__question" aria-expanded="false">
-                <div class="faq-item__question-content">
-                  <svg class="faq-item__theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-                  </svg>
-                  <span>Peut-on réutiliser le texte ou la musique ensuite ?</span>
-                </div>
-                <svg
-                  class="faq-item__icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <polyline points="6 9 12 15 18 9"></polyline>
-                </svg>
-              </button>
-              <div class="faq-item__answer">
-                <p>
-                  <strong>Oui, sous conditions.</strong> Les formules incluent un usage défini (événement,
-                  diffusion interne, etc.). Pour une réutilisation commerciale (pub, vidéo,
-                  identité sonore), nous établissons un contrat de droits d'usage adapté. Nous
-                  restons toujours <strong>flexibles et transparents</strong> sur les tarifs.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- FAQ CTA -->
-          <div class="faq__cta" data-scroll>
-            <div class="faq__cta-content">
-              <h3 class="faq__cta-title">Vous avez une autre question ?</h3>
-              <p class="faq__cta-text">
-                Nous adorons discuter de nos projets. Posez-nous vos questions sans engagement.
-              </p>
-              <a href="#contact" class="cta cta--primary">
-                Partagez votre histoire
-              </a>
-            </div>
-          </div>
+          <div class="faq__list" data-scroll></div>
         </div>
       </section>
 
@@ -778,58 +602,170 @@
            ============================================ -->
       <section class="contact" id="contact">
         <div class="contact__container">
-          <div class="contact__content">
-            <h2 class="section-title section-title--light">
-              Toutes les bonnes histoires<br>méritent d'être racontées.
-            </h2>
-            <p class="contact__subtitle">La vôtre aussi.</p>
+          <div class="contact__layout">
+            <div class="contact__intro" data-scroll>
+              <h2 class="contact__title">Parlons de votre histoire</h2>
+              <p class="contact__subtitle">
+                En quelques questions, dites-nous ce qui compte pour vous. Nous revenons vers vous sous 48 h avec une première idée de récit.
+              </p>
+              <p class="contact__response">Réponse sous 48h garantie.</p>
+
+              <div class="contact__direct">
+                <p class="contact__direct-label">Ou écrivez-nous directement</p>
+                <button
+                  type="button"
+                  class="contact__email-button"
+                  data-copy-email
+                  data-email="contact@efsvp.fr"
+                >
+                  <span class="copy-email__icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                      <path d="M4 4h16v16H4z" opacity="0.2"></path>
+                      <path d="M8 4V3a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2h-1" stroke-linecap="round"></path>
+                      <path d="M4 7h12" stroke-linecap="round"></path>
+                      <path d="M4 11h12" stroke-linecap="round"></path>
+                      <path d="M8 15h8" stroke-linecap="round"></path>
+                    </svg>
+                  </span>
+                  <span class="copy-email__text">contact@efsvp.fr</span>
+                  <span class="copy-email__success" aria-hidden="true" aria-live="polite">Copié !</span>
+                  <span class="copy-email__error" aria-hidden="true">Copie impossible</span>
+                </button>
+                <p class="contact__location">Basé à Angers · Partout en Francophonie</p>
+              </div>
+            </div>
+
+            <div class="contact__card" data-scroll>
+              <div class="contact__feedback" role="status" aria-live="polite">
+                <div class="contact__feedback-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75">
+                    <path d="M9 12.75L11.25 15 15 9.75" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="12" cy="12" r="9" />
+                  </svg>
+                </div>
+                <div class="contact__feedback-content">
+                  <p class="contact__feedback-title">
+                    Message envoyé<span class="contact__feedback-name" data-feedback-name hidden></span> !
+                  </p>
+                  <p class="contact__feedback-text">Merci ! Votre histoire nous est bien parvenue. Nous revenons vers vous très vite.</p>
+                </div>
+              </div>
+
+              <form class="contact__form" id="contact-form" novalidate>
+                <div class="form__grid">
+                  <div class="form__group">
+                    <label for="nom" class="form__label">Votre nom</label>
+                    <input
+                      type="text"
+                      id="nom"
+                      name="nom"
+                      class="form__input"
+                      required
+                      autocomplete="name"
+                    />
+                    <span class="form__checkmark" aria-hidden="true"></span>
+                  </div>
+
+                  <div class="form__group">
+                    <label for="email" class="form__label">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      class="form__input"
+                      required
+                      autocomplete="email"
+                    />
+                    <span class="form__checkmark" aria-hidden="true"></span>
+                  </div>
+
+                  <div class="form__group">
+                    <label for="organisation" class="form__label">Structure / institution</label>
+                    <input
+                      type="text"
+                      id="organisation"
+                      name="organisation"
+                      class="form__input"
+                      required
+                      autocomplete="organization"
+                    />
+                    <span class="form__checkmark" aria-hidden="true"></span>
+                  </div>
+
+                  <div class="form__group">
+                    <label for="type-projet" class="form__label">Contexte</label>
+                    <select id="type-projet" name="type-projet" class="form__select form__input" required>
+                      <option value="">Sélectionner</option>
+                      <option value="anniversaire">Anniversaire</option>
+                      <option value="inauguration">Inauguration</option>
+                      <option value="transformation">Transformation</option>
+                      <option value="territoire">Territoire</option>
+                      <option value="autre">Autre</option>
+                    </select>
+                    <span class="form__checkmark" aria-hidden="true"></span>
+                  </div>
+
+                  <div class="form__group">
+                    <label for="date" class="form__label">Date ou période de l'événement</label>
+                    <input type="date" id="date" name="date" class="form__input" />
+                    <span class="form__checkmark" aria-hidden="true"></span>
+                  </div>
+
+                  <div class="form__group form__group--range">
+                    <label for="budget" class="form__label">Budget approximatif</label>
+                    <div class="form__range-container">
+                      <input
+                        type="range"
+                        id="budget"
+                        name="budget"
+                        class="form__range"
+                        min="1000"
+                        max="20000"
+                        step="500"
+                        value="5000"
+                      />
+                      <span class="form__range-value">~5 000€</span>
+                    </div>
+                  </div>
+
+                  <div class="form__group form__group--full">
+                    <label for="message" class="form__label">Ce que vous aimeriez voir apparaître dans le récit</label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      class="form__textarea form__input"
+                      rows="6"
+                      maxLength="500"
+                      required
+                    ></textarea>
+                    <div class="form__counter" aria-live="polite">0/500</div>
+                  </div>
+
+                  <div class="form__group form__group--checkbox form__group--full">
+                    <label class="form__checkbox">
+                      <input type="checkbox" id="consent" name="consent" required />
+                      <span>J'accepte d'être recontacté pour échanger sur mon projet.</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="contact__form-footer">
+                  <button type="submit" class="btn btn-primary btn-lg contact-form__submit">
+                    <span class="btn__content">
+                      <span class="btn__text">Partagez votre histoire</span>
+                      <span class="btn__icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+                          <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                      </span>
+                    </span>
+                    <span class="btn__loader" aria-hidden="true"></span>
+                  </button>
+                  <p class="contact__form-note">Réponse sous 48h · Premier échange sans engagement.</p>
+                </div>
+              </form>
+            </div>
           </div>
-
-          <form class="contact-form" id="contact-form">
-            <div class="form-group">
-              <label for="name" class="form-label">Votre nom</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="form-input"
-                required
-                placeholder="Jean Dupont"
-              >
-            </div>
-
-            <div class="form-group">
-              <label for="email" class="form-label">Votre email</label>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                class="form-input"
-                required
-                placeholder="jean@entreprise.fr"
-              >
-            </div>
-
-            <div class="form-group">
-              <label for="message" class="form-label">Votre histoire</label>
-              <textarea
-                id="message"
-                name="message"
-                class="form-input form-textarea"
-                required
-                rows="6"
-                placeholder="Parlez-nous de votre projet, de vos besoins, de votre moment clé..."
-              ></textarea>
-            </div>
-
-            <button type="submit" class="cta cta--primary cta--full">
-              Partagez votre histoire
-            </button>
-
-            <p class="form-reassurance">
-              Réponse sous 48h. Premier échange sans engagement.
-            </p>
-          </form>
         </div>
       </section>
     </main>
@@ -937,27 +873,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- Success Modal -->
-    <div
-      class="modal"
-      id="success-modal"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="modal-title"
-    >
-      <div class="modal__overlay"></div>
-      <div class="modal__content">
-        <div class="modal__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-        </div>
-        <h3 class="modal__title" id="modal-title">Message envoyé !</h3>
-        <p class="modal__text">Merci <span id="modal-name"></span> ! On vous répond sous 48h.</p>
-        <button class="btn btn--primary" id="modal-close">Continuer</button>
       </div>
     </div>
 

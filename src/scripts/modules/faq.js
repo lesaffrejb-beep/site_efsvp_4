@@ -4,7 +4,7 @@
  */
 export class FAQ {
   constructor() {
-    this.items = document.querySelectorAll('.faq-item');
+    this.items = document.querySelectorAll('.faq__item, .faq-item');
     this.init();
   }
 
@@ -12,8 +12,10 @@ export class FAQ {
     if (this.items.length === 0) return;
 
     this.items.forEach((item, index) => {
-      const question = item.querySelector('.faq-item__question');
-      const answer = item.querySelector('.faq-item__answer');
+      const question =
+        item.querySelector('.faq__question') || item.querySelector('.faq-item__question');
+      const answer =
+        item.querySelector('.faq__answer') || item.querySelector('.faq-item__answer');
 
       if (!question || !answer) return;
 
@@ -47,7 +49,9 @@ export class FAQ {
     // Close other items (optional - remove if you want multiple open)
     this.items.forEach((otherItem) => {
       if (otherItem !== item) {
-        const otherQuestion = otherItem.querySelector('.faq-item__question');
+        const otherQuestion =
+          otherItem.querySelector('.faq__question') ||
+          otherItem.querySelector('.faq-item__question');
         if (otherQuestion) {
           otherQuestion.setAttribute('aria-expanded', 'false');
         }
