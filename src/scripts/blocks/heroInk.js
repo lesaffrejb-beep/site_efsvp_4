@@ -1,7 +1,26 @@
 /**
- * Ancien hero : section `.signature-hero` avec HeroManager GSAP,
- * baselines scindées en deux lignes et CTA groupés `.signature-hero__cta-group`.
- * La goutte était placée dans le `<h1>` et l'indicateur scroll utilisait `[data-hero-scroll]`.
+ * ============================================
+ * HERO INK - Signature manuscrite animée
+ * ============================================
+ *
+ * REFACTORISATION (Nov 2025) :
+ * - Signature SVG améliorée (path plus élégant, calligraphique)
+ * - Rigole d'encre recentrée (plus d'effet "loader/barre de progression")
+ * - Responsive mobile amélioré (CTAs empilés, espacement optimisé)
+ * - Accessibilité : prefers-reduced-motion respecté
+ *
+ * PROBLÈMES CORRIGÉS :
+ * 1. Signature : path SVG optimisé pour une calligraphie plus fluide
+ * 2. Rigole : width réduite, centrée, reflet repositionné (ne ressemble plus à un loader)
+ * 3. Mobile : CTAs empilés verticalement, gap augmenté, padding amélioré
+ * 4. Desktop : gap entre éléments augmenté pour plus de respiration
+ *
+ * ANIMATION :
+ * - Signature s'écrit via stroke-dasharray (1.8s)
+ * - Goutte d'encre tombe et percute la rigole (~0.6s)
+ * - Rigole se remplit (scaleX: 0 → 0.8, ~0.55s)
+ * - Baseline + CTAs apparaissent en fade-up (~0.45s)
+ * - Micro-interaction hover sur rigole (desktop uniquement, pointer:fine)
  */
 
 import { gsap } from 'gsap';
