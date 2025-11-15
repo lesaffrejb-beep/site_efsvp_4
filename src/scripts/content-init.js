@@ -289,9 +289,20 @@ export function initPortfolioContent() {
       .map((project) => {
         const period = project.period ? project.period : project.year;
         const statusLabel = statusLabels[project.status] || project.status;
-        const sectorChip = project.sector
-          ? `<span class="project-card__chip project-card__chip--sector">${project.sector}</span>`
+
+        // Extract short title (part after "—" if exists, otherwise use full title)
+        const displayTitle = project.title.includes('—')
+          ? project.title.split('—')[1].trim()
+          : project.title;
+
+        // Build tags array from themes
+        const tags = project.themes || [];
+        const tagsHtml = tags.length > 0
+          ? `<div class="project-card__tags">
+              ${tags.slice(0, 3).map(tag => `<span class="project-card__tag">${tag}</span>`).join('')}
+             </div>`
           : '';
+
         const clientInitials = project.client
           ? project.client
               .split(/\s+/)
@@ -320,14 +331,15 @@ export function initPortfolioContent() {
                   <span class="project-card__client">${project.client}</span>
                   <span class="project-card__year">${period}</span>
                 </div>
-                <h3 class="project-card__title">${project.title}</h3>
-                <p class="project-card__tagline">${project.tagline}</p>
+                <h3 class="project-card__title">${displayTitle}</h3>
               </header>
               <p class="project-card__description">${project.shortDescription}</p>
-              ${sectorChip ? `<div class="project-card__chips">${sectorChip}</div>` : ''}
+              ${tagsHtml}
             </div>
             <footer class="project-card__footer">
-              <span class="project-card__status project-card__status--${project.status}">${statusLabel}</span>
+              <div class="project-card__footer-left">
+                <span class="project-card__status project-card__status--${project.status}">${statusLabel}</span>
+              </div>
               <button type="button" class="project-card__link" aria-label="Voir le projet ${project.title}">
                 Voir le projet
               </button>
