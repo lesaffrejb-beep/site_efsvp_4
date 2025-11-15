@@ -1,0 +1,292 @@
+/**
+ * ============================================
+ * PROJECT MODAL STYLES
+ * Modales de détail des projets portfolio
+ * ============================================
+ */
+
+/* ===== Modal Container ===== */
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-modal.active {
+  display: flex;
+  opacity: 1;
+}
+
+/* ===== Overlay ===== */
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 35, 50, 0.85);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+}
+
+/* ===== Modal Content Container ===== */
+.modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  max-height: 90vh;
+  background: var(--neutral-50, #FAF4ED);
+  border-radius: 16px;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.95);
+  transition: transform 0.3s ease;
+}
+
+.project-modal.active .modal-container {
+  transform: scale(1);
+}
+
+/* ===== Close Button ===== */
+.modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal-close:hover {
+  background: white;
+  transform: scale(1.1);
+}
+
+.modal-close:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.modal-close .icon {
+  width: 24px;
+  height: 24px;
+  stroke: var(--neutral-900, #1A2332);
+  stroke-width: 2;
+}
+
+/* ===== Modal Content ===== */
+.modal-content {
+  padding: 48px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--neutral-100);
+}
+
+/* Custom scrollbar for webkit browsers */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: var(--neutral-100, #F5E6D3);
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: var(--primary, #B8441E);
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark, #8E3417);
+}
+
+/* ===== Header ===== */
+.modal-header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--neutral-100, #F5E6D3);
+}
+
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--neutral-900, #1A2332);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+
+.modal-subtitle {
+  font-size: 20px;
+  color: var(--primary, #B8441E);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* ===== Meta Information ===== */
+.modal-meta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  font-size: 14px;
+  color: var(--neutral-800, #2D3748);
+}
+
+.modal-meta > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--neutral-100, #F5E6D3);
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+/* ===== Tags ===== */
+.modal-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.modal-tags .tag {
+  padding: 6px 12px;
+  background: var(--primary-light, #D4694A);
+  color: white;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* ===== Body Content ===== */
+.modal-body {
+  color: var(--neutral-800, #2D3748);
+  line-height: 1.7;
+}
+
+.modal-description p {
+  margin-bottom: 16px;
+}
+
+.modal-description p:last-child {
+  margin-bottom: 0;
+}
+
+/* ===== Stats Section ===== */
+.modal-stats {
+  margin-top: 32px;
+  padding: 24px;
+  background: var(--neutral-100, #F5E6D3);
+  border-radius: 12px;
+}
+
+.modal-stats h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  margin-bottom: 16px;
+  color: var(--neutral-900, #1A2332);
+}
+
+.stats-grid {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stat-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 16px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(26, 35, 50, 0.1);
+}
+
+.stat-item:last-child {
+  border-bottom: none;
+}
+
+.stat-item dt {
+  font-weight: 600;
+  color: var(--primary, #B8441E);
+}
+
+.stat-item dd {
+  margin: 0;
+  color: var(--neutral-800, #2D3748);
+}
+
+/* ===== Mobile Responsive ===== */
+@media (max-width: 768px) {
+  .project-modal {
+    padding: 10px;
+  }
+
+  .modal-container {
+    max-height: 95vh;
+    margin: 10px;
+    border-radius: 12px;
+  }
+
+  .modal-content {
+    padding: 32px 24px;
+  }
+
+  .modal-title {
+    font-size: 28px;
+  }
+
+  .modal-subtitle {
+    font-size: 18px;
+  }
+
+  .modal-close {
+    top: 16px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .stat-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .modal-stats {
+    padding: 20px 16px;
+  }
+}
+
+/* ===== Accessibility ===== */
+@media (prefers-reduced-motion: reduce) {
+  .project-modal,
+  .modal-container {
+    transition: none;
+  }
+}
+
+/* Focus management */
+.project-modal:not(.active) {
+  visibility: hidden;
+}
+
+.project-modal.active {
+  visibility: visible;
+}

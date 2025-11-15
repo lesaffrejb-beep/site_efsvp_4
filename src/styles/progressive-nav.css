@@ -1,0 +1,76 @@
+/**
+ * ============================================
+ * PROGRESSIVE NAVIGATION & SCROLL PROGRESS
+ * Navigation qui se cache au scroll + barre de progression
+ * ============================================
+ */
+
+/* ===== Navigation Container ===== */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(10, 15, 24, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(245, 230, 211, 0.08);
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.nav.visible {
+  background: rgba(10, 15, 24, 0.97);
+  box-shadow: 0 12px 32px rgba(10, 15, 24, 0.45);
+}
+
+.nav.nav-hidden {
+  transform: translateY(-100%);
+}
+
+/* ===== Scroll Progress Bar ===== */
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--primary) 0%,
+    var(--secondary) 50%,
+    var(--accent-gold) 100%
+  );
+  z-index: 9999;
+  transition: width 0.1s ease-out, opacity 0.3s ease;
+  opacity: 0;
+  transform-origin: left;
+  box-shadow: 0 0 12px rgba(184, 68, 30, 0.4);
+  pointer-events: none;
+}
+
+.scroll-progress-bar.visible {
+  opacity: 1;
+}
+
+/* ===== Smooth Transitions ===== */
+@media (prefers-reduced-motion: reduce) {
+  .nav {
+    transition: none;
+  }
+
+  .scroll-progress-bar {
+    transition: none;
+  }
+}
+
+/* ===== Mobile Optimizations ===== */
+@media (max-width: 1023px) {
+  .nav {
+    backdrop-filter: blur(10px);
+  }
+
+  .scroll-progress-bar {
+    height: 3px;
+  }
+}

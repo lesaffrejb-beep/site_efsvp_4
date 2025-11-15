@@ -16,6 +16,7 @@ import { LazyLoadManager } from './modules/lazyLoad.js';
 import { FormValidator } from './modules/formValidator.js';
 import { AnimationsManager } from './modules/animations.js';
 import { ProgressBar } from './modules/progressBar.js';
+import { ProgressiveNav } from './modules/progressiveNav.js';
 import { ProcessReveal } from './modules/processReveal.js';
 import { CookieConsent } from './modules/cookieConsent.js';
 import { CopyEmail } from './modules/copyEmail.js';
@@ -159,8 +160,11 @@ class App {
     this.modules.smoothScroll = new SmoothScroll();
     window.lenis = this.modules.smoothScroll.lenis; // Global access
 
-    // Reading Progress Bar Premium
-    this.modules.progressBar = new ProgressBar();
+    // Reading Progress Bar Premium (REMPLACÉ par ProgressiveNav)
+    // this.modules.progressBar = new ProgressBar();
+
+    // Progressive Navigation avec barre de scroll
+    this.modules.progressiveNav = new ProgressiveNav();
 
     // Custom Cursor (desktop only)
     if (!this.isMobile) {
@@ -172,7 +176,7 @@ class App {
       this.modules.magnetic = new MagneticButtons();
     }
 
-    // Navigation
+    // Navigation mobile
     this.initNavigation();
 
     // Scroll Reveal global

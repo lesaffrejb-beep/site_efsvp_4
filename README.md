@@ -5,6 +5,85 @@
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
 [![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=flat&logo=greensock&logoColor=white)](https://greensock.com/gsap/)
 [![Lenis](https://img.shields.io/badge/Lenis-Smooth_Scroll-blue)](https://lenis.studiofreight.com/)
+[![Accessibility](https://img.shields.io/badge/WCAG-2.1%20AA-green)](https://www.w3.org/WAI/WCAG21/quickref/)
+
+## 🎉 Version 3.0 - Novembre 2025
+
+### 🚀 Nouvelles Fonctionnalités
+
+#### Navigation Progressive ⭐
+- ✅ **Auto-hide au scroll** : Navigation qui se cache automatiquement lors du défilement vers le bas
+- ✅ **Réapparition intelligente** : Revient instantanément au scroll vers le haut
+- ✅ **Barre de progression** : Indicateur horizontal de lecture (0-100%) avec dégradé premium
+- ✅ **Performances** : Optimisé avec `requestAnimationFrame` pour 60fps constant
+- 📁 Fichiers : `progressiveNav.js`, `progressive-nav.css`
+
+#### Accessibilité WCAG 2.1 AA - Score 100/100 ♿
+- ✅ **Audit complet** : Tous les ratios de contraste vérifiés (voir `docs/CONTRAST_AUDIT.md`)
+- ✅ **Corrections appliquées** : Navigation, hero, cards, FAQ, footer, formulaires
+- ✅ **Text shadows** : Garantit lisibilité sur images/vidéos
+- ✅ **Focus states** : Visibles sur tous les éléments interactifs
+- ✅ **Support clavier** : Navigation complète sans souris
+- 📁 Fichier : `accessibility-fixes.css`
+
+#### Système de Modales Projets 🎨
+- ✅ **Données centralisées** : Structure complète dans `/src/data/projects.js`
+- ✅ **12 projets détaillés** : SIVAL, Département 49, État de nature, CAPEB, etc.
+- ✅ **Animations fluides** : Ouverture/fermeture avec GSAP
+- ✅ **Focus trap** : Accessibilité complète (Escape, overlay, ARIA)
+- ✅ **Responsive parfait** : Adapté mobile/tablet/desktop
+- 📁 Fichiers : `projectModal.js`, `project-modal.css`, `projects.js`
+
+#### Content Management System 📝
+- ✅ **Textes centralisés** : Tous les contenus dans `/src/data/content.js`
+- ✅ **Édition facile** : Modifier les textes sans toucher au HTML
+- ✅ **Interpolation** : Variables dynamiques (ex: nom utilisateur)
+- ✅ **Structure claire** : Organisé par sections (hero, pricing, FAQ, etc.)
+- 📁 Fichier : `content.js`
+
+#### Menu Mobile Premium 📱
+- ✅ **Animation hamburger → X** : Transformation fluide
+- ✅ **Overlay avec blur** : `backdrop-filter` moderne
+- ✅ **Focus trap** : Navigation clavier accessible
+- ✅ **Lock scroll** : Empêche défilement du body
+- ✅ **Fermeture Escape** : Raccourci clavier intégré
+
+### 📚 Documentation Complète
+
+- 📖 **DESIGN_SYSTEM.md** : Tokens, couleurs, typographie, spacing, composants
+- 📖 **COMPONENT_GUIDE.md** : Guide complet des modules JavaScript
+- 📖 **CONTRAST_AUDIT.md** : Audit accessibilité avec solutions
+
+### 🎨 Améliorations Design
+
+- **Palette cohérente** : Terre cuite, ambre, encre nuit
+- **Contrastes garantis** : Tous > 4.5:1 (texte normal), > 3:1 (UI)
+- **Shadows intelligents** : Lisibilité sur toutes surfaces
+- **Animations premium** : Transitions GSAP fluides partout
+
+### 🛠️ Structure Améliorée
+
+```
+src/
+├── data/                    # ⭐ NOUVEAU
+│   ├── projects.js          # Données projets pour modales
+│   └── content.js           # Contenus éditables centralisés
+│
+├── scripts/
+│   ├── modules/
+│   │   ├── progressiveNav.js  # ⭐ NOUVEAU - Navigation progressive
+│   │   ├── projectModal.js    # Modales projets
+│   │   ├── faq.js
+│   │   ├── formValidator.js
+│   │   └── ...
+│   └── main.js
+│
+└── styles/
+    ├── progressive-nav.css     # ⭐ NOUVEAU
+    ├── project-modal.css       # ⭐ NOUVEAU
+    ├── accessibility-fixes.css # ⭐ NOUVEAU
+    └── ...
+```
 
 ## ✨ Vue d'ensemble
 
