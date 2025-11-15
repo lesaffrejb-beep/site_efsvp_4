@@ -662,67 +662,57 @@ body {
 
 /* ===== SECTION PROJETS ===== */
 .projects {
-  background: var(--surface);
-  padding: clamp(5rem, 8vw, 7rem) var(--space-6);
+  background: var(--bg-primary);
+  padding: clamp(var(--space-32), 8vw, var(--space-40)) var(--space-6);
 }
 
 .projects .container {
-  max-width: 1180px;
+  max-width: min(var(--max-width-content, 1280px), 100%);
 }
 
 .projects__grid {
-  display: grid;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(var(--space-6), 4vw, var(--space-10));
 }
 
 .project-card {
   position: relative;
-  border-radius: var(--radius-xl);
-  overflow: hidden;
-  background: #ffffff;
-  box-shadow: 0 24px 40px rgba(26, 35, 50, 0.12);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .project-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 40px 56px rgba(26, 35, 50, 0.18);
+  box-shadow: var(--shadow-primary-lg);
 }
 
 .project-card__content {
-  padding: clamp(1.75rem, 3vw, 2.25rem);
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
+  padding: clamp(var(--space-6), 4vw, var(--space-8));
 }
 
 .project-card__title {
   font-family: var(--font-display);
-  font-size: 1.4rem;
-  color: var(--encre-nuit);
+  font-size: clamp(1.5rem, 1.4rem + 0.3vw, 1.75rem);
+  color: var(--color-text-primary);
+  line-height: var(--leading-tight);
 }
 
 .project-card__baseline {
-  font-size: 1rem;
-  color: rgba(26, 35, 50, 0.65);
+  font-size: var(--text-base);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
 }
 
 .project-card__metrics {
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--color-text-primary) 60%, transparent);
   text-transform: uppercase;
-  color: rgba(26, 35, 50, 0.55);
 }
 
 .project-card__link {
   font-family: var(--font-body);
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: var(--text-sm);
+  font-weight: var(--font-semibold);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--terre-cuite);
+  color: var(--primary-700);
 }
 
 /* ===== SECTION TÉMOIGNAGES ===== */

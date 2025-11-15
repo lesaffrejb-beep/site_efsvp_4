@@ -20,11 +20,11 @@ section {
 /* Container principal bien centré */
 .container {
   width: 100%;
-  max-width: var(--container-max-width, 1280px);
+  max-width: min(var(--max-width-content, 1280px), 100%);
   margin-left: auto !important;
   margin-right: auto !important;
-  padding-left: var(--container-padding, 2.5rem);
-  padding-right: var(--container-padding, 2.5rem);
+  padding-left: clamp(var(--container-padding-sm, 1.25rem), 4vw, var(--container-padding, 1.5rem));
+  padding-right: clamp(var(--container-padding-sm, 1.25rem), 4vw, var(--container-padding, 1.5rem));
 }
 
 /* ============================================
@@ -160,15 +160,22 @@ section {
 
 .projects__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: var(--space-8);
   width: 100%;
+  justify-content: center;
+  justify-items: center;
 }
 
 .project-card {
   display: flex;
   flex-direction: column;
+  width: min(100%, 360px);
   height: 100%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: var(--surface-elevated, #fff);
+  box-shadow: var(--shadow-lg);
 }
 
 .project-card__content {
@@ -176,13 +183,21 @@ section {
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--space-6);
+  text-align: center;
+  line-height: var(--leading-relaxed, 1.7);
 }
 
 .project-card__link {
   margin-top: auto;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-2);
+}
+
+.project-card__metrics {
+  font-size: var(--text-sm);
+  letter-spacing: 0.08em;
 }
 
 /* ============================================
