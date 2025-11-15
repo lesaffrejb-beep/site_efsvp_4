@@ -231,18 +231,16 @@ export function initServicesContent() {
 export function initPortfolioContent() {
   const { section, metrics, filters, projects } = portfolioContent;
 
-  const eyebrow = document.querySelector('.projects__eyebrow');
   const title = document.querySelector('.projects__title');
   const description = document.querySelector('.projects__description');
-  if (eyebrow) eyebrow.textContent = section.eyebrow;
   if (title) title.textContent = section.title;
   if (description) description.textContent = section.description;
 
-  const metricElements = document.querySelectorAll('.projects__metric');
+  const metricElements = document.querySelectorAll('.projects__stat-card');
   metricElements.forEach((metricEl, index) => {
     if (!metrics[index]) return;
-    const value = metricEl.querySelector('.projects__metric-value');
-    const label = metricEl.querySelector('.projects__metric-label');
+    const value = metricEl.querySelector('.projects__stat-value');
+    const label = metricEl.querySelector('.projects__stat-label');
     if (value) value.textContent = metrics[index].value;
     if (label) label.textContent = metrics[index].label;
   });
@@ -253,8 +251,10 @@ export function initPortfolioContent() {
       .map(
         (group) => `
         <div class="projects-filter" data-filter-group="${group.id}">
-          <span class="projects-filter__label">${group.label}</span>
-          <div class="projects-filter__options">
+          <div class="projects-filter__header">
+            <span class="projects-filter__label">${group.label}</span>
+          </div>
+          <div class="projects-filter__options" role="listbox" aria-label="Filtrer par ${group.label.toLowerCase()}">
             ${group.options
               .map(
                 (option) => `
@@ -262,6 +262,7 @@ export function initPortfolioContent() {
                           type="button"
                           data-filter-group="${group.id}"
                           data-filter-value="${option.value}"
+                          role="option"
                           aria-pressed="${option.active ? 'true' : 'false'}">
                     ${option.label}
                   </button>
@@ -298,6 +299,14 @@ export function initPortfolioContent() {
           .slice(0, 2)
           .map((theme) => `<span class="project-card__tag">${theme}</span>`)
           .join('');
+        const clientInitials = project.client
+          ? project.client
+              .split(/\s+/)
+              .filter(Boolean)
+              .slice(0, 2)
+              .map((part) => part[0]?.toUpperCase() || '')
+              .join('')
+          : '';
 
         return `
           <article class="project-card"
@@ -305,26 +314,24 @@ export function initPortfolioContent() {
                    data-typology="${project.typology}"
                    data-sector="${project.sector}"
                    data-status="${project.status}">
-            <div class="project-card__media">
-              <div class="project-card__media-glow"></div>
-              <div class="project-card__media-meta">
-                <span class="project-card__format">${project.format}</span>
-                ${themeTags ? `<div class="project-card__tags">${themeTags}</div>` : ''}
+            <div class="project-card__visual" aria-hidden="true">
+              <div class="project-card__visual-frame">
+                <span class="project-card__badge">${project.format}</span>
+                <span class="project-card__monogram">${clientInitials}</span>
+                <span class="project-card__location">${project.location}</span>
               </div>
-              <span class="project-card__media-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                  <path d="M8 5v14l11-7-11-7z" stroke-linejoin="round" stroke-linecap="round"></path>
-                </svg>
-              </span>
             </div>
-            <div class="project-card__content">
-              <div class="project-card__meta">
-                <span class="project-card__client">${project.client}</span>
-                <span class="project-card__year">${period}</span>
-              </div>
-              <h3 class="project-card__title">${project.title}</h3>
-              <p class="project-card__tagline">${project.tagline}</p>
+            <div class="project-card__body">
+              <header class="project-card__header">
+                <div class="project-card__meta">
+                  <span class="project-card__client">${project.client}</span>
+                  <span class="project-card__year">${period}</span>
+                </div>
+                <h3 class="project-card__title">${project.title}</h3>
+                <p class="project-card__tagline">${project.tagline}</p>
+              </header>
               <p class="project-card__description">${project.shortDescription}</p>
+              ${themeTags ? `<div class="project-card__tags">${themeTags}</div>` : ''}
               <div class="project-card__chips">
                 ${sectorChip}
                 ${typologyChip}

@@ -15,14 +15,13 @@ const sectorFilterOptions = [
 
 export const portfolioContent = {
   section: {
-    eyebrow: 'Projets récents',
     title: 'Quelques histoires que nous avons racontées',
     description:
       'Chaque projet est écrit à partir de votre réalité : collectage, écriture, musique et mise en voix pour une expérience qui vous ressemble.',
   },
   metrics: [
-    { value: '60+', label: 'représentations' },
-    { value: '15+', label: 'institutions et entreprises accompagnées' },
+    { value: '60+', label: 'Représentations' },
+    { value: '15+', label: 'Institutions & entreprises accompagnées' },
   ],
   filters: [
     {
