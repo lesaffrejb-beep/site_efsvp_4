@@ -1,147 +1,124 @@
+// src/scripts/blocks/hero-signature.js
 import { gsap } from 'gsap';
 
-console.log('📦 [HERO] Fichier hero-signature.js chargé');
-
 /**
- * Animation du hero avec signature manuscrite
- * Timeline : signature → goutte → rigole → baseline
+ * Animation de signature manuscrite pour le hero EfSVP.
+ *
+ * - Le path SVG se "dessine" avec stroke-dashoffset
+ * - Une goutte d'encre tombe à la fin
+ * - La rigole se remplit à partir de la gauche
+ * - La baseline fade-in en douceur
+ *
+ * Aucune dépendance à ScrollTrigger : animation au chargement uniquement.
  */
 export function initHeroSignature() {
-  console.log('🎬 [HERO] Fonction initHeroSignature() appelée');
+  const signaturePath = document.getElementById('hero-signature-path');
+  const inkDrop = document.getElementById('hero-ink-drop');
+  const inkLine = document.getElementById('hero-ink-line');
+  const baseline = document.querySelector('[data-hero-baseline]');
 
-  // Attendre que le DOM soit chargé
-  if (document.readyState === 'loading') {
-    console.log('⏳ [HERO] DOM en chargement, attente...');
-    document.addEventListener('DOMContentLoaded', initHeroSignature);
+  // Si le hero n'est pas présent sur la page, on ne fait rien
+  if (!signaturePath || !inkDrop || !inkLine || !baseline) {
     return;
   }
 
-  console.log('✅ [HERO] DOM prêt, recherche des éléments...');
+  // Respecte les préférences utilisateur pour l'animation
+  const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+  ).matches;
 
-  // Sélection avec logs
-  const signaturePath = document.getElementById('signature-path');
-  const inkDrop = document.getElementById('ink-drop');
-  const inkFill = document.getElementById('ink-fill');
-  const baseline = document.getElementById('baseline');
-  const signatureSvg = document.getElementById('signature-svg');
+  if (prefersReducedMotion) {
+    // État statique lisible
+    signaturePath.style.strokeDasharray = 'none';
+    signaturePath.style.strokeDashoffset = '0';
+    inkDrop.style.opacity = '0';
+    inkLine.style.transform = 'scaleX(1)';
+    baseline.style.opacity = '1';
+    return;
+  }
 
-  console.log('🔍 [HERO] Éléments trouvés :', {
-    signaturePath: !!signaturePath,
-    inkDrop: !!inkDrop,
-    inkFill: !!inkFill,
-    baseline: !!baseline,
-    signatureSvg: !!signatureSvg
+  const length = signaturePath.getTotalLength();
+
+  // État initial
+  gsap.set(signaturePath, {
+    strokeDasharray: length,
+    strokeDashoffset: length,
   });
 
-  // Guard clause avec logs détaillés
-  if (!signaturePath) {
-    console.error('❌ [HERO] signature-path non trouvé');
-    return;
-  }
-  if (!inkDrop) {
-    console.error('❌ [HERO] ink-drop non trouvé');
-    return;
-  }
-  if (!inkFill) {
-    console.error('❌ [HERO] ink-fill non trouvé');
-    return;
-  }
-  if (!baseline) {
-    console.error('❌ [HERO] baseline non trouvé');
-    return;
-  }
-  if (!signatureSvg) {
-    console.error('❌ [HERO] signature-svg non trouvé');
-    return;
-  }
-
-  // Check GSAP
-  if (typeof gsap === 'undefined') {
-    console.error('❌ [HERO] GSAP non disponible');
-    return;
-  }
-  console.log('✅ [HERO] GSAP disponible');
-
-  // Timeline avec log
-  console.log('🎨 [HERO] Création de la timeline...');
-  const masterTimeline = gsap.timeline({
-    defaults: { ease: 'none' },
-    onStart: () => console.log('▶️ [HERO] Animation démarrée'),
-    onComplete: () => console.log('✅ [HERO] Animation terminée')
-  });
-
-  // Animation signature
-  console.log('✍️ [HERO] Animation signature...');
-  masterTimeline.to(signaturePath, {
-    strokeDashoffset: 0,
-    duration: 2.5,
-    ease: 'power1.inOut',
-    onUpdate: function() {
-      if (this.progress() === 0.5) {
-        console.log('⏱️ [HERO] Signature à 50%');
-      }
-    }
-  });
-
-  // Calcul position goutte
-  try {
-    const pathLength = signaturePath.getTotalLength();
-    const endPoint = signaturePath.getPointAtLength(pathLength);
-    const svgRect = signatureSvg.getBoundingClientRect();
-    const svgViewBox = signatureSvg.viewBox.baseVal;
-    const scaleX = svgRect.width / svgViewBox.width;
-    const scaleY = svgRect.height / svgViewBox.height;
-    const dropX = endPoint.x * scaleX;
-    const dropY = endPoint.y * scaleY + svgRect.top - signatureSvg.parentElement.getBoundingClientRect().top;
-
-    console.log('💧 [HERO] Position goutte calculée :', { dropX, dropY });
-
-    gsap.set(inkDrop, {
-      left: `${dropX}px`,
-      top: `${dropY}px`,
-      xPercent: -50,
-      yPercent: -50
-    });
-  } catch (err) {
-    console.error('❌ [HERO] Erreur calcul position goutte :', err);
-  }
-
-  // Goutte
-  masterTimeline
-    .to(inkDrop, {
-      opacity: 1,
-      duration: 0.08,
-      onComplete: () => console.log('💧 [HERO] Goutte apparue')
-    }, '>')
-    .to(inkDrop, {
-      y: '+=35px',
-      duration: 0.35,
-      ease: 'power2.in',
-      onComplete: () => console.log('💧 [HERO] Goutte tombée')
-    }, '>');
-
-  // Rigole
-  masterTimeline.to(inkFill, {
-    width: '100%',
-    duration: 0.65,
-    ease: 'power2.out',
-    onComplete: () => console.log('🌊 [HERO] Rigole remplie')
-  }, '>');
-
-  // Baseline
-  masterTimeline.to(baseline, {
-    opacity: 1,
-    y: 0,
-    duration: 0.6,
-    ease: 'power2.out',
-    onComplete: () => console.log('📝 [HERO] Baseline affichée')
-  }, '>');
-
-  // Goutte disparaît
-  masterTimeline.to(inkDrop, {
+  gsap.set(inkDrop, {
     opacity: 0,
-    duration: 0.25
-  }, '-=0.4');
+    scale: 0.6,
+    transformOrigin: 'center center',
+  });
 
-  console.log('🎯 [HERO] Timeline configurée, lancement imminent');
+  gsap.set(inkLine, {
+    scaleX: 0,
+    transformOrigin: 'left center',
+    opacity: 0.9,
+  });
+
+  gsap.set(baseline, {
+    opacity: 0,
+    y: 8,
+  });
+
+  const tl = gsap.timeline({
+    defaults: {
+      ease: 'power2.out',
+    },
+  });
+
+  // 1) Signature qui s'écrit
+  tl.to(signaturePath, {
+    strokeDashoffset: 0,
+    duration: 2.2,
+  })
+
+    // 2) Goutte d'encre qui apparaît et tombe légèrement
+    .to(
+      inkDrop,
+      {
+        opacity: 1,
+        duration: 0.15,
+      },
+      '-=0.2'
+    )
+    .to(inkDrop, {
+      y: 14,
+      scale: 1.05,
+      duration: 0.35,
+      ease: 'power3.in',
+    })
+
+    // 3) Goutte qui "s'écrase" et disparaît
+    .to(inkDrop, {
+      scaleX: 1.4,
+      scaleY: 0.4,
+      opacity: 0,
+      duration: 0.25,
+      ease: 'power2.inOut',
+    })
+
+    // 4) Rigole qui se remplit
+    .to(
+      inkLine,
+      {
+        scaleX: 1,
+        duration: 0.9,
+        ease: 'power2.out',
+      },
+      '-=0.15'
+    )
+
+    // 5) Baseline qui fade-in
+    .to(
+      baseline,
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out',
+      },
+      '-=0.2'
+    );
 }

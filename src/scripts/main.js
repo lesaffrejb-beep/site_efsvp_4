@@ -22,7 +22,6 @@ import { CookieConsent } from './modules/cookieConsent.js';
 import { CopyEmail } from './modules/copyEmail.js';
 import { ProjectModal } from './modules/projectModal.js';
 import { FAQ } from './modules/faq.js';
-import { initHeroInk } from './modules/heroInk.js';
 import { initHeroSignature } from './blocks/hero-signature.js';
 import { initAudioBlock } from './blocks/audio.js';
 import { initPortfolioBlock } from './blocks/portfolio.js';
@@ -186,19 +185,7 @@ class App {
 
   initSections() {
     // Hero signature animation
-    console.log('🔧 [MAIN] Initialisation des sections...');
-    console.log('🔧 [MAIN] GSAP disponible ?', typeof gsap !== 'undefined');
-
-    if (typeof gsap !== 'undefined') {
-      initHeroSignature();
-    } else {
-      console.error('❌ [MAIN] GSAP non chargé avant init hero');
-    }
-
-    // const heroInkInstance = initHeroInk();
-    // if (heroInkInstance) {
-    //   this.modules.heroInk = heroInkInstance;
-    // }
+    initHeroSignature();
 
     const audioContext = initAudioBlock({ modules: this.modules });
     this.modules = audioContext.modules;
