@@ -58,15 +58,16 @@ export function initHeroSignature() {
       opacity: 1,
     });
 
-    // Animer le tracé
+    // Animer le tracé avec un timing plus naturel
+    // Les paths se succèdent avec un léger chevauchement
     tl.to(
       path,
       {
         strokeDashoffset: 0,
-        duration: 2.4,
+        duration: 0.6, // Durée plus courte par path pour fluidité
         ease: 'power2.inOut',
       },
-      index === 0 ? 0.3 : '>-2.2' // chevauche les segments pour fluidité
+      index === 0 ? 0.3 : '>-0.4' // Chevauchement modéré pour effet manuscrit naturel
     );
   });
 
