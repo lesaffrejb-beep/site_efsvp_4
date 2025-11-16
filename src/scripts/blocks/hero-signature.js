@@ -3,20 +3,21 @@ import { gsap } from 'gsap';
 
 /**
  * Animation de la signature manuscrite du hero
- * - Utilise stroke-dasharray/dashoffset pour dessiner le path
+ * - Utilise stroke-dasharray/dashoffset pour dessiner le(s) path(s)
  * - Ajoute un effet goutte d'encre à la fin
- * - Fait apparaître le sous-titre
+ * - Fait apparaître le sous-titre et les CTA
  * - Respecte prefers-reduced-motion
  */
 export function initHeroSignature() {
   const svg = document.querySelector('[data-hero-signature]');
   if (!svg) return;
 
-  const path = svg.querySelector('.hero-signature-path');
+  const paths = svg.querySelectorAll('.hero-signature-path');
   const inkDrop = document.querySelector('.hero-ink-drop');
   const subtitle = document.querySelector('[data-hero-baseline]');
+  const ctaButtons = document.querySelectorAll('.hero-cta > *');
 
-  if (!path) return;
+  if (!paths.length) return;
 
   const prefersReducedMotion = window.matchMedia(
     '(prefers-reduced-motion: reduce)'
@@ -24,63 +25,93 @@ export function initHeroSignature() {
 
   if (prefersReducedMotion) {
     // Pas d'animation : tout visible directement
-    path.style.strokeDasharray = 'none';
-    path.style.strokeDashoffset = '0';
+    paths.forEach((path) => {
+      path.style.strokeDasharray = 'none';
+      path.style.strokeDashoffset = '0';
+    });
     if (subtitle) {
       subtitle.style.opacity = '1';
       subtitle.style.transform = 'none';
     }
+    if (ctaButtons.length) {
+      ctaButtons.forEach((btn) => {
+        btn.style.opacity = '1';
+        btn.style.transform = 'none';
+      });
+    }
     return;
   }
 
-  // Calculer la longueur totale du path
-  const length = path.getTotalLength();
+  // Timeline principale pour orchestrer l'animation
+  const tl = gsap.timeline({
+    defaults: { ease: 'power2.out' },
+  });
 
-  // État initial : rien n'est dessiné
-  path.style.strokeDasharray = length;
-  path.style.strokeDashoffset = length;
-  path.style.opacity = '1';
+  // Animation de chaque path (signature manuscrite)
+  paths.forEach((path, index) => {
+    const length = path.getTotalLength();
 
-  // Animation du tracé (écriture de la signature)
-  gsap.fromTo(
-    path,
-    { strokeDashoffset: length },
-    {
-      strokeDashoffset: 0,
-      duration: 3.2,
-      ease: 'power2.out',
-      delay: 0.3,
-    }
-  );
+    // État initial : rien n'est dessiné
+    gsap.set(path, {
+      strokeDasharray: length,
+      strokeDashoffset: length,
+      opacity: 1,
+    });
+
+    // Animer le tracé
+    tl.to(
+      path,
+      {
+        strokeDashoffset: 0,
+        duration: 2.4,
+        ease: 'power2.inOut',
+      },
+      index === 0 ? 0.3 : '>-2.2' // chevauche les segments pour fluidité
+    );
+  });
 
   // Effet goutte d'encre (apparaît à la fin du tracé)
   if (inkDrop) {
-    gsap.fromTo(
+    tl.fromTo(
       inkDrop,
-      { opacity: 0, scale: 0.2, y: -8 },
+      { opacity: 0, scale: 0.3, y: -6 },
       {
         opacity: 1,
         scale: 1,
         y: 0,
-        delay: 3.0,
-        duration: 0.4,
-        ease: 'back.out(2)',
-      }
+        duration: 0.35,
+        ease: 'back.out(2.5)',
+      },
+      '>-0.2'
     );
   }
 
   // Apparition du sous-titre
   if (subtitle) {
-    gsap.fromTo(
+    tl.fromTo(
       subtitle,
-      { opacity: 0, y: 8 },
+      { opacity: 0, y: 10 },
       {
         opacity: 1,
         y: 0,
-        delay: 3.1,
-        duration: 0.6,
-        ease: 'power2.out',
-      }
+        duration: 0.5,
+      },
+      '>-0.15'
+    );
+  }
+
+  // Apparition des boutons CTA avec stagger
+  if (ctaButtons.length) {
+    tl.fromTo(
+      ctaButtons,
+      { opacity: 0, y: 10 },
+      {
+        opacity: 1,
+        y: 0,
+        stagger: 0.1,
+        duration: 0.45,
+      },
+      '<+0.1'
     );
   }
 }
