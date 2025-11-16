@@ -23,6 +23,16 @@ export function initHeroSignature() {
     '(prefers-reduced-motion: reduce)'
   ).matches;
 
+  if (subtitle) {
+    gsap.set(subtitle, { opacity: 0, y: 12 });
+  }
+  if (ctaButtons.length) {
+    gsap.set(ctaButtons, { opacity: 0, y: 12 });
+  }
+  if (inkDrop) {
+    gsap.set(inkDrop, { transformOrigin: '50% 50%', opacity: 0 });
+  }
+
   if (prefersReducedMotion) {
     // Pas d'animation : tout visible directement
     paths.forEach((path) => {
@@ -43,13 +53,12 @@ export function initHeroSignature() {
   }
 
   // Timeline principale pour orchestrer l'animation
-  const tl = gsap.timeline({
-    defaults: { ease: 'power2.out' },
-  });
+  const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
 
   // Animation de chaque path (signature manuscrite)
   paths.forEach((path, index) => {
     const length = path.getTotalLength();
+    const duration = gsap.utils.clamp(0.45, 1.4, length / 420);
 
     // État initial : rien n'est dessiné
     gsap.set(path, {
@@ -64,26 +73,38 @@ export function initHeroSignature() {
       path,
       {
         strokeDashoffset: 0,
-        duration: 0.6, // Durée plus courte par path pour fluidité
+        duration,
         ease: 'power2.inOut',
       },
-      index === 0 ? 0.3 : '>-0.4' // Chevauchement modéré pour effet manuscrit naturel
+      index === 0 ? 0.35 : '>-0.25' // Chevauchement modéré pour effet manuscrit naturel
     );
   });
+
+  tl.addLabel('signatureComplete');
 
   // Effet goutte d'encre (apparaît à la fin du tracé)
   if (inkDrop) {
     tl.fromTo(
       inkDrop,
-      { opacity: 0, scale: 0.3, y: -6 },
+      { opacity: 0, scale: 0.4, y: -16 },
       {
         opacity: 1,
         scale: 1,
         y: 0,
-        duration: 0.35,
-        ease: 'back.out(2.5)',
+        duration: 0.4,
+        ease: 'back.out(2.2)',
       },
-      '>-0.2'
+      'signatureComplete-=0.05'
+    ).to(
+      inkDrop,
+      {
+        y: 18,
+        scaleY: 0.85,
+        opacity: 1,
+        duration: 0.45,
+        ease: 'power1.in',
+      },
+      '>-0.1'
     );
   }
 

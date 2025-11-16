@@ -15,7 +15,7 @@
 .hero__inner {
   max-width: 1200px;
   width: 100%;
-  padding: 0 var(--space-8, 4rem);
+  padding: 0 var(--space-6, 3rem);
 }
 
 .hero__content {
@@ -35,6 +35,7 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-8, 4rem);
+  text-align: center;
 }
 
 /* H1 visible pour SEO/accessibilité */
@@ -54,21 +55,25 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: var(--space-8, 4rem);
+  width: min(90vw, 960px);
+  margin: 0 auto var(--space-8, 4rem);
+  padding: var(--space-2, 1rem);
 }
 
 .hero-signature-svg {
   display: block;
-  width: min(85vw, 700px);
+  width: 100%;
   height: auto;
   max-width: 100%;
+  aspect-ratio: 1180 / 320;
+  overflow: visible;
 }
 
 /* Path de la signature manuscrite */
 .hero-signature-path {
   fill: none;
   stroke: var(--neutral-900, #1a2332);
-  stroke-width: 2.8;
+  stroke-width: 8;
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 1;
@@ -79,13 +84,13 @@
 /* Goutte d'encre (apparaît à la fin du tracé) */
 .hero-ink-drop {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: var(--neutral-900, #1a2332);
-  bottom: 15%;
-  right: 15%;
-  transform-origin: center;
+  top: 60%;
+  left: 82%;
+  transform: translate(-50%, -50%);
   opacity: 0;
   pointer-events: none;
   box-shadow: 0 2px 4px rgba(26, 35, 50, 0.15);
@@ -123,7 +128,6 @@
   line-height: 1.6;
   letter-spacing: 0.04em;
   color: var(--neutral-900, #1a2332);
-  opacity: 0;
   text-align: center;
   max-width: 550px;
 }
@@ -150,10 +154,6 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-top: var(--space-4, 2rem);
-}
-
-.hero-cta > * {
-  opacity: 0; /* Initialisé pour l'animation GSAP */
 }
 
 .hero-cta .btn {
