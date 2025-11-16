@@ -57,7 +57,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <!-- Réduction des graisses chargées - Seulement les nécessaires -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&family=Cormorant:ital,wght@1,600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&family=Cormorant:ital,wght@1,600&family=Allura&display=swap"
       rel="stylesheet"
     />
     <!-- Preload des fonts critiques pour le Hero -->
@@ -215,124 +215,16 @@
     <section id="hero" class="hero hero--signature" data-section="hero">
       <div class="hero__inner container">
         <div class="hero__content">
-          <!-- Signature manuscrite SVG -->
-          <figure class="hero-signature-block" aria-hidden="true">
-            <svg
-              class="hero-signature-svg"
-              viewBox="0 0 800 200"
-              role="presentation"
-            >
-              <!-- Signature manuscrite "En français s'il vous plaît" - Style Cormorant Italic -->
-              <path
-                id="hero-signature-path"
-                class="hero-signature-path"
-                d="M 50,90
-                   Q 55,75 65,78
-                   Q 75,81 85,95
-                   Q 90,102 98,100
-                   L 110,98
+          <!-- Titre manuscrit -->
+          <div class="hero-signature-block">
+            <h1 id="hero-title" class="hero-title-handwritten">
+              En français s'il vous plaît
+            </h1>
 
-                   M 125,85
-                   Q 130,78 140,82
-                   Q 145,85 148,92
-                   Q 150,98 155,102
-                   L 165,105
-
-                   M 180,88
-                   Q 185,80 195,84
-                   Q 200,87 202,95
-                   L 205,105
-
-                   M 220,87
-                   C 225,82 235,80 242,85
-                   Q 248,90 252,98
-                   L 258,106
-
-                   M 275,85
-                   Q 280,78 290,82
-                   Q 295,85 298,92
-                   Q 300,98 305,102
-                   L 315,105
-
-                   M 330,88
-                   C 335,83 342,82 348,86
-                   Q 352,90 355,96
-                   Q 357,102 360,105
-
-                   M 375,87
-                   Q 380,80 390,84
-                   Q 395,87 398,94
-                   L 402,104
-
-                   M 418,86
-                   C 423,81 432,80 438,84
-                   Q 442,88 445,95
-                   Q 447,101 450,106
-                   L 458,110
-
-                   M 475,88
-                   Q 480,82 488,85
-                   Q 492,88 495,94
-                   L 500,102
-
-                   M 515,87
-                   Q 520,81 528,84
-                   Q 532,87 535,93
-                   Q 537,98 542,102
-
-                   M 558,86
-                   C 563,82 570,81 576,85
-                   Q 580,89 583,95
-                   L 588,104
-
-                   M 605,88
-                   Q 610,83 617,86
-                   Q 621,89 624,95
-                   Q 626,100 630,104
-
-                   M 645,87
-                   C 650,83 657,82 663,86
-                   Q 667,90 670,96
-                   L 675,105
-
-                   M 690,89
-                   Q 695,84 702,87
-                   Q 706,90 709,95
-                   Q 711,100 715,104
-                   L 722,107"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              ></path>
-
-              <!-- Goutte d'encre -->
-              <circle
-                id="hero-ink-drop"
-                class="hero-ink-drop"
-                cx="722"
-                cy="107"
-                r="3.5"
-              ></circle>
-
-              <!-- Rigole / ligne d'encre horizontale -->
-              <rect
-                id="hero-ink-line"
-                class="hero-ink-line"
-                x="50"
-                y="145"
-                width="672"
-                height="1.8"
-                rx="0.9"
-                ry="0.9"
-              ></rect>
-            </svg>
-
-            <figcaption class="hero-signature-caption" data-hero-baseline>
+            <p class="hero-signature-caption" data-hero-baseline>
               Studio de création narrative &amp; musicale sur-mesure
-            </figcaption>
-          </figure>
+            </p>
+          </div>
 
           <!-- CTA Buttons -->
           <div class="hero-cta">
