@@ -59,56 +59,37 @@ export function initNavContent() {
  */
 export function initHeroContent() {
   const { hero } = siteContent;
+  if (!hero) return;
 
-  const eyebrow = document.querySelector('[data-hero-eyebrow]');
-  if (eyebrow && hero?.eyebrow) {
-    eyebrow.textContent = hero.eyebrow;
+  const heroSection = document.getElementById('hero');
+  if (!heroSection) return;
+
+  const title = heroSection.querySelector('[data-hero-title]');
+  if (title && hero.title) {
+    title.textContent = hero.title;
   }
 
-  const signatureLabel = document.querySelector('[data-hero-signature-label]');
-  if (signatureLabel && hero?.signature?.label) {
-    signatureLabel.textContent = hero.signature.label;
+  const baselineLead = heroSection.querySelector('[data-hero-baseline-lead]');
+  if (baselineLead && hero.baseline) {
+    baselineLead.textContent = hero.baseline;
   }
 
-  const baseline = document.querySelector('[data-hero-baseline]');
-  if (baseline && hero?.baseline) {
-    const lead = hero.baseline.lead ?? '';
-    const joinedMoments = Array.isArray(hero.baseline.moments)
-      ? hero.baseline.moments.join(' • ')
-      : '';
-    const baselineText = [lead, joinedMoments]
-      .filter(Boolean)
-      .join(' ')
-      .trim();
-    baseline.textContent = baselineText.endsWith('.') ? baselineText : `${baselineText}.`;
+  const heroMoments = heroSection.querySelector('[data-hero-moments]');
+  if (heroMoments && Array.isArray(hero.moments)) {
+    const joined = hero.moments.join(' • ');
+    heroMoments.textContent = joined.endsWith('.') ? joined : `${joined}.`;
   }
 
-  const primaryCta = document.querySelector('.hero__cta-button--primary');
-  if (primaryCta && hero?.ctaPrimary) {
-    primaryCta.textContent = hero.ctaPrimary.label;
-    primaryCta.href = hero.ctaPrimary.href;
+  const primaryCta = heroSection.querySelector('[data-hero-cta-primary]');
+  if (primaryCta && hero.ctas?.primary) {
+    primaryCta.textContent = hero.ctas.primary.label;
+    primaryCta.href = hero.ctas.primary.href;
   }
 
-  const secondaryCta = document.querySelector('.hero__cta-button--secondary');
-  if (secondaryCta && hero?.ctaSecondary) {
-    secondaryCta.textContent = hero.ctaSecondary.label;
-    secondaryCta.href = hero.ctaSecondary.href;
-  }
-
-  const scrollIndicator = document.querySelector('[data-hero-scroll]');
-  if (scrollIndicator && hero?.scroll) {
-    if (hero.scroll.target) {
-      scrollIndicator.dataset.scrollTarget = hero.scroll.target;
-    }
-
-    const scrollLabel = scrollIndicator.querySelector('[data-hero-scroll-label]');
-    if (scrollLabel && hero.scroll.label) {
-      scrollLabel.textContent = hero.scroll.label;
-    }
-
-    if (hero.scroll.label) {
-      scrollIndicator.setAttribute('aria-label', hero.scroll.label);
-    }
+  const secondaryCta = heroSection.querySelector('[data-hero-cta-secondary]');
+  if (secondaryCta && hero.ctas?.secondary) {
+    secondaryCta.textContent = hero.ctas.secondary.label;
+    secondaryCta.href = hero.ctas.secondary.href;
   }
 }
 

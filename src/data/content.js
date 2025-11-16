@@ -8,27 +8,18 @@
 export const siteContent = {
   // ===== HERO =====
   hero: {
-    eyebrow: "Studio de création narrative & musicale",
-    signature: {
-      label: "En français s’il vous plaît",
-      description:
-        "Nom du studio affiché comme une signature manuscrite animée au chargement",
-    },
-    baseline: {
-      lead: "Studio de création narrative et musicale sur-mesure.",
-      moments: ["Anniversaires", "Inaugurations", "Moments fondateurs"],
-    },
-    ctaPrimary: {
-      label: "Découvrir nos créations",
-      href: "#projets",
-    },
-    ctaSecondary: {
-      label: "Discuter de votre projet",
-      href: "#contact",
-    },
-    scroll: {
-      label: "Découvrir",
-      target: "#projets",
+    title: "En français s’il vous plaît",
+    baseline: "Studio de création narrative et musicale sur-mesure.",
+    moments: ["Anniversaires", "Inaugurations", "Moments fondateurs"],
+    ctas: {
+      primary: {
+        label: "Découvrir nos créations",
+        href: "#projets",
+      },
+      secondary: {
+        label: "Discuter de votre projet",
+        href: "#contact",
+      },
     },
   },
 
