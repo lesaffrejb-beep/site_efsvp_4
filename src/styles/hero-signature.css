@@ -1,21 +1,17 @@
 /* ============================================
-   HERO INK - Signature narrative
-   Refactored: improved ink channel (no loader effect), better mobile spacing
-   Fixes: mobile CTAs stacking, ink channel centered with proper sizing
+   HERO INK 2025 - Signature manuscrite poétique
    ============================================ */
 
 .hero.hero--ink {
   position: relative;
-  min-height: clamp(520px, 100vh, 820px);
-  padding: clamp(var(--space-12), 12vh, var(--space-32)) var(--container-padding);
+  min-height: clamp(540px, 90vh, 820px);
+  padding: clamp(4rem, 10vh, 7rem) var(--container-padding);
   display: flex;
   align-items: center;
   justify-content: center;
-  background:
-    radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0) 58%),
-    radial-gradient(circle at 78% 8%, rgba(185, 90, 64, 0.12) 0%, rgba(185, 90, 64, 0) 58%),
-    linear-gradient(135deg, rgba(248, 244, 236, 0.95) 0%, rgba(243, 232, 215, 0.96) 45%, rgba(234, 219, 198, 0.98) 100%);
-  color: var(--text-primary);
+  background-color: var(--neutral-100);
+  color: var(--neutral-900);
+  text-align: center;
   overflow: hidden;
 }
 
@@ -24,314 +20,153 @@
   position: absolute;
   inset: 0;
   background:
-    repeating-linear-gradient(
-      0deg,
-      rgba(26, 35, 50, 0.02) 0,
-      rgba(26, 35, 50, 0.02) 1px,
-      transparent 1px,
-      transparent 12px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(26, 35, 50, 0.015) 0,
-      rgba(26, 35, 50, 0.015) 1px,
-      transparent 1px,
-      transparent 16px
-    );
-  mix-blend-mode: multiply;
-  opacity: 0.55;
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.6), transparent 55%),
+    radial-gradient(circle at 80% 0%, rgba(184, 68, 30, 0.08), transparent 60%);
   pointer-events: none;
+  opacity: 0.45;
 }
 
 .hero__inner {
   position: relative;
   z-index: 1;
-  width: min(1080px, 100%);
-  margin: 0 auto;
-  display: grid;
-  gap: clamp(var(--space-8), 5vh, var(--space-12));
-  justify-items: center;
-  text-align: center;
-  padding: var(--space-4) 0;
-}
-
-.hero__eyebrow {
-  font-family: var(--font-body);
-  font-size: clamp(0.75rem, 1.6vw, 0.95rem);
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
-  color: rgba(26, 35, 50, 0.65);
-  margin: 0;
-}
-
-.hero__eyebrow:empty {
-  display: none;
+  width: min(960px, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-items: center;
 }
 
 .hero__signature-wrapper {
-  width: min(880px, 92%);
-  padding-bottom: clamp(var(--space-6), 5vh, var(--space-10));
+  position: relative;
+  width: min(90vw, 800px);
 }
 
 .hero__signature {
-  position: relative;
-  display: flex;
-  justify-content: center;
-}
-
-.hero__signature-svg {
-  width: min(92vw, 860px);
+  width: 100%;
   height: auto;
   display: block;
 }
 
-.hero__signature-path {
+#hero-signature-path {
   fill: none;
-  stroke: var(--text-primary);
+  stroke: var(--neutral-900);
   stroke-width: 3.2;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 12px 24px rgba(26, 35, 50, 0.18));
-  stroke-dasharray: none;
-  stroke-dashoffset: 0;
-  /* Variante plus fine et élégante */
+  filter: drop-shadow(0 12px 22px rgba(26, 35, 50, 0.18));
+}
+
+.hero__ink-drop {
+  position: absolute;
+  bottom: -0.5rem;
+  right: 18%;
+  width: clamp(14px, 2vw, 22px);
+  height: clamp(18px, 2.4vw, 28px);
+  background: var(--neutral-900);
+  border-radius: 50% 50% 60% 60%;
+  opacity: 0;
+  transform: translate3d(0, -40px, 0);
+  filter: drop-shadow(0 8px 18px rgba(26, 35, 50, 0.25));
 }
 
 .hero__ink-channel {
-  position: relative;
-  width: min(420px, 68vw);
-  height: clamp(12px, 2.5vw, 20px);
-  border-radius: var(--radius-full);
-  background: rgba(26, 35, 50, 0.12);
+  width: min(420px, 70vw);
+  height: clamp(12px, 2vw, 18px);
+  border-radius: 999px;
+  background: rgba(26, 35, 50, 0.15);
   box-shadow:
-    inset 0 8px 14px rgba(26, 35, 50, 0.15),
-    0 18px 28px rgba(26, 35, 50, 0.08);
+    inset 0 6px 14px rgba(26, 35, 50, 0.2),
+    0 10px 20px rgba(26, 35, 50, 0.08);
   overflow: hidden;
-  /* Centré, pas étiré d'un bout à l'autre pour éviter l'effet loader */
 }
 
-/* Reflet subtil repositionné pour ne pas ressembler à une progression */
 .hero__ink-channel::before {
   content: '';
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40%;
-  top: 3px;
-  height: 3px;
-  border-radius: var(--radius-full);
-  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0) 70%);
-  opacity: 0.5;
+  inset: 3px;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.18);
+  opacity: 0.4;
   pointer-events: none;
 }
 
 .hero__ink-fill {
-  --ink-ripple-x: 50%;
-  --ink-ripple-y: 50%;
   width: 100%;
   height: 100%;
-  transform-origin: left center;
-  position: relative;
-  isolation: isolate;
+  border-radius: inherit;
   background:
-    radial-gradient(
-      140% 180% at var(--ink-ripple-x) var(--ink-ripple-y),
-      rgba(26, 35, 50, 0.92) 0%,
-      rgba(26, 35, 50, 0.78) 44%,
-      rgba(26, 35, 50, 0.45) 74%,
-      rgba(26, 35, 50, 0) 100%
-    ),
-    linear-gradient(120deg, rgba(26, 35, 50, 0.92) 0%, rgba(26, 35, 50, 0.8) 42%, rgba(26, 35, 50, 0.92) 100%);
-  transition: transform var(--transition-base);
+    linear-gradient(110deg, rgba(26, 35, 50, 0.95), rgba(26, 35, 50, 0.85));
+  transform-origin: left center;
+  transform: scaleX(1);
+  position: relative;
 }
 
 .hero__ink-fill::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0) 70%);
-  opacity: 0.7;
-}
-
-.hero__ink-drop {
-  position: absolute;
-  top: -120%;
-  left: 68%;
-  width: clamp(16px, 2vw, 22px);
-  height: clamp(18px, 2.2vw, 26px);
-  background: var(--text-primary);
-  border-radius: 46% 46% 58% 58%;
-  filter: drop-shadow(0 12px 24px rgba(26, 35, 50, 0.28));
-  transform: translateY(-140%);
-  transform-origin: center center;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), transparent 70%);
+  opacity: 0.65;
   pointer-events: none;
-  will-change: transform, opacity;
 }
 
 .hero__baseline {
   font-family: var(--font-body);
-  font-size: clamp(1.15rem, 2.6vw, 1.9rem);
+  font-size: clamp(1.125rem, 2vw, 1.85rem);
   line-height: 1.5;
-  color: var(--text-primary);
-  max-width: min(720px, 96%);
+  color: var(--neutral-900);
   margin: 0;
+  max-width: 40rem;
+}
+
+.hero__baseline span {
+  display: inline-block;
 }
 
 .hero__cta {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  align-items: center;
+  gap: var(--space-4);
   width: 100%;
-  margin-top: var(--space-2);
-}
-
-.hero__cta-button {
-  min-width: clamp(240px, 38vw, 260px);
-  justify-content: center;
-  padding: var(--space-4) var(--space-6);
-}
-
-.hero__scroll-indicator {
-  display: inline-flex;
-  flex-direction: column;
   align-items: center;
-  gap: var(--space-2);
-  border: none;
-  background: transparent;
-  color: var(--text-secondary);
-  font-family: var(--font-body);
-  font-size: clamp(0.85rem, 1.6vw, 1rem);
-  padding: var(--space-2) var(--space-3);
-  border-radius: var(--radius-full);
-  cursor: pointer;
-  transition: color var(--transition-base), transform var(--transition-base);
 }
 
-.hero__scroll-indicator:hover,
-.hero__scroll-indicator:focus-visible {
-  color: var(--text-primary);
-  transform: translateY(2px);
-}
-
-.hero__scroll-indicator:focus-visible {
-  outline: 2px solid rgba(26, 35, 50, 0.6);
-  outline-offset: 4px;
-}
-
-.hero__scroll-icon {
-  display: inline-block;
-  width: 1px;
-  height: 36px;
-  background: linear-gradient(180deg, rgba(26, 35, 50, 0.7) 0%, rgba(26, 35, 50, 0) 100%);
-  position: relative;
-}
-
-.hero__scroll-icon::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 8px;
-  height: 8px;
-  border: 1px solid rgba(26, 35, 50, 0.7);
-  border-top: none;
-  border-left: none;
-  transform: translate(-50%, 50%) rotate(45deg);
-}
-
-.hero__noscript {
-  margin-top: var(--space-6);
-  text-align: center;
-  color: var(--text-primary);
-}
-
-.hero__noscript h1 {
-  font-family: var(--font-display);
-  font-size: var(--text-4xl);
-  margin-bottom: var(--space-2);
-}
-
-.hero__noscript p {
-  font-family: var(--font-body);
-  font-size: var(--text-lg);
-  line-height: 1.6;
-}
-
-.hero__noscript-cta {
-  margin-top: var(--space-4);
-}
-
-/* Mobile amélioré : plus de respiration */
-@media (max-width: 767px) {
-  .hero.hero--ink {
-    padding: clamp(var(--space-16), 14vh, var(--space-24)) var(--container-padding);
-  }
-
-  .hero__signature-wrapper {
-    width: 94%;
-    padding-bottom: var(--space-8);
-  }
-
-  .hero__signature-svg {
-    width: min(90vw, 750px);
-  }
-
-  .hero__ink-channel {
-    width: min(340px, 75vw);
-  }
-
-  .hero__baseline {
-    font-size: clamp(1.05rem, 2.2vw, 1.4rem);
-    padding: 0 var(--space-2);
-  }
-
-  .hero__cta {
-    gap: var(--space-4);
-    margin-top: var(--space-3);
-  }
-
-  .hero__cta-button {
-    min-width: min(280px, 85vw);
-    width: 100%;
-  }
+.hero__cta .cta {
+  min-width: clamp(220px, 50vw, 260px);
+  justify-content: center;
+  font-size: var(--text-base);
 }
 
 @media (min-width: 768px) {
   .hero__cta {
     flex-direction: row;
     justify-content: center;
-    gap: var(--space-5);
   }
 
-  .hero__cta-button {
-    width: auto;
+  .hero__cta .cta {
+    min-width: 240px;
   }
 }
 
-@media (min-width: 1024px) {
-  .hero.hero--ink {
-    padding-inline: var(--container-padding-lg);
-  }
-
-  .hero__inner {
-    gap: clamp(var(--space-10), 7vh, var(--space-14));
-  }
-
-  .hero__ink-channel {
-    width: min(460px, 48vw);
-  }
-
-  .hero__ink-drop {
-    left: 72%;
-  }
+.hero__noscript {
+  margin-top: var(--space-6);
+  background: rgba(255, 255, 255, 0.8);
+  padding: var(--space-6);
+  border-radius: var(--radius-xl);
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero__scroll-indicator,
-  .hero__ink-fill,
-  .hero__signature-path {
-    transition: none !important;
-    animation: none !important;
-  }
+.hero__noscript h1 {
+  font-family: var(--font-display);
+  margin-bottom: var(--space-4);
+}
+
+.hero__noscript p {
+  margin: 0 auto;
+  max-width: 36rem;
+  line-height: 1.5;
+}
+
+.hero__noscript-cta {
+  margin-top: var(--space-4);
 }

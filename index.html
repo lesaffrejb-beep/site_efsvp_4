@@ -209,45 +209,34 @@
     <!-- Skip to main content (Accessibility) -->
     <a href="#main" class="skip-link">Aller au contenu principal</a>
 
-    <!-- ============================================
-         SECTION 1: PREMIUM HERO - "L'Encre Vivante"
-         ============================================ -->
-    <section id="hero" class="hero hero--ink section" data-block="hero-ink" aria-label="En français s'il vous plaît">
+    <!-- HERO START -->
+    <section id="hero" class="hero hero--ink" aria-labelledby="hero-title">
       <div class="hero__inner">
-        <p class="hero__eyebrow" data-hero-eyebrow></p>
-
         <div class="hero__signature-wrapper">
-          <h1 class="hero__signature" aria-describedby="hero-baseline">
-            <!-- Signature manuscrite "En français s'il vous plaît" -->
-            <span class="sr-only" data-hero-signature-label></span>
-            <svg class="hero__signature-svg" viewBox="0 0 1000 180" role="presentation" aria-hidden="true">
-              <!-- Signature calligraphique "En français s'il vous plaît" -->
-              <!-- Tracé fluide unique inspiré d'une écriture cursive élégante -->
-              <path
-                class="hero__signature-path"
-                data-hero-signature-path
-                d="M 35,120 Q 40,95 55,85 C 65,78 78,82 88,92 Q 95,100 92,115 Q 90,125 80,128 C 72,130 65,125 62,115 M 62,115 L 75,110 Q 90,108 102,115 C 112,122 115,138 108,148 Q 102,155 92,155 C 85,155 80,148 78,140 M 95,105 L 98,145 C 100,158 110,162 122,158 Q 135,153 142,135 C 145,125 143,112 138,105 M 175,98 Q 182,88 195,85 C 208,82 220,92 225,105 Q 228,118 222,132 C 217,142 205,148 195,145 Q 188,143 185,135 M 185,135 L 182,120 M 245,145 L 250,100 C 252,88 262,82 275,88 Q 288,95 298,110 C 305,123 303,140 293,150 Q 285,157 275,155 C 268,153 263,145 262,135 M 325,110 Q 335,95 352,92 C 368,90 382,102 388,118 Q 392,132 385,148 C 379,160 365,168 352,165 Q 342,163 338,152 M 420,105 L 425,95 C 430,85 442,82 455,90 Q 468,98 478,112 C 486,126 483,145 470,155 Q 460,162 448,158 C 440,155 435,145 435,135 M 495,92 L 505,110 C 515,128 532,145 552,155 Q 568,163 585,158 C 598,154 608,140 612,122 Q 615,105 610,92 C 606,82 598,78 588,80 M 645,100 Q 655,88 672,85 C 690,82 708,95 718,112 Q 725,128 720,148 C 715,162 700,172 685,170 Q 673,168 668,155 M 668,155 L 662,140 M 740,145 L 748,98 C 751,85 763,80 778,87 Q 793,95 805,112 C 813,127 810,148 795,160 Q 783,168 770,163 C 762,160 757,150 755,140 M 835,108 Q 846,93 865,90 C 884,88 902,102 912,120 Q 920,138 913,158 C 907,173 890,183 872,180 Q 858,178 850,165 M 850,165 L 843,148 M 945,115 Q 955,98 975,95 C 993,93 1010,107 1018,127 Q 1024,145 1016,165 C 1009,180 990,188 972,184 Q 958,181 950,168"
-              ></path>
-            </svg>
-          </h1>
+          <svg class="hero__signature" viewBox="0 0 1000 180" role="img" aria-labelledby="hero-title">
+            <title id="hero-title" data-hero-title>En français s’il vous plaît</title>
+            <desc>Signature manuscrite du nom du studio</desc>
+            <path
+              id="hero-signature-path"
+              d="M 35,120 Q 40,95 55,85 C 65,78 78,82 88,92 Q 95,100 92,115 Q 90,125 80,128 C 72,130 65,125 62,115 M 62,115 L 75,110 Q 90,108 102,115 C 112,122 115,138 108,148 Q 102,155 92,155 C 85,155 80,148 78,140 M 95,105 L 98,145 C 100,158 110,162 122,158 Q 135,153 142,135 C 145,125 143,112 138,105 M 175,98 Q 182,88 195,85 C 208,82 220,92 225,105 Q 228,118 222,132 C 217,142 205,148 195,145 Q 188,143 185,135 M 185,135 L 182,120 M 245,145 L 250,100 C 252,88 262,82 275,88 Q 288,95 298,110 C 305,123 303,140 293,150 Q 285,157 275,155 C 268,153 263,145 262,135 M 325,110 Q 335,95 352,92 C 368,90 382,102 388,118 Q 392,132 385,148 C 379,160 365,168 352,165 Q 342,163 338,152 M 420,105 L 425,95 C 430,85 442,82 455,90 Q 468,98 478,112 C 486,126 483,145 470,155 Q 460,162 448,158 C 440,155 435,145 435,135 M 495,92 L 505,110 C 515,128 532,145 552,155 Q 568,163 585,158 C 598,154 608,140 612,122 Q 615,105 610,92 C 606,82 598,78 588,80 M 645,100 Q 655,88 672,85 C 690,82 708,95 718,112 Q 725,128 720,148 C 715,162 700,172 685,170 Q 673,168 668,155 M 668,155 L 662,140 M 740,145 L 748,98 C 751,85 763,80 778,87 Q 793,95 805,112 C 813,127 810,148 795,160 Q 783,168 770,163 C 762,160 757,150 755,140 M 835,108 Q 846,93 865,90 C 884,88 902,102 912,120 Q 920,138 913,158 C 907,173 890,183 872,180 Q 858,178 850,165 M 850,165 L 843,148 M 945,115 Q 955,98 975,95 C 993,93 1010,107 1018,127 Q 1024,145 1016,165 C 1009,180 990,188 972,184 Q 958,181 950,168"
+            ></path>
+          </svg>
+          <div class="hero__ink-drop" aria-hidden="true"></div>
         </div>
 
         <div class="hero__ink-channel" aria-hidden="true">
-          <div class="hero__ink-fill" data-hero-ink-fill></div>
-          <div class="hero__ink-drop" data-hero-ink-drop></div>
+          <div class="hero__ink-fill"></div>
         </div>
 
-        <p id="hero-baseline" class="hero__baseline" data-hero-baseline></p>
+        <p class="hero__baseline">
+          <span data-hero-baseline-lead>Studio de création narrative et musicale sur-mesure.</span><br />
+          <span data-hero-moments>Anniversaires • Inaugurations • Moments fondateurs.</span>
+        </p>
 
-        <div class="hero__cta">
-          <a class="cta cta--primary hero__cta-button hero__cta-button--primary" href="#projets"></a>
-          <a class="cta cta--secondary hero__cta-button hero__cta-button--secondary" href="#contact"></a>
+        <div class="hero__cta" aria-label="Appels à l'action principaux">
+          <a class="cta cta--primary hero__cta-button" data-hero-cta-primary href="#projets">Découvrir nos créations</a>
+          <a class="cta cta--secondary hero__cta-button" data-hero-cta-secondary href="#contact">Discuter de votre projet</a>
         </div>
-
-        <button class="hero__scroll-indicator" type="button" data-hero-scroll aria-label="Découvrir la suite">
-          <span class="hero__scroll-label" data-hero-scroll-label></span>
-          <span class="hero__scroll-icon" aria-hidden="true"></span>
-        </button>
       </div>
 
       <noscript>
@@ -260,6 +249,7 @@
         </div>
       </noscript>
     </section>
+    <!-- HERO END -->
 
     <!-- ============================================
          SECTION: CLIENTS MARQUEE (ILS NOUS FONT CONFIANCE)

@@ -22,7 +22,7 @@ import { CookieConsent } from './modules/cookieConsent.js';
 import { CopyEmail } from './modules/copyEmail.js';
 import { ProjectModal } from './modules/projectModal.js';
 import { FAQ } from './modules/faq.js';
-import { initHeroInkBlock } from './blocks/heroInk.js';
+import { initHeroInk } from './modules/heroInk.js';
 import { initAudioBlock } from './blocks/audio.js';
 import { initPortfolioBlock } from './blocks/portfolio.js';
 import { initTestimonialsBlock } from './blocks/testimonials.js';
@@ -184,10 +184,12 @@ class App {
   }
 
   initSections() {
-    const heroContext = initHeroInkBlock({ modules: this.modules });
-    this.modules = heroContext.modules;
+    const heroInkInstance = initHeroInk();
+    if (heroInkInstance) {
+      this.modules.heroInk = heroInkInstance;
+    }
 
-    const audioContext = initAudioBlock(heroContext);
+    const audioContext = initAudioBlock({ modules: this.modules });
     this.modules = audioContext.modules;
 
     // Process Reveal Animation
