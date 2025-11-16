@@ -65,7 +65,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  aspect-ratio: 1180 / 320;
+  aspect-ratio: 900 / 130;
   overflow: visible;
 }
 
@@ -84,12 +84,12 @@
 /* Goutte d'encre (apparaît à la fin du tracé) */
 .hero-ink-drop {
   position: absolute;
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   background: var(--neutral-900, #1a2332);
-  top: 60%;
-  left: 82%;
+  bottom: 20%;
+  right: 10%;
   transform: translate(-50%, -50%);
   opacity: 0;
   pointer-events: none;

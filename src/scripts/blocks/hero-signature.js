@@ -58,7 +58,8 @@ export function initHeroSignature() {
   // Animation de chaque path (signature manuscrite)
   paths.forEach((path, index) => {
     const length = path.getTotalLength();
-    const duration = gsap.utils.clamp(0.45, 1.4, length / 420);
+    // Durée adaptée à la longueur du path, avec des limites raisonnables
+    const duration = gsap.utils.clamp(0.3, 1.8, length / 200);
 
     // État initial : rien n'est dessiné
     gsap.set(path, {
@@ -68,15 +69,15 @@ export function initHeroSignature() {
     });
 
     // Animer le tracé avec un timing plus naturel
-    // Les paths se succèdent avec un léger chevauchement
+    // Les paths se succèdent avec un léger chevauchement pour un effet d'écriture fluide
     tl.to(
       path,
       {
         strokeDashoffset: 0,
         duration,
-        ease: 'power2.inOut',
+        ease: 'power1.inOut',
       },
-      index === 0 ? 0.35 : '>-0.25' // Chevauchement modéré pour effet manuscrit naturel
+      index === 0 ? 0.2 : '>-0.15' // Chevauchement léger pour effet manuscrit naturel
     );
   });
 
