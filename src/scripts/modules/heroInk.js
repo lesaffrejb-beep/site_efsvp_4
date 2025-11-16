@@ -93,6 +93,12 @@ function createTimeline({ path, inkDrop, inkFill, baseline, ctas }) {
         y: 0,
         duration: 0.4,
         stagger: 0.12,
+        onComplete: () => {
+          // Cleanup will-change for performance after animation completes
+          if (path) path.style.willChange = 'auto';
+          if (inkDrop) inkDrop.style.willChange = 'auto';
+          if (inkFill) inkFill.style.willChange = 'auto';
+        },
       },
       '-=0.2'
     );

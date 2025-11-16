@@ -54,19 +54,21 @@
   stroke-linecap: round;
   stroke-linejoin: round;
   filter: drop-shadow(0 12px 22px rgba(26, 35, 50, 0.18));
+  will-change: stroke-dashoffset;
 }
 
 .hero__ink-drop {
   position: absolute;
   bottom: -0.5rem;
-  right: 18%;
-  width: clamp(14px, 2vw, 22px);
-  height: clamp(18px, 2.4vw, 28px);
+  right: 15%;
+  width: clamp(16px, 2.2vw, 24px);
+  height: clamp(20px, 2.6vw, 30px);
   background: var(--neutral-900);
   border-radius: 50% 50% 60% 60%;
   opacity: 0;
   transform: translate3d(0, -40px, 0);
   filter: drop-shadow(0 8px 18px rgba(26, 35, 50, 0.25));
+  will-change: transform, opacity;
 }
 
 .hero__ink-channel {
@@ -97,8 +99,9 @@
   background:
     linear-gradient(110deg, rgba(26, 35, 50, 0.95), rgba(26, 35, 50, 0.85));
   transform-origin: left center;
-  transform: scaleX(1);
+  transform: scaleX(0);
   position: relative;
+  will-change: transform;
 }
 
 .hero__ink-fill::after {
@@ -169,4 +172,28 @@
 
 .hero__noscript-cta {
   margin-top: var(--space-4);
+}
+
+/* ============================================
+   PREFERS-REDUCED-MOTION SUPPORT
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hero__ink-fill {
+    transform: scaleX(1);
+  }
+
+  .hero__ink-drop {
+    opacity: 0;
+  }
+
+  #hero-signature-path {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+
+  .hero__baseline,
+  .hero__cta .cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
