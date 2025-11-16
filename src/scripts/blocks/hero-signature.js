@@ -2,116 +2,82 @@
 import { gsap } from 'gsap';
 
 /**
- * Animation de signature manuscrite pour le hero EfSVP.
- *
- * - Le path SVG se "dessine" avec stroke-dashoffset
- * - Une goutte d'encre tombe à la fin
- * - La rigole se remplit à partir de la gauche
- * - La baseline fade-in en douceur
- *
- * Aucune dépendance à ScrollTrigger : animation au chargement uniquement.
+ * Anime le titre du hero "En français s'il vous plaît"
+ * - Split en caractères
+ * - Écriture lettre par lettre (stagger)
+ * - Respecte prefers-reduced-motion
  */
 export function initHeroSignature() {
-  const signaturePath = document.getElementById('hero-signature-path');
-  const inkDrop = document.getElementById('hero-ink-drop');
-  const inkLine = document.getElementById('hero-ink-line');
+  const title = document.getElementById('hero-title');
   const baseline = document.querySelector('[data-hero-baseline]');
 
-  // Si le hero n'est pas présent sur la page, on ne fait rien
-  if (!signaturePath || !inkDrop || !inkLine || !baseline) {
-    return;
-  }
+  if (!title) return;
 
-  // Respecte les préférences utilisateur pour l'animation
   const prefersReducedMotion = window.matchMedia(
     '(prefers-reduced-motion: reduce)'
   ).matches;
 
+  const originalText = title.textContent;
+  const characters = originalText.split('');
+
+  // Nettoyage du contenu initial
+  title.textContent = '';
+
+  // Reconstruit le texte avec des <span> par caractère
+  characters.forEach((char) => {
+    const span = document.createElement('span');
+    span.textContent = char;
+    title.appendChild(span);
+  });
+
+  const letters = title.querySelectorAll('span');
+
   if (prefersReducedMotion) {
-    // État statique lisible
-    signaturePath.style.strokeDasharray = 'none';
-    signaturePath.style.strokeDashoffset = '0';
-    inkDrop.style.opacity = '0';
-    inkLine.style.transform = 'scaleX(1)';
-    baseline.style.opacity = '1';
+    // Pas d'animation : texte directement visible
+    letters.forEach((span) => {
+      span.style.opacity = '1';
+      span.style.transform = 'none';
+    });
+    if (baseline) {
+      baseline.style.opacity = '1';
+      baseline.style.transform = 'none';
+    }
     return;
   }
 
-  const length = signaturePath.getTotalLength();
-
-  // État initial
-  gsap.set(signaturePath, {
-    strokeDasharray: length,
-    strokeDashoffset: length,
-  });
-
-  gsap.set(inkDrop, {
+  // État initial pour l'animation
+  gsap.set(letters, {
     opacity: 0,
-    scale: 0.6,
-    transformOrigin: 'center center',
+    y: '0.4em',
   });
 
-  gsap.set(inkLine, {
-    scaleX: 0,
-    transformOrigin: 'left center',
-    opacity: 0.9,
-  });
+  if (baseline) {
+    gsap.set(baseline, {
+      opacity: 0,
+      y: 8,
+    });
+  }
 
-  gsap.set(baseline, {
-    opacity: 0,
-    y: 8,
-  });
-
+  // Timeline d'animation
   const tl = gsap.timeline({
     defaults: {
       ease: 'power2.out',
     },
   });
 
-  // 1) Signature qui s'écrit
-  tl.to(signaturePath, {
-    strokeDashoffset: 0,
-    duration: 2.2,
-  })
+  // 1. Animation des lettres (stagger)
+  tl.to(letters, {
+    opacity: 1,
+    y: '0em',
+    duration: 0.4,
+    ease: 'power2.out',
+    stagger: 0.04, // vitesse d'écriture
+    delay: 0.2,
+  });
 
-    // 2) Goutte d'encre qui apparaît et tombe légèrement
-    .to(
-      inkDrop,
-      {
-        opacity: 1,
-        duration: 0.15,
-      },
-      '-=0.2'
-    )
-    .to(inkDrop, {
-      y: 14,
-      scale: 1.05,
-      duration: 0.35,
-      ease: 'power3.in',
-    })
-
-    // 3) Goutte qui "s'écrase" et disparaît
-    .to(inkDrop, {
-      scaleX: 1.4,
-      scaleY: 0.4,
-      opacity: 0,
-      duration: 0.25,
-      ease: 'power2.inOut',
-    })
-
-    // 4) Rigole qui se remplit
-    .to(
-      inkLine,
-      {
-        scaleX: 1,
-        duration: 0.9,
-        ease: 'power2.out',
-      },
-      '-=0.15'
-    )
-
-    // 5) Baseline qui fade-in
-    .to(
+  // 2. Baseline qui fade-in après les lettres
+  if (baseline) {
+    tl.to(
       baseline,
       {
         opacity: 1,
@@ -119,6 +85,7 @@ export function initHeroSignature() {
         duration: 0.6,
         ease: 'power2.out',
       },
-      '-=0.2'
+      '-=0.3'
     );
+  }
 }

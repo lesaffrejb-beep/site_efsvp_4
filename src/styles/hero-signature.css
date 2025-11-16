@@ -29,7 +29,7 @@
 .hero-signature-block {
   margin: 0;
   padding: 0;
-  max-width: 640px;
+  max-width: 800px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -37,28 +37,23 @@
   gap: var(--space-8, 4rem);
 }
 
-.hero-signature-svg {
-  width: 100%;
-  height: auto;
-  color: var(--neutral-900, #1a2332); /* Encre nuit */
-  display: block;
-  filter: drop-shadow(0 2px 8px rgba(26, 35, 50, 0.08));
+/* Titre manuscrit */
+.hero-title-handwritten {
+  font-family: "Allura", "Cormorant", Georgia, serif;
+  font-size: clamp(2.6rem, 4vw, 3.6rem);
+  line-height: 1.1;
+  text-align: center;
+  color: var(--color-neutral-800, #1a2332);
+  margin: 0;
+  margin-bottom: var(--space-6, 1.5rem);
+  letter-spacing: 0.04em;
+  font-weight: 400;
 }
 
-.hero-signature-path {
-  stroke: var(--neutral-900, #1a2332);
-}
-
-.hero-ink-drop {
-  fill: var(--neutral-900, #1a2332);
-  opacity: 0;
-}
-
-.hero-ink-line {
-  fill: var(--neutral-900, #1a2332);
-  transform-origin: left center;
-  transform: scaleX(0);
-  opacity: 0.9;
+/* Chaque lettre sera animée individuellement */
+.hero-title-handwritten span {
+  display: inline-block;
+  white-space: pre; /* pour conserver les espaces */
 }
 
 .hero-signature-caption {
@@ -135,8 +130,8 @@
     gap: var(--space-6, 3rem);
   }
 
-  .hero-signature-svg {
-    width: 95%;
+  .hero-title-handwritten {
+    font-size: clamp(2rem, 5vw, 2.8rem);
   }
 
   .hero-signature-caption {
@@ -170,17 +165,9 @@
 
 /* Prefers reduced motion */
 @media (prefers-reduced-motion: reduce) {
-  .hero-signature-path {
-    stroke-dasharray: none;
-    stroke-dashoffset: 0;
-  }
-
-  .hero-ink-drop {
-    opacity: 0;
-  }
-
-  .hero-ink-line {
-    transform: scaleX(1);
+  .hero-title-handwritten span {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   .hero-signature-caption {
