@@ -71,6 +71,9 @@
     <!-- Swiper CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+    <!-- GSAP CDN - Chargé en priorité pour garantir disponibilité -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
     <!-- CSS Master File - Unified Design System -->
     <link rel="stylesheet" href="/src/styles/main.css" />
 
@@ -248,6 +251,124 @@
 
       </div>
     </section>
+
+    <!-- Hero Signature Animation - Inline pour garantir exécution -->
+    <script>
+    console.log('🎬 Script hero inline chargé');
+
+    // Attendre que tout soit chargé
+    window.addEventListener('load', function() {
+      console.log('✅ Window load event');
+
+      // Vérifier que GSAP existe
+      if (typeof gsap === 'undefined') {
+        console.error('❌ GSAP non disponible - chargement depuis CDN...');
+
+        // Charger GSAP depuis CDN si pas disponible
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js';
+        script.onload = function() {
+          console.log('✅ GSAP chargé depuis CDN');
+          initHeroSignatureInline();
+        };
+        document.head.appendChild(script);
+      } else {
+        console.log('✅ GSAP déjà disponible');
+        initHeroSignatureInline();
+      }
+    });
+
+    function initHeroSignatureInline() {
+      console.log('🎯 Début init hero signature inline');
+
+      // Sélection éléments
+      const signaturePath = document.getElementById('signature-path');
+      const inkDrop = document.getElementById('ink-drop');
+      const inkFill = document.getElementById('ink-fill');
+      const baseline = document.getElementById('baseline');
+      const signatureSvg = document.getElementById('signature-svg');
+
+      console.log('🔍 Éléments trouvés:', {
+        signaturePath: !!signaturePath,
+        inkDrop: !!inkDrop,
+        inkFill: !!inkFill,
+        baseline: !!baseline,
+        signatureSvg: !!signatureSvg
+      });
+
+      // Guards
+      if (!signaturePath || !inkDrop || !inkFill || !baseline || !signatureSvg) {
+        console.error('❌ Éléments manquants');
+        return;
+      }
+
+      console.log('✅ Tous les éléments présents, lancement animation...');
+
+      // Timeline GSAP
+      const tl = gsap.timeline({
+        defaults: { ease: 'none' },
+        onStart: () => console.log('▶️ Animation démarrée'),
+        onComplete: () => console.log('✅ Animation terminée')
+      });
+
+      // 1. Signature s'écrit
+      tl.to(signaturePath, {
+        strokeDashoffset: 0,
+        duration: 2.5,
+        ease: 'power1.inOut'
+      });
+
+      // 2. Position de la goutte
+      try {
+        const pathLength = signaturePath.getTotalLength();
+        const endPoint = signaturePath.getPointAtLength(pathLength);
+        const svgRect = signatureSvg.getBoundingClientRect();
+        const svgViewBox = signatureSvg.viewBox.baseVal;
+        const scaleX = svgRect.width / svgViewBox.width;
+        const scaleY = svgRect.height / svgViewBox.height;
+        const dropX = endPoint.x * scaleX;
+        const dropY = endPoint.y * scaleY + svgRect.top - signatureSvg.parentElement.getBoundingClientRect().top;
+
+        console.log('💧 Position goutte:', dropX, dropY);
+
+        gsap.set(inkDrop, {
+          left: dropX + 'px',
+          top: dropY + 'px',
+          xPercent: -50,
+          yPercent: -50
+        });
+      } catch(e) {
+        console.error('❌ Erreur position goutte:', e);
+      }
+
+      // 3. Goutte apparaît et tombe
+      tl.to(inkDrop, { opacity: 1, duration: 0.08 }, '>')
+        .to(inkDrop, { y: '+=35px', duration: 0.35, ease: 'power2.in' }, '>');
+
+      // 4. Rigole se remplit
+      tl.to(inkFill, {
+        width: '100%',
+        duration: 0.65,
+        ease: 'power2.out'
+      }, '>');
+
+      // 5. Baseline apparaît
+      tl.to(baseline, {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power2.out'
+      }, '>');
+
+      // 6. Goutte disparaît
+      tl.to(inkDrop, {
+        opacity: 0,
+        duration: 0.25
+      }, '-=0.4');
+
+      console.log('🎨 Timeline configurée');
+    }
+    </script>
 
     <!-- ============================================
          SECTION: CLIENTS MARQUEE (ILS NOUS FONT CONFIANCE)
