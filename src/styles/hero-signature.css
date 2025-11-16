@@ -37,6 +37,17 @@
   gap: var(--space-8, 4rem);
 }
 
+/* H1 visible pour SEO/accessibilité */
+.hero-title {
+  font-family: var(--font-display, 'Playfair Display', serif);
+  font-weight: 500;
+  font-size: clamp(2.2rem, 3vw, 3rem);
+  color: var(--neutral-900, #1a2332);
+  text-align: center;
+  margin: 0 0 var(--space-4, 2rem) 0;
+  line-height: 1.2;
+}
+
 /* Titre manuscrit SVG */
 .hero-signature-wrapper {
   position: relative;
