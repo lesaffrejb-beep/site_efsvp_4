@@ -49,15 +49,15 @@
   line-height: 1.2;
 }
 
-/* Titre manuscrit SVG */
+/* Titre manuscrit SVG - Signature agrandie et centre de gravité visuel */
 .hero-signature-wrapper {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: min(70vw, 600px);
-  margin: 0 auto var(--space-8, 4rem);
-  padding: var(--space-2, 1rem);
+  width: min(90vw, 900px); /* Plus large pour une signature imposante */
+  margin: 0 auto var(--space-10, 5rem);
+  padding: var(--space-4, 2rem) 0;
 }
 
 .hero-signature-svg {
@@ -65,7 +65,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 5 / 2; /* Ratio adapté à une signature horizontale */
   overflow: visible;
 }
 
@@ -74,28 +74,29 @@
   /* Forcer stroke au lieu de fill pour l'animation manuscrite */
   fill: none !important;
   stroke: var(--neutral-900, #1a2332);
-  stroke-width: 2;
+  stroke-width: 3; /* Trait plus épais pour une signature visible */
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 1;
   /* Animation gérée par GSAP dans le JS */
-  filter: drop-shadow(0 1px 2px rgba(26, 35, 50, 0.08));
+  filter: drop-shadow(0 2px 4px rgba(26, 35, 50, 0.12));
   vector-effect: non-scaling-stroke;
 }
 
-/* Goutte d'encre (apparaît à la fin du tracé) */
+/* Goutte d'encre (apparaît à la fin du tracé et tombe vers le sous-titre) */
 .hero-ink-drop {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
-  background: var(--neutral-900, #1a2332);
-  bottom: 20%;
-  right: 10%;
-  transform: translate(-50%, -50%);
+  background: radial-gradient(circle at 30% 30%, rgba(26, 35, 50, 0.9), var(--neutral-900, #1a2332));
+  left: 50%; /* Centrée horizontalement */
+  top: 100%; /* Juste après la signature */
+  transform: translate(-50%, 0);
   opacity: 0;
   pointer-events: none;
-  box-shadow: 0 2px 4px rgba(26, 35, 50, 0.15);
+  box-shadow: 0 4px 8px rgba(26, 35, 50, 0.25);
+  z-index: 10;
 }
 
 /* Fallback texte accessible (caché visuellement) */
@@ -120,7 +121,7 @@
   border: 0;
 }
 
-/* Sous-titre (correction typographie) */
+/* Sous-titre (révélé par la goutte d'encre) */
 .hero-subtitle {
   margin: 0;
   padding: 0;
@@ -131,7 +132,8 @@
   letter-spacing: 0.04em;
   color: var(--neutral-900, #1a2332);
   text-align: center;
-  max-width: 550px;
+  max-width: 650px;
+  opacity: 0; /* Invisible au départ, révélé par GSAP */
 }
 
 /* Legacy support pour hero-signature-caption */
@@ -211,7 +213,7 @@
   }
 
   .hero-signature-wrapper {
-    width: min(80vw, 500px);
+    width: min(85vw, 700px);
   }
 
   .hero-subtitle,
@@ -240,7 +242,7 @@
   }
 
   .hero-signature-wrapper {
-    width: min(85vw, 400px);
+    width: min(90vw, 500px);
   }
 
   .hero-subtitle,
@@ -249,18 +251,26 @@
   }
 }
 
-/* Prefers reduced motion */
+/* Prefers reduced motion - Tout visible sans animation */
 @media (prefers-reduced-motion: reduce) {
   .hero-signature-path {
-    /* Pas d'animation, path déjà visible */
+    /* Signature visible immédiatement sans animation */
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
   }
 
   .hero-subtitle,
   .hero-signature-caption {
-    opacity: 1;
+    opacity: 1 !important;
+    clip-path: none !important;
   }
 
   .hero-ink-drop {
-    opacity: 0; /* Pas de goutte d'encre si motion réduite */
+    opacity: 0 !important; /* Pas de goutte d'encre si motion réduite */
+  }
+
+  .hero-cta > * {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
