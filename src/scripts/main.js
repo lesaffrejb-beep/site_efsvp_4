@@ -23,6 +23,7 @@ import { CopyEmail } from './modules/copyEmail.js';
 import { ProjectModal } from './modules/projectModal.js';
 import { FAQ } from './modules/faq.js';
 import { initHeroInk } from './modules/heroInk.js';
+import { initHeroSignature } from './blocks/hero-signature.js';
 import { initAudioBlock } from './blocks/audio.js';
 import { initPortfolioBlock } from './blocks/portfolio.js';
 import { initTestimonialsBlock } from './blocks/testimonials.js';
@@ -184,10 +185,13 @@ class App {
   }
 
   initSections() {
-    const heroInkInstance = initHeroInk();
-    if (heroInkInstance) {
-      this.modules.heroInk = heroInkInstance;
-    }
+    // Hero signature animation
+    initHeroSignature();
+
+    // const heroInkInstance = initHeroInk();
+    // if (heroInkInstance) {
+    //   this.modules.heroInk = heroInkInstance;
+    // }
 
     const audioContext = initAudioBlock({ modules: this.modules });
     this.modules = audioContext.modules;
@@ -230,7 +234,7 @@ class App {
   }
 
   start() {
-    this.modules.heroInk?.start?.();
+    // this.modules.heroInk?.start?.();
 
     // Performance monitoring
     this.logPerformanceMetrics();
