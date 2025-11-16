@@ -220,41 +220,35 @@
             <div class="hero-signature-wrapper">
               <svg
                 class="hero-signature-svg"
-                viewBox="0 0 1000 200"
+                viewBox="0 0 900 200"
                 role="img"
                 aria-labelledby="hero-signature-title"
+                data-hero-signature
               >
-                <title id="hero-signature-title">
-                  En français s'il vous plaît
-                </title>
+                <title id="hero-signature-title">En français s'il vous plaît</title>
 
-                <!-- Version STROKE (écriture) -->
-                <text
-                  id="hero-signature-stroke"
-                  class="hero-signature-text hero-signature-text--stroke"
-                  x="50%"
-                  y="55%"
-                  dominant-baseline="middle"
-                  text-anchor="middle"
-                >
-                  En français s'il vous plaît
-                </text>
-
-                <!-- Version FILL (à apparaître après le trait) -->
-                <text
-                  id="hero-signature-fill"
-                  class="hero-signature-text hero-signature-text--fill"
-                  x="50%"
-                  y="55%"
-                  dominant-baseline="middle"
-                  text-anchor="middle"
-                >
-                  En français s'il vous plaît
-                </text>
+                <!-- Signature manuscrite tracée (path) -->
+                <path
+                  class="hero-signature-path"
+                  d="M 50,110 Q 55,85 70,90 C 85,95 95,105 110,100 Q 120,96 135,102 C 145,106 155,110 170,105 Q 185,100 200,95 C 210,92 215,88 230,95 Q 240,100 255,105 C 270,110 285,108 300,100 Q 310,95 325,92 M 340,115 Q 350,75 365,82 C 375,87 385,95 400,105 Q 410,112 425,108 C 435,105 445,98 460,95 M 475,100 Q 485,90 500,95 C 512,99 522,108 537,110 Q 550,112 565,105 C 575,100 585,93 600,90 M 615,112 Q 625,78 640,85 C 652,90 662,100 677,108 Q 690,115 705,110 C 715,107 725,100 740,95 M 755,98 Q 765,92 780,98 C 792,103 802,110 817,112 Q 830,114 845,108 C 855,104 865,98 875,95"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
               </svg>
+
+              <!-- Effet goutte d'encre -->
+              <span class="hero-ink-drop" aria-hidden="true"></span>
+
+              <!-- Fallback texte accessible (caché visuellement) -->
+              <span class="hero-signature-fallback sr-only">
+                En français s'il vous plaît
+              </span>
             </div>
 
-            <p class="hero-signature-caption" data-hero-baseline>
+            <p class="hero-subtitle" data-hero-baseline>
               Studio de création narrative &amp; musicale sur-mesure
             </p>
           </div>
