@@ -38,15 +38,9 @@
   text-align: center;
 }
 
-/* H1 visible pour SEO/accessibilité */
+/* H1 caché visuellement (sr-only) pour SEO/accessibilité uniquement */
 .hero-title {
-  font-family: var(--font-display, 'Playfair Display', serif);
-  font-weight: 500;
-  font-size: clamp(2.2rem, 3vw, 3rem);
-  color: var(--neutral-900, #1a2332);
-  text-align: center;
-  margin: 0 0 var(--space-4, 2rem) 0;
-  line-height: 1.2;
+  /* Styles supprimés car le titre est maintenant en sr-only */
 }
 
 /* Titre manuscrit SVG - Signature agrandie et centre de gravité visuel */
@@ -55,7 +49,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: min(90vw, 900px); /* Plus large pour une signature imposante */
+  width: min(85vw, 620px); /* Signature très grande et imposante */
   margin: 0 auto var(--space-10, 5rem);
   padding: var(--space-4, 2rem) 0;
 }
@@ -74,7 +68,7 @@
   /* Forcer stroke au lieu de fill pour l'animation manuscrite */
   fill: none !important;
   stroke: var(--neutral-900, #1a2332);
-  stroke-width: 3; /* Trait plus épais pour une signature visible */
+  stroke-width: 1.4; /* Trait fin et élégant (réduit de 3 à 1.4) */
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 1;
@@ -213,7 +207,9 @@
   }
 
   .hero-signature-wrapper {
-    width: min(85vw, 700px);
+    width: 90vw; /* Quasi toute la largeur sur mobile */
+    margin-top: 1.5rem;
+    margin-bottom: 2.5rem;
   }
 
   .hero-subtitle,
