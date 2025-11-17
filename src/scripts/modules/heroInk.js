@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';
 
 /**
- * Calcule la position de départ de la goutte depuis la signature
+ * Calcule la position de départ de la goutte depuis l'apostrophe
  */
 function getInkStartPosition() {
   const signature = document.querySelector('[data-hero-signature]');
@@ -14,13 +14,31 @@ function getInkStartPosition() {
     return { x: 0, y: 0 };
   }
 
-  const sigRect = signature.getBoundingClientRect();
   const heroRect = hero.getBoundingClientRect();
 
-  // Point de départ : centre horizontal de la signature, 10px sous le bas
+  // Chercher le path de l'apostrophe marqué avec data-apostrophe
+  const apostrophePath = signature.querySelector('[data-apostrophe]');
+
+  if (apostrophePath) {
+    const pathRect = apostrophePath.getBoundingClientRect();
+
+    // Position depuis le centre-bas de l'apostrophe
+    return {
+      x: pathRect.left + (pathRect.width / 2) - heroRect.left,
+      y: pathRect.bottom + 8 - heroRect.top
+    };
+  }
+
+  // Fallback : position estimée de l'apostrophe (52% horizontal depuis la signature)
+  const sigRect = signature.getBoundingClientRect();
+  const apostropheX = sigRect.left + (sigRect.width * 0.52);
+  const apostropheY = sigRect.top + (sigRect.height * 0.35);
+
+  console.warn('⚠️ Apostrophe path non trouvé, utilisation position estimée');
+
   return {
-    x: sigRect.left + (sigRect.width * 0.5) - heroRect.left,
-    y: sigRect.bottom + 10 - heroRect.top
+    x: apostropheX - heroRect.left,
+    y: apostropheY + 20 - heroRect.top
   };
 }
 

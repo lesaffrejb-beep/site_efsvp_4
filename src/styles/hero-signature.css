@@ -101,6 +101,33 @@
 }
 
 /* ========================================
+   CONTENT GRID - LAYOUT 2 COLONNES
+   ======================================== */
+
+.hero-content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: center;
+  max-width: 70rem;
+  margin: 0 auto;
+  width: 100%;
+  padding-top: clamp(1.5rem, 3vw, 3rem);
+}
+
+.hero-baseline-col {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.hero-cta-col {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ========================================
    BASELINE - DISCRÈTE, ALIGNÉE À GAUCHE
    ======================================== */
 
@@ -112,9 +139,8 @@
   line-height: 1.6;
   letter-spacing: 0.03em;
   color: var(--neutral-700, #4a5568);
-  max-width: 26rem;
-  margin-inline: 0; /* Aligné à gauche sur desktop */
-  padding-left: var(--space-4, 2rem);
+  max-width: 28rem;
+  margin: 0;
   opacity: 1; /* Visible dès le départ */
   text-align: left;
 }
@@ -123,14 +149,6 @@
    CTA - XXL PREMIUM
    ======================================== */
 
-.hero__cta,
-.hero__cta--single {
-  display: flex;
-  justify-content: center;
-  margin-top: clamp(1rem, 2vw, 2rem);
-  width: 100%;
-}
-
 .hero-cta,
 .hero-cta--ink {
   position: relative; /* ⚠️ PAS absolute, reste dans le flow */
@@ -138,8 +156,8 @@
   z-index: 5; /* ⚠️ Sous le système d'encre (z-index: 10) */
 
   /* TAILLES HERO */
-  padding: 1.5rem 4rem;
-  font-size: 1.25rem;
+  padding: 1.5rem 3.5rem;
+  font-size: 1.2rem;
   min-height: 4rem;
 
   border-radius: 999px;
@@ -173,7 +191,7 @@
   inset: 0;
   background: var(--neutral-900, #1a2332);
   border-radius: inherit;
-  transform-origin: bottom center;
+  transform-origin: top center; /* ⚠️ TOP pour remplissage haut→bas (gravité) */
   transform: scaleY(0);
   z-index: 0;
   will-change: transform;
@@ -248,16 +266,21 @@
   left: 50%;
   top: 100%; /* ⚠️ Part du bas de la goutte */
   transform: translateX(-50%);
-  width: 20px;
+  width: 8px;
   height: 0; /* ⚠️ Commence à 0, grandit avec la chute */
   pointer-events: none;
   overflow: visible;
+  opacity: 0.95; /* ⚠️ CRITIQUE : Visible dès le départ */
   will-change: height, opacity;
 }
 
 .ink-trail__path {
+  stroke: var(--neutral-900, #1a2332);
+  stroke-width: 3.5; /* ⚠️ CRITIQUE : Épaisseur visible minimum 3px */
+  stroke-linecap: round;
   vector-effect: non-scaling-stroke;
-  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.15));
+  opacity: 0.95; /* ⚠️ CRITIQUE : Trainée bien visible */
   will-change: stroke-dashoffset;
 }
 
@@ -294,13 +317,26 @@
     font-size: clamp(2rem, 12vw, 4rem);
   }
 
+  /* Grille en colonne sur mobile */
+  .hero-content-grid {
+    grid-template-columns: 1fr;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+    text-align: center;
+  }
+
+  .hero-baseline-col {
+    justify-content: center;
+  }
+
   .hero-subtitle,
   .hero-signature-caption {
     font-size: 0.875rem;
-    margin-inline: auto;
     text-align: center;
-    padding-left: 0;
     max-width: 90%;
+  }
+
+  .hero-cta-col {
+    width: 100%;
   }
 
   .hero-cta,
@@ -313,7 +349,7 @@
   }
 
   .ink-trail {
-    width: 80px;
+    width: 6px;
   }
 }
 
