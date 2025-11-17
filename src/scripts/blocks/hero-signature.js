@@ -32,8 +32,8 @@ export function initHeroSignature() {
   const paths = svg.querySelectorAll('.hero-signature-path');
   if (!paths.length) return;
 
-  const inkDrop = document.querySelector('.hero-ink-drop');
-  const cta = document.querySelector('.hero-cta--ink');
+  const inkDrop = document.querySelector('[data-hero-ink-drop]');
+  const cta = document.querySelector('[data-hero-cta]');
   const ctaInk = cta ? cta.querySelector('.hero-cta__ink-fill') : null;
   const subtitle = document.querySelector('[data-hero-baseline]');
 
