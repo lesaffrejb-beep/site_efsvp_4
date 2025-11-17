@@ -48,6 +48,9 @@ export function initHeroSignature() {
     return;
   }
 
+  // Initialiser l'effet cursor spotlight sur le CTA
+  initCursorSpotlight(cta);
+
   // ===================================
   // \u00c9TAPE 2 : CLASSE D'INITIALISATION
   // ===================================
@@ -223,5 +226,48 @@ function applyFinalState({ paths, baseline, cta, svg }) {
 
   if (DEBUG) {
     console.log('✅ Hero signature - Final state applied (reduced motion)');
+  }
+}
+
+/**
+ * Initialise l'effet cursor spotlight premium sur un bouton
+ * @param {HTMLElement} button - Le bouton sur lequel appliquer l'effet
+ */
+function initCursorSpotlight(button) {
+  if (!button) return;
+
+  // Vérifier si l'utilisateur préfère réduire les animations
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+
+  // Throttle pour optimiser les performances
+  let ticking = false;
+
+  button.addEventListener('mousemove', (e) => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Mettre à jour les custom properties CSS
+        button.style.setProperty('--mouse-x', `${x}px`);
+        button.style.setProperty('--mouse-y', `${y}px`);
+
+        ticking = false;
+      });
+
+      ticking = true;
+    }
+  });
+
+  // Réinitialiser au centre quand la souris quitte le bouton
+  button.addEventListener('mouseleave', () => {
+    button.style.setProperty('--mouse-x', '50%');
+    button.style.setProperty('--mouse-y', '50%');
+  });
+
+  if (DEBUG) {
+    console.log('✅ Cursor spotlight initialized on button');
   }
 }

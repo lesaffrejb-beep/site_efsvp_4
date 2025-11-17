@@ -743,6 +743,7 @@ button {
 .cta--primary:hover:not(:disabled) {
   background: var(--btn-primary-bg-hover);
   border-color: var(--btn-primary-bg-hover);
+  color: var(--text-inverse); /* Maintenir le texte blanc pour contraste WCAG AA */
   box-shadow: var(--shadow-primary-lg);
   filter: brightness(1.02);
 }
@@ -752,6 +753,7 @@ button {
 .cta--primary:active:not(:disabled) {
   background: var(--btn-primary-bg-active);
   border-color: var(--btn-primary-bg-active);
+  color: var(--text-inverse); /* Maintenir le texte blanc pour contraste WCAG AA */
   box-shadow: var(--shadow-sm);
 }
 
@@ -1483,6 +1485,7 @@ button {
   border-bottom: 1px solid var(--border-color);
   overflow: hidden;
   position: relative;
+  z-index: 10; /* Au-dessus du hero pour éviter le background bleed */
 }
 
 .clients-marquee__container {
@@ -1600,6 +1603,8 @@ button {
 /* Promise Cards */
 .promise {
   background: var(--bg-secondary);
+  position: relative;
+  z-index: 10; /* Au-dessus du hero pour éviter le background bleed */
 }
 
 .promise__container {
