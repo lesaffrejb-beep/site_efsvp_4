@@ -100,83 +100,60 @@
   will-change: stroke-dashoffset;
 }
 
-/* ========================================
-   CONTENT GRID - LAYOUT 2 COLONNES
-   ======================================== */
-
-.hero-content-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 4vw, 4rem);
-  align-items: center;
-  max-width: 70rem;
-  margin: 0 auto;
-  width: 100%;
-  padding-top: clamp(1.5rem, 3vw, 3rem);
-}
-
-.hero-baseline-col {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.hero-cta-col {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+/* Baseline et CTA sont désormais directs dans .hero__content */
 
 /* ========================================
-   BASELINE - DISCRÈTE, ALIGNÉE À GAUCHE
+   BASELINE - CENTRÉ, MINIMALISTE
    ======================================== */
 
 .hero-subtitle,
 .hero-signature-caption {
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  font-size: clamp(0.875rem, 1.2vw, 1.125rem);
-  font-weight: 500;
-  line-height: 1.6;
-  letter-spacing: 0.03em;
-  color: var(--neutral-700, #4a5568);
-  max-width: 28rem;
-  margin: 0;
-  opacity: 1; /* Visible dès le départ */
-  text-align: left;
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--neutral-800, #2d3748);
+  max-width: 600px;
+  margin: clamp(4rem, 8vh, 6rem) auto 0;
+  opacity: 1;
+  text-align: center;
 }
 
 /* ========================================
-   CTA - XXL PREMIUM
+   CTA - BOUTON PILL CENTRÉ
    ======================================== */
 
 .hero-cta,
 .hero-cta--ink {
-  position: relative; /* ⚠️ PAS absolute, reste dans le flow */
+  position: relative;
   isolation: isolate;
-  z-index: 5; /* ⚠️ Sous le système d'encre (z-index: 10) */
+  z-index: 5;
+  display: block;
+  margin: clamp(3rem, 6vh, 4rem) auto 0;
 
-  /* TAILLES HERO */
-  padding: 1.5rem 3.5rem;
-  font-size: 1.2rem;
-  min-height: 4rem;
-
-  border-radius: 999px;
-  background: transparent;
-  border: 2px solid var(--neutral-900, #1a2332);
-  color: var(--neutral-900, #1a2332);
-  font-weight: 600;
+  /* Specs : pill button, premium */
+  padding: 1rem 2.5rem;
+  font-size: 1.125rem;
+  font-weight: 500;
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
 
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--color-primary, #1a2332);
+  color: var(--color-parchment, #f5e6d3);
+  border: none;
+  border-radius: 9999px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  transition: all 200ms ease;
   cursor: pointer;
   overflow: hidden;
 }
 
 .hero-cta:hover,
 .hero-cta--ink:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 32px rgba(26, 35, 50, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
 }
 
 .hero-cta__label {
@@ -299,53 +276,34 @@
    RESPONSIVE - MOBILE FIRST
    ======================================== */
 
+/* ========================================
+   RESPONSIVE - MOBILE (< 768px)
+   ======================================== */
+
 @media (max-width: 768px) {
   .hero.hero--signature {
-    min-height: 90vh;
-    padding-block: clamp(2rem, 6vh, 4rem);
-  }
-
-  .hero__content {
-    gap: clamp(1.5rem, 4vw, 3rem);
+    min-height: 100vh;
+    padding-block: 4rem;
   }
 
   .hero-signature-wrapper {
-    max-width: clamp(16rem, 85vw, 28rem);
+    max-width: 80vw;
   }
 
   .hero-signature-svg {
     font-size: clamp(2rem, 12vw, 4rem);
   }
 
-  /* Grille en colonne sur mobile */
-  .hero-content-grid {
-    grid-template-columns: 1fr;
-    gap: clamp(1.5rem, 3vw, 2.5rem);
-    text-align: center;
-  }
-
-  .hero-baseline-col {
-    justify-content: center;
-  }
-
   .hero-subtitle,
   .hero-signature-caption {
-    font-size: 0.875rem;
-    text-align: center;
-    max-width: 90%;
-  }
-
-  .hero-cta-col {
-    width: 100%;
+    font-size: 1.125rem;
+    margin-top: 4rem;
   }
 
   .hero-cta,
   .hero-cta--ink {
-    padding: 1.25rem 3rem;
     font-size: 1.125rem;
-    min-height: 3.5rem;
-    width: 100%;
-    max-width: 22rem;
+    margin-top: 3rem;
   }
 
   .ink-trail {
@@ -379,15 +337,30 @@
   }
 }
 
-/* Desktop large - Signature encore plus imposante */
-@media (min-width: 1440px) {
+/* ========================================
+   RESPONSIVE - DESKTOP (≥ 1024px)
+   ======================================== */
+
+@media (min-width: 1024px) {
+  .hero.hero--signature {
+    padding-block: 8rem;
+  }
+
   .hero-signature-wrapper {
-    max-width: 70rem;
+    max-width: 50vw;
+    max-width: 600px;
   }
 
   .hero-subtitle,
   .hero-signature-caption {
-    font-size: 1.125rem;
+    font-size: 1.75rem;
+  }
+}
+
+/* Desktop large - Signature encore plus imposante */
+@media (min-width: 1440px) {
+  .hero-signature-wrapper {
+    max-width: 70rem;
   }
 }
 
