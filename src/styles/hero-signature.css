@@ -5,12 +5,12 @@
 .hero--signature {
   background-color: var(--color-hero-bg, #f9f5ef); /* Fond très léger, presque blanc */
   min-height: 100vh; /* Plein écran pour un effet hero immersif */
-  padding: clamp(2rem, 4vh, 3rem) 2rem;
+  padding: 0; /* Pas de padding pour un centrage parfait */
   position: relative;
   overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center; /* Centrage vertical */
+  justify-content: center; /* Centrage horizontal */
 }
 
 .hero__inner {
@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: var(--space-6, 3rem) var(--space-4, 2rem);
+  padding: clamp(2rem, 4vh, 4rem) clamp(1.5rem, 4vw, 2rem); /* Padding responsive pour respiration */
 }
 
 .hero__content {
@@ -58,7 +58,7 @@
   align-items: center;
   width: 100%;
   max-width: clamp(260px, 72vw, 1100px); /* Signature XXL sur desktop, lisible sur mobile */
-  margin: clamp(2rem, 4vh, 4rem) auto;
+  margin: 0 auto; /* Pas de margin vertical excessif */
   padding: 0;
 }
 
@@ -72,16 +72,19 @@
 
 /* Path de la signature manuscrite */
 .hero-signature-path {
-  /* Forcer stroke au lieu de fill pour l'animation manuscrite */
+  /* CRITIQUE : Forcer stroke au lieu de fill pour l'animation manuscrite */
   fill: none !important;
   stroke: var(--neutral-900, #1a2332);
   stroke-width: 1.4; /* Trait fin et élégant */
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 1;
-  /* Animation gérée par GSAP dans le JS */
+  /* Animation gérée par GSAP dans le JS - NE PAS définir strokeDasharray/offset ici */
   filter: drop-shadow(0 2px 4px rgba(26, 35, 50, 0.12));
   vector-effect: non-scaling-stroke;
+  /* Masquer initialement pour éviter flash */
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
 }
 
 /* Goutte d'encre (apparaît à la fin du tracé et tombe vers le sous-titre) */

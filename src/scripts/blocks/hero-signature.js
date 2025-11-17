@@ -86,19 +86,23 @@ export function initHeroSignature() {
     delay: 0.3 // Petit délai au chargement
   });
 
+  // CRITIQUE : Initialiser TOUS les paths comme INVISIBLES AVANT l'animation
+  paths.forEach((path) => {
+    const length = path.getTotalLength();
+    // Forcer les propriétés immédiatement sans transition
+    path.style.transition = 'none';
+    path.style.strokeDasharray = `${length}`;
+    path.style.strokeDashoffset = `${length}`;
+    // Forcer un reflow pour s'assurer que les changements sont appliqués
+    path.getBoundingClientRect();
+  });
+
   // Animer chaque path de la signature
   paths.forEach((path, index) => {
     const length = path.getTotalLength();
 
     // Durée adaptée à la longueur du trait (entre 0.4s et 2s)
     const duration = gsap.utils.clamp(0.4, 2, length / 250);
-
-    // CRITIQUE : Initialiser les paths comme INVISIBLES
-    gsap.set(path, {
-      strokeDasharray: length,
-      strokeDashoffset: length, // INVISIBLE au départ
-      opacity: 1
-    });
 
     // Animer le tracé avec un chevauchement pour fluidité
     tl.to(
