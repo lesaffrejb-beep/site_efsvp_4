@@ -121,15 +121,6 @@
   opacity: 0.9;
 }
 
-/* Fallback texte accessible (caché visuellement) */
-.hero-signature-fallback {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-}
-
 /* Classe utilitaire sr-only (screen reader only) */
 .sr-only {
   position: absolute;
