@@ -86,39 +86,30 @@
   opacity: 0;
 }
 
-/* Goutte d'encre (apparaît à la fin du tracé et tombe vers le sous-titre) */
-.hero-ink-drop {
+/* Couche pour la goutte d'encre (positionnée relativement à la signature) */
+.hero-ink-drop-layer {
   position: absolute;
-  width: 18px;
-  height: 26px;
-  border-radius: 999px;
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.9), transparent 55%),
-    radial-gradient(circle at 70% 80%, rgba(0,0,0,0.6), rgba(0,0,0,0.95) 70%);
-  left: 50%; /* Centrée horizontalement */
-  top: 100%; /* Juste après la signature */
-  transform: translate(-50%, 0);
-  transform-origin: center;
-  opacity: 0;
+  /* Position ajustée pour aligner avec la fin de la signature et le CTA */
+  right: clamp(8%, 12vw, 16%);
+  top: 40%;
+  width: 40px;
+  height: 160px;
   pointer-events: none;
-  box-shadow:
-    0 3px 6px rgba(0,0,0,0.35),
-    0 0 2px rgba(0,0,0,0.4);
+  filter: url(#hero-ink-goo);
   z-index: 10;
 }
 
-/* Petit reflet secondaire sur la goutte */
-.hero-ink-drop::before {
-  content: "";
+/* Goutte d'encre (tombe de la signature vers le CTA) */
+.hero-ink-drop {
   position: absolute;
-  left: 25%;
-  top: 20%;
-  width: 30%;
-  height: 25%;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.75);
-  filter: blur(1px);
-  opacity: 0.9;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--neutral-900, #1a2332);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Classe utilitaire sr-only (screen reader only) */
@@ -210,6 +201,55 @@
   box-shadow: 0 8px 20px rgba(184, 68, 30, 0.15);
 }
 
+/* CTA Principal unique avec effet liquide */
+.hero__cta--single {
+  margin-top: var(--space-5, 2.5rem);
+  display: flex;
+  justify-content: center;
+}
+
+.hero-cta--ink {
+  position: relative;
+  overflow: hidden;
+  border-radius: 999px;
+  padding: 0.9rem 2.8rem;
+  border: 1px solid var(--neutral-900, #1a2332);
+  background: transparent;
+  color: var(--neutral-900, #1a2332);
+  cursor: pointer;
+  isolation: isolate;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hero-cta--ink:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(26, 35, 50, 0.15);
+}
+
+.hero-cta__label {
+  position: relative;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+
+.hero-cta__ink-fill {
+  position: absolute;
+  inset: 0;
+  transform-origin: bottom center;
+  transform: scaleY(0);
+  background: var(--neutral-900, #1a2332);
+  filter: url(#hero-ink-goo);
+  z-index: 0;
+}
+
+/* État rempli du CTA (après l'animation) */
+.hero-cta--ink.is-filled .hero-cta__label {
+  color: var(--color-parchment, #f5e6d3);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hero--signature {
@@ -279,5 +319,17 @@
   .hero-cta > * {
     opacity: 1;
     transform: none;
+  }
+
+  .hero-cta--ink {
+    background: var(--neutral-900, #1a2332);
+  }
+
+  .hero-cta--ink .hero-cta__label {
+    color: var(--color-parchment, #f5e6d3);
+  }
+
+  .hero-cta__ink-fill {
+    transform: scaleY(1);
   }
 }

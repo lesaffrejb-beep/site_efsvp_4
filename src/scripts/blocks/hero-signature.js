@@ -2,35 +2,21 @@
 import { gsap } from 'gsap';
 
 /**
- * Animation de la signature manuscrite du hero - Version 3.0 (Audit complet)
+ * Animation de la signature manuscrite du hero - Version 4.0 (Goutte d'encre + CTA liquide)
  *
  * OBJECTIF :
  * - La signature doit être 100% INVISIBLE au chargement (aucun trait, aucun fragment)
  * - Animation progressive "handwriting" du stroke de gauche à droite
+ * - Goutte d'encre qui tombe de la signature vers le CTA
+ * - Remplissage liquide du CTA depuis le bas vers le haut
  * - Une seule couche de trait nette (pas de superposition/ghost)
- * - Goutte d'encre qui tombe de la signature vers le sous-titre
- * - Révélation du sous-titre synchronisée avec la goutte
  * - Respect de prefers-reduced-motion
  *
- * AUDIT SVG (2025-11-17) :
- * - Nombre de paths : 23 paths avec classe .hero-signature-path
- * - Tous les paths ont fill="none" dans le markup HTML (✓)
- * - Pas de paths dupliqués détectés (✓)
- * - Pas de paths décoratifs (ombres/outlines) séparés (✓)
- * - SVG inline dans index.html avec data-hero-signature
- *
- * PROBLÈMES CORRIGÉS :
- * - Suppression du drop-shadow CSS qui créait l'effet de double trait
- * - Classe d'init renommée de "initializing" à "is-initializing" pour cohérence
- * - Init synchrone stricte avec requestAnimationFrame pour éviter tout flash
- * - Suppression des valeurs !important dans le CSS
- * - Vérification d'absence d'animations concurrentes (✓ aucune autre animation active)
- *
- * STRUCTURE :
- * - Tous les paths de la signature sont initialement invisibles (strokeDashoffset = length)
- * - Pas de fill, uniquement stroke animé
- * - La goutte apparaît à la fin de l'écriture et tombe vers le sous-titre
- * - Le sous-titre se révèle quand la goutte "touche" la ligne
+ * NOUVELLE STRUCTURE :
+ * - Signature SVG animée
+ * - Sous-titre visible dès le départ (pas d'animation)
+ * - Goutte d'encre dans .hero-ink-drop-layer
+ * - CTA unique avec effet de remplissage liquide
  */
 
 // Mode debug : mettre à true pour logger l'état des paths
@@ -47,8 +33,9 @@ export function initHeroSignature() {
   if (!paths.length) return;
 
   const inkDrop = document.querySelector('.hero-ink-drop');
+  const cta = document.querySelector('.hero-cta--ink');
+  const ctaInk = cta ? cta.querySelector('.hero-cta__ink-fill') : null;
   const subtitle = document.querySelector('[data-hero-baseline]');
-  const ctaButtons = document.querySelectorAll('.hero-cta > *');
 
   // ===================================
   // ÉTAPE 2 : CLASSE D'INITIALISATION
@@ -72,15 +59,17 @@ export function initHeroSignature() {
     });
 
     if (subtitle) {
-      gsap.set(subtitle, { opacity: 1, clipPath: 'inset(0 0 0% 0)' });
-    }
-
-    if (ctaButtons.length) {
-      gsap.set(ctaButtons, { opacity: 1, y: 0 });
+      gsap.set(subtitle, { opacity: 1 });
     }
 
     if (inkDrop) {
       gsap.set(inkDrop, { opacity: 0 });
+    }
+
+    if (cta && ctaInk) {
+      gsap.set(ctaInk, { scaleY: 1 });
+      cta.classList.add('is-filled');
+      gsap.set(cta, { opacity: 1, y: 0 });
     }
 
     svg.classList.remove('is-initializing');
@@ -90,25 +79,27 @@ export function initHeroSignature() {
   // ===================================
   // ÉTAPE 4 : INIT STRICTE DES PATHS
   // ===================================
-  // Masquer le sous-titre et les CTA au départ
+  // Le sous-titre reste visible (pas d'animation)
   if (subtitle) {
-    gsap.set(subtitle, {
-      opacity: 0,
-      clipPath: 'inset(0 0 100% 0)' // Masqué du bas
-    });
+    gsap.set(subtitle, { opacity: 1 });
   }
 
-  if (ctaButtons.length) {
-    gsap.set(ctaButtons, { opacity: 0, y: 20 });
+  // Masquer le CTA au départ
+  if (cta) {
+    gsap.set(cta, { opacity: 0, y: 20 });
   }
 
   // Masquer la goutte au départ
   if (inkDrop) {
     gsap.set(inkDrop, {
       opacity: 0,
-      scale: 0.4,
       y: 0
     });
+  }
+
+  // Masquer le remplissage d'encre du CTA
+  if (ctaInk) {
+    gsap.set(ctaInk, { scaleY: 0 });
   }
 
   // Initialiser TOUS les paths de manière SYNCHRONE avec leur longueur réelle
@@ -176,35 +167,65 @@ export function initHeroSignature() {
     tl.addLabel('signatureComplete');
 
     // ===================================
-    // ÉTAPE 7 : ANIMATION DE LA GOUTTE
+    // ÉTAPE 7 : ANIMATION DE LA GOUTTE D'ENCRE
     // ===================================
-    if (inkDrop && subtitle) {
+    if (inkDrop && cta && ctaInk) {
       // Apparition de la goutte à la fin de l'écriture
       tl.to(
         inkDrop,
         {
           opacity: 1,
-          y: 10,
-          duration: 0.25,
+          y: '0%',
+          duration: 0.2,
           ease: 'power2.out'
         },
-        'signatureComplete-=0.1'
+        'signatureComplete+=0.2'
       );
 
-      // Chute de la goutte avec déformation
+      tl.add('inkDropStart');
+
+      // Chute de la goutte vers le CTA
       tl.to(
         inkDrop,
         {
-          y: 22,
-          scaleY: 0.8,
-          scaleX: 1.05,
-          duration: 0.18,
-          ease: 'power1.in'
+          opacity: 1,
+          y: '120%',
+          duration: 0.8,
+          ease: 'cubic-bezier(0.5, 0.1, 0.3, 1)'
         },
-        '>-0.05'
+        'inkDropStart'
       );
 
-      // Dissolution de la goutte
+      // ===================================
+      // ÉTAPE 8 : REMPLISSAGE DU CTA
+      // ===================================
+      // Le CTA apparaît légèrement avant que la goutte n'arrive
+      tl.to(
+        cta,
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.4,
+          ease: 'power2.out'
+        },
+        'inkDropStart+=0.1'
+      );
+
+      // Remplissage liquide du CTA quand la goutte arrive
+      tl.to(
+        ctaInk,
+        {
+          scaleY: 1,
+          duration: 0.7,
+          ease: 'power2.out',
+          onComplete: () => {
+            cta.classList.add('is-filled');
+          }
+        },
+        'inkDropStart+=0.4'
+      );
+
+      // Fade out de la goutte au moment où elle "touche" le CTA
       tl.to(
         inkDrop,
         {
@@ -212,46 +233,12 @@ export function initHeroSignature() {
           duration: 0.2,
           ease: 'power1.out'
         },
-        '-=0.05'
+        'inkDropStart+=0.5'
       );
     }
 
     // ===================================
-    // ÉTAPE 8 : RÉVÉLATION DU SOUS-TITRE
-    // ===================================
-    if (subtitle) {
-      // Le sous-titre se révèle quand la goutte "touche" la ligne
-      tl.to(
-        subtitle,
-        {
-          opacity: 1,
-          clipPath: 'inset(0 0 0% 0)', // Révélation de haut en bas
-          duration: 0.8,
-          ease: 'power2.out'
-        },
-        inkDrop ? '>-0.6' : 'signatureComplete+=0.2' // Synchronisé avec l'impact de la goutte
-      );
-    }
-
-    // ===================================
-    // ÉTAPE 9 : APPARITION DES CTA
-    // ===================================
-    if (ctaButtons.length) {
-      tl.to(
-        ctaButtons,
-        {
-          opacity: 1,
-          y: 0,
-          stagger: 0.12,
-          duration: 0.5,
-          ease: 'power2.out'
-        },
-        '>-0.3' // Légèrement avant la fin de la révélation du sous-titre
-      );
-    }
-
-    // ===================================
-    // ÉTAPE 10 : CALLBACK FINAL
+    // ÉTAPE 9 : CALLBACK FINAL
     // ===================================
     // Figer l'état final pour garantir qu'il n'y a pas de dérive
     tl.call(() => {
