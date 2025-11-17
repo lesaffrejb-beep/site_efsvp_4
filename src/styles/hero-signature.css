@@ -8,6 +8,7 @@
 
 .hero.hero--signature {
   min-height: 100vh;
+  max-height: 100vh; /* ⚠️ CRITIQUE : empêche débordement */
   background-color: var(--color-hero-bg, #f9f5ef);
   display: flex;
   align-items: center;
@@ -15,7 +16,8 @@
   padding-block: clamp(3rem, 8vh, 6rem);
   padding-inline: clamp(1.5rem, 4vw, 3rem);
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* ⚠️ CRITIQUE : coupe tout ce qui dépasse */
+  z-index: 1; /* Contexte de stacking propre */
 }
 
 .hero__inner {
@@ -131,8 +133,9 @@
 
 .hero-cta,
 .hero-cta--ink {
-  position: relative;
+  position: relative; /* ⚠️ PAS absolute, reste dans le flow */
   isolation: isolate;
+  z-index: 5; /* ⚠️ Sous le système d'encre (z-index: 10) */
 
   /* TAILLES HERO */
   padding: 1.5rem 4rem;
@@ -196,7 +199,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 5;
+  z-index: 10; /* ⚠️ Au-dessus du contenu hero, mais DANS le hero */
   overflow: visible;
 }
 
@@ -204,10 +207,13 @@
 .ink-drop,
 .hero-ink-drop {
   position: absolute;
+  left: 0;
+  top: 0;
   width: 24px;
   height: 24px;
   border-radius: 50%;
   background-color: var(--neutral-900, #1a2332);
+  color: var(--neutral-900, #1a2332); /* Pour currentColor de la trainée */
   opacity: 0;
   pointer-events: none;
   will-change: transform, opacity;
@@ -236,20 +242,21 @@
   pointer-events: none;
 }
 
-/* Trainée SVG */
+/* Trainée SVG (enfant de la goutte) */
 .ink-trail {
   position: absolute;
-  top: 0;
   left: 50%;
+  top: 100%; /* ⚠️ Part du bas de la goutte */
   transform: translateX(-50%);
-  width: 100px;
-  height: 100%;
+  width: 20px;
+  height: 0; /* ⚠️ Commence à 0, grandit avec la chute */
   pointer-events: none;
-  will-change: opacity;
   overflow: visible;
+  will-change: height, opacity;
 }
 
 .ink-trail__path {
+  vector-effect: non-scaling-stroke;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
   will-change: stroke-dashoffset;
 }
@@ -397,4 +404,16 @@
   height: 0 !important;
   overflow: hidden !important;
   pointer-events: none !important;
+}
+
+/* ========================================
+   SECTIONS SUIVANTES : NOUVEAU CONTEXTE DE STACKING
+   ======================================== */
+
+/* Garantir que les sections après le hero ne sont pas masquées par le débordement */
+.hero--signature ~ section,
+.hero--signature + section {
+  position: relative;
+  z-index: 2; /* ⚠️ Au-dessus du hero */
+  background: var(--neutral-100, #f9f5ef); /* Fond opaque pour couvrir tout débordement */
 }
