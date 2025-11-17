@@ -4,20 +4,25 @@
 
 .hero--signature {
   background-color: var(--color-hero-bg, #f9f5ef); /* Fond très léger, presque blanc */
-  padding: clamp(4rem, 10vh, 6rem) 2rem 5rem;
+  min-height: 100vh; /* Plein écran pour un effet hero immersif */
+  padding: clamp(2rem, 4vh, 3rem) 2rem;
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero__inner {
-  max-width: 1100px;
+  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  min-height: min(80vh, 720px); /* Le hero tient bien l'écran sans être interminable */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
+  padding: var(--space-6, 3rem) var(--space-4, 2rem);
 }
 
 .hero__content {
@@ -45,14 +50,15 @@
   /* Styles supprimés car le titre est maintenant en sr-only */
 }
 
-/* Titre manuscrit SVG - Signature agrandie et centre de gravité visuel */
+/* Titre manuscrit SVG - Méga-titre hero occupant presque toute la largeur */
 .hero-signature-wrapper {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: min(40vw, 700px); /* Beaucoup plus grand sur desktop */
-  margin: 0 auto 1.75rem;
+  width: 100%;
+  max-width: clamp(260px, 72vw, 1100px); /* Signature XXL sur desktop, lisible sur mobile */
+  margin: clamp(2rem, 4vh, 4rem) auto;
   padding: 0;
 }
 
@@ -61,7 +67,6 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  aspect-ratio: 5 / 2; /* Ratio adapté à une signature horizontale */
   overflow: visible;
 }
 
@@ -214,10 +219,12 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .hero--signature {
+    min-height: 80vh; /* Un peu moins sur mobile pour éviter l'effet étouffant */
+  }
+
   .hero__inner {
-    min-height: auto;
-    padding-top: 3rem;
-    padding-bottom: 4rem;
+    padding-inline: var(--space-3, 1.5rem);
   }
 
   .hero__content {
@@ -229,12 +236,13 @@
   }
 
   .hero-signature-wrapper {
-    width: 85vw; /* Plus petit sur mobile pour garder un équilibre */
+    max-width: 80vw; /* Plus petit sur mobile mais toujours central */
   }
 
   .hero-subtitle,
   .hero-signature-caption {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 1.1vw, 1.25rem);
+    max-width: 90%;
   }
 
   .hero-cta {
@@ -250,7 +258,7 @@
 
 @media (max-width: 475px) {
   .hero-signature-wrapper {
-    width: min(90vw, 500px);
+    max-width: min(85vw, 500px);
   }
 
   .hero-subtitle,
