@@ -5,55 +5,60 @@
 
 export class CopyEmail {
   constructor() {
-    this.email = '';
-    this.button = null;
-    this.resetTimer = null;
-    this.onClick = null;
+    this.buttons = [];
     this.init();
   }
 
   init() {
-    this.button = document.querySelector('[data-copy-email]');
-    if (!this.button) return;
+    const buttons = document.querySelectorAll('[data-copy-email]');
+    if (!buttons.length) return;
 
-    this.email = this.button.getAttribute('data-email') || '';
-    if (!this.email) {
-      console.warn('CopyEmail: aucun email renseigné dans data-email');
-      return;
-    }
+    buttons.forEach((button) => {
+      const email = button.getAttribute('data-email') || '';
+      if (!email) {
+        console.warn('CopyEmail: aucun email renseigné dans data-email', button);
+        return;
+      }
 
-    this.setupEventListeners();
+      const buttonData = {
+        element: button,
+        email: email,
+        resetTimer: null,
+      };
 
-    this.showFeedback('default');
+      this.buttons.push(buttonData);
+      this.setupEventListeners(buttonData);
+      this.showFeedback(buttonData, 'default');
+    });
   }
 
-  setupEventListeners() {
+  setupEventListeners(buttonData) {
     // Clic principal: copier l'email
-    this.onClick = (e) => {
+    const onClick = (e) => {
       e.preventDefault();
-      this.copyToClipboard();
+      this.copyToClipboard(buttonData);
     };
 
-    this.button.addEventListener('click', this.onClick);
+    buttonData.element.addEventListener('click', onClick);
   }
 
-  async copyToClipboard() {
+  async copyToClipboard(buttonData) {
     try {
       // Modern Clipboard API
-      await navigator.clipboard.writeText(this.email);
-      this.showFeedback('success');
+      await navigator.clipboard.writeText(buttonData.email);
+      this.showFeedback(buttonData, 'success');
     } catch (err) {
-      const fallbackSuccess = this.fallbackCopyToClipboard();
+      const fallbackSuccess = this.fallbackCopyToClipboard(buttonData);
       if (!fallbackSuccess) {
         console.error('CopyEmail: impossible de copier', err);
-        this.showFeedback('error');
+        this.showFeedback(buttonData, 'error');
       }
     }
   }
 
-  fallbackCopyToClipboard() {
+  fallbackCopyToClipboard(buttonData) {
     const textarea = document.createElement('textarea');
-    textarea.value = this.email;
+    textarea.value = buttonData.email;
     textarea.style.position = 'fixed';
     textarea.style.opacity = '0';
     textarea.style.pointerEvents = 'none';
@@ -63,27 +68,29 @@ export class CopyEmail {
 
     try {
       const successful = document.execCommand('copy');
-      this.showFeedback(successful ? 'success' : 'error');
+      this.showFeedback(buttonData, successful ? 'success' : 'error');
       return successful;
     } catch (err) {
       console.error('Fallback copy failed:', err);
-      this.showFeedback('error');
+      this.showFeedback(buttonData, 'error');
       return false;
     } finally {
       document.body.removeChild(textarea);
     }
   }
 
-  showFeedback(state) {
-    if (!this.button) return;
+  showFeedback(buttonData, state) {
+    if (!buttonData || !buttonData.element) return;
+
+    const button = buttonData.element;
 
     // Récupérer les éléments de feedback
-    const defaultText = this.button.querySelector('.copy-email__text');
-    const successText = this.button.querySelector('.copy-email__success');
-    const errorText = this.button.querySelector('.copy-email__error');
-    const icon = this.button.querySelector('.copy-email__icon');
+    const defaultText = button.querySelector('.copy-email__text');
+    const successText = button.querySelector('.copy-email__success');
+    const errorText = button.querySelector('.copy-email__error');
+    const icon = button.querySelector('.copy-email__icon');
 
-    clearTimeout(this.resetTimer);
+    clearTimeout(buttonData.resetTimer);
 
     if (defaultText) {
       defaultText.classList.toggle('is-hidden', state !== 'default');
@@ -99,11 +106,11 @@ export class CopyEmail {
     }
     if (icon) icon.classList.toggle('is-hidden', state !== 'default');
 
-    this.button.classList.toggle('copied', state === 'success');
-    this.button.classList.toggle('copy-error', state === 'error');
+    button.classList.toggle('copied', state === 'success');
+    button.classList.toggle('copy-error', state === 'error');
 
     if (state !== 'default') {
-      this.resetTimer = setTimeout(() => {
+      buttonData.resetTimer = setTimeout(() => {
         if (defaultText) {
           defaultText.classList.remove('is-hidden');
           defaultText.setAttribute('aria-hidden', 'false');
@@ -117,14 +124,15 @@ export class CopyEmail {
           errorText.setAttribute('aria-hidden', 'true');
         }
         if (icon) icon.classList.remove('is-hidden');
-        this.button.classList.remove('copied', 'copy-error');
+        button.classList.remove('copied', 'copy-error');
       }, 2200);
     }
   }
 
   destroy() {
-    if (this.button) {
-      this.button.removeEventListener('click', this.onClick);
-    }
+    // Clear all timers and remove event listeners if needed
+    this.buttons.forEach((buttonData) => {
+      clearTimeout(buttonData.resetTimer);
+    });
   }
 }

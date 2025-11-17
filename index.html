@@ -207,10 +207,10 @@
               <a href="#hero" class="nav__link">Accueil</a>
             </li>
             <li class="nav__item">
-              <a href="#offres" class="nav__link">Offres</a>
+              <a href="#projets" class="nav__link">Projets</a>
             </li>
             <li class="nav__item">
-              <a href="#projets" class="nav__link">Projets</a>
+              <a href="#offres" class="nav__link">Offres</a>
             </li>
             <li class="nav__item">
               <a href="#process" class="nav__link">Process</a>
@@ -949,6 +949,7 @@
             <div class="footer__col">
               <h4 class="footer__title">Navigation</h4>
               <ul class="footer__links">
+                <li><a href="#hero">Accueil</a></li>
                 <li><a href="#projets">Projets</a></li>
                 <li><a href="#offres">Offres</a></li>
                 <li><a href="#process">Process</a></li>
@@ -970,13 +971,21 @@
                   </a>
                 </li>
                 <li>
-                  <a href="mailto:contact@efsvp.fr" class="footer__contact-link">
-                    <svg class="footer__contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <button
+                    type="button"
+                    class="footer__contact-link footer__email-button"
+                    data-copy-email
+                    data-email="contact@efsvp.fr"
+                    aria-label="Copier l'adresse contact@efsvp.fr"
+                  >
+                    <svg class="footer__contact-icon copy-email__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                       <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                       <polyline points="22,6 12,13 2,6"/>
                     </svg>
-                    contact@efsvp.fr
-                  </a>
+                    <span class="copy-email__text">contact@efsvp.fr</span>
+                    <span class="copy-email__success" aria-hidden="true" aria-live="polite">Copié !</span>
+                    <span class="copy-email__error" aria-hidden="true">Copie impossible</span>
+                  </button>
                 </li>
               </ul>
             </div>

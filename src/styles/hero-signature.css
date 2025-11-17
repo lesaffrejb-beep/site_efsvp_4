@@ -47,9 +47,9 @@
   --hero-padding-top: var(--space-6);
   --hero-padding-bottom: var(--space-12);
   --hero-padding-inline: var(--space-6);
-  /* Golden ratio spacing pour cohésion visuelle : baseline-to-cta × 1.618 ≈ animation-to-baseline */
-  --hero-animation-to-baseline: clamp(var(--space-3), 2vh, var(--space-6));
-  --hero-baseline-to-cta: clamp(var(--space-2), 1.8vh, var(--space-4));
+  /* Spacing réduit pour remonter le sous-titre + CTA près de la signature */
+  --hero-animation-to-baseline: clamp(var(--space-2), 1.2vh, var(--space-4));
+  --hero-baseline-to-cta: clamp(var(--space-2), 1.2vh, var(--space-3));
 }
 
 /* ========================================
@@ -82,6 +82,7 @@
   padding: var(--hero-padding-top) var(--hero-padding-inline);
   position: relative;
   overflow: hidden;
+  isolation: isolate;
   z-index: 1; /* Sous les sections suivantes (z-index: 10) */
 }
 
@@ -96,7 +97,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-3);
+  gap: var(--space-2);
   width: 100%;
   max-width: 960px;
   justify-content: flex-start;
@@ -414,6 +415,6 @@
 .hero--signature ~ section,
 .hero--signature + section {
   position: relative;
-  z-index: 2;
-  background: var(--neutral-100, #f9f5ef);
+  z-index: 10;
+  background: var(--bg-primary, #f9f5ef);
 }
