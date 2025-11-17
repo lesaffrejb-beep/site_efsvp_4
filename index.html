@@ -271,8 +271,22 @@
               </svg>
 
               <!-- Couche pour la goutte d'encre -->
-              <div class="hero-ink-drop-layer">
-                <span class="hero-ink-drop" data-hero-ink-drop aria-hidden="true"></span>
+              <!-- Système d'encre : goutte + trainée -->
+              <div class="hero-ink-system" aria-hidden="true">
+                <!-- Goutte animée -->
+                <div class="ink-drop" data-ink-drop></div>
+
+                <!-- Trainée SVG qui se dessine pendant la chute -->
+                <svg class="ink-trail" data-ink-trail viewBox="0 0 100 600" preserveAspectRatio="xMidYMin slice">
+                  <path
+                    class="ink-trail__path"
+                    d="M 50 0 Q 48 150 50 300 Q 52 450 50 600"
+                    fill="none"
+                    stroke="var(--neutral-900, #1a2332)"
+                    stroke-width="3"
+                    stroke-linecap="round"
+                  />
+                </svg>
               </div>
 
             </div>
@@ -991,5 +1005,18 @@
     <script type="module" src="/src/scripts/main.js"></script>
     <script type="module" src="/src/scripts/components-efsvp.js"></script>
     <script type="module" src="/src/scripts/dribbble-animations.js"></script>
+    <!-- Filtres SVG pour effets liquides/goo -->
+    <svg class="svg-filters" aria-hidden="true" style="position: absolute; width: 0; height: 0;">
+      <defs>
+        <filter id="goo-ink">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur"/>
+          <feColorMatrix in="blur" mode="matrix" 
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9" 
+            result="goo"/>
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
+        </filter>
+      </defs>
+    </svg>
+
   </body>
 </html>

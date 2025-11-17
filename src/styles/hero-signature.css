@@ -1,65 +1,76 @@
-/* ------------------------------------ */
-/* Hero Signature                       */
-/* ------------------------------------ */
+/* ========================================
+   HERO SIGNATURE - ANIMATION PREMIUM AWWWARDS 2025
+   ======================================== */
 
-.hero--signature {
-  background-color: var(--color-hero-bg, #f9f5ef); /* Fond très léger, presque blanc */
-  min-height: 100vh; /* Plein écran pour un effet hero immersif */
-  padding: 0; /* Pas de padding pour un centrage parfait */
+/* ========================================
+   HERO LAYOUT - ASYMÉTRIQUE PREMIUM
+   ======================================== */
+
+.hero.hero--signature {
+  min-height: 100vh;
+  background-color: var(--color-hero-bg, #f9f5ef);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: clamp(3rem, 8vh, 6rem);
+  padding-inline: clamp(1.5rem, 4vw, 3rem);
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center; /* Centrage vertical */
-  justify-content: center; /* Centrage horizontal */
 }
 
 .hero__inner {
-  max-width: 1200px;
+  max-width: 90rem;
   width: 100%;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: clamp(2rem, 4vh, 4rem) clamp(1.5rem, 4vw, 2rem); /* Padding responsive pour respiration */
+  position: relative;
+  z-index: 1;
 }
 
 .hero__content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-8, 4rem);
+  gap: clamp(2rem, 5vw, 4rem);
   width: 100%;
 }
 
+/* ========================================
+   SIGNATURE BLOCK - HERO-SIZED
+   ======================================== */
+
 .hero-signature-block {
-  margin: 0;
-  padding: 0;
-  max-width: 800px;
+  text-align: center;
   width: 100%;
+  max-width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-8, 4rem);
-  text-align: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
 }
 
-/* H1 caché visuellement (sr-only) pour SEO/accessibilité uniquement */
-.hero-title {
-  /* Styles supprimés car le titre est maintenant en sr-only */
+/* H1 caché visuellement (sr-only) pour SEO/accessibilité */
+.hero-title,
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-/* Titre manuscrit SVG - Méga-titre hero occupant presque toute la largeur */
+/* ========================================
+   SIGNATURE SVG - ÉNORME, IMPACTANTE
+   ======================================== */
+
 .hero-signature-wrapper {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 100%;
-  max-width: clamp(260px, 72vw, 1100px); /* Signature XXL sur desktop, lisible sur mobile */
-  margin: 0 auto; /* Pas de margin vertical excessif */
-  padding: 0;
+  max-width: clamp(18rem, 70vw, 70rem); /* SIGNATURE XXL */
+  margin-inline: auto;
 }
 
 .hero-signature-svg {
@@ -68,17 +79,8 @@
   height: auto;
   max-width: 100%;
   overflow: visible;
-}
-
-/* Path de la signature manuscrite */
-.hero-signature-path {
-  fill: none;
-  stroke: var(--neutral-900, #1a2332);
-  stroke-width: 1.5; /* Trait net et élégant */
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  /* IMPORTANT : Pas de strokeDasharray/offset ici - géré uniquement par GSAP */
-  /* IMPORTANT : Pas de filter drop-shadow qui créerait une double couche */
+  /* Taille visuelle équivalente */
+  font-size: clamp(3rem, 8vw, 7rem);
 }
 
 /* Classe d'initialisation pour masquer les paths pendant le setup JS */
@@ -86,38 +88,138 @@
   opacity: 0;
 }
 
-/* Couche pour la goutte d'encre (positionnée relativement à la signature) */
-.hero-ink-drop-layer {
-  position: absolute;
-  /* Position ajustée pour aligner avec la fin de la signature et le CTA */
-  right: clamp(8%, 12vw, 16%);
-  top: 40%;
-  width: 50px;
-  height: 180px;
-  pointer-events: none;
-  filter: url(#hero-ink-goo);
-  z-index: 10;
+/* Path de la signature manuscrite */
+.hero-signature-path {
+  fill: none;
+  stroke: var(--neutral-900, #1a2332);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  will-change: stroke-dashoffset;
 }
 
-/* Goutte d'encre (tombe de la signature vers le CTA) */
+/* ========================================
+   BASELINE - DISCRÈTE, ALIGNÉE À GAUCHE
+   ======================================== */
+
+.hero-subtitle,
+.hero-signature-caption {
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(0.875rem, 1.2vw, 1.125rem);
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.03em;
+  color: var(--neutral-700, #4a5568);
+  max-width: 26rem;
+  margin-inline: 0; /* Aligné à gauche sur desktop */
+  padding-left: var(--space-4, 2rem);
+  opacity: 1; /* Visible dès le départ */
+  text-align: left;
+}
+
+/* ========================================
+   CTA - XXL PREMIUM
+   ======================================== */
+
+.hero__cta,
+.hero__cta--single {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(1rem, 2vw, 2rem);
+  width: 100%;
+}
+
+.hero-cta,
+.hero-cta--ink {
+  position: relative;
+  isolation: isolate;
+
+  /* TAILLES HERO */
+  padding: 1.5rem 4rem;
+  font-size: 1.25rem;
+  min-height: 4rem;
+
+  border-radius: 999px;
+  background: transparent;
+  border: 2px solid var(--neutral-900, #1a2332);
+  color: var(--neutral-900, #1a2332);
+  font-weight: 600;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  letter-spacing: 0.02em;
+
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.hero-cta:hover,
+.hero-cta--ink:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(26, 35, 50, 0.12);
+}
+
+.hero-cta__label {
+  position: relative;
+  z-index: 1;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.hero-cta__ink-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--neutral-900, #1a2332);
+  border-radius: inherit;
+  transform-origin: bottom center;
+  transform: scaleY(0);
+  z-index: 0;
+  will-change: transform;
+}
+
+/* État rempli du CTA */
+.hero-cta--ink.is-filled .hero-cta__label,
+.hero-cta.is-filled .hero-cta__label {
+  color: var(--color-parchment, #f5e6d3);
+}
+
+/* État de remplissage (filtre goo actif) */
+.hero-cta--ink.is-filling,
+.hero-cta.is-filling {
+  /* Le filtre goo sera appliqué via JS */
+}
+
+/* ========================================
+   SYSTÈME D'ENCRE - GOUTTE + TRAINÉE
+   ======================================== */
+
+.hero-ink-system {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  overflow: visible;
+}
+
+/* Goutte d'encre */
+.ink-drop,
 .hero-ink-drop {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 18px;
-  height: 18px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   background-color: var(--neutral-900, #1a2332);
   opacity: 0;
   pointer-events: none;
   will-change: transform, opacity;
-  /* Shadow subtile pour donner de la profondeur */
+
+  /* Ombre pour profondeur */
   box-shadow:
     0 2px 8px rgba(26, 35, 50, 0.3),
     inset 0 1px 2px rgba(255, 255, 255, 0.1);
 }
 
-/* Effet de brillance sur la goutte pour un aspect liquide réaliste */
+/* Effet de brillance sur la goutte (aspect liquide) */
+.ink-drop::before,
 .hero-ink-drop::before {
   content: '';
   position: absolute;
@@ -134,274 +236,165 @@
   pointer-events: none;
 }
 
-/* Classe utilitaire sr-only (screen reader only) */
-.sr-only {
+/* Trainée SVG */
+.ink-trail {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100%;
+  pointer-events: none;
+  will-change: opacity;
+  overflow: visible;
 }
 
-/* Sous-titre (révélé par la goutte d'encre) */
-.hero-subtitle {
-  margin: 1.25rem auto 1.75rem;
-  padding: 0;
-  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  font-weight: 500;
-  font-size: clamp(1rem, 1.1rem + 0.2vw, 1.25rem);
-  line-height: 1.6;
-  letter-spacing: 0.04em;
-  color: var(--neutral-900, #1a2332);
-  text-align: center;
-  max-width: 650px;
-  opacity: 0; /* Invisible au départ, révélé par GSAP */
+.ink-trail__path {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  will-change: stroke-dashoffset;
 }
 
-/* Legacy support pour hero-signature-caption */
-.hero-signature-caption {
-  margin: 1.25rem auto 1.75rem;
-  padding: 0;
-  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  font-weight: 500;
-  font-size: clamp(1rem, 1.1rem + 0.2vw, 1.25rem);
-  line-height: 1.6;
-  letter-spacing: 0.04em;
-  color: var(--neutral-900, #1a2332);
-  opacity: 0;
-  text-align: center;
-  max-width: 550px;
-}
-
-/* CTA Buttons */
-.hero-cta {
-  display: flex;
-  gap: var(--space-4, 2rem);
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 0.5rem;
-}
-
-.hero-cta .btn {
-  min-width: 220px;
-  padding: var(--space-4, 2rem) var(--space-6, 3rem);
-  font-size: 1rem;
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  text-align: center;
-}
-
-.hero-cta .btn-primary {
-  background: var(--primary, #b8441e);
-  color: white;
-  border: 2px solid var(--primary, #b8441e);
-}
-
-.hero-cta .btn-primary:hover {
-  background: var(--primary-dark, #9a3719);
-  border-color: var(--primary-dark, #9a3719);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(184, 68, 30, 0.25);
-}
-
-.hero-cta .btn-secondary {
-  background: transparent;
-  color: var(--primary, #b8441e);
-  border: 2px solid var(--primary, #b8441e);
-}
-
-.hero-cta .btn-secondary:hover {
-  background: var(--primary, #b8441e);
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(184, 68, 30, 0.15);
-}
-
-/* CTA Principal unique avec effet liquide */
-.hero__cta--single {
-  margin-top: var(--space-5, 2.5rem);
-  display: flex;
-  justify-content: center;
-}
-
-.hero-cta--ink {
-  position: relative;
-  overflow: hidden;
-  border-radius: 999px;
-  padding: 0.9rem 2.8rem;
-  border: 1.5px solid var(--neutral-900, #1a2332);
-  background: transparent;
-  color: var(--neutral-900, #1a2332);
-  cursor: pointer;
-  isolation: isolate;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.3s ease;
-}
-
-.hero-cta--ink:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(26, 35, 50, 0.2);
-}
-
-/* État interactif après remplissage */
-.hero-cta--ink.is-filled:hover {
-  box-shadow: 0 8px 24px rgba(26, 35, 50, 0.25);
-  border-color: var(--neutral-800, #2a3545);
-}
-
-.hero-cta__label {
-  position: relative;
-  z-index: 1;
-  transition: color 0.3s ease;
-}
-
-.hero-cta__ink-fill {
+/* Legacy support */
+.hero-ink-drop-layer {
   position: absolute;
-  inset: 0;
-  transform-origin: bottom center;
-  transform: scaleY(0);
-  background: var(--neutral-900, #1a2332);
-  z-index: 0;
-  will-change: transform;
-  overflow: hidden;
+  right: clamp(8%, 12vw, 16%);
+  top: 40%;
+  width: 50px;
+  height: 180px;
+  pointer-events: none;
+  z-index: 10;
 }
 
-/* Effet de vague liquide qui ondule pendant le remplissage */
-.hero-cta__ink-fill::before {
-  content: '';
-  position: absolute;
-  width: 200%;
-  height: 200%;
-  top: -100%;
-  left: -50%;
-  background: radial-gradient(
-    ellipse at center,
-    rgba(255, 255, 255, 0.08) 0%,
-    transparent 50%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
+/* ========================================
+   RESPONSIVE - MOBILE FIRST
+   ======================================== */
 
-/* Quand le CTA est en train de se remplir, on active l'effet de vague */
-.hero-cta--ink.is-filling .hero-cta__ink-fill {
-  filter: url(#hero-cta-liquid);
-}
-
-.hero-cta--ink.is-filling .hero-cta__ink-fill::before {
-  opacity: 1;
-  animation: liquid-wave 2.5s ease-in-out infinite;
-}
-
-/* Animation de vague liquide */
-@keyframes liquid-wave {
-  0%, 100% {
-    transform: translate(-25%, 0) rotate(0deg);
-  }
-  25% {
-    transform: translate(-25%, -8px) rotate(90deg);
-  }
-  50% {
-    transform: translate(-25%, 0) rotate(180deg);
-  }
-  75% {
-    transform: translate(-25%, -8px) rotate(270deg);
-  }
-}
-
-/* État rempli du CTA (après l'animation) */
-.hero-cta--ink.is-filled .hero-cta__label {
-  color: var(--color-parchment, #f5e6d3);
-}
-
-/* Responsive */
 @media (max-width: 768px) {
-  .hero--signature {
-    min-height: 80vh; /* Un peu moins sur mobile pour éviter l'effet étouffant */
-  }
-
-  .hero__inner {
-    padding-inline: var(--space-3, 1.5rem);
+  .hero.hero--signature {
+    min-height: 90vh;
+    padding-block: clamp(2rem, 6vh, 4rem);
   }
 
   .hero__content {
-    gap: var(--space-6, 3rem);
-  }
-
-  .hero-signature-block {
-    gap: var(--space-6, 3rem);
+    gap: clamp(1.5rem, 4vw, 3rem);
   }
 
   .hero-signature-wrapper {
-    max-width: 80vw; /* Plus petit sur mobile mais toujours central */
+    max-width: clamp(16rem, 85vw, 28rem);
+  }
+
+  .hero-signature-svg {
+    font-size: clamp(2rem, 12vw, 4rem);
   }
 
   .hero-subtitle,
   .hero-signature-caption {
-    font-size: clamp(1rem, 1.1vw, 1.25rem);
+    font-size: 0.875rem;
+    margin-inline: auto;
+    text-align: center;
+    padding-left: 0;
     max-width: 90%;
   }
 
-  .hero-cta {
-    flex-direction: column;
+  .hero-cta,
+  .hero-cta--ink {
+    padding: 1.25rem 3rem;
+    font-size: 1.125rem;
+    min-height: 3.5rem;
     width: 100%;
-    max-width: 300px;
+    max-width: 22rem;
   }
 
-  .hero-cta .btn {
-    width: 100%;
+  .ink-trail {
+    width: 80px;
   }
 }
 
 @media (max-width: 475px) {
   .hero-signature-wrapper {
-    max-width: min(85vw, 500px);
+    max-width: min(85vw, 20rem);
+  }
+
+  .hero-signature-svg {
+    font-size: clamp(1.75rem, 10vw, 3rem);
   }
 
   .hero-subtitle,
   .hero-signature-caption {
+    font-size: 0.8125rem;
+  }
+
+  .hero-cta,
+  .hero-cta--ink {
+    padding: 1.125rem 2.5rem;
     font-size: 1rem;
+    min-height: 3.25rem;
+  }
+
+  .ink-trail {
+    width: 60px;
   }
 }
 
-/* Prefers reduced motion - Tout visible sans animation */
-@media (prefers-reduced-motion: reduce) {
-  .hero-signature-path {
-    /* Signature visible immédiatement sans animation - géré par JS */
+/* Desktop large - Signature encore plus imposante */
+@media (min-width: 1440px) {
+  .hero-signature-wrapper {
+    max-width: 70rem;
   }
 
   .hero-subtitle,
   .hero-signature-caption {
-    opacity: 1;
-    clip-path: none;
+    font-size: 1.125rem;
+  }
+}
+
+/* ========================================
+   PREFERS REDUCED MOTION
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-signature-path {
+    stroke-dasharray: none !important;
+    stroke-dashoffset: 0 !important;
+    opacity: 1 !important;
   }
 
+  .hero-subtitle,
+  .hero-signature-caption {
+    opacity: 1 !important;
+  }
+
+  .ink-drop,
   .hero-ink-drop {
-    opacity: 0; /* Pas de goutte d'encre si motion réduite */
+    opacity: 0 !important;
   }
 
-  .hero-cta > * {
-    opacity: 1;
-    transform: none;
+  .ink-trail {
+    opacity: 0 !important;
   }
 
+  .hero-cta,
   .hero-cta--ink {
     background: var(--neutral-900, #1a2332);
   }
 
-  .hero-cta--ink .hero-cta__label {
-    color: var(--color-parchment, #f5e6d3);
+  .hero-cta__label {
+    color: var(--color-parchment, #f5e6d3) !important;
   }
 
   .hero-cta__ink-fill {
-    transform: scaleY(1);
+    transform: scaleY(1) !important;
   }
+}
+
+/* ========================================
+   SVG FILTERS
+   ======================================== */
+
+.svg-filters {
+  position: absolute !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
 }
