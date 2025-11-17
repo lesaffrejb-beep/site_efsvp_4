@@ -645,5 +645,53 @@
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
     ]
+  },
+  {
+    "id": "chemin-des-dames",
+    "title": "Le chemin des dames",
+    "client": "Autoproduction",
+    "year": 2026,
+    "location": "Angers - Paris",
+    "status": "in-progress",
+    "cover": {
+      "image": "/assets/images/projects/chemin-des-dames-cover.jpg",
+      "initials": "CD",
+      "gradient": {
+        "from": "var(--color-primary-500)",
+        "to": "var(--color-neutral-700)"
+      }
+    },
+    "shortDescription": "Le chemin des dames est un concept de dîner-spectacle immersif historique. En partenariat avec Les petits pères.",
+    "longDescription": [
+      "Le chemin des dames est le premier projet autoproduit d’en français s’il vous plaît. Il est en cours de construction. Les premières représentations sont prévues pour l’année 2026.",
+      "Le concept : un dîner-spectacle historique immersif racontant l’histoire de 4 soldats le 16 avril 1917 au matin. Chaque acte nous plonge dans le passé d’un personnage. Les plats répondent à l’histoire. Toute la musique est jouée en live.",
+      "Le chemin des dames est réellement à la croisée entre le spectacle et le dîner gastronomique. Une dizaine de plats, 5 actes, le service, la vaisselle, le décor, tout est inclus dans l’histoire."
+    ],
+    "category": "dîner-spectacle immersif",
+    "sector": "spectacle-vivant",
+    "themes": [
+      "patrimoine",
+      "gastronomie",
+      "spectacle vivant",
+      "première guerre mondiale"
+    ],
+    "details": {
+      "format": "Dîner-spectacle immersif",
+      "duration": "1h45",
+      "audience": "Tous publics",
+      "deliverables": [
+        "Spectacle",
+        "Expérience culinaire immersive"
+      ]
+    },
+    "team": [
+      "Azan SOULARD",
+      "Jean-Baptiste LESAFFRE",
+      "Arthur CHARRIER",
+      "Pierre TAPIE"
+    ],
+    "partners": [
+      "Les petits pères"
+    ]
   }
 ]

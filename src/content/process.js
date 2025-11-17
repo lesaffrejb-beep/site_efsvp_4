@@ -7,7 +7,7 @@ export const processContent = {
   section: {
     eyebrow: `Méthode`,
     title: `Un process clair. Des délais respectés.`,
-    subtitle: `Quatre étapes balisées pour transformer votre matière en récit vivant, sans mauvaise surprise.`,
+    subtitle: `Quatre étapes pour transformer votre matière en récit vivant.`,
     note: ``,
   },
 

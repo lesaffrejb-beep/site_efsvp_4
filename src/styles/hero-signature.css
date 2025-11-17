@@ -44,12 +44,12 @@
   --space-32: 8rem;     /* 128px */
 
   /* Spacing sémantiques HERO (centrage vertical) */
-  --hero-padding-top: var(--space-8);
-  --hero-padding-bottom: var(--space-8);
+  --hero-padding-top: var(--space-6);
+  --hero-padding-bottom: var(--space-12);
   --hero-padding-inline: var(--space-6);
   /* Golden ratio spacing pour cohésion visuelle : baseline-to-cta × 1.618 ≈ animation-to-baseline */
-  --hero-animation-to-baseline: clamp(1.25rem, 2.5vh, 1.75rem);
-  --hero-baseline-to-cta: clamp(1rem, 2vh, 1.5rem);
+  --hero-animation-to-baseline: clamp(var(--space-3), 2vh, var(--space-6));
+  --hero-baseline-to-cta: clamp(var(--space-2), 1.8vh, var(--space-4));
 }
 
 /* ========================================
@@ -96,12 +96,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-3);
   width: 100%;
   max-width: 960px;
-  justify-content: center;
+  justify-content: flex-start;
   text-align: center;
-  padding: var(--space-8) var(--container-padding);
+  padding: var(--space-6) var(--container-padding) var(--space-12);
   margin: 0 auto;
 }
 

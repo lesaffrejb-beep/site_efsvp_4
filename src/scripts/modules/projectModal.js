@@ -24,7 +24,7 @@ export class ProjectModal {
     this.modal = document.getElementById('project-modal');
     this.closeBtn = document.getElementById('project-modal-close');
     this.overlay = this.modal?.querySelector('.modal-overlay');
-    this.projectCards = document.querySelectorAll('.project-card');
+    this.projectCards = document.querySelectorAll('.project-card, [data-project-id]');
 
     if (!this.modal) {
       console.warn('ProjectModal: modal element not found');
@@ -35,25 +35,30 @@ export class ProjectModal {
   }
 
   setupEventListeners() {
-    // Click sur les cartes projet
+    // Click sur les cartes projet ou tout élément porteur de data-project-id
     this.projectCards.forEach((card) => {
-      const link = card.querySelector('.project-card__link');
+      const link = card.querySelector?.('.project-card__link');
+      const target = link || card;
 
       if (link) {
         link.style.cursor = 'pointer';
         link.setAttribute('role', 'button');
         link.setAttribute('tabindex', '0');
+      }
 
-        link.addEventListener('click', (e) => {
+      target.addEventListener('click', (e) => {
+        if (link) {
           e.preventDefault();
-          const projectId = this.getProjectIdFromCard(card);
-          if (projectId) {
-            this.openModal(projectId);
-          }
-        });
+        }
+        const projectId = this.getProjectIdFromCard(card);
+        if (projectId) {
+          this.openModal(projectId);
+        }
+      });
 
-        // Support clavier
-        link.addEventListener('keydown', (e) => {
+      // Support clavier
+      if (!['BUTTON', 'A'].includes(target.tagName)) {
+        target.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             const projectId = this.getProjectIdFromCard(card);

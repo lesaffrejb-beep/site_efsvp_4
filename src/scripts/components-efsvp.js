@@ -80,7 +80,7 @@ function initContactForm() {
         form.reset();
 
         // Afficher message de succès
-        showSuccessMessage('Merci ! Nous vous répondrons sous 48h.');
+        showSuccessMessage('Merci ! Nous vous répondrons sous 72h.');
       } else {
         throw new Error("Erreur lors de l'envoi");
       }

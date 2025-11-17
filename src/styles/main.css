@@ -973,25 +973,29 @@ button {
   }
 
   .card-lift {
-    transition: transform var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+    transition:
+      transform var(--transition-base),
+      box-shadow var(--transition-base),
+      border-color var(--transition-base),
+      background var(--transition-base);
     will-change: transform;
   }
 
   .card-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-2xl);
   }
 
   .card-lift:active {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
   }
 
   .card-lift:focus-visible {
     outline: 2px solid var(--color-primary-500);
     outline-offset: 3px;
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-2xl);
   }
 
   /* Hero Section Specific */
@@ -1572,10 +1576,22 @@ button {
   border: 1px solid var(--border-color);
   border-radius: var(--radius-lg);
   transition: all var(--transition-base);
-  cursor: default;
+  cursor: pointer;
+  color: inherit;
+  text-decoration: none;
+  appearance: none;
 }
 
 .clients-marquee__item:hover {
+  background: var(--bg-primary);
+  border-color: var(--color-primary-500);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.clients-marquee__item:focus-visible {
+  outline: 2px solid var(--color-primary-500);
+  outline-offset: 3px;
   background: var(--bg-primary);
   border-color: var(--color-primary-500);
   box-shadow: var(--shadow-md);
@@ -1664,6 +1680,9 @@ button {
 
   .promise-card:hover {
     border-color: var(--color-primary-500);
+    background: color-mix(in srgb, var(--bg-primary) 94%, var(--color-primary-50) 6%);
+    box-shadow: var(--shadow-2xl);
+    transform: translateY(-8px);
   }
 
 .promise-card__icon {
@@ -1923,20 +1942,24 @@ button {
 
   .offer-card:hover {
     border-color: var(--border-color-strong);
+    background: color-mix(in srgb, var(--bg-primary) 94%, var(--color-primary-50) 6%);
+    box-shadow: var(--shadow-2xl);
+    transform: translateY(-8px);
   }
 
-.offer-card--featured {
-  border-color: transparent;
-  box-shadow:
-    0 0 0 2px var(--color-primary-500),
-    var(--shadow-primary);
-}
+  .offer-card--featured {
+    border-color: transparent;
+    box-shadow:
+      0 0 0 2px var(--color-primary-500),
+      var(--shadow-primary);
+  }
 
   .offer-card--featured:hover {
     border-color: transparent;
     box-shadow:
       0 0 0 2px var(--color-primary-500),
       var(--shadow-primary-lg);
+    transform: translateY(-8px);
   }
 
 .offer-card__badge {

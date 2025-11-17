@@ -6,8 +6,8 @@
 export const contactContent = {
   section: {
     title: `Parlons de votre histoire`,
-    subtitle: `En quelques questions, dites-nous ce qui compte pour vous. Nous revenons vers vous sous 48 h avec une première idée de récit.`,
-    responseTime: `Réponse sous 48h garantie.`,
+    subtitle: `En quelques questions, dites-nous ce qui compte pour vous. Nous revenons vers vous sous 72 h avec une première idée de récit.`,
+    responseTime: `Réponse sous 72h garantie.`,
   },
 
   form: {

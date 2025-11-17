@@ -94,9 +94,9 @@ export const referencesContent = {
     {
       id: `le-chemin-des-dames`,
       label: `Le Chemin des Dames`,
-      year: 2025,
-      type: `Formats immersifs`,
-      description: `Spectacle-dîner immersif : 1ʳᵉ GM, narration + musique + gastronomie historique — en coproduction envisagée avec L'Essence de l'Histoire.`,
+      year: 2026,
+      type: `Spectacle immersif`,
+      description: `Dîner-spectacle historique autoproduit mêlant récit, musique live et gastronomie (en partenariat avec Les petits pères).`,
       category: `spectacle`,
       status: `En production`,
     },

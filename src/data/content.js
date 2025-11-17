@@ -9,7 +9,7 @@ export const siteContent = {
   // ===== HERO =====
   hero: {
     title: "En français s’il vous plaît",
-    baseline: "Studio de création narrative et musicale sur-mesure.",
+    baseline: "Studio de narration",
     moments: ["Anniversaires", "Inaugurations", "Moments fondateurs"],
     ctas: {
       primary: {
@@ -28,18 +28,18 @@ export const siteContent = {
     title: "Ce que vous obtenez vraiment",
     items: [
       {
-        title: "Prestige",
-        description: "La classe d'avoir des auteurs-compositeurs professionnels.",
+        title: "Créer un moment d’émotion",
+        description: "Dans l’ambiance de votre choix, prendre un temps pour célébrer votre événement",
         icon: "star"
       },
       {
-        title: "Émotion",
-        description: "J'ai vu des gens pleurer.",
+        title: "Une vraie reconnaissance",
+        description: "Enfin des mots juste sur ce que vous faites, toutes les histoires méritent d’être racontées",
         icon: "heart"
       },
       {
-        title: "Compréhension",
-        description: "Grâce à vous, tout le monde comprend qui on est.",
+        title: "Se rappeler l’essentiel",
+        description: "Se remémorer pourquoi on fait les choses, l’importance des détails, de chaque maillon de la chaîne.",
         icon: "info"
       }
     ]
@@ -183,11 +183,11 @@ export const siteContent = {
       messageLabel: "Votre histoire",
       messagePlaceholder: "Parlez-nous de votre projet, de vos besoins, de votre moment clé...",
       submitButton: "Partagez votre histoire",
-      reassurance: "Réponse sous 48h. Premier échange sans engagement."
+      reassurance: "Réponse sous 72h. Premier échange sans engagement."
     },
     successModal: {
       title: "Message envoyé !",
-      message: "Merci {name} ! On vous répond sous 48h.",
+      message: "Merci {name} ! On vous répond sous 72h.",
       closeButton: "Continuer"
     }
   },
