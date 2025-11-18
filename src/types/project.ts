@@ -65,6 +65,7 @@ export interface Project {
   themes: string[];
   hasVideo?: boolean;
   hasAudio?: boolean;
+  videoSrc?: string | null;
   details: {
     format: string;
     duration: string;

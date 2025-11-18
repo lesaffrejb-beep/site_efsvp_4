@@ -40,6 +40,7 @@ export const projectSchema = z.object<Project>({
   themes: z.array(z.string()),
   hasVideo: z.boolean().optional(),
   hasAudio: z.boolean().optional(),
+  videoSrc: z.string().nullable().optional(),
   details: z.object({
     format: z.string(),
     duration: z.string(),

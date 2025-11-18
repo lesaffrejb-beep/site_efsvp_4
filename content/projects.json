@@ -320,7 +320,8 @@
       "bande-son de spectacle",
       "santé & ALD"
     ],
-    "hasVideo": false,
+    "videoSrc": "/assets/videos/projects/dis-moi-des-mots-d-amour/teaser_dis_moi_des_mots_damour.mp4",
+    "hasVideo": true,
     "hasAudio": false
   },
   {

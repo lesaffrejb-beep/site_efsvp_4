@@ -16,6 +16,13 @@ function findAssetByPrefix(prefix: string): string | null {
   return assetManifest.find((entry) => entry.startsWith(normalizedPrefix)) || null;
 }
 
+function findVideoBySlug(slug: string): string | null {
+  const prefix = `/assets/videos/projects/${slug}/`;
+  return (
+    assetManifest.find((entry) => entry.startsWith(prefix) && entry.toLowerCase().endsWith('.mp4')) || null
+  );
+}
+
 function collectGallery(slug: string): string[] {
   const prefix = `/assets/images/projects/${slug}/gallery-`;
   return assetManifest
@@ -32,9 +39,16 @@ function sanitizeProjectsData() {
     const slug = project?.slug || project?.id || '';
     const coverFromAssets = slug ? findAssetByPrefix(`/assets/images/projects/${slug}/cover`) : null;
     const thumbFromAssets = slug ? findAssetByPrefix(`/assets/images/projects/${slug}/thumb`) : null;
+    const videoFromAssets = slug ? findVideoBySlug(slug) : null;
     const coverFromData = project?.media?.coverImage || project?.cover?.image || '';
     const coverSrc = coverFromAssets || coverFromData;
     const thumbnailSrc = thumbFromAssets || coverSrc;
+    const videoSrc =
+      project?.videoSrc ||
+      project?.video?.files?.mp4 ||
+      project?.media?.video ||
+      videoFromAssets ||
+      null;
 
     return {
       ...project,
@@ -42,9 +56,10 @@ function sanitizeProjectsData() {
       tags: project?.tags || [],
       thumbnailSrc,
       coverSrc,
+      videoSrc,
       media: {
         ...project?.media,
-        video: project?.media?.video ?? undefined,
+        video: project?.media?.video || videoFromAssets || undefined,
         audio: project?.media?.audio ?? undefined,
       },
       video: project?.video ?? undefined,
@@ -59,9 +74,12 @@ function normalizeProjectMedia(project: Project): Project {
   const resolvedCoverSrc = project.coverSrc || findAssetByPrefix(`/assets/images/projects/${slug}/cover`) || project.cover.image || '';
   const resolvedThumbnailSrc = project.thumbnailSrc || findAssetByPrefix(`/assets/images/projects/${slug}/thumb`) || resolvedCoverSrc;
   const gallery = project.media?.gallery?.length ? project.media.gallery : collectGallery(slug);
-  const videoPath = assetExists(`/assets/videos/projects/${slug}/teaser.mp4`)
+  const detectedVideoAsset = findVideoBySlug(slug);
+  const teaserVideo = assetExists(`/assets/videos/projects/${slug}/teaser.mp4`)
     ? `/assets/videos/projects/${slug}/teaser.mp4`
-    : project.media?.video;
+    : null;
+  const videoPath =
+    project.video?.files?.mp4 || project.videoSrc || project.media?.video || detectedVideoAsset || teaserVideo || null;
   const audioPath = assetExists(`/assets/audio/projects/${slug}/extrait-01.mp3`)
     ? `/assets/audio/projects/${slug}/extrait-01.mp3`
     : project.media?.audio;
@@ -74,6 +92,21 @@ function normalizeProjectMedia(project: Project): Project {
     coverImage: assetExists(coverPath) ? coverPath : coverImage,
   } as Project['media'];
 
+  const normalizedVideo = videoPath
+    ? {
+        enabled: true,
+        title: project.title,
+        duration: project.video?.duration,
+        files: {
+          mp4: videoPath,
+          ...(project.video?.files?.webm ? { webm: project.video.files.webm } : {}),
+        },
+        poster: project.video?.poster || media.coverImage,
+        autoplay: project.video?.autoplay ?? false,
+        description: project.video?.description ?? project.details?.format,
+      }
+    : undefined;
+
   const normalized: Project = {
     ...project,
     id: slug,
@@ -81,20 +114,17 @@ function normalizeProjectMedia(project: Project): Project {
     tags: project.tags || [],
     thumbnailSrc: resolvedThumbnailSrc,
     coverSrc: assetExists(coverPath) ? coverPath : resolvedCoverSrc,
+    videoSrc: videoPath || project.videoSrc || null,
     cover: {
       ...project.cover,
       ...(coverImage ? { image: assetExists(coverPath) ? coverPath : coverImage } : {}),
     },
     media,
+    ...(normalizedVideo ? { video: normalizedVideo, hasVideo: true } : { hasVideo: false }),
   };
 
   if (!project.video && media.video) {
-    normalized.video = {
-      enabled: true,
-      title: project.title,
-      files: { mp4: media.video },
-      description: project.details?.format,
-    };
+    normalized.video = normalizedVideo;
   }
 
   if (!project.audio && media.audio) {

@@ -16,6 +16,7 @@
   padding: var(--space-6);
   opacity: 0;
   transition: opacity var(--transition-slow);
+  overscroll-behavior: contain;
 }
 
 .project-modal.active {
@@ -37,7 +38,7 @@
   position: relative;
   width: 100%;
   max-width: 800px;
-  max-height: 90vh;
+  max-height: min(90vh, calc(100vh - (var(--space-6) * 2)));
   background: var(--bg-primary);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-2xl);
@@ -91,9 +92,11 @@
 
 /* ===== Modal Content ===== */
 .modal-content {
+  flex: 1;
   overflow-y: auto;
-  max-height: 100%;
+  max-height: calc(90vh - (var(--space-6) * 2));
   padding: var(--space-8);
+  overscroll-behavior: contain;
 }
 
 @media (min-width: 768px) {
@@ -149,6 +152,32 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
+}
+
+.modal-video {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: linear-gradient(
+    140deg,
+    color-mix(in srgb, var(--bg-secondary) 80%, transparent) 0%,
+    color-mix(in srgb, var(--bg-tertiary) 65%, transparent) 100%
+  );
+  box-shadow: var(--shadow-lg);
+  --video-player-padding: var(--space-5);
+  --video-player-radius: var(--radius-xl);
+  --video-player-bg: var(--bg-primary);
+  --video-player-shadow: var(--shadow-lg);
+}
+
+.modal-video .video-player {
+  box-shadow: none;
+}
+
+.modal-video .video-player__container {
+  border-radius: var(--radius-xl);
+  overflow: hidden;
 }
 
 .modal-visual {
@@ -240,6 +269,7 @@
 
   .modal-content {
     padding: var(--space-6);
+    max-height: calc(95vh - (var(--space-4) * 2));
   }
 
   .modal-title {
@@ -257,6 +287,11 @@
   .modal-container {
     transform: scale(1);
   }
+}
+
+body.modal-open,
+html.modal-open {
+  overflow: hidden;
 }
 
 /* Lock body scroll when modal is open */

@@ -12,6 +12,7 @@ export class ProjectModal {
   private keydownHandler: (event: KeyboardEvent) => void;
   private triggerElement: HTMLElement | null = null;
   private previousBodyOverflow = '';
+  private previousHtmlOverflow = '';
 
   constructor() {
     this.modal = document.getElementById('project-modal');
@@ -33,6 +34,7 @@ export class ProjectModal {
 
     this.triggerElement = triggerElement || (document.activeElement as HTMLElement | null);
     this.previousBodyOverflow = document.body.style.overflow;
+    this.previousHtmlOverflow = document.documentElement.style.overflow;
 
     const tagEl = document.getElementById('project-modal-tag');
     const titleEl = document.getElementById('project-modal-title');
@@ -42,17 +44,27 @@ export class ProjectModal {
     const statsGrid = document.getElementById('project-modal-stats-content');
     const visualContainer = document.getElementById('project-modal-visual');
     const visualImage = visualContainer?.querySelector('img');
+    const modalContent = this.modal.querySelector('.modal-content');
+
+    const projectHasVideo = hasProjectVideo(project);
 
     if (tagEl) tagEl.textContent = project.category;
     if (titleEl) titleEl.textContent = project.title;
     if (metaEl) metaEl.textContent = [project.client, project.year, project.location].filter(Boolean).join(' · ');
 
-    if (visualContainer && visualImage && project.coverSrc) {
+    if (!projectHasVideo && visualContainer && visualImage && project.coverSrc) {
       visualContainer.style.display = 'block';
+      visualContainer.removeAttribute('hidden');
       visualImage.src = project.coverSrc;
       visualImage.alt = `${project.title} – ${project.location}`;
     } else if (visualContainer) {
       visualContainer.style.display = 'none';
+      visualContainer.setAttribute('hidden', 'true');
+    }
+
+    if (modalContent) {
+      modalContent.scrollTop = 0;
+      modalContent.setAttribute('tabindex', '-1');
     }
 
     if (descriptionEl) {
@@ -98,7 +110,7 @@ export class ProjectModal {
     const videoContainer = document.getElementById('project-modal-video');
 
     // Logique conditionnelle : vidéo OU audio (pas les deux)
-    if (hasProjectVideo(project)) {
+    if (projectHasVideo) {
       // VIDÉO : prioritaire
       if (videoContainer) {
         videoContainer.style.display = 'block';
@@ -132,6 +144,9 @@ export class ProjectModal {
     }
 
     document.addEventListener('keydown', this.keydownHandler);
+    document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
+    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
   }
 
@@ -153,7 +168,10 @@ export class ProjectModal {
     this.modal.classList.remove('active');
     this.setModalAccessibility(false);
     document.removeEventListener('keydown', this.keydownHandler);
+    document.documentElement.style.overflow = this.previousHtmlOverflow;
     document.body.style.overflow = this.previousBodyOverflow;
+    document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
 
     if (this.triggerElement) {
       this.triggerElement.focus();
