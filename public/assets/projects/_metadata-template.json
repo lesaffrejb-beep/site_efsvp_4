@@ -1,0 +1,71 @@
+{
+  "$schema": "Template de metadata pour un projet EfSVP",
+  "id": "identifiant-unique-du-projet",
+  "title": "Titre du projet",
+  "client": "Nom du client",
+  "year": 2025,
+  "location": "Ville",
+  "status": "delivered",
+  "cover": {
+    "image": "/assets/projects/[id]/images/cover.jpg",
+    "initials": "XX",
+    "gradient": {
+      "from": "var(--color-primary-500)",
+      "to": "var(--color-neutral-700)"
+    }
+  },
+  "shortDescription": "Description courte du projet (max 400 caractères)",
+  "longDescription": [
+    "Premier paragraphe de la description longue du projet.",
+    "Deuxième paragraphe avec plus de détails.",
+    "Chaque élément du tableau est un paragraphe."
+  ],
+  "category": "concert live | spectacle | musique | ciné-concert | etc.",
+  "sector": "artisanat | btp | environnement | institutionnel | patrimoine | social | spectacle-vivant | transport | vie-associative",
+  "themes": [
+    "Thème 1",
+    "Thème 2",
+    "Thème 3"
+  ],
+  "details": {
+    "format": "Format du projet",
+    "duration": "Durée (ex: 10 minutes, 1 heure)",
+    "audience": "Public cible",
+    "deliverables": [
+      "Livrable 1",
+      "Livrable 2"
+    ]
+  },
+  "team": [
+    "Membre 1",
+    "Membre 2",
+    "Membre 3"
+  ],
+  "partners": [
+    "Partenaire 1"
+  ],
+  "media": {
+    "gallery": [
+      "/assets/projects/[id]/images/gallery-01.jpg",
+      "/assets/projects/[id]/images/gallery-02.jpg"
+    ],
+    "video": "https://youtube.com/watch?v=...",
+    "testimonial": {
+      "quote": "Citation du client",
+      "author": "Nom de l'auteur",
+      "role": "Fonction"
+    }
+  },
+  "audio": {
+    "enabled": true,
+    "title": "Titre de la piste audio",
+    "artist": "EfSVP Studio",
+    "duration": 180,
+    "files": {
+      "mp3": "/assets/projects/[id]/audio/track.mp3",
+      "ogg": "/assets/projects/[id]/audio/track.ogg"
+    },
+    "waveformColor": "var(--color-primary-500)",
+    "description": "Description de la piste audio (optionnel)"
+  }
+}

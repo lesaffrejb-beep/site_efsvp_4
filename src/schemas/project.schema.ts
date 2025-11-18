@@ -54,6 +54,20 @@ export const projectSchema = z.object<Project>({
         .optional(),
     })
     .optional(),
+  audio: z
+    .object({
+      enabled: z.boolean(),
+      title: z.string().min(1),
+      artist: z.string().optional(),
+      duration: z.number().int().positive().optional(),
+      files: z.object({
+        mp3: z.string().min(1),
+        ogg: z.string().optional(),
+      }),
+      waveformColor: z.string().optional(),
+      description: z.string().optional(),
+    })
+    .optional(),
 });
 
 export const projectsSchema = z.array(projectSchema);

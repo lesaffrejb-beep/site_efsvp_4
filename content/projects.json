@@ -92,11 +92,11 @@
         "to": "var(--color-primary-700)"
       }
     },
-    "shortDescription": "Chaque entreprise est une forêt qui grandit, affronte des tempêtes et s’épanouit. Le récit de la vie de l’Atelier Lacour pour ses 25 ans.",
+    "shortDescription": "Chaque entreprise est une forêt qui grandit, affronte des tempêtes et s'épanouit. Le récit de la vie de l'Atelier Lacour pour ses 25 ans.",
     "longDescription": [
-      "En juillet 2024, Alain Lacour, directeur de l’entreprise Atelier Lacour, nous commande une suite de morceaux pour célébrer les 25 ans de son entreprise et la passation de présidence entre lui et ses reprenants.",
-      "Sa volonté n’est pas que nous écrivions un texte sur lui mais sur son entreprise, en la personnifiant. C’est L’atelier Lacour qui doit prendre la parole pour raconter son histoire.",
-      "Pour réaliser cette commande, nous faisons un récit en métaphore filée avec d’un côté la création et la vie d’une entreprise et de l’autre, la création et la vie d’une forêt.\nUn arbre seul, rejoint par des arbrisseaux, se rassemblant, se renforçant, affrontant les tempêtes et les orages ensemble pour créer une forêt unie et robuste."
+      "En juillet 2024, Alain Lacour, directeur de l'entreprise Atelier Lacour, nous commande une suite de morceaux pour célébrer les 25 ans de son entreprise et la passation de présidence entre lui et ses reprenants.",
+      "Sa volonté n'est pas que nous écrivions un texte sur lui mais sur son entreprise, en la personnifiant. C'est L'atelier Lacour qui doit prendre la parole pour raconter son histoire.",
+      "Pour réaliser cette commande, nous faisons un récit en métaphore filée avec d'un côté la création et la vie d'une entreprise et de l'autre, la création et la vie d'une forêt.\nUn arbre seul, rejoint par des arbrisseaux, se rassemblant, se renforçant, affrontant les tempêtes et les orages ensemble pour créer une forêt unie et robuste."
     ],
     "category": "concert live",
     "sector": "artisanat",
@@ -107,17 +107,28 @@
     "details": {
       "format": "concert live",
       "duration": "7 minutes",
-      "audience": "salariés de l’Atelier Lacour",
+      "audience": "salariés de l'Atelier Lacour",
       "deliverables": [
         "Texte",
-        "musique pour un concert live le jour des 25 ans de l’entreprise"
+        "musique pour un concert live le jour des 25 ans de l'entreprise"
       ]
     },
     "team": [
       "Azan SOULARD",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "audio": {
+      "enabled": true,
+      "title": "La Forêt Lacour - Concert 25 ans",
+      "artist": "EfSVP Studio",
+      "duration": 420,
+      "files": {
+        "mp3": "/assets/projects/atelier-lacour/audio/concert-25ans.mp3"
+      },
+      "waveformColor": "var(--color-primary-500)",
+      "description": "Enregistrement complet du concert joué lors de la célébration des 25 ans de l'Atelier Lacour"
+    }
   },
   {
     "id": "capeb",

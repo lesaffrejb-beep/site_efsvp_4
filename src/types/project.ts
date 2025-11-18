@@ -73,4 +73,16 @@ export interface Project {
       role?: string;
     };
   };
+  audio?: {
+    enabled: boolean;
+    title: string;
+    artist?: string;
+    duration?: number;
+    files: {
+      mp3: string;
+      ogg?: string;
+    };
+    waveformColor?: string;
+    description?: string;
+  };
 }

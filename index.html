@@ -81,6 +81,7 @@
     <!-- Component-specific styles (Navigation, Modals, Cookies, Hero) -->
     <link rel="stylesheet" href="/src/styles/progressive-nav.css" />
     <link rel="stylesheet" href="/src/styles/project-modal.css" />
+    <link rel="stylesheet" href="/src/styles/audio-player.css" />
     <link rel="stylesheet" href="/src/styles/cookie-banner.css" />
     <link rel="stylesheet" href="/src/styles/hero-signature.css" />
 
@@ -1057,6 +1058,11 @@
           <div class="modal-body">
             <div class="modal-description" id="project-modal-description">
               <p>Description du projet...</p>
+            </div>
+
+            <!-- Audio Player Container (affiché uniquement si audio disponible) -->
+            <div class="modal-audio" id="project-modal-audio" style="display: none;">
+              <!-- Audio player sera injecté ici dynamiquement -->
             </div>
 
             <div class="modal-stats" id="project-modal-stats" style="display: none;">
