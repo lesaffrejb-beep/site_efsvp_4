@@ -1,8 +1,8 @@
 {
   "$schema": "Template de metadata pour un projet EfSVP",
-  "_comment": "IMPORTANT: Un projet peut avoir soit VIDEO, soit AUDIO, mais PAS LES DEUX en même temps",
+  "_comment": "Utiliser le slug (id) pour nommer les dossiers médias : images/videos/audio/projects/<slug>/...",
 
-  "id": "identifiant-unique-du-projet",
+  "id": "slug-du-projet",
   "title": "Titre du projet",
   "client": "Nom du client",
   "year": 2025,
@@ -10,8 +10,6 @@
   "status": "delivered",
 
   "cover": {
-    "image": "/assets/projects/[id]/images/main.jpg",
-    "_comment_image": "Une seule image suffit : main.jpg (plus besoin de cover.jpg, thumbnail.jpg séparés)",
     "initials": "XX",
     "gradient": {
       "from": "var(--color-primary-500)",
@@ -56,33 +54,22 @@
   ],
 
   "media": {
-    "gallery": [
-      "/assets/projects/[id]/images/gallery-01.jpg",
-      "/assets/projects/[id]/images/gallery-02.jpg"
-    ],
-    "video": "https://youtube.com/watch?v=...",
-    "_comment_video": "URL externe (YouTube, Vimeo, etc.) - différent du champ 'video' ci-dessous pour fichier local",
-    "testimonial": {
-      "quote": "Citation du client",
-      "author": "Nom de l'auteur",
-      "role": "Fonction"
-    }
+    "coverImage": "/assets/images/projects/slug-du-projet/cover.jpg",
+    "gallery": ["/assets/images/projects/slug-du-projet/detail-01.jpg"],
+    "video": "/assets/videos/projects/slug-du-projet/teaser.mp4",
+    "audio": "/assets/audio/projects/slug-du-projet/excerpt.mp3"
   },
 
-  "_comment_audio_video": "============================================",
-  "_comment_audio_video_2": "CHOIX: Activer SOIT audio, SOIT video (pas les deux)",
-  "_comment_audio_video_3": "Si les deux sont activés, la VIDÉO aura la PRIORITÉ",
-  "_comment_audio_video_4": "============================================",
+  "_comment_audio_video": "Les champs audio/video ci-dessous sont optionnels. Si remplis, la vidéo est prioritaire sur l'audio.",
 
   "audio": {
     "enabled": false,
-    "_comment": "Activer SEULEMENT si le projet n'a PAS de vidéo",
     "title": "Titre de la piste audio",
     "artist": "EfSVP Studio",
     "duration": 180,
     "files": {
-      "mp3": "/assets/projects/[id]/audio/track.mp3",
-      "ogg": "/assets/projects/[id]/audio/track.ogg"
+      "mp3": "/assets/audio/projects/slug-du-projet/excerpt.mp3",
+      "ogg": "/assets/audio/projects/slug-du-projet/excerpt.ogg"
     },
     "waveformColor": "var(--color-primary-500)",
     "description": "Description de la piste audio (optionnel)"
@@ -90,18 +77,14 @@
 
   "video": {
     "enabled": false,
-    "_comment": "Activer pour afficher un lecteur vidéo premium avec contrôles personnalisés",
     "title": "Titre de la vidéo",
     "duration": 120,
-    "_comment_duration": "Durée en secondes",
     "files": {
-      "mp4": "/assets/projects/[id]/video/video.mp4",
-      "webm": "/assets/projects/[id]/video/video.webm"
+      "mp4": "/assets/videos/projects/slug-du-projet/teaser.mp4",
+      "webm": "/assets/videos/projects/slug-du-projet/teaser.webm"
     },
-    "poster": "/assets/projects/[id]/images/main.jpg",
-    "_comment_poster": "Image affichée avant la lecture (peut être main.jpg)",
+    "poster": "/assets/images/projects/slug-du-projet/cover.jpg",
     "autoplay": false,
-    "_comment_autoplay": "Autoplay activé uniquement si approprié (UX)",
     "description": "Description de la vidéo (optionnel)"
   }
 }

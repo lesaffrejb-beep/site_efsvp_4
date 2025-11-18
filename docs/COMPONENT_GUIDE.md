@@ -411,7 +411,7 @@ const message = interpolate(
   siteContent.contact.successModal.message,
   { name: 'Jean' }
 );
-// Résultat: "Merci Jean ! On vous répond sous 48h."
+// Résultat: "Merci Jean ! On vous répond sous 72h."
 ```
 
 ### Édition des Contenus

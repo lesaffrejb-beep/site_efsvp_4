@@ -33,5 +33,5 @@ export const processData = {
       description: 'Audio pro • Texte • (Option : Performance live)'
     }
   ],
-  reassurance: 'Process balisé. SLA 48h. Jamais cringe.'
+  reassurance: 'Process balisé. SLA 72h. Jamais cringe.'
 };

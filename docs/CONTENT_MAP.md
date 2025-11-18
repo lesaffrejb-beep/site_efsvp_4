@@ -441,7 +441,7 @@ Cartographie complète du contenu visible du site **En français s'il vous plaî
 ### Titre de section
 
 - **Titre** : `La vôtre commence maintenant`
-- **Sous-titre** : `Réponse sous 48h · Premier échange offert`
+- **Sous-titre** : `Réponse sous 72h · Premier échange offert`
 
 ### Citation visuelle
 
@@ -561,7 +561,7 @@ Cartographie complète du contenu visible du site **En français s'il vous plaî
 
 - **Icône** : Check circulaire
 - **Titre** : `Message envoyé !`
-- **Texte** : `Merci [nom] ! On vous répond sous 48h.`
+- **Texte** : `Merci [nom] ! On vous répond sous 72h.`
 - **Bouton** : `Continuer`
 
 **Hooks DOM** : `.modal`, `#success-modal`, `#modal-name`

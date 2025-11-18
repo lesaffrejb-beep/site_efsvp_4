@@ -437,7 +437,7 @@
   },
   "contact": {
     "title": "La vôtre commence maintenant",
-    "subtitle": "Réponse sous 48h · Premier échange offert",
+    "subtitle": "Réponse sous 72h · Premier échange offert",
     "quote": "Toutes les bonnes histoires méritent d'être racontées.",
     "form": {
       "fields": [
@@ -491,7 +491,7 @@
   "sectionContact": {
     "visualQuote": "Toutes les bonnes histoires méritent d'être racontées.",
     "title": "La vôtre commence maintenant",
-    "subtitle": "Réponse sous 48h · Premier échange offert",
+    "subtitle": "Réponse sous 72h · Premier échange offert",
     "form": {
       "fields": [
         {
@@ -661,7 +661,7 @@
   "modals": {
     "success": {
       "title": "Message envoyé !",
-      "text": "Merci {name} ! On vous répond sous 48h.",
+      "text": "Merci {name} ! On vous répond sous 72h.",
       "cta": "Continuer"
     }
   },

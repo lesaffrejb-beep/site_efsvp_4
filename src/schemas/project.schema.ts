@@ -42,19 +42,12 @@ export const projectSchema = z.object<Project>({
   }),
   team: z.array(z.string().min(1)),
   partners: z.array(z.string()).optional(),
-  media: z
-    .object({
-      gallery: z.array(z.string().url()).optional(),
-      video: z.string().url().optional(),
-      testimonial: z
-        .object({
-          quote: z.string(),
-          author: z.string(),
-          role: z.string().optional(),
-        })
-        .optional(),
-    })
-    .optional(),
+  media: z.object({
+    coverImage: z.string().min(1),
+    gallery: z.array(z.string()).optional(),
+    video: z.string().min(1).nullable().optional(),
+    audio: z.string().min(1).nullable().optional(),
+  }),
   audio: z
     .object({
       enabled: z.boolean(),

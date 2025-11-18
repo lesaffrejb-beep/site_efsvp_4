@@ -18,13 +18,15 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   const visual = document.createElement('div');
   visual.className = 'project-card__visual';
 
+  const coverImage = project.media?.coverImage || project.cover.image;
+
   const frame = document.createElement('div');
   frame.className = 'project-card__visual-frame';
   const gradient = `linear-gradient(135deg, ${project.cover.gradient?.from || 'var(--color-primary-500)'} 0%, ${
     project.cover.gradient?.to || 'var(--color-primary-700)'
   } 100%)`;
-  if (project.cover.image) {
-    frame.style.backgroundImage = `linear-gradient(120deg, rgba(0,0,0,0.35), rgba(0,0,0,0.5)), url(${project.cover.image})`;
+  if (coverImage) {
+    frame.style.backgroundImage = `linear-gradient(120deg, rgba(0,0,0,0.35), rgba(0,0,0,0.5)), url(${coverImage})`;
     frame.style.backgroundSize = 'cover';
     frame.style.backgroundPosition = 'center';
   } else {

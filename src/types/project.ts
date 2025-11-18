@@ -67,14 +67,11 @@ export interface Project {
   };
   team: string[];
   partners?: string[];
-  media?: {
+  media: {
+    coverImage: string;
     gallery?: string[];
-    video?: string;
-    testimonial?: {
-      quote: string;
-      author: string;
-      role?: string;
-    };
+    video?: string | null;
+    audio?: string | null;
   };
   audio?: {
     enabled: boolean;

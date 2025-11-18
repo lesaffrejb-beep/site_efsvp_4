@@ -301,8 +301,6 @@ class App {
     // Bento Grid audio buttons
     this.initBentoAudioButtons();
 
-    // Clients to Projects links
-    this.initClientsToProjects();
   }
 
   start() {
@@ -678,7 +676,7 @@ class App {
           throw new Error('Quick quote error: invalid response');
         }
 
-        setStatus('Message envoyé ! On vous répond sous 48h.', 'success');
+        setStatus('Message envoyé ! On vous répond sous 72h.', 'success');
         quickForm.reset();
       } catch (error) {
         console.error('❌ Quick quote form error', error);
@@ -847,46 +845,6 @@ class App {
     });
   }
 
-  // ========== CLIENTS TO PROJECTS ==========
-  initClientsToProjects() {
-    const clientButtons = document.querySelectorAll('.clients-marquee__item[data-project-id]');
-
-    clientButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const projectId = button.getAttribute('data-project-id');
-        if (!projectId) return;
-
-        // Scroll vers la section projets
-        const projectsSection = document.getElementById('projets');
-        if (!projectsSection) return;
-
-        // D'abord, scroller vers la section projets
-        if (this.modules.smoothScroll) {
-          this.modules.smoothScroll.scrollTo(projectsSection, {
-            offset: -100,
-            duration: 0.85,
-          });
-        } else {
-          projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-
-        // Attendre que le scroll soit terminé, puis trouver et mettre en avant la carte
-        setTimeout(() => {
-          const projectCard = document.querySelector(`.project-card[data-project-id="${projectId}"]`);
-          if (projectCard) {
-            // Scroller vers la carte
-            projectCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            // Ajouter une classe de highlight temporaire
-            projectCard.classList.add('is-highlighted');
-            setTimeout(() => {
-              projectCard.classList.remove('is-highlighted');
-            }, 2000);
-          }
-        }, 950); // Attendre un peu plus que la durée du scroll
-      });
-    });
-  }
 }
 
 // ========== INIT APP ==========

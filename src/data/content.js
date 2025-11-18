@@ -34,7 +34,7 @@ export const siteContent = {
       },
       {
         title: "Une vraie reconnaissance",
-        description: "Enfin des mots juste sur ce que vous faites, toutes les histoires méritent d’être racontées",
+        description: "Enfin des mots justes sur ce que vous faites, toutes les histoires méritent d’être racontées",
         icon: "heart"
       },
       {
@@ -74,7 +74,7 @@ export const siteContent = {
         description: "Audio pro • Texte • (Option : Performance live)"
       }
     ],
-    footer: "Process balisé. SLA 48h. Jamais cringe."
+    footer: "Process balisé. SLA 72h. Jamais cringe."
   },
 
   // ===== OFFRES / PRICING =====

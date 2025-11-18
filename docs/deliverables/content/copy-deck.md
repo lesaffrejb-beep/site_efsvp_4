@@ -460,7 +460,7 @@ La vôtre commence maintenant
 
 ### Sous-titre
 ```
-Réponse sous 48h · Premier échange offert
+Réponse sous 72h · Premier échange offert
 ```
 
 ### Citation

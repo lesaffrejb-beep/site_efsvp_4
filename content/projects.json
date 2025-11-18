@@ -11,7 +11,8 @@
       "gradient": {
         "from": "var(--color-neutral-700)",
         "to": "var(--color-primary-500)"
-      }
+      },
+      "image": "/assets/images/projects/a2mo/cover.jpg"
     },
     "shortDescription": "Dans un couloir, 12 portes. Chacune d’elle ouvre sur un moment de vie, un souvenir, un projet d’A2MO. Commande d’un concert live pour les 30 ans et le départ du fondateur de l’entreprise.",
     "longDescription": [
@@ -36,7 +37,13 @@
       "Azan SOULARD",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/a2mo/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "agglobus",
@@ -50,7 +57,8 @@
       "gradient": {
         "from": "var(--color-info)",
         "to": "var(--color-primary-300)"
-      }
+      },
+      "image": "/assets/images/projects/agglobus/cover.jpg"
     },
     "shortDescription": "L’histoire de Théo et Léa prenant le bus pour la première fois lors de leur rentrée en sixième. Musique de prévention routière sur les bons usages pour prendre le car.",
     "longDescription": [
@@ -74,7 +82,13 @@
     "team": [
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/agglobus/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "atelier-lacour",
@@ -88,7 +102,8 @@
       "gradient": {
         "from": "var(--color-primary-400)",
         "to": "var(--color-primary-700)"
-      }
+      },
+      "image": "/assets/images/projects/atelier-lacour/cover.jpg"
     },
     "shortDescription": "Chaque entreprise est une forêt qui grandit, affronte des tempêtes et s’épanouit. Le récit de la vie de l’Atelier Lacour pour ses 25 ans.",
     "longDescription": [
@@ -112,7 +127,13 @@
       "Azan SOULARD",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/atelier-lacour/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "capeb",
@@ -126,7 +147,8 @@
       "gradient": {
         "from": "var(--color-primary-400)",
         "to": "var(--color-primary-700)"
-      }
+      },
+      "image": "/assets/images/projects/capeb/cover.jpg"
     },
     "shortDescription": "La vie de Guillaume, de sa jeunesse et ses débuts dans la menuiserie à son départ à la retraite en léguant son entreprise à sa fille. Texte pour raconter ce qu’est la vraie vie d’un artisan du patrimoine.",
     "longDescription": [
@@ -151,7 +173,13 @@
       "Nahuel BAEZA",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/capeb/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "la-force-de-la-douceur",
@@ -165,7 +193,8 @@
       "gradient": {
         "from": "var(--color-info)",
         "to": "var(--color-neutral-700)"
-      }
+      },
+      "image": "/assets/images/projects/la-force-de-la-douceur/cover.jpg"
     },
     "shortDescription": "L’hymne pour la nouvelle marque de l’Anjou : la force de la douceur.",
     "longDescription": [
@@ -188,7 +217,13 @@
     "team": [
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/la-force-de-la-douceur/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "dis-moi-des-mots-damour",
@@ -202,7 +237,8 @@
       "gradient": {
         "from": "var(--color-primary-500)",
         "to": "var(--color-warning)"
-      }
+      },
+      "image": "/assets/images/projects/dis-moi-des-mots-damour/cover.jpg"
     },
     "shortDescription": "Les ALD touchent 11 millions de personnes en France. Dis-moi des mots d’amour essaye de remettre sur le devant de la scène ce sujet trop souvent tabou. Écriture de la bande-son d’un spectacle de danse sur les Affections de Longue Durée.",
     "longDescription": [
@@ -225,7 +261,13 @@
     "team": [
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/dis-moi-des-mots-damour/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "doue-en-anjou-ou-culture-et-patrimoine-se-rencontrent",
@@ -239,7 +281,8 @@
       "gradient": {
         "from": "var(--color-neutral-800)",
         "to": "var(--color-primary-600)"
-      }
+      },
+      "image": "/assets/images/projects/doue-en-anjou-ou-culture-et-patrimoine-se-rencontrent/cover.jpg"
     },
     "shortDescription": "Culture et patrimoine sont souvent les deux faces d’une même pièce. C’est le cas à Doué en Anjou où l’un ne peut aller sans l’autre. Musique enregistrée pour les voeux 2022 de la mairie.",
     "longDescription": [
@@ -262,7 +305,13 @@
     "team": [
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/doue-en-anjou-ou-culture-et-patrimoine-se-rencontrent/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "doue-en-sports",
@@ -276,7 +325,8 @@
       "gradient": {
         "from": "var(--color-info)",
         "to": "var(--color-neutral-700)"
-      }
+      },
+      "image": "/assets/images/projects/doue-en-sports/cover.jpg"
     },
     "shortDescription": "Pour l’année des Jeux Olympiques de Paris, la ville de Doué-en-Anjou nous commande un texte pour faire la promotion des associations et des personnes faisant vivre la vie sportive de leur commune.",
     "longDescription": [
@@ -298,7 +348,13 @@
     "team": [
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/doue-en-sports/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "le-jardin-de-cocagne",
@@ -312,7 +368,8 @@
       "gradient": {
         "from": "var(--color-primary-300)",
         "to": "var(--color-success)"
-      }
+      },
+      "image": "/assets/images/projects/le-jardin-de-cocagne/cover.jpg"
     },
     "shortDescription": "Rendre hommage à la résilience. C’était l’objectif de cette commande. 3 récits, 3 personnages, 3 chemins différents convergeant en un point : Le jardin de Cocagne angevin. Commande pour les 25 ans de l’association.",
     "longDescription": [
@@ -339,7 +396,13 @@
       "Azan SOULARD",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/le-jardin-de-cocagne/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "forges-tout-feu-tout-flamme",
@@ -353,7 +416,8 @@
       "gradient": {
         "from": "var(--color-info)",
         "to": "var(--color-neutral-700)"
-      }
+      },
+      "image": "/assets/images/projects/forges-tout-feu-tout-flamme/cover.jpg"
     },
     "shortDescription": "Le projet : un ciné-concert avec une projection sur l’Église de Forges. Un concert avec une histoire sur mesure pour découvrir les légendes de ce hameau, mis en image par Terre de Pixels.",
     "longDescription": [
@@ -378,7 +442,13 @@
       "Azan SOULARD",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/forges-tout-feu-tout-flamme/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "les-seigneurs-de-clisson",
@@ -392,7 +462,8 @@
       "gradient": {
         "from": "var(--color-neutral-800)",
         "to": "var(--color-primary-600)"
-      }
+      },
+      "image": "/assets/images/projects/les-seigneurs-de-clisson/cover.jpg"
     },
     "shortDescription": "L’histoire vraie de François Ier d’Avaugour et sa prise de pouvoir à Clisson au XVe siècle avec trahisons et duels. Commande d’une visite historique musicale de la ville de Clisson.",
     "longDescription": [
@@ -418,7 +489,13 @@
       "Nahuel BAEZA",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/les-seigneurs-de-clisson/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "le-moulin-de-brissac",
@@ -432,7 +509,8 @@
       "gradient": {
         "from": "var(--color-neutral-800)",
         "to": "var(--color-primary-600)"
-      }
+      },
+      "image": "/assets/images/projects/le-moulin-de-brissac/cover.jpg"
     },
     "shortDescription": "En 2023, le moulin du Pavé de Brissac reçoit le prix du loto du patrimoine permettant sa rénovation. Pour l’occasion, la mairie nous demande un texte pour célébrer cet objet patrimonial symbolique de leur ville.",
     "longDescription": [
@@ -457,7 +535,13 @@
       "Nahuel BAEZA",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/le-moulin-de-brissac/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "don-quijote-de-la-francia",
@@ -471,7 +555,8 @@
       "gradient": {
         "from": "var(--color-primary-500)",
         "to": "var(--color-warning)"
-      }
+      },
+      "image": "/assets/images/projects/don-quijote-de-la-francia/cover.jpg"
     },
     "shortDescription": "Et si Don Quijote était venu s’installer dans le vignoble brissacois après ses aventures hispaniques ? Spectacle déambulatoire commandé par la ville de Brissac pour les Journées Européennes du Patrimoine.",
     "longDescription": [
@@ -494,7 +579,13 @@
       "Nahuel BAEZA",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/don-quijote-de-la-francia/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "anjour-et-nuit",
@@ -508,7 +599,8 @@
       "gradient": {
         "from": "var(--color-info)",
         "to": "var(--color-neutral-700)"
-      }
+      },
+      "image": "/assets/images/projects/anjour-et-nuit/cover.jpg"
     },
     "shortDescription": "Nous n’avions encore jamais écrit pour une course à pied, c’est chose faite. Texte pour célébrer les 5 sens avant le début de la course nocturne d’Anjou’r et nuit.",
     "longDescription": [
@@ -530,7 +622,13 @@
       "Azan SOULARD",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/anjour-et-nuit/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "etat-de-nature",
@@ -544,7 +642,8 @@
       "gradient": {
         "from": "var(--color-success)",
         "to": "var(--color-success-light)"
-      }
+      },
+      "image": "/assets/images/projects/etat-de-nature/cover.jpg"
     },
     "shortDescription": "Dans État de nature, la Rainette, le Héron, les poissons-chats, les castors ou les libellules sont tous des citoyens d'une société bien établie. Nous découvrons cette société au fil de 15 tableaux, 15 chapitres à la rencontre d’une zone humide, ses habitants et ses enjeux.",
     "longDescription": [
@@ -570,7 +669,13 @@
       "Nahuel BAEZA",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/etat-de-nature/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "sival",
@@ -584,7 +689,8 @@
       "gradient": {
         "from": "var(--color-success)",
         "to": "var(--color-primary-500)"
-      }
+      },
+      "image": "/assets/images/projects/sival/cover.jpg"
     },
     "shortDescription": "L’histoire d’un jeune garçon découvrant le métier d’agriculteur à travers son papi.\nCommande surprise pour le départ du président et les 25 ans du SIVAL : Bruno Dupont.",
     "longDescription": [
@@ -608,7 +714,13 @@
       "Azan SOULARD",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/sival/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   },
   {
     "id": "souffler-sur-les-braises",
@@ -622,7 +734,8 @@
       "gradient": {
         "from": "var(--color-primary-500)",
         "to": "var(--color-warning)"
-      }
+      },
+      "image": "/assets/images/projects/souffler-sur-les-braises/cover.jpg"
     },
     "shortDescription": "16 couples, 16 facettes d’humanité à 20 ans que nous retrouvons…. plusieurs décennies plus tard. Commande d’une bande-son pour un spectacle sur la vie affective et sexuelle des personnes de plus de 60 ans.",
     "longDescription": [
@@ -644,6 +757,12 @@
       "Azan SOULARD",
       "Jean-Baptiste LESAFFRE",
       "Arthur CHARRIER"
-    ]
+    ],
+    "media": {
+      "coverImage": "/assets/images/projects/souffler-sur-les-braises/cover.jpg",
+      "gallery": [],
+      "video": null,
+      "audio": null
+    }
   }
 ]

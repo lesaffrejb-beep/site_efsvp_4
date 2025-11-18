@@ -7,6 +7,33 @@ import type { Project, ProjectSector } from '@/types/project';
 export function initProjectsApp() {
   console.log('🚀 initProjectsApp: Démarrage');
 
+  const FEATURED_ORDER = [
+    'la-force-de-la-douceur',
+    'sival',
+    'a2mo',
+    'atelier-lacour',
+    'le-jardin-de-cocagne',
+    'les-seigneurs-de-clisson',
+    'etat-de-nature',
+  ];
+
+  const sortProjects = (a: Project, b: Project) => {
+    const indexA = FEATURED_ORDER.indexOf(a.id);
+    const indexB = FEATURED_ORDER.indexOf(b.id);
+
+    const aFeatured = indexA !== -1;
+    const bFeatured = indexB !== -1;
+
+    if (aFeatured && bFeatured) return indexA - indexB;
+    if (aFeatured) return -1;
+    if (bFeatured) return 1;
+
+    const yearDiff = b.year - a.year;
+    if (yearDiff !== 0) return yearDiff;
+
+    return a.title.localeCompare(b.title);
+  };
+
   const filtersContainer = document.querySelector('.projects__filters');
   const gridContainer = document.querySelector('.projects__grid');
 
@@ -18,7 +45,7 @@ export function initProjectsApp() {
     return;
   }
 
-  const projects = getAllProjects().sort((a, b) => b.year - a.year);
+  const projects = getAllProjects().sort(sortProjects);
   const sectors = getUniqueSectors();
 
   console.log(`📊 initProjectsApp: ${projects.length} projets, ${sectors.length} secteurs uniques`, {

@@ -11,7 +11,20 @@ AUDIT_ISSUES.json
   Chemin: /home/user/eFsvp_maquette/AUDIT_ISSUES.json
   Fonction: Format JSON pour analyse automatisée
   Taille: 17 KB
-  Issues: 8 critiques + 15 majeures
+Issues: 8 critiques + 15 majeures
+
+GUIDE MÉDIAS PROJETS (slug)
+──────────────────────────────────────────────────────────────────────────
+- Chaque projet suit le slug `id` de `content/projects.json` pour ranger ses médias.
+- Images : `public/assets/images/projects/<slug>/cover.jpg` (obligatoire) + `cover@2x.jpg` et `detail-01.jpg` (optionnel).
+- Vidéo : `public/assets/videos/projects/<slug>/teaser.mp4` (optionnel).
+- Audio : `public/assets/audio/projects/<slug>/excerpt.mp3` (optionnel, dossier ignoré par Git car fichiers lourds).
+- Exemple avec `la-force-de-la-douceur` :
+  - Image principale : `/assets/images/projects/la-force-de-la-douceur/cover.jpg`
+  - Galerie : `/assets/images/projects/la-force-de-la-douceur/detail-01.jpg`
+  - Vidéo : `/assets/videos/projects/la-force-de-la-douceur/teaser.mp4`
+  - Audio : `/assets/audio/projects/la-force-de-la-douceur/excerpt.mp3`
+- Si seule l'image est disponible, ne déposer que `cover.jpg`. Nommer systématiquement `teaser.mp4` et `excerpt.mp3` pour les médias supplémentaires.
 
 ================================================================================
                     FICHIERS SOURCES (Maquette HTML)

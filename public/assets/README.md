@@ -1,282 +1,65 @@
 # 📁 Assets Structure - EfSVP Portfolio
 
-Cette documentation explique l'organisation des assets (images, audio, logos) du site.
-
----
+Organisation des assets (images, vidéos, audio, logos) avec une convention centrée sur le **slug** des projets.
 
 ## 📂 Structure générale
 
 ```
 /public/assets/
-├── audio/                  # Audio global du site
-├── clients/                # Logos clients pour carousel
-│   ├── logos/             # Fichiers SVG des logos
-│   │   ├── .gitkeep
-│   │   ├── client-nike.svg
-│   │   └── client-adidas.svg
-│   └── clients.json       # Configuration carousel clients
-└── projects/              # Projets portfolio
-    ├── _metadata-template.json  # Template de référence
-    ├── projet-1/
-    │   ├── metadata.json
-    │   ├── images/
-    │   │   ├── cover.jpg
-    │   │   ├── thumbnail.jpg
-    │   │   └── hero.jpg
-    │   └── audio/
-    │       └── track.mp3
-    └── projet-2/
-        ├── metadata.json
-        └── images/
-            └── cover.jpg
+├── audio/                     # Audio global + extraits projets (git-ignored)
+│   └── projects/<slug>/
+│       └── excerpt.mp3
+├── images/
+│   └── projects/<slug>/
+│       ├── cover.jpg         # Image principale (obligatoire)
+│       ├── cover@2x.jpg      # Optionnel (retina)
+│       └── detail-01.jpg     # Optionnel, galerie pour la modale
+├── videos/
+│   └── projects/<slug>/
+│       └── teaser.mp4        # Optionnel
+├── clients/                  # Logos (si nécessaire ultérieurement)
+│   ├── logos/
+│   │   └── .gitkeep
+│   └── clients.json
+└── projects/
+    └── _metadata-template.json  # Template d'override facultatif
 ```
 
----
+- `<slug>` = valeur du champ `id` dans `content/projects.json` (ex : `la-force-de-la-douceur`).
+- Les fichiers audio lourds restent exclus du dépôt (`public/assets/audio/*` est ignoré par Git).
 
-## 🎨 Dossier `/projects/`
+## 🎨 Médias projet (images / vidéos / audio)
 
-Chaque projet a son propre dossier organisé ainsi :
+### Nommage recommandé
+- **Cover obligatoire** : `/assets/images/projects/<slug>/cover.jpg`
+- **Retina (optionnel)** : `/assets/images/projects/<slug>/cover@2x.jpg`
+- **Galerie (optionnel)** : `/assets/images/projects/<slug>/detail-01.jpg`, `detail-02.jpg`, ...
+- **Vidéo (optionnel)** : `/assets/videos/projects/<slug>/teaser.mp4`
+- **Audio (optionnel)** : `/assets/audio/projects/<slug>/excerpt.mp3`
 
-### Structure d'un projet
+Ajoute uniquement les fichiers disponibles : si tu n'as qu'une image, ne fournis que `cover.jpg`. Si tu as une vidéo ou un audio, nomme-les respectivement `teaser.mp4` et `excerpt.mp3` dans le dossier du projet.
 
-```
-/public/assets/projects/[project-id]/
-├── metadata.json           # Configuration du projet (optionnel)
-├── images/                # Images du projet
-│   ├── cover.jpg         # Image principale (16:9, 1920x1080+)
-│   ├── cover@2x.jpg     # Version retina (optionnel)
-│   ├── thumbnail.jpg    # Vignette liste (800x600)
-│   ├── hero.jpg         # Hero section (2560px+)
-│   └── gallery-*.jpg    # Images galerie
-└── audio/                # Fichiers audio (optionnel)
-    ├── track.mp3
-    └── track.ogg
-```
-
-### Fichier `metadata.json`
-
-Le fichier `metadata.json` permet d'enrichir ou d'override les données du projet définies dans `/content/projects.json`.
-
-**Template** : Voir `_metadata-template.json` à la racine du dossier `projects/`
-
-**Champs principaux** :
-- `id` : Identifiant unique (doit correspondre au nom du dossier)
-- `audio` : Configuration du lecteur audio (optionnel)
-- `media` : Chemins vers images, vidéos, galerie
-- Tous les champs du projet central peuvent être overridés
-
----
-
-## 👥 Dossier `/clients/`
-
-Contient les logos des clients pour les carousels et sections clients.
-
-### Structure
-
-```
-/public/assets/clients/
-├── logos/                 # Fichiers SVG des logos
-│   ├── client-nike.svg
-│   └── client-adidas.svg
-└── clients.json          # Configuration
-```
-
-### Fichier `clients.json`
+### Lien avec les données
+Chaque entrée de `content/projects.json` dispose d'un objet `media` :
 
 ```json
-{
-  "clients": [
-    {
-      "id": "nike",
-      "name": "Nike",
-      "logo": {
-        "svg": "client-nike.svg",
-        "alt": "Logo Nike"
-      },
-      "featured": true,
-      "order": 1,
-      "projectId": "projet-nike-rebrand"
-    }
-  ],
-  "settings": {
-    "displayMode": "marquee",
-    "autoplaySpeed": 3000,
-    "pauseOnHover": true
-  }
+"media": {
+  "coverImage": "/assets/images/projects/<slug>/cover.jpg",
+  "gallery": ["/assets/images/projects/<slug>/detail-01.jpg"],
+  "video": "/assets/videos/projects/<slug>/teaser.mp4",
+  "audio": "/assets/audio/projects/<slug>/excerpt.mp3"
 }
 ```
 
-**Champs** :
-- `id` : Identifiant unique du client
-- `name` : Nom complet
-- `logo.svg` : Nom du fichier SVG dans `/logos/`
-- `featured` : Affiché dans le carousel principal
-- `order` : Ordre d'affichage
-- `projectId` : Lien vers un projet (optionnel)
+Les chemins sont directement utilisés par les cartes du portfolio et les modales. Les champs `video` et `audio` sont optionnels : laisse-les vides ou à `null` si tu n'as rien à fournir.
 
----
+## 📄 Template metadata (optionnel)
+`public/assets/projects/_metadata-template.json` peut servir d'aide pour overrider une fiche projet. Mets simplement à jour le `id` (slug) et les chemins media ci-dessus si tu veux tester des fichiers locaux sans modifier `content/projects.json`.
 
-## 📐 Formats recommandés
+## 🚀 Workflow d'ajout rapide
+1. Créer le dossier du slug si besoin (ex : `public/assets/images/projects/la-force-de-la-douceur/`).
+2. Déposer `cover.jpg` (et `cover@2x.jpg` / `detail-01.jpg` si dispo).
+3. Si vidéo : `public/assets/videos/projects/<slug>/teaser.mp4`.
+4. Si audio : `public/assets/audio/projects/<slug>/excerpt.mp3` (fichiers lourds non commités, voir `.gitignore`).
+5. Vérifier/mettre à jour `content/projects.json` pour pointer vers ces chemins.
 
-### Images
-
-| Type | Format | Dimensions | Ratio | Poids max |
-|------|--------|-----------|-------|-----------|
-| Cover | JPG | 1920x1080 | 16:9 | 500KB |
-| Cover @2x | JPG | 3840x2160 | 16:9 | 1MB |
-| Thumbnail | JPG | 800x600 | 4:3 | 200KB |
-| Hero | JPG | 2560x1440+ | Libre | 1MB |
-| Gallery | JPG | 1920x1080+ | Libre | 500KB |
-
-**Optimisation** :
-- Compresser avec [TinyPNG](https://tinypng.com/) ou [Squoosh](https://squoosh.app/)
-- Progressive JPEG recommandé
-- WebP en complément (optionnel)
-
-### Audio
-
-| Format | Bitrate | Poids max |
-|--------|---------|-----------|
-| MP3 | 192-320 kbps | 10MB |
-| OGG | 192 kbps | 10MB (optionnel) |
-
-**Optimisation** :
-- Normaliser le volume à -14 LUFS
-- Fade in/out de 0.5s recommandé
-- Mono acceptable pour voix seule
-
-### Logos (SVG)
-
-- **Format** : SVG uniquement
-- **Optimisation** : Utiliser [SVGOMG](https://jakearchibald.github.io/svgomg/)
-- **Couleurs** : Préférer noir ou blanc (colorisation via CSS)
-- **Taille** : < 50KB idéalement
-
----
-
-## 🔄 Workflow d'ajout d'assets
-
-### Ajouter un nouveau projet
-
-1. **Créer le dossier** :
-   ```bash
-   mkdir -p public/assets/projects/mon-projet/{images,audio}
-   ```
-
-2. **Ajouter les images** :
-   ```bash
-   cp cover.jpg public/assets/projects/mon-projet/images/
-   cp thumbnail.jpg public/assets/projects/mon-projet/images/
-   ```
-
-3. **Ajouter l'audio** (optionnel) :
-   ```bash
-   cp track.mp3 public/assets/projects/mon-projet/audio/
-   ```
-
-4. **Créer `metadata.json`** (optionnel) :
-   ```bash
-   cp public/assets/projects/_metadata-template.json \
-      public/assets/projects/mon-projet/metadata.json
-   # Puis éditer le fichier
-   ```
-
-5. **Ajouter dans `/content/projects.json`** :
-   ```json
-   {
-     "id": "mon-projet",
-     "title": "Mon Projet",
-     "audio": {
-       "enabled": true,
-       "title": "Mon morceau",
-       "files": {
-         "mp3": "/assets/projects/mon-projet/audio/track.mp3"
-       }
-     }
-   }
-   ```
-
-### Ajouter un logo client
-
-1. **Optimiser le SVG** :
-   - Passer par [SVGOMG](https://jakearchibald.github.io/svgomg/)
-   - Retirer métadonnées inutiles
-
-2. **Ajouter le fichier** :
-   ```bash
-   cp client-logo.svg public/assets/clients/logos/
-   ```
-
-3. **Ajouter dans `clients.json`** :
-   ```json
-   {
-     "id": "client",
-     "name": "Nom du client",
-     "logo": {
-       "svg": "client-logo.svg",
-       "alt": "Logo Client"
-     },
-     "featured": true,
-     "order": 10
-   }
-   ```
-
----
-
-## 🔍 Résolution des chemins
-
-### Chemins absolus (recommandé)
-
-```json
-{
-  "audio": {
-    "files": {
-      "mp3": "/assets/projects/mon-projet/audio/track.mp3"
-    }
-  }
-}
-```
-
-### Chemins relatifs (dans metadata.json)
-
-```json
-{
-  "audio": {
-    "files": {
-      "mp3": "track.mp3"
-    }
-  }
-}
-```
-
-**Note** : Les chemins relatifs dans `metadata.json` sont automatiquement résolus vers `/assets/projects/[id]/audio/`.
-
----
-
-## 📖 Documentation complète
-
-- **Système audio** : [/docs/PROJECTS_AUDIO_SYSTEM.md](../../docs/PROJECTS_AUDIO_SYSTEM.md)
-- **Types TypeScript** : [/src/types/project.ts](../../src/types/project.ts)
-- **Template metadata** : [_metadata-template.json](./_metadata-template.json)
-
----
-
-## 🐛 Dépannage
-
-### Les images ne s'affichent pas
-
-1. Vérifier les chemins (absolus depuis `/public/`)
-2. Vérifier les permissions des fichiers
-3. Vérifier la console pour erreurs 404
-
-### L'audio ne se charge pas
-
-1. Vérifier que le fichier existe
-2. Vérifier le format (MP3 supporté partout)
-3. Tester dans un autre navigateur
-4. Voir [PROJECTS_AUDIO_SYSTEM.md](../../docs/PROJECTS_AUDIO_SYSTEM.md#dépannage)
-
----
-
-**Version** : 1.0.0
-**Dernière mise à jour** : Novembre 2024
