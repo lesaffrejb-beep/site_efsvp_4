@@ -21,7 +21,9 @@
     "category": "concert interactif",
     "sector": "btp",
     "themes": [
-      "construction et évolution d’une entreprise"
+      "Concert interactif",
+      "30 ans & transmission",
+      "Mémoire des projets"
     ],
     "details": {
       "format": "Concert interactif",
@@ -60,7 +62,8 @@
     "category": "vidéo de prévention diffusée dans les collèges",
     "sector": "transport",
     "themes": [
-      "prévention"
+      "Prévention mobilité",
+      "Collégiens voyageurs"
     ],
     "details": {
       "format": "vidéo de prévention",
@@ -98,7 +101,10 @@
     ],
     "category": "concert live",
     "sector": "artisanat",
-    "themes": [],
+    "themes": [
+      "Anniversaire 25 ans",
+      "Transmission familiale"
+    ],
     "details": {
       "format": "concert live",
       "duration": "7 minutes",
@@ -137,7 +143,10 @@
     ],
     "category": "concert live",
     "sector": "artisanat",
-    "themes": [],
+    "themes": [
+      "Artisanat patrimonial",
+      "Portrait de menuisier"
+    ],
     "details": {
       "format": "concert live",
       "duration": "10 minutes",
@@ -175,7 +184,10 @@
     ],
     "category": "texte et voix pour une vidéo de promotion",
     "sector": "institutionnel",
-    "themes": [],
+    "themes": [
+      "Hymne territorial",
+      "Marque Maine-et-Loire"
+    ],
     "details": {
       "format": "vidéo promotionnelle",
       "duration": "1 minute 30",
@@ -212,7 +224,8 @@
     "category": "bande-son d’un spectacle de danse",
     "sector": "spectacle-vivant",
     "themes": [
-      "ALD"
+      "Santé & ALD",
+      "Bande-son danse"
     ],
     "details": {
       "format": "bande-son d’un spectacle",
@@ -249,7 +262,8 @@
     "category": "musique",
     "sector": "patrimoine",
     "themes": [
-      "culture et patrimoine"
+      "Patrimoine troglodytique",
+      "Vœux institutionnels"
     ],
     "details": {
       "format": "musique",
@@ -285,7 +299,8 @@
     "category": "musique",
     "sector": "institutionnel",
     "themes": [
-      "sport"
+      "Associations sportives",
+      "Année olympique"
     ],
     "details": {
       "format": "musique",
@@ -324,7 +339,8 @@
     "category": "concert live et musiques enregistrées",
     "sector": "vie-associative",
     "themes": [
-      "solidarité et insertion"
+      "Insertion solidaire",
+      "Anniversaire 25 ans"
     ],
     "details": {
       "format": "concert live et musique enregistrée",
@@ -364,7 +380,8 @@
     "category": "ciné-concert live",
     "sector": "institutionnel",
     "themes": [
-      "vie locale"
+      "Ciné-concert en village",
+      "Légendes locales"
     ],
     "details": {
       "format": "ciné-concert live",
@@ -404,7 +421,8 @@
     "category": "spectacle historique musical",
     "sector": "patrimoine",
     "themes": [
-      "histoire de Clisson"
+      "Déambulation historique",
+      "Saga médiévale"
     ],
     "details": {
       "format": "spectacle historique musical",
@@ -443,7 +461,8 @@
     "category": "musique jouée en live",
     "sector": "patrimoine",
     "themes": [
-      "Moulin de Brissac"
+      "Patrimoine rural",
+      "Rénovation loto du patrimoine"
     ],
     "details": {
       "format": "musique",
@@ -481,7 +500,10 @@
     ],
     "category": "spectacle déambulatoire",
     "sector": "spectacle-vivant",
-    "themes": [],
+    "themes": [
+      "Déambulation vignoble",
+      "Comédie chevaleresque"
+    ],
     "details": {
       "format": "spectacle déambulatoire",
       "duration": "1h 30",
@@ -517,7 +539,10 @@
     ],
     "category": "musique",
     "sector": "institutionnel",
-    "themes": [],
+    "themes": [
+      "Course nocturne",
+      "Célébration des 5 sens"
+    ],
     "details": {
       "format": "musique",
       "duration": "3 minutes",
@@ -557,7 +582,10 @@
     ],
     "category": "spectacle",
     "sector": "environnement",
-    "themes": [],
+    "themes": [
+      "Zones humides",
+      "Sensibilisation écologique"
+    ],
     "details": {
       "format": "spectacle",
       "duration": "1heure",
@@ -595,7 +623,10 @@
     ],
     "category": "concert live",
     "sector": "environnement",
-    "themes": [],
+    "themes": [
+      "Saga agricole",
+      "Innovation maraîchère"
+    ],
     "details": {
       "format": "concert live",
       "duration": "15 minutes",
@@ -631,7 +662,10 @@
     ],
     "category": "concert live",
     "sector": "spectacle-vivant",
-    "themes": [],
+    "themes": [
+      "Vie affective seniors",
+      "Spectacle chorégraphique"
+    ],
     "details": {
       "format": "bande-son d’un spectacle de danse",
       "duration": "45 minutes",

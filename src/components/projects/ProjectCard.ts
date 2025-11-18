@@ -13,6 +13,7 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   card.dataset.projectId = project.id;
   card.dataset.sector = project.sector;
   card.dataset.status = project.status;
+  card.id = `project-${project.id}`;
 
   const visual = document.createElement('div');
   visual.className = 'project-card__visual';
