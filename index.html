@@ -146,6 +146,59 @@
         }
       }
     </style>
+
+    <!-- 🚨 HOTFIX: Empêche le blocage du preloader (emergency failsafe) -->
+    <style>
+      body.emergency-bypass .preloader {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+      }
+      body.emergency-bypass {
+        opacity: 1 !important;
+        overflow: visible !important;
+      }
+      body.emergency-bypass main,
+      body.emergency-bypass #app,
+      body.emergency-bypass #main {
+        opacity: 1 !important;
+        visibility: visible !important;
+      }
+    </style>
+    <script>
+      // 🚨 HOTFIX: Failsafe ultime si après 2 sec rien n'est chargé
+      // Date: 2025-11-18 - Emergency production fix
+      (function() {
+        var failsafeTimer = setTimeout(function() {
+          if (!document.body.classList.contains('loaded')) {
+            console.warn('🚨 EMERGENCY: Bypass activé via failsafe HTML');
+            document.body.classList.add('emergency-bypass', 'loaded');
+            document.body.style.overflow = '';
+
+            // Force hide preloader
+            var preloader = document.getElementById('preloader');
+            if (preloader) {
+              preloader.style.display = 'none';
+            }
+
+            // Force show main content
+            var main = document.querySelector('main, #app, #main');
+            if (main) {
+              main.style.opacity = '1';
+              main.style.visibility = 'visible';
+            }
+          }
+        }, 2000); // 2 secondes max
+
+        // Cancel failsafe if normal load completes
+        window.addEventListener('load', function() {
+          if (document.body.classList.contains('loaded')) {
+            clearTimeout(failsafeTimer);
+          }
+        });
+      })();
+    </script>
   </head>
   <body>
     <!-- Filtres SVG pour effets liquides premium -->

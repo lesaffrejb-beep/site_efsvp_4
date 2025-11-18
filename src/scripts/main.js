@@ -9,6 +9,13 @@
  * ============================================
  */
 
+// 🚨 HOTFIX: Emergency bypass du preloader
+// Date: 2025-11-18
+// Raison: Boucle infinie en production (Vercel)
+// TODO: Réactiver après investigation approfondie du root cause
+const EMERGENCY_SKIP_PRELOADER = true;
+const PRELOADER_FAILSAFE_TIMEOUT = 2000; // 2 secondes max (was 3s)
+
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SmoothScroll } from './modules/smoothScroll.js';
@@ -131,19 +138,42 @@ class App {
     this.modules.animations = new AnimationsManager();
   }
 
+  // 🚨 HOTFIX: Helper function to skip preloader
+  skipToMainContent() {
+    console.warn('🚨 HOTFIX: Preloader bypassé');
+    const preloader = document.querySelector('.preloader, #preloader, [data-preloader]');
+
+    // Force l'affichage du contenu
+    document.body.classList.add('loaded');
+    document.body.style.overflow = '';
+
+    if (preloader) {
+      preloader.style.display = 'none';
+      preloader.remove();
+    }
+
+    // S'assurer que le contenu est visible
+    const main = document.querySelector('main, #app, #main');
+    if (main) {
+      main.style.opacity = '1';
+      main.style.visibility = 'visible';
+    }
+  }
+
   async handlePreloader() {
+    // 🚨 HOTFIX: Emergency bypass si activé
+    if (EMERGENCY_SKIP_PRELOADER) {
+      this.skipToMainContent();
+      return;
+    }
+
     const preloader = document.getElementById('preloader');
 
-    // FAILSAFE: Force preloader removal after max 3 seconds
+    // FAILSAFE: Force preloader removal after max timeout (reduced to 2s)
     const failsafeTimeout = setTimeout(() => {
-      console.warn('⚠️  Preloader failsafe triggered - forcing removal');
-      if (preloader && !preloader.classList.contains('hidden')) {
-        preloader.classList.add('hidden');
-        setTimeout(() => preloader.remove(), 500);
-        document.body.classList.add('loaded');
-        document.body.style.overflow = '';
-      }
-    }, 3000);
+      console.error('⏱️ FAILSAFE: Preloader timeout, force show');
+      this.skipToMainContent();
+    }, PRELOADER_FAILSAFE_TIMEOUT);
 
     // Wait for page load
     await new Promise((resolve) => {
