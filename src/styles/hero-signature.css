@@ -48,8 +48,8 @@
   --hero-padding-bottom: var(--space-12);
   --hero-padding-inline: var(--space-6);
   /* Spacing réduit pour remonter le sous-titre + CTA près de la signature */
-  --hero-animation-to-baseline: clamp(var(--space-2), 1.2vh, var(--space-4));
-  --hero-baseline-to-cta: clamp(var(--space-2), 1.2vh, var(--space-3));
+  --hero-animation-to-baseline: clamp(var(--space-2), 0.9vh, var(--space-3));
+  --hero-baseline-to-cta: clamp(var(--space-2), 1vh, var(--space-3));
 }
 
 /* ========================================
@@ -60,7 +60,7 @@
   /* Baseline description */
   --text-hero-baseline-size: clamp(1.0625rem, 2vw, 1.375rem);
   --text-hero-baseline-weight: 400;
-  --text-hero-baseline-line-height: 1.6;
+  --text-hero-baseline-line-height: 1.5;
   --text-hero-baseline-letter-spacing: 0.01em;
 
   /* CTA */
@@ -326,7 +326,7 @@
   .hero__baseline,
   .hero-subtitle,
   .hero-signature-caption {
-    margin-top: clamp(2rem, 4vh, 3rem);
+    margin-top: clamp(var(--space-2), 2vh, var(--space-3));
     font-size: 1rem; /* 16px */
     line-height: 1.5;
     max-width: 100%;
@@ -340,8 +340,8 @@
 
   /* Spacing mobile : ratio golden maintenu, valeurs réduites */
   :root {
-    --hero-animation-to-baseline: clamp(1.5rem, 3vh, 2rem);
-    --hero-baseline-to-cta: clamp(1rem, 2vh, 1.5rem);
+    --hero-animation-to-baseline: clamp(var(--space-2), 1.4vh, var(--space-3));
+    --hero-baseline-to-cta: clamp(var(--space-2), 1.2vh, var(--space-3));
   }
 }
 

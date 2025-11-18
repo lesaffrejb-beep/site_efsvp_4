@@ -528,13 +528,18 @@ export class FormValidator {
     const output = this.form.querySelector('.form__range-value');
     if (!output) return;
 
+    const minValue = parseInt(slider.min);
+    const maxValue = parseInt(slider.max);
+
+    const formatBudget = (value) =>
+      value >= maxValue ? `${maxValue.toLocaleString('fr-FR')} € et plus` : `~${value.toLocaleString('fr-FR')}€`;
+
     const updateValue = () => {
       const value = parseInt(slider.value);
-      output.textContent = `~${value.toLocaleString('fr-FR')}€`;
+      output.textContent = formatBudget(value);
 
       // Update slider gradient
-      const percent =
-        ((value - parseInt(slider.min)) / (parseInt(slider.max) - parseInt(slider.min))) * 100;
+      const percent = ((value - minValue) / (maxValue - minValue)) * 100;
       slider.style.setProperty('--value', `${percent}%`);
     };
 
@@ -595,7 +600,16 @@ export class FormValidator {
     const output = this.form.querySelector('.form__range-value');
     if (slider && output) {
       slider.value = slider.defaultValue || slider.getAttribute('value');
-      output.textContent = `~${parseInt(slider.value).toLocaleString('fr-FR')}€`;
+      const sliderValue = parseInt(slider.value);
+      const minValue = parseInt(slider.min);
+      const maxValue = parseInt(slider.max);
+      output.textContent =
+        sliderValue >= maxValue
+          ? `${maxValue.toLocaleString('fr-FR')} € et plus`
+          : `~${sliderValue.toLocaleString('fr-FR')}€`;
+
+      const percent = ((sliderValue - minValue) / (maxValue - minValue)) * 100;
+      slider.style.setProperty('--value', `${percent}%`);
     }
   }
 

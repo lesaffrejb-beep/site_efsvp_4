@@ -188,6 +188,7 @@
 /* Mobile Menu */
 @media (max-width: 767px) {
   .nav__menu {
+    display: block;
     position: fixed;
     top: 60px;
     left: 0;
@@ -196,13 +197,18 @@
     background: var(--bg-dark);
     padding: var(--space-8);
     transform: translateX(-100%);
-    transition: transform var(--transition-base);
+    transition: transform var(--transition-base), opacity var(--transition-base);
     overflow-y: auto;
+    max-height: calc(100vh - 60px);
+    width: 100%;
+    opacity: 0;
+    pointer-events: none;
   }
 
   .nav__menu[aria-hidden="false"] {
-    display: block;
     transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
   }
 
   .nav__list {
