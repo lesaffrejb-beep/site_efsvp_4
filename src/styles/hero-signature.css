@@ -112,11 +112,15 @@
   display: contents;
 }
 
+/* ✅ CENTRAGE ABSOLU - Awwwards Grade */
 .hero__animation {
-  width: 100%;
   position: relative;
+  width: 100%;
+  height: auto;
   display: grid;
-  place-items: center;
+  place-items: center; /* Magique pour centrer */
+  pointer-events: none;
+  z-index: 0;
   gap: var(--space-4);
   padding-bottom: 0;
   margin-bottom: var(--space-4);
@@ -153,27 +157,29 @@
    SIGNATURE SVG - IMPOSANTE ET \u00c9L\u00c9GANTE
    ======================================== */
 
+/* ✅ WRAPPER IMPOSANT - 90vw pour présence maximale */
 .hero-signature-wrapper {
-  position: relative;
-  width: 100%;
+  width: 90vw; /* Beaucoup plus gros comme demandé */
   max-width: 1400px;
-  display: grid;
-  place-items: center;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-inline: auto;
   margin-top: 0 !important;
   margin-bottom: var(--space-4) !important;
   padding: 0 !important;
-  height: auto !important;
-  max-height: none !important;
+  pointer-events: auto;
 }
 
+/* ✅ SVG SIGNATURE - Taille maximale avec overflow visible */
 .hero-signature-svg {
-  display: block;
-  width: 120vmin; /* ✅ Utilise vmin pour être gros sur mobile ET desktop */
+  width: 100%;
   height: auto;
-  max-width: none; /* ✅ Autoriser le dépassement si nécessaire */
-  max-height: none;
   overflow: visible;
+  display: block;
+  max-width: none;
+  max-height: none;
   will-change: transform, opacity;
   backface-visibility: hidden;
   transform: none;
