@@ -272,6 +272,11 @@ const initLazyLoading = () => {
 // ========================================
 
 const initPreloader = () => {
+  // DÉSACTIVÉ - Géré par main.js pour éviter les conflits
+  // Le preloader est maintenant géré uniquement par main.js:handlePreloader()
+  return;
+
+  /* ANCIEN CODE - DÉSACTIVÉ
   const preloader = document.getElementById('preloader');
   if (!preloader) return;
 
@@ -288,6 +293,7 @@ const initPreloader = () => {
       }, 100);
     }, 800); // Délai pour effet premium
   });
+  */
 };
 
 // ========================================

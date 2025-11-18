@@ -134,12 +134,25 @@ class App {
   async handlePreloader() {
     const preloader = document.getElementById('preloader');
 
+    // FAILSAFE: Force preloader removal after max 3 seconds
+    const failsafeTimeout = setTimeout(() => {
+      console.warn('⚠️  Preloader failsafe triggered - forcing removal');
+      if (preloader && !preloader.classList.contains('hidden')) {
+        preloader.classList.add('hidden');
+        setTimeout(() => preloader.remove(), 500);
+        document.body.classList.add('loaded');
+        document.body.style.overflow = '';
+      }
+    }, 3000);
+
     // Wait for page load
     await new Promise((resolve) => {
       if (document.readyState === 'complete') {
         resolve();
       } else {
-        window.addEventListener('load', resolve);
+        window.addEventListener('load', resolve, { once: true });
+        // Additional failsafe: resolve after timeout even if load doesn't fire
+        setTimeout(resolve, 2500);
       }
     });
 
@@ -153,6 +166,10 @@ class App {
     }
 
     document.body.classList.add('loaded');
+    document.body.style.overflow = '';
+
+    // Clear failsafe timeout
+    clearTimeout(failsafeTimeout);
   }
 
   initCore() {
