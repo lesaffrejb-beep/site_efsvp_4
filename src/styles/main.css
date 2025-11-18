@@ -123,6 +123,14 @@
   --btn-primary-bg-active: var(--color-primary-700);
   --btn-secondary-border: var(--color-primary-500);
   --btn-ghost-hover: rgba(185, 90, 64, 0.08);
+  --btn-hero-cta-bg: linear-gradient(135deg, var(--color-primary-500), var(--color-primary-400));
+  --btn-hero-cta-bg-hover: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
+  --btn-hero-cta-text: var(--text-inverse);
+  --btn-hero-cta-border: color-mix(in srgb, var(--color-primary-600) 55%, rgba(255, 255, 255, 0.18));
+  --btn-hero-cta-halo: color-mix(in srgb, var(--color-primary-300) 35%, transparent);
+  --btn-hero-cta-shadow: var(--shadow-primary-lg);
+  --btn-hero-cta-shadow-hover: 0 22px 48px -12px rgba(185, 90, 64, 0.35);
+  --header-height: var(--space-20);
 
   /* ============================================
      TYPOGRAPHY SCALE - Clear Hierarchy
@@ -2919,22 +2927,25 @@ button {
 }
 
 .footer__brand-name {
-  font-size: var(--text-2xl);
+  font-size: var(--text-3xl);
   font-weight: var(--font-bold);
   color: var(--text-inverse);
   line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
 }
 
 .footer__brand-subtitle {
   font-size: var(--text-sm);
   font-weight: var(--font-normal);
-  color: rgba(255, 255, 255, 0.5);
+  color: rgba(255, 255, 255, 0.65);
 }
 
 .footer__title {
-  font-size: var(--text-base);
+  font-size: var(--text-sm);
   font-weight: var(--font-semibold);
-  color: var(--text-inverse);
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
   margin-bottom: var(--space-2);
 }
 
@@ -2948,12 +2959,13 @@ button {
 .footer__links a {
   font-size: var(--text-sm);
   color: rgba(255, 255, 255, 0.7);
-  transition: color var(--transition-base);
+  transition: color var(--transition-base), text-decoration-color var(--transition-base);
   text-decoration: none;
 }
 
 .footer__links a:hover {
   color: var(--color-primary-300);
+  text-decoration: underline;
 }
 
 .footer__contact-link {
@@ -2961,6 +2973,13 @@ button {
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-2) 0;
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.footer__contact-link:focus-visible {
+  outline: 2px solid var(--color-primary-400);
+  outline-offset: 4px;
+  border-radius: var(--radius-sm);
 }
 
 .footer__contact-icon {
@@ -2968,6 +2987,22 @@ button {
   height: 18px;
   color: var(--color-primary-400);
   flex-shrink: 0;
+}
+
+.footer__email-button {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--color-primary-50) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-primary-300) 50%, transparent);
+  color: var(--color-primary-600);
+  font-weight: var(--font-semibold);
+  transition: background var(--transition-base), border-color var(--transition-base), transform var(--transition-base);
+}
+
+.footer__email-button:hover {
+  background: color-mix(in srgb, var(--color-primary-100) 75%, transparent);
+  border-color: var(--color-primary-400);
+  transform: translateY(-1px);
 }
 
 .footer__bottom {
@@ -3322,6 +3357,7 @@ button {
   position: relative;
   display: flex;
   flex-direction: column;
+  height: 100%;
   gap: var(--space-6);
   padding: var(--space-6);
   background: linear-gradient(180deg, color-mix(in srgb, var(--bg-primary) 94%, transparent) 0%, color-mix(in srgb, var(--bg-secondary) 88%, transparent) 100%);
@@ -3445,6 +3481,7 @@ button {
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  flex: 1;
 }
 
   .project-card__header {
@@ -3543,7 +3580,7 @@ button {
   justify-content: space-between;
   gap: var(--space-4);
   padding-top: var(--space-5);
-  margin-top: var(--space-2);
+  margin-top: auto;
 }
 
 .project-card__status {

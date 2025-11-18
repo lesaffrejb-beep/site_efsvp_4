@@ -107,14 +107,20 @@ const initParallax = () => {
   const hero = document.querySelector('.hero');
   if (!hero) return;
 
+  const heroHeight = hero.offsetHeight || window.innerHeight;
+
   window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
-    const parallaxSpeed = 0.5;
+    const progress = Math.min(scrolled / heroHeight, 1);
+    const translate = Math.max(-18, -progress * 24);
 
-    // Déplacer légèrement le contenu vers le haut au scroll
-    if (scrolled < window.innerHeight) {
-      hero.style.transform = `translateY(${scrolled * parallaxSpeed}px)`;
-      hero.style.opacity = 1 - (scrolled / window.innerHeight) * 0.5;
+    // Déplacer légèrement le contenu vers le haut au scroll sans dépasser la section suivante
+    if (scrolled < heroHeight) {
+      hero.style.transform = `translateY(${translate}px)`;
+      hero.style.opacity = 1 - progress * 0.5;
+    } else {
+      hero.style.transform = 'translateY(0)';
+      hero.style.opacity = 0.5;
     }
   });
 };
@@ -129,25 +135,17 @@ const initCardEffects = () => {
   cards.forEach(card => {
     card.addEventListener('mouseenter', function() {
       this.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+      this.style.transform = 'translateY(-4px)';
+      this.style.boxShadow = 'var(--shadow-lg)';
     });
 
-    card.addEventListener('mousemove', function(e) {
-      const rect = this.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = (y - centerY) / 20;
-      const rotateY = (centerX - x) / 20;
-
-      // Tilt effect subtil
-      this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+    card.addEventListener('mousemove', function() {
+      this.style.transform = 'translateY(-4px)';
     });
 
     card.addEventListener('mouseleave', function() {
-      this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+      this.style.transform = 'translateY(0)';
+      this.style.boxShadow = '';
     });
   });
 };
