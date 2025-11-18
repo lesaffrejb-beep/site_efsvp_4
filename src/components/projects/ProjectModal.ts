@@ -40,10 +40,20 @@ export class ProjectModal {
     const descriptionEl = document.getElementById('project-modal-description');
     const statsContainer = document.getElementById('project-modal-stats');
     const statsGrid = document.getElementById('project-modal-stats-content');
+    const visualContainer = document.getElementById('project-modal-visual');
+    const visualImage = visualContainer?.querySelector('img');
 
     if (tagEl) tagEl.textContent = project.category;
     if (titleEl) titleEl.textContent = project.title;
     if (metaEl) metaEl.textContent = [project.client, project.year, project.location].filter(Boolean).join(' · ');
+
+    if (visualContainer && visualImage && project.coverSrc) {
+      visualContainer.style.display = 'block';
+      visualImage.src = project.coverSrc;
+      visualImage.alt = `${project.title} – ${project.location}`;
+    } else if (visualContainer) {
+      visualContainer.style.display = 'none';
+    }
 
     if (descriptionEl) {
       descriptionEl.innerHTML = '';

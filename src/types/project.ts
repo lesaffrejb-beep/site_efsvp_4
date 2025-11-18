@@ -48,6 +48,8 @@ export interface Project {
   location: string;
   status: ProjectStatus;
   tags: string[];
+  thumbnailSrc: string;
+  coverSrc: string;
   cover: {
     image?: string;
     initials: string;

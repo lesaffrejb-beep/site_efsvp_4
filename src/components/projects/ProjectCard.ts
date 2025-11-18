@@ -18,19 +18,20 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   const visual = document.createElement('div');
   visual.className = 'project-card__visual';
 
-  const coverImage = project.media?.coverImage || project.cover.image;
-
   const frame = document.createElement('div');
   frame.className = 'project-card__visual-frame';
   const gradient = `linear-gradient(135deg, ${project.cover.gradient?.from || 'var(--color-primary-500)'} 0%, ${
     project.cover.gradient?.to || 'var(--color-primary-700)'
   } 100%)`;
-  if (coverImage) {
-    frame.style.backgroundImage = `linear-gradient(120deg, rgba(0,0,0,0.35), rgba(0,0,0,0.5)), url(${coverImage})`;
-    frame.style.backgroundSize = 'cover';
-    frame.style.backgroundPosition = 'center';
-  } else {
-    frame.style.backgroundImage = gradient;
+  frame.style.backgroundImage = gradient;
+
+  if (project.thumbnailSrc) {
+    const image = document.createElement('img');
+    image.className = 'project-card__image';
+    image.src = project.thumbnailSrc;
+    image.alt = `${project.title} – ${project.location}`;
+    image.loading = 'lazy';
+    frame.appendChild(image);
   }
 
   const badge = document.createElement('span');
@@ -53,6 +54,9 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   const body = document.createElement('div');
   body.className = 'project-card__body';
 
+  const content = document.createElement('div');
+  content.className = 'project-card__content';
+
   const header = document.createElement('div');
   header.className = 'project-card__header';
 
@@ -70,6 +74,9 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   const tagline = document.createElement('p');
   tagline.className = 'project-card__tagline';
   tagline.textContent = project.shortDescription;
+
+  content.appendChild(header);
+  content.appendChild(tagline);
 
   const footer = document.createElement('div');
   footer.className = 'project-card__footer';
@@ -102,8 +109,7 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   }
   footer.appendChild(footerRow);
 
-  body.appendChild(header);
-  body.appendChild(tagline);
+  body.appendChild(content);
   body.appendChild(footer);
 
   card.appendChild(visual);

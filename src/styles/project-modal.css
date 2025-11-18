@@ -151,6 +151,22 @@
   gap: var(--space-8);
 }
 
+.modal-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background: linear-gradient(140deg, color-mix(in srgb, var(--bg-secondary) 80%, transparent) 0%, color-mix(in srgb, var(--bg-tertiary) 65%, transparent) 100%);
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-visual img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .modal-description {
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);

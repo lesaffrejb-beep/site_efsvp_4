@@ -11,6 +11,11 @@ function assetExists(publicPath: string): boolean {
   return assetManifest.some((entry) => entry === normalized);
 }
 
+function findAssetByPrefix(prefix: string): string | null {
+  const normalizedPrefix = prefix.startsWith('/') ? prefix : `/${prefix}`;
+  return assetManifest.find((entry) => entry.startsWith(normalizedPrefix)) || null;
+}
+
 function collectGallery(slug: string): string[] {
   const prefix = `/assets/images/projects/${slug}/gallery-`;
   return assetManifest
@@ -23,23 +28,36 @@ function collectGallery(slug: string): string[] {
 let validatedProjects: Project[] = [];
 
 function sanitizeProjectsData() {
-  return (projectsData as Array<Partial<Project>>).map((project) => ({
-    ...project,
-    slug: project?.slug || project?.id,
-    tags: project?.tags || [],
-    media: {
-      ...project?.media,
-      video: project?.media?.video ?? undefined,
-      audio: project?.media?.audio ?? undefined,
-    },
-    video: project?.video ?? undefined,
-    audio: project?.audio ?? undefined,
-  }));
+  return (projectsData as Array<Partial<Project>>).map((project) => {
+    const slug = project?.slug || project?.id || '';
+    const coverFromAssets = slug ? findAssetByPrefix(`/assets/images/projects/${slug}/cover`) : null;
+    const thumbFromAssets = slug ? findAssetByPrefix(`/assets/images/projects/${slug}/thumb`) : null;
+    const coverFromData = project?.media?.coverImage || project?.cover?.image || '';
+    const coverSrc = coverFromAssets || coverFromData;
+    const thumbnailSrc = thumbFromAssets || coverSrc;
+
+    return {
+      ...project,
+      slug,
+      tags: project?.tags || [],
+      thumbnailSrc,
+      coverSrc,
+      media: {
+        ...project?.media,
+        video: project?.media?.video ?? undefined,
+        audio: project?.media?.audio ?? undefined,
+      },
+      video: project?.video ?? undefined,
+      audio: project?.audio ?? undefined,
+    } as Project;
+  });
 }
 
 function normalizeProjectMedia(project: Project): Project {
   const slug = project.slug || project.id;
   const coverPath = `/assets/images/projects/${slug}/cover.webp`;
+  const resolvedCoverSrc = project.coverSrc || findAssetByPrefix(`/assets/images/projects/${slug}/cover`) || project.cover.image || '';
+  const resolvedThumbnailSrc = project.thumbnailSrc || findAssetByPrefix(`/assets/images/projects/${slug}/thumb`) || resolvedCoverSrc;
   const gallery = project.media?.gallery?.length ? project.media.gallery : collectGallery(slug);
   const videoPath = assetExists(`/assets/videos/projects/${slug}/teaser.mp4`)
     ? `/assets/videos/projects/${slug}/teaser.mp4`
@@ -47,7 +65,7 @@ function normalizeProjectMedia(project: Project): Project {
   const audioPath = assetExists(`/assets/audio/projects/${slug}/extrait-01.mp3`)
     ? `/assets/audio/projects/${slug}/extrait-01.mp3`
     : project.media?.audio;
-  const coverImage = project.media?.coverImage || project.cover.image || '';
+  const coverImage = resolvedCoverSrc || project.media?.coverImage || project.cover.image || '';
 
   const media = {
     gallery,
@@ -61,6 +79,8 @@ function normalizeProjectMedia(project: Project): Project {
     id: slug,
     slug,
     tags: project.tags || [],
+    thumbnailSrc: resolvedThumbnailSrc,
+    coverSrc: assetExists(coverPath) ? coverPath : resolvedCoverSrc,
     cover: {
       ...project.cover,
       ...(coverImage ? { image: assetExists(coverPath) ? coverPath : coverImage } : {}),

@@ -10,6 +10,8 @@ export const projectSchema = z.object<Project>({
   location: z.string().min(1),
   status: z.enum<ProjectStatus>(['delivered', 'in-progress']),
   tags: z.array(z.string()),
+  thumbnailSrc: z.string().min(1),
+  coverSrc: z.string().min(1),
   cover: z.object({
     image: z.string().optional(),
     initials: z.string().length(2),
