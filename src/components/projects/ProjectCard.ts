@@ -1,5 +1,6 @@
 import type { Project } from '@/types/project';
 import { createProjectStatus } from './ProjectStatus';
+import { setupProjectAccentFromImage } from '@/scripts/modules/projectAccentFromImage';
 
 interface ProjectCardProps {
   project: Project;
@@ -38,6 +39,9 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
     image.alt = `${project.title} – ${project.location}`;
     image.loading = 'lazy';
     frame.appendChild(image);
+
+    // Setup adaptive accent color from image analysis
+    setupProjectAccentFromImage(card, image);
   }
 
   const badge = document.createElement('span');
