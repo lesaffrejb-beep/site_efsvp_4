@@ -84,6 +84,7 @@
   overflow: hidden;
   isolation: isolate;
   z-index: 1; /* Sous les sections suivantes (z-index: 10) */
+  scroll-margin-top: var(--header-height);
 }
 
 .hero__inner {
@@ -218,9 +219,9 @@
   font-weight: var(--font-semibold);
   letter-spacing: var(--text-cta-letter-spacing);
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  color: var(--text-inverse);
-  background: var(--bg-dark, #111);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--btn-hero-cta-text);
+  background: var(--btn-hero-cta-bg);
+  border: 1px solid var(--btn-hero-cta-border);
   border-radius: var(--btn-radius-lg);
   text-decoration: none;
   display: inline-flex;
@@ -233,13 +234,14 @@
   isolation: isolate;
   min-height: 48px;
   min-width: 48px;
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--btn-hero-cta-shadow);
   transition:
     color 0.3s ease,
     border-color 0.3s ease,
     background var(--transition-base),
     box-shadow var(--transition-base),
-    transform var(--transition-base);
+    transform var(--transition-base),
+    filter var(--transition-base);
 }
 
 .btn-hero::before {
@@ -248,7 +250,7 @@
   inset: 0;
   background: radial-gradient(
     600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(224, 120, 85, 0.2),
+    var(--btn-hero-cta-halo),
     transparent 40%
   );
   opacity: 0;
@@ -263,20 +265,27 @@
 }
 
 .btn-hero:hover {
-  color: var(--color-primary, #e07855);
-  border-color: var(--color-primary-500);
-  box-shadow: var(--shadow-primary-lg);
-  transform: translateY(-2px) scale(1.02);
+  color: var(--btn-hero-cta-text);
+  background: var(--btn-hero-cta-bg-hover);
+  border-color: var(--btn-hero-cta-border);
+  box-shadow: var(--btn-hero-cta-shadow-hover);
+  transform: translateY(-3px);
+  filter: brightness(1.05);
 }
 
 .btn-hero:active {
-  transform: translateY(0) scale(0.98);
+  transform: translateY(0) scale(0.99);
   box-shadow: var(--shadow-sm);
 }
 
 .btn-hero:focus-visible {
-  outline: 2px solid var(--color-primary);
+  outline: 2px solid var(--color-primary-400);
   outline-offset: 4px;
+}
+
+.btn-hero--cta {
+  box-shadow: var(--btn-hero-cta-shadow);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
 }
 
 .hero-cta__label {
