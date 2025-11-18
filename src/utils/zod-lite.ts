@@ -92,6 +92,7 @@ class NumberSchema extends BaseSchema<number> {
   private minValue?: number;
   private maxValue?: number;
   private intFlag = false;
+  private positiveFlag = false;
 
   min(value: number): this {
     this.minValue = value;
@@ -105,6 +106,11 @@ class NumberSchema extends BaseSchema<number> {
 
   int(): this {
     this.intFlag = true;
+    return this;
+  }
+
+  positive(): this {
+    this.positiveFlag = true;
     return this;
   }
 
@@ -123,6 +129,20 @@ class NumberSchema extends BaseSchema<number> {
 
     if (this.maxValue !== undefined && value > this.maxValue) {
       this.fail(`Expected number <= ${this.maxValue}`, path);
+    }
+
+    if (this.positiveFlag && value <= 0) {
+      this.fail('Expected positive number', path);
+    }
+
+    return value;
+  }
+}
+
+class BooleanSchema extends BaseSchema<boolean> {
+  protected validate(value: unknown, path: string[]): boolean {
+    if (typeof value !== 'boolean') {
+      this.fail('Expected boolean', path);
     }
 
     return value;
@@ -189,6 +209,7 @@ class ObjectSchema<T extends Record<string, any>> extends BaseSchema<T> {
 export const z = {
   string: () => new StringSchema(),
   number: () => new NumberSchema(),
+  boolean: () => new BooleanSchema(),
   enum: <T extends string>(options: readonly T[]) => new EnumSchema(options),
   array: <T>(schema: BaseSchema<T>) => new ArraySchema(schema),
   object: <T extends Record<string, any>>(shape: { [K in keyof T]: BaseSchema<T[K]> }) => new ObjectSchema(shape),
