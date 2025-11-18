@@ -101,29 +101,9 @@ class App {
   async handlePreloader() {
     const preloader = document.getElementById('preloader');
 
-    try {
-      // ✅ Pattern de Boot Robuste (Awwwards Standard)
-      document.documentElement.classList.add('is-loading');
-
-      await Promise.all([
-        // 1. Attendre les polices
-        document.fonts.ready.catch(() => {
-          console.warn('⚠️ Fonts not ready, continuing anyway');
-          return Promise.resolve();
-        }),
-        // 2. Attendre le DOM minimal
-        new Promise(resolve => {
-          if (document.readyState === 'interactive' || document.readyState === 'complete') {
-            resolve();
-          } else {
-            window.addEventListener('DOMContentLoaded', resolve, { once: true });
-          }
-        }),
-        // 3. Petit buffer pour la fluidité (800ms)
-        new Promise(resolve => setTimeout(resolve, 800))
-      ]);
-
-      // Succès : Lancement propre
+    // 🛡️ FAIL-SAFE BOOTLOADER
+    // Force l'affichage du site quoi qu'il arrive
+    const startApp = () => {
       console.log('🚀 Site ready');
       document.documentElement.classList.remove('is-loading');
       document.body.classList.add('loaded');
@@ -137,17 +117,38 @@ class App {
         }, { once: true });
         setTimeout(() => preloader.remove(), 900);
       }
+    };
 
-    } catch (err) {
-      // Fallback silencieux : on affiche quand même le site
-      console.warn('⚠️ Boot warning:', err);
-      document.documentElement.classList.remove('is-loading');
-      document.body.classList.add('loaded');
-      document.body.style.overflow = '';
-      if (preloader) {
-        preloader.remove();
+    // Pattern de Boot Robuste (Awwwards Standard)
+    document.documentElement.classList.add('is-loading');
+
+    // Essayer de charger proprement
+    Promise.all([
+      document.fonts.ready.catch(() => {
+        console.warn('⚠️ Fonts not ready, continuing anyway');
+        return Promise.resolve();
+      }),
+      new Promise(resolve => {
+        if (document.readyState === 'interactive' || document.readyState === 'complete') {
+          resolve();
+        } else {
+          window.addEventListener('DOMContentLoaded', resolve, { once: true });
+        }
+      })
+    ]).then(() => {
+      startApp(); // Chargement propre
+    }).catch(err => {
+      console.warn('⚠️ Assets loading warning', err);
+      startApp(); // Chargement forcé (fallback)
+    });
+
+    // 🚨 Sécurité ultime : si dans 2s rien ne s'est passé, on ouvre les vannes
+    setTimeout(() => {
+      if (!document.body.classList.contains('loaded')) {
+        console.warn('🚨 Emergency Start triggered');
+        startApp();
       }
-    }
+    }, 2000);
   }
 
   async initCore() {
