@@ -232,125 +232,13 @@ export function initServicesContent() {
 
 /**
  * Injecte le contenu du portfolio
+ * DÉSACTIVÉ : Le système TypeScript (initProjectsApp) gère maintenant le rendu complet
  */
 export function initPortfolioContent() {
-  const { section, metrics, filters, projects } = portfolioContent;
-
-  const title = document.querySelector('.projects__title');
-  const description = document.querySelector('.projects__description');
-  if (title) title.textContent = section.title;
-  if (description) description.textContent = section.description;
-
-  const metricElements = document.querySelectorAll('.projects__stat-card');
-  metricElements.forEach((metricEl, index) => {
-    if (!metrics[index]) return;
-    const value = metricEl.querySelector('.projects__stat-value');
-    const label = metricEl.querySelector('.projects__stat-label');
-    if (value) value.textContent = metrics[index].value;
-    if (label) label.textContent = metrics[index].label;
-  });
-
-  const filtersContainer = document.querySelector('.projects__filters');
-  if (filtersContainer && filters?.length) {
-    filtersContainer.innerHTML = filters
-      .map(
-        (group) => `
-        <div class="projects-filter" data-filter-group="${group.id}">
-          <div class="projects-filter__header">
-            <span class="projects-filter__label">${group.label}</span>
-          </div>
-          <div class="projects-filter__options" role="listbox" aria-label="Filtrer par ${group.label.toLowerCase()}">
-            ${group.options
-              .map(
-                (option) => `
-                  <button class="projects-filter__option${option.active ? ' is-active' : ''}"
-                          type="button"
-                          data-filter-group="${group.id}"
-                          data-filter-value="${option.value}"
-                          role="option"
-                          aria-pressed="${option.active ? 'true' : 'false'}">
-                    ${option.label}
-                  </button>
-                `
-              )
-              .join('')}
-          </div>
-        </div>
-      `
-      )
-      .join('');
-  }
-
-  const projectsGrid = document.querySelector('.projects__grid');
-  if (projectsGrid && projects.length > 0) {
-    const statusLabels = {
-      delivered: 'Livré',
-      in_production: 'En production',
-    };
-
-    const sortedProjects = [...projects].sort((a, b) => a.order - b.order);
-
-    projectsGrid.innerHTML = sortedProjects
-      .map((project) => {
-        const period = project.period ? project.period : project.year;
-        const statusLabel = statusLabels[project.status] || project.status;
-
-        // Extract short title (part after "—" if exists, otherwise use full title)
-        const displayTitle = project.title.includes('—')
-          ? project.title.split('—')[1].trim()
-          : project.title;
-
-        // Build tags array from themes
-        const tags = project.themes || [];
-        const tagsHtml = tags.length > 0
-          ? `<div class="project-card__tags">
-              ${tags.slice(0, 3).map(tag => `<span class="project-card__tag">${tag}</span>`).join('')}
-             </div>`
-          : '';
-
-        const clientInitials = project.client
-          ? project.client
-              .split(/\s+/)
-              .filter(Boolean)
-              .slice(0, 2)
-              .map((part) => part[0]?.toUpperCase() || '')
-              .join('')
-          : '';
-
-        return `
-          <article class="project-card card-lift"
-                   data-project-id="${project.slug}"
-                   data-typology="${project.typology}"
-                   data-sector="${project.sector}"
-                   data-status="${project.status}">
-            <div class="project-card__visual" aria-hidden="true">
-              <div class="project-card__visual-frame">
-                <span class="project-card__category">${project.category}</span>
-                <span class="project-card__initials">${clientInitials}</span>
-                <span class="project-card__location">${project.location}</span>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <header class="project-card__header">
-                <h3 class="project-card__title">${displayTitle}</h3>
-                <span class="project-card__year">${period}</span>
-              </header>
-              <p class="project-card__description">${project.shortDescription}</p>
-              ${tagsHtml}
-            </div>
-            <footer class="project-card__footer">
-              <div class="project-card__footer-left">
-                <span class="project-card__status project-card__status--${project.status}">${statusLabel}</span>
-              </div>
-              <button type="button" class="project-card__link" aria-label="Voir le projet ${project.title}">
-                Voir le projet
-              </button>
-            </footer>
-          </article>
-        `;
-      })
-      .join('');
-  }
+  // Les titres et métriques sont déjà dans le HTML statique
+  // Le rendu des projets et filtres est géré par initProjectsApp() (TypeScript)
+  console.log('📦 Portfolio: Rendu délégué au système TypeScript (initProjectsApp)');
+  return;
 }
 
 /**
@@ -479,33 +367,40 @@ export function initStatsContent() {
 export function initFaqContent() {
   const { section, items } = faqContent;
 
-  // Titre de section
+  // Titres de section (déjà dans le HTML mais on peut les injecter pour flexibilité)
   const sectionTitle = document.querySelector('.faq__title');
   const sectionSubtitle = document.querySelector('.faq__subtitle');
   if (sectionTitle) sectionTitle.textContent = section.title;
   if (sectionSubtitle && section.subtitle) sectionSubtitle.textContent = section.subtitle;
 
-  // FAQ Items - génération dynamique
+  // FAQ Items - génération dynamique du HTML
   const faqContainer = document.querySelector('.faq__list');
   if (faqContainer && items.length > 0) {
     faqContainer.innerHTML = items
       .map(
         (item, index) => `
-      <article class="faq__item">
-        <button class="faq__question"
+      <article class="faq__item faq-item">
+        <button class="faq__question faq-item__question"
                 id="${item.id}-question"
                 aria-expanded="false"
-                aria-controls="${item.id}-answer">
+                aria-controls="${item.id}-answer"
+                tabindex="0">
           <span class="faq__question-label">${item.question}</span>
-          <span class="faq__icon" aria-hidden="true"></span>
+          <svg class="faq__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
         </button>
-        <div class="faq__answer" id="${item.id}-answer" role="region" aria-labelledby="${item.id}-question">
+        <div class="faq__answer faq-item__answer" id="${item.id}-answer" role="region" aria-labelledby="${item.id}-question">
           <p>${item.answer}</p>
         </div>
       </article>
     `
       )
       .join('');
+
+    console.log(`✅ FAQ: ${items.length} questions générées`);
+  } else {
+    console.warn('⚠️ FAQ: Aucune question ou container introuvable');
   }
 }
 

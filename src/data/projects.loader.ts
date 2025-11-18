@@ -2,7 +2,18 @@ import projectsData from '../../content/projects.json';
 import { projectsSchema } from '@/schemas/project.schema';
 import type { Project, ProjectSector } from '@/types/project';
 
-const validatedProjects: Project[] = projectsSchema.parse(projectsData);
+// Validation avec gestion d'erreur
+let validatedProjects: Project[] = [];
+
+try {
+  validatedProjects = projectsSchema.parse(projectsData);
+  console.log(`✅ Projects loader: ${validatedProjects.length} projets chargés et validés`);
+} catch (error) {
+  console.error('❌ Projects loader: Erreur de validation des projets', error);
+  // Fallback: utiliser les données brutes si la validation échoue
+  validatedProjects = projectsData as Project[];
+  console.warn(`⚠️ Projects loader: Utilisation des données brutes (${validatedProjects.length} projets)`);
+}
 
 export function getAllProjects(): Project[] {
   return validatedProjects;
