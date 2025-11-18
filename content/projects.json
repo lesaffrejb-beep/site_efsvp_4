@@ -738,5 +738,56 @@
     "partners": [
       "Les petits pères"
     ]
+  },
+  {
+    "id": "demo-video-exemple",
+    "title": "Démo Vidéo - Hymne Territorial",
+    "client": "Démo Système Vidéo",
+    "year": 2025,
+    "location": "Angers",
+    "status": "delivered",
+    "cover": {
+      "initials": "DV",
+      "gradient": {
+        "from": "var(--color-info)",
+        "to": "var(--color-primary-500)"
+      }
+    },
+    "shortDescription": "Projet de démonstration du nouveau système vidéo intégré. Cet exemple montre comment intégrer une vidéo dans un projet avec le lecteur premium personnalisé.",
+    "longDescription": [
+      "Ce projet est un exemple de démonstration du nouveau système de vidéo intégré à la plateforme EfSVP.",
+      "Il illustre comment configurer un projet avec une vidéo locale, un poster personnalisé, et tous les contrôles du lecteur vidéo premium.",
+      "Le système détecte automatiquement la présence d'une vidéo et affiche le lecteur approprié avec tous les contrôles : play/pause, timeline, volume, et plein écran."
+    ],
+    "category": "vidéo promotionnelle",
+    "sector": "institutionnel",
+    "themes": [
+      "Vidéo",
+      "Innovation technique",
+      "Démo système"
+    ],
+    "details": {
+      "format": "Vidéo HD",
+      "duration": "2 minutes",
+      "audience": "Développeurs et clients",
+      "deliverables": [
+        "Vidéo HD",
+        "Documentation technique"
+      ]
+    },
+    "team": [
+      "Équipe Technique EfSVP"
+    ],
+    "video": {
+      "enabled": true,
+      "title": "Démo du lecteur vidéo premium",
+      "duration": 120,
+      "files": {
+        "mp4": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+      },
+      "poster": "/assets/images/projects/chemin-des-dames-cover.jpg",
+      "autoplay": false,
+      "description": "Vidéo de démonstration Big Buck Bunny (Blender Foundation) utilisée pour tester le lecteur vidéo."
+    }
   }
 ]

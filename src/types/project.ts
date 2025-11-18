@@ -85,4 +85,16 @@ export interface Project {
     waveformColor?: string;
     description?: string;
   };
+  video?: {
+    enabled: boolean;
+    title: string;
+    duration?: number;
+    files: {
+      mp4: string;
+      webm?: string;
+    };
+    poster?: string;
+    autoplay?: boolean;
+    description?: string;
+  };
 }

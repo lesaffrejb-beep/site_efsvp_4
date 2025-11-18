@@ -1,32 +1,40 @@
 {
   "$schema": "Template de metadata pour un projet EfSVP",
+  "_comment": "IMPORTANT: Un projet peut avoir soit VIDEO, soit AUDIO, mais PAS LES DEUX en même temps",
+
   "id": "identifiant-unique-du-projet",
   "title": "Titre du projet",
   "client": "Nom du client",
   "year": 2025,
   "location": "Ville",
   "status": "delivered",
+
   "cover": {
-    "image": "/assets/projects/[id]/images/cover.jpg",
+    "image": "/assets/projects/[id]/images/main.jpg",
+    "_comment_image": "Une seule image suffit : main.jpg (plus besoin de cover.jpg, thumbnail.jpg séparés)",
     "initials": "XX",
     "gradient": {
       "from": "var(--color-primary-500)",
       "to": "var(--color-neutral-700)"
     }
   },
+
   "shortDescription": "Description courte du projet (max 400 caractères)",
   "longDescription": [
     "Premier paragraphe de la description longue du projet.",
     "Deuxième paragraphe avec plus de détails.",
     "Chaque élément du tableau est un paragraphe."
   ],
+
   "category": "concert live | spectacle | musique | ciné-concert | etc.",
   "sector": "artisanat | btp | environnement | institutionnel | patrimoine | social | spectacle-vivant | transport | vie-associative",
+
   "themes": [
     "Thème 1",
     "Thème 2",
     "Thème 3"
   ],
+
   "details": {
     "format": "Format du projet",
     "duration": "Durée (ex: 10 minutes, 1 heure)",
@@ -36,28 +44,39 @@
       "Livrable 2"
     ]
   },
+
   "team": [
     "Membre 1",
     "Membre 2",
     "Membre 3"
   ],
+
   "partners": [
     "Partenaire 1"
   ],
+
   "media": {
     "gallery": [
       "/assets/projects/[id]/images/gallery-01.jpg",
       "/assets/projects/[id]/images/gallery-02.jpg"
     ],
     "video": "https://youtube.com/watch?v=...",
+    "_comment_video": "URL externe (YouTube, Vimeo, etc.) - différent du champ 'video' ci-dessous pour fichier local",
     "testimonial": {
       "quote": "Citation du client",
       "author": "Nom de l'auteur",
       "role": "Fonction"
     }
   },
+
+  "_comment_audio_video": "============================================",
+  "_comment_audio_video_2": "CHOIX: Activer SOIT audio, SOIT video (pas les deux)",
+  "_comment_audio_video_3": "Si les deux sont activés, la VIDÉO aura la PRIORITÉ",
+  "_comment_audio_video_4": "============================================",
+
   "audio": {
-    "enabled": true,
+    "enabled": false,
+    "_comment": "Activer SEULEMENT si le projet n'a PAS de vidéo",
     "title": "Titre de la piste audio",
     "artist": "EfSVP Studio",
     "duration": 180,
@@ -67,5 +86,22 @@
     },
     "waveformColor": "var(--color-primary-500)",
     "description": "Description de la piste audio (optionnel)"
+  },
+
+  "video": {
+    "enabled": false,
+    "_comment": "Activer pour afficher un lecteur vidéo premium avec contrôles personnalisés",
+    "title": "Titre de la vidéo",
+    "duration": 120,
+    "_comment_duration": "Durée en secondes",
+    "files": {
+      "mp4": "/assets/projects/[id]/video/video.mp4",
+      "webm": "/assets/projects/[id]/video/video.webm"
+    },
+    "poster": "/assets/projects/[id]/images/main.jpg",
+    "_comment_poster": "Image affichée avant la lecture (peut être main.jpg)",
+    "autoplay": false,
+    "_comment_autoplay": "Autoplay activé uniquement si approprié (UX)",
+    "description": "Description de la vidéo (optionnel)"
   }
 }

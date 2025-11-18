@@ -82,6 +82,7 @@
     <link rel="stylesheet" href="/src/styles/progressive-nav.css" />
     <link rel="stylesheet" href="/src/styles/project-modal.css" />
     <link rel="stylesheet" href="/src/styles/audio-player.css" />
+    <link rel="stylesheet" href="/src/styles/video-player.css" />
     <link rel="stylesheet" href="/src/styles/cookie-banner.css" />
     <link rel="stylesheet" href="/src/styles/hero-signature.css" />
 
@@ -1058,6 +1059,11 @@
           <div class="modal-body">
             <div class="modal-description" id="project-modal-description">
               <p>Description du projet...</p>
+            </div>
+
+            <!-- Video Player Container (affiché uniquement si vidéo disponible) -->
+            <div class="modal-video" id="project-modal-video" style="display: none;">
+              <!-- Video player sera injecté ici dynamiquement -->
             </div>
 
             <!-- Audio Player Container (affiché uniquement si audio disponible) -->

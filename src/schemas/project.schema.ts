@@ -68,6 +68,20 @@ export const projectSchema = z.object<Project>({
       description: z.string().optional(),
     })
     .optional(),
+  video: z
+    .object({
+      enabled: z.boolean(),
+      title: z.string().min(1),
+      duration: z.number().int().positive().optional(),
+      files: z.object({
+        mp4: z.string().min(1),
+        webm: z.string().optional(),
+      }),
+      poster: z.string().optional(),
+      autoplay: z.boolean().optional(),
+      description: z.string().optional(),
+    })
+    .optional(),
 });
 
 export const projectsSchema = z.array(projectSchema);

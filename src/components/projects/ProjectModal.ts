@@ -1,11 +1,13 @@
 import { SECTOR_LABELS, type Project } from '@/types/project';
 import { createProjectAudioPlayer, hasProjectAudio, destroyProjectAudioPlayer } from '@/scripts/modules/projectAudioPlayer';
+import { createProjectVideoPlayer, hasProjectVideo, destroyProjectVideoPlayer } from '@/scripts/modules/projectVideoPlayer';
 
 export class ProjectModal {
   private modal: HTMLElement | null;
   private closeButton: HTMLElement | null;
   private overlay: HTMLElement | null;
   private currentAudioPlayer: any = null;
+  private currentVideoPlayer: any = null;
 
   constructor() {
     this.modal = document.getElementById('project-modal');
@@ -69,15 +71,33 @@ export class ProjectModal {
       statsContainer.style.display = stats.length ? 'block' : 'none';
     }
 
-    // Gestion de l'audio player
+    // Gestion des media players (PRIORITÉ: vidéo > audio)
     const audioContainer = document.getElementById('project-modal-audio');
-    if (audioContainer) {
-      if (hasProjectAudio(project)) {
-        audioContainer.style.display = 'block';
-        this.currentAudioPlayer = createProjectAudioPlayer(audioContainer, project);
-      } else {
+    const videoContainer = document.getElementById('project-modal-video');
+
+    // Logique conditionnelle : vidéo OU audio (pas les deux)
+    if (hasProjectVideo(project)) {
+      // VIDÉO : prioritaire
+      if (videoContainer) {
+        videoContainer.style.display = 'block';
+        this.currentVideoPlayer = createProjectVideoPlayer(videoContainer, project);
+      }
+      if (audioContainer) {
         audioContainer.style.display = 'none';
       }
+    } else if (hasProjectAudio(project)) {
+      // AUDIO : si pas de vidéo
+      if (audioContainer) {
+        audioContainer.style.display = 'block';
+        this.currentAudioPlayer = createProjectAudioPlayer(audioContainer, project);
+      }
+      if (videoContainer) {
+        videoContainer.style.display = 'none';
+      }
+    } else {
+      // AUCUN MEDIA
+      if (audioContainer) audioContainer.style.display = 'none';
+      if (videoContainer) videoContainer.style.display = 'none';
     }
 
     this.modal.classList.add('active');
@@ -93,6 +113,12 @@ export class ProjectModal {
     if (this.currentAudioPlayer) {
       destroyProjectAudioPlayer(this.currentAudioPlayer);
       this.currentAudioPlayer = null;
+    }
+
+    // Détruire le video player s'il existe
+    if (this.currentVideoPlayer) {
+      destroyProjectVideoPlayer(this.currentVideoPlayer);
+      this.currentVideoPlayer = null;
     }
 
     this.modal.classList.remove('active');
