@@ -102,22 +102,34 @@ class App {
     const preloader = document.getElementById('preloader');
 
     try {
-      // Attendre que tout soit prêt : fonts + DOM/images
+      // ✅ Pattern de Boot Robuste (Awwwards Standard)
+      document.documentElement.classList.add('is-loading');
+
       await Promise.all([
-        document.fonts.ready,
+        // 1. Attendre les polices
+        document.fonts.ready.catch(() => {
+          console.warn('⚠️ Fonts not ready, continuing anyway');
+          return Promise.resolve();
+        }),
+        // 2. Attendre le DOM minimal
         new Promise(resolve => {
-          if (document.readyState === 'complete') {
+          if (document.readyState === 'interactive' || document.readyState === 'complete') {
             resolve();
           } else {
-            window.addEventListener('load', resolve, { once: true });
+            window.addEventListener('DOMContentLoaded', resolve, { once: true });
           }
-        })
+        }),
+        // 3. Petit buffer pour la fluidité (800ms)
+        new Promise(resolve => setTimeout(resolve, 800))
       ]);
 
-      // Minimum display time pour éviter le flash
-      await new Promise(resolve => setTimeout(resolve, 800));
+      // Succès : Lancement propre
+      console.log('🚀 Site ready');
+      document.documentElement.classList.remove('is-loading');
+      document.body.classList.add('loaded');
+      document.body.style.overflow = '';
 
-      // Masquer le preloader
+      // Masquer le preloader avec animation
       if (preloader) {
         preloader.classList.add('hidden');
         preloader.addEventListener('transitionend', () => {
@@ -126,13 +138,10 @@ class App {
         setTimeout(() => preloader.remove(), 900);
       }
 
-      // Révéler le contenu
-      document.body.classList.add('loaded');
-      document.body.style.overflow = '';
-
     } catch (err) {
-      console.error('Boot error:', err);
-      // Fallback propre : révéler le contenu quand même
+      // Fallback silencieux : on affiche quand même le site
+      console.warn('⚠️ Boot warning:', err);
+      document.documentElement.classList.remove('is-loading');
       document.body.classList.add('loaded');
       document.body.style.overflow = '';
       if (preloader) {

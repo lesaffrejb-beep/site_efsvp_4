@@ -155,13 +155,13 @@
 
 .hero-signature-wrapper {
   position: relative;
-  width: 80vw;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1400px;
   display: grid;
   place-items: center;
   margin-inline: auto;
   margin-top: 0 !important;
-  margin-bottom: var(--space-2) !important;
+  margin-bottom: var(--space-4) !important;
   padding: 0 !important;
   height: auto !important;
   max-height: none !important;
@@ -169,9 +169,9 @@
 
 .hero-signature-svg {
   display: block;
-  width: 100%;
+  width: 120vmin; /* ✅ Utilise vmin pour être gros sur mobile ET desktop */
   height: auto;
-  max-width: 100%;
+  max-width: none; /* ✅ Autoriser le dépassement si nécessaire */
   max-height: none;
   overflow: visible;
   will-change: transform, opacity;
@@ -179,6 +179,7 @@
   transform: none;
   transform-origin: center center;
   pointer-events: none;
+  opacity: 0.9; /* ✅ Légère transparence pour l'élégance */
 }
 
 /* Classe d'initialisation pour masquer les paths pendant le setup JS */
@@ -436,12 +437,14 @@
   }
 
   .hero-signature-wrapper {
-    max-width: min(100%, 32rem) !important;
+    max-width: 100% !important;
+    width: 100% !important;
     transform: none !important;
     margin-bottom: var(--space-3) !important;
   }
 
   .hero-signature-svg {
+    width: 95vmin !important; /* ✅ Légèrement plus petit sur mobile */
     max-height: none;
     transform: none !important;
   }
@@ -483,7 +486,12 @@
 @media (min-width: 640px) and (max-width: 1023px) {
   .hero__animation,
   .hero-signature-wrapper {
-    max-width: min(100%, 42rem);
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .hero-signature-svg {
+    width: 110vmin; /* ✅ Taille intermédiaire pour tablette */
   }
 
   .hero__text-stack {
@@ -601,12 +609,14 @@
   }
 
   .hero-signature-wrapper {
-    max-width: min(100%, 28rem) !important;
+    max-width: 100% !important;
+    width: 100% !important;
     transform: none !important;
     margin-bottom: var(--space-3) !important;
   }
 
   .hero-signature-svg {
+    width: 90vmin !important; /* ✅ Encore plus petit sur très petit mobile */
     transform: none !important;
   }
 
