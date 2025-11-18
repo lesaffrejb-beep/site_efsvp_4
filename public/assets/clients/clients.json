@@ -1,0 +1,43 @@
+{
+  "$schema": "Fichier de configuration des clients/logos pour le carousel",
+  "clients": [
+    {
+      "id": "atelier-lacour",
+      "name": "Atelier Lacour",
+      "logo": {
+        "svg": "atelier-lacour.svg",
+        "alt": "Logo Atelier Lacour"
+      },
+      "featured": true,
+      "order": 1,
+      "projectId": "atelier-lacour"
+    },
+    {
+      "id": "capeb",
+      "name": "CAPEB Pays de la Loire",
+      "logo": {
+        "svg": "capeb.svg",
+        "alt": "Logo CAPEB"
+      },
+      "featured": true,
+      "order": 2,
+      "projectId": "capeb"
+    },
+    {
+      "id": "maine-et-loire",
+      "name": "Département du Maine et Loire",
+      "logo": {
+        "svg": "maine-et-loire.svg",
+        "alt": "Logo Département 49"
+      },
+      "featured": true,
+      "order": 3,
+      "projectId": "la-force-de-la-douceur"
+    }
+  ],
+  "settings": {
+    "displayMode": "marquee",
+    "autoplaySpeed": 3000,
+    "pauseOnHover": true
+  }
+}
