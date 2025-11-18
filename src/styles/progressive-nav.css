@@ -205,7 +205,8 @@
     pointer-events: none;
   }
 
-  .nav__menu[aria-hidden="false"] {
+  .nav__menu[aria-hidden="false"],
+  .nav__menu.is-active {
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
@@ -253,7 +254,8 @@
   z-index: var(--z-sticky);
 }
 
-.nav__overlay[aria-hidden="false"] {
+.nav__overlay[aria-hidden="false"],
+.nav__overlay.is-active {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;

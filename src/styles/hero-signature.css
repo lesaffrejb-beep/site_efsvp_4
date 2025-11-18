@@ -135,6 +135,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: var(--space-3);
   padding-bottom: 0; /* Pas de padding, géré par margin du wrapper */
 }
 
@@ -175,9 +176,8 @@
   max-width: clamp(800px, 85vw, 1400px); /* ✅ SVG TRÈS GRANDE - Dribbble style */
   margin-inline: auto;
 
-  /* ✅ NEGATIVE MARGIN AGGRESSIVE pour rapprocher du texte */
   margin-top: 0 !important;
-  margin-bottom: -4rem !important; /* ✅ -4rem au lieu de -2rem */
+  margin-bottom: var(--space-2) !important;
 
   transform: scale(1.2); /* ✅ 120% - domination visuelle */
   transform-origin: center;
@@ -257,15 +257,14 @@
   align-items: center;
 
   /* ✅ GAP MINIMAL entre texte et CTA */
-  gap: 1.5rem !important; /* ✅ 24px entre texte et CTA */
+  gap: var(--space-3) !important;
 
   /* ✅ POSITION RELATIVE pour flow normal */
   position: relative;
 
   width: min(100%, 720px);
 
-  /* ✅ MARGE NÉGATIVE AGGRESSIVE pour coller au SVG */
-  margin-top: -3rem !important; /* ✅ NEGATIVE pour rapprocher du SVG */
+  margin-top: 0 !important;
   margin-bottom: 0 !important;
   padding: 0 !important;
 
@@ -452,8 +451,7 @@
   .hero-signature-wrapper {
     max-width: 90vw !important;
     transform: scale(1.15) !important;
-    /* ✅ NEGATIVE margin AGGRESSIVE sur mobile */
-    margin-bottom: -3rem !important; /* ✅ -3rem au lieu de -1.5rem */
+    margin-bottom: var(--space-2) !important;
   }
 
   .hero-signature-svg {
@@ -465,9 +463,9 @@
     position: relative;
     transform: none;
     width: 100%;
-    margin-top: -2rem !important; /* ✅ NEGATIVE pour rapprocher du SVG */
+    margin-top: 0 !important;
     margin-bottom: 0 !important;
-    gap: 1.25rem !important; /* ✅ Gap entre texte et CTA */
+    gap: var(--space-4) !important;
     padding: 0 !important;
   }
 
@@ -506,8 +504,8 @@
   }
 
   .hero__text-stack {
-    margin-top: -2.5rem !important; /* ✅ NEGATIVE pour rapprocher du SVG */
-    gap: 1.5rem !important; /* ✅ Gap entre texte et CTA */
+    margin-top: 0 !important;
+    gap: var(--space-4) !important;
   }
 
   .hero__baseline,
@@ -555,8 +553,7 @@
   .hero-signature-wrapper {
     max-width: 95vw !important;
     transform: scale(1.1) !important;
-    /* ✅ NEGATIVE margin AGGRESSIVE même sur très petit mobile */
-    margin-bottom: -2.5rem !important; /* ✅ -2.5rem au lieu de -1rem */
+    margin-bottom: var(--space-2) !important;
   }
 
   .hero-signature-svg {
@@ -564,8 +561,8 @@
   }
 
   .hero__text-stack {
-    margin-top: -1.5rem !important; /* ✅ NEGATIVE pour rapprocher */
-    gap: 1rem !important; /* ✅ Gap entre texte et CTA */
+    margin-top: 0 !important;
+    gap: var(--space-3) !important;
   }
 
   .hero__baseline,

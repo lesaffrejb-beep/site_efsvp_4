@@ -43,9 +43,9 @@ export const homeContent = {
     logo: `En français s'il vous plaît`,
     links: [
       { label: `Accueil`, href: `#hero` },
-      { label: `Offres`, href: `#offres` },
-      { label: `Projets`, href: `#projets` },
+      { label: `Projets`, href: `#projects` },
       { label: `Process`, href: `#process` },
+      { label: `Offres`, href: `#offers` },
       { label: `FAQ`, href: `#faq` },
       { label: `Contact`, href: `#contact` },
     ],

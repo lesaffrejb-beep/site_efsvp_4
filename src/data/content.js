@@ -14,7 +14,7 @@ export const siteContent = {
     ctas: {
       primary: {
         label: "Découvrir nos créations",
-        href: "#projets",
+        href: "#projects",
       },
       secondary: {
         label: "Discuter de votre projet",
@@ -199,9 +199,10 @@ export const siteContent = {
     navigation: {
       title: "Navigation",
       links: [
-        { label: "Projets", href: "#projets" },
-        { label: "Offres", href: "#offres" },
+        { label: "Accueil", href: "#hero" },
+        { label: "Projets", href: "#projects" },
         { label: "Process", href: "#process" },
+        { label: "Offres", href: "#offers" },
         { label: "FAQ", href: "#faq" },
         { label: "Contact", href: "#contact" }
       ]

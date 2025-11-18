@@ -428,8 +428,11 @@ class App {
 
     // Mobile menu avec focus trap
     if (navToggle && navMenu) {
-      // Initialiser l'état fermé du menu mobile
-      navMenu.setAttribute('aria-hidden', 'true');
+      const desktopMedia = window.matchMedia('(min-width: 1024px)');
+      const isDesktopView = () => desktopMedia.matches;
+
+      // Initialiser l'état du menu en fonction du viewport
+      navMenu.setAttribute('aria-hidden', isDesktopView() ? 'false' : 'true');
 
       let focusableElements = [];
       let firstFocusable = null;
@@ -444,8 +447,8 @@ class App {
       const closeMenu = () => {
         navToggle.setAttribute('aria-expanded', 'false');
         navToggle.setAttribute('aria-label', 'Ouvrir le menu');
-        navMenu.classList.remove('active');
-        navMenu.setAttribute('aria-hidden', 'true');
+        navMenu.classList.remove('active', 'is-active');
+        navMenu.setAttribute('aria-hidden', isDesktopView() ? 'false' : 'true');
         navOverlay?.classList.remove('is-active');
         navOverlay?.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('menu-open');
@@ -455,7 +458,7 @@ class App {
       const openMenu = () => {
         navToggle.setAttribute('aria-expanded', 'true');
         navToggle.setAttribute('aria-label', 'Fermer le menu');
-        navMenu.classList.add('active');
+        navMenu.classList.add('is-active');
         navMenu.setAttribute('aria-hidden', 'false');
         navOverlay?.classList.add('is-active');
         navOverlay?.setAttribute('aria-hidden', 'false');
@@ -479,8 +482,19 @@ class App {
 
       navOverlay?.addEventListener('click', closeMenu);
 
+      const handleViewportChange = (event) => {
+        if (event.matches) {
+          closeMenu();
+          navMenu.setAttribute('aria-hidden', 'false');
+        } else {
+          closeMenu();
+        }
+      };
+
+      desktopMedia.addEventListener('change', handleViewportChange);
+
       document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+        if (event.key === 'Escape' && navMenu.classList.contains('is-active')) {
           event.preventDefault();
           closeMenu();
           navToggle.focus();
@@ -489,7 +503,7 @@ class App {
 
       // Focus trap: empêcher Tab de sortir du menu mobile
       navMenu.addEventListener('keydown', (e) => {
-        if (e.key !== 'Tab' || !navMenu.classList.contains('active')) return;
+        if (e.key !== 'Tab' || !navMenu.classList.contains('is-active')) return;
 
         if (e.shiftKey) {
           // Shift + Tab

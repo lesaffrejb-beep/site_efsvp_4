@@ -176,7 +176,7 @@ Menu hamburger responsive pour mobile avec overlay et animations.
 <!-- Menu -->
 <div class="nav__menu" id="nav-menu">
   <ul class="nav__list">
-    <li><a href="#projets">Projets</a></li>
+    <li><a href="#projects">Projets</a></li>
     <!-- ... autres liens -->
   </ul>
 </div>
@@ -194,7 +194,7 @@ Menu hamburger responsive pour mobile avec overlay et animations.
 }
 
 /* Ouvert */
-.nav__menu.active {
+.nav__menu.is-active {
   transform: translateX(0);
 }
 
