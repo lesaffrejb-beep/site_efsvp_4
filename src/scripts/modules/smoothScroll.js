@@ -32,12 +32,30 @@ export class SmoothScroll {
   }
 
   init() {
-    // Sync avec ScrollTrigger
+    ScrollTrigger.scrollerProxy(document.body, {
+      scrollTop: (value) => {
+        if (value !== undefined) {
+          this.lenis?.scrollTo(value, { immediate: true });
+        }
+        return this.lenis?.scroll || window.scrollY;
+      },
+      getBoundingRect: () => ({
+        top: 0,
+        left: 0,
+        width: window.innerWidth,
+        height: window.innerHeight,
+      }),
+    });
+
     this.lenis?.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
-      this.lenis?.raf(time * 1000);
-    });
+    const raf = (time) => {
+      this.lenis?.raf(time);
+      ScrollTrigger.update();
+      requestAnimationFrame(raf);
+    };
+
+    requestAnimationFrame(raf);
 
     // Anchor links smooth
     this.setupAnchorLinks();

@@ -9,7 +9,7 @@
  * ============================================
  */
 
-const EMERGENCY_SKIP_PRELOADER = false;
+const EMERGENCY_SKIP_PRELOADER = import.meta.env?.VITE_SKIP_PRELOADER === 'true';
 const PRELOADER_FAILSAFE_TIMEOUT = 4000; // Failsafe ponctuel
 
 import { gsap } from 'gsap';
@@ -28,6 +28,9 @@ import { initPortfolioBlock } from './blocks/portfolio.js';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
+
+// Expose main orchestrator flag for legacy bundles
+window.__EFVSP_APP_ACTIVE = true;
 
 /* ==== ANTI-VEIL FAILSAFE (final) ==== */
 const antiVeilFailsafe = () => {

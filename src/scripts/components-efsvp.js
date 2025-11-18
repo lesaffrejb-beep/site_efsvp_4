@@ -248,6 +248,11 @@ function addAnimationStyles() {
 
 // ===== INITIALISATION =====
 function initComponentsEfsvp() {
+  if (window.__EFVSP_APP_ACTIVE) {
+    console.info('EfSVP components skipped: main app orchestrator active');
+    return;
+  }
+
   addAnimationStyles();
   initScrollReveal();
   initContactForm();

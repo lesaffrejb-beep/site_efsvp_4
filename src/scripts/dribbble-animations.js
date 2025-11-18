@@ -396,21 +396,27 @@ const logPerformance = () => {
 const initDribbbleGrade = () => {
   console.log('🎨 Initializing Dribbble-Grade animations...');
 
-  // Core animations
-  initScrollReveal();
-  initNavbarScroll();
-  initSmoothScroll();
+  const isMainAppActive = Boolean(window.__EFVSP_APP_ACTIVE);
+
+  if (!isMainAppActive) {
+    // Core animations (legacy)
+    initScrollReveal();
+    initNavbarScroll();
+    initSmoothScroll();
+    initFAQ();
+
+    // Utilities
+    initLazyLoading();
+    initPreloader();
+    initBackToTop();
+  } else {
+    console.info('Dribbble animations: skipping legacy behaviors (main orchestrator active)');
+  }
 
   // Enhancement animations
   initParallax();
   initCardEffects();
-  initFAQ();
   initButtonRipple();
-
-  // Utilities
-  initLazyLoading();
-  initPreloader();
-  initBackToTop();
 
   // Performance
   logPerformance();
