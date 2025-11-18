@@ -81,13 +81,19 @@
    ======================================== */
 
 .hero.hero--signature {
-  min-height: 85vh; /* Réduit de 100vh pour un layout plus compact */
-  height: auto;
+  /* ✅ FORCE 100vh - REMPLIR L'ÉCRAN COMPLÈTEMENT */
+  min-height: 100vh !important;
+  height: 100vh !important;
+  max-height: 100vh !important;
+
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--color-hero-bg);
-  padding: clamp(var(--space-12, 48px), 8vw, var(--space-16, 64px)) var(--hero-padding-inline) clamp(var(--space-8, 32px), 6vw, var(--space-12, 48px));
+
+  /* ✅ PADDING MINIMAL pour maximiser l'espace */
+  padding: clamp(2rem, 4vh, 3rem) clamp(1rem, 3vw, 2rem) !important;
+
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -106,13 +112,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-4, 16px); /* Gap minimal pour layout compact */
+
+  /* ✅ GAP À ZÉRO - on gère avec margins individuelles */
+  gap: 0 !important;
+
   width: 100%;
   max-width: 960px;
-  justify-content: flex-start;
+  height: 100%;
+  justify-content: center;
   text-align: center;
-  padding: var(--space-6) var(--container-padding) var(--space-12);
-  margin: 0 auto;
+
+  /* ✅ PADDING MINIMAL */
+  padding: 0 !important;
+  margin: 0 auto !important;
   position: relative;
 }
 
@@ -162,9 +174,14 @@
   width: 100%;
   max-width: clamp(800px, 85vw, 1400px); /* ✅ SVG TRÈS GRANDE - Dribbble style */
   margin-inline: auto;
-  margin-bottom: clamp(1rem, 3vh, 2rem); /* 16-32px après SVG */
+
+  /* ✅ NEGATIVE MARGIN pour rapprocher du texte */
+  margin-top: 0 !important;
+  margin-bottom: -2rem !important;
+
   transform: scale(1.2); /* ✅ 120% - domination visuelle */
   transform-origin: center;
+  padding: 0 !important;
 }
 
 .hero-signature-svg {
@@ -203,16 +220,21 @@
 .hero-subtitle,
 .hero-signature-caption {
   font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-  font-size: clamp(1rem, 2.2vw, 1.5rem) !important; /* ✅ Plus gros et lisible */
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem) !important;
   font-weight: var(--text-hero-baseline-weight);
-  line-height: 1.4; /* ✅ Plus serré pour impact */
+  line-height: 1.3 !important;
   letter-spacing: 0.01em;
   color: var(--color-text-secondary);
-  max-width: 50ch; /* ✅ Largeur optimale - 50 caractères */
-  margin-top: 0 !important; /* ✅ Proche du SVG */
-  margin-bottom: clamp(1.5rem, 4vh, 2.5rem) !important; /* ✅ 24-40px avant CTA */
+  max-width: 50ch;
+
+  /* ✅ MARGES ULTRA-SERRÉES - NEGATIVE pour rapprocher du SVG */
+  margin-top: -1rem !important;
+  margin-bottom: 1.5rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+
   text-align: center;
-  padding-inline: var(--space-4); /* Safety mobile */
+  padding: 0 !important;
   opacity: 0.9;
   text-wrap: balance;
 
@@ -234,14 +256,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--hero-text-gap);
-  position: absolute;
-  bottom: clamp(var(--space-8), 8vh, var(--space-16));
-  left: 50%;
-  transform: translateX(-50%);
+
+  /* ✅ GAP MINIMAL entre texte et CTA */
+  gap: 0 !important;
+
+  /* ✅ POSITION RELATIVE pour flow normal */
+  position: relative;
+
   width: min(100%, 720px);
-  margin-top: 0;
-  padding-inline: var(--space-4);
+
+  /* ✅ MARGES MINIMALES */
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding: 0 !important;
+
   z-index: 2;
 }
 
@@ -251,7 +279,9 @@
 }
 
 .hero__text-stack .hero__cta {
-  margin-top: var(--space-2, 8px); /* Minimal gap avant CTA */
+  /* ✅ MARGE MINIMALE */
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /* ========================================
@@ -404,12 +434,15 @@
 
 @media (max-width: 639px) {
   .hero.hero--signature {
-    min-height: auto;
-    padding: clamp(2rem, 4vh, 3rem) clamp(1.5rem, 5vw, 3rem) clamp(1.5rem, 3vh, 2rem);
+    /* ✅ GARDE 100vh sur mobile aussi */
+    min-height: 100vh !important;
+    height: 100vh !important;
+    padding: 1.5rem 1rem !important;
   }
 
   .hero__content {
-    gap: 0; /* ✅ Géré par margins individuelles */
+    gap: 0 !important;
+    padding: 0 !important;
   }
 
   .hero__animation {
@@ -419,30 +452,33 @@
 
   .hero-signature-wrapper {
     max-width: 90vw !important;
-    transform: scale(1.1) !important; /* ✅ Un peu moins sur mobile */
-    margin-bottom: 1rem !important; /* ✅ 16px après SVG */
+    transform: scale(1.15) !important;
+    /* ✅ NEGATIVE margin sur mobile aussi */
+    margin-bottom: -1.5rem !important;
   }
 
   .hero-signature-svg {
-    max-height: none; /* ✅ Pas de limite */
-    transform: scale(1.1) !important;
+    max-height: none;
+    transform: scale(1.15) !important;
   }
 
   .hero__text-stack {
-    position: static;
+    position: relative;
     transform: none;
     width: 100%;
-    margin-top: 0;
-    gap: 0;
-    padding-inline: 0;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    gap: 0 !important;
+    padding: 0 !important;
   }
 
   .hero__baseline,
   .hero-subtitle,
   .hero-signature-caption {
-    margin-top: 0 !important;
-    margin-bottom: 1.5rem !important; /* ✅ 24px avant CTA */
-    font-size: clamp(0.9rem, 4vw, 1.1rem) !important; /* ✅ 14-18px */
+    /* ✅ NEGATIVE margin sur mobile */
+    margin-top: -0.75rem !important;
+    margin-bottom: 1.25rem !important;
+    font-size: 1rem !important;
     line-height: 1.4;
     max-width: 100%;
   }
@@ -453,6 +489,7 @@
     min-height: 44px;
     padding: 14px 24px;
     font-size: 1rem;
+    margin-top: 0 !important;
   }
 }
 
@@ -507,24 +544,29 @@
 
 @media (max-width: 475px) {
   .hero.hero--signature {
-    padding: 2rem 1.5rem 1.5rem;
+    min-height: 100vh !important;
+    height: 100vh !important;
+    padding: 2rem 1.5rem 1.5rem !important;
   }
 
   .hero-signature-wrapper {
     max-width: 95vw !important;
-    transform: scale(1.05) !important; /* ✅ Encore un peu moins sur très petit mobile */
-    margin-bottom: 0.75rem !important; /* ✅ 12px après SVG */
+    transform: scale(1.1) !important;
+    /* ✅ NEGATIVE margin même sur très petit mobile */
+    margin-bottom: -1rem !important;
   }
 
   .hero-signature-svg {
-    transform: scale(1.05) !important;
+    transform: scale(1.1) !important;
   }
 
   .hero__baseline,
   .hero-subtitle,
   .hero-signature-caption {
-    font-size: 0.95rem !important; /* ✅ 15px */
-    margin-bottom: 1.25rem !important; /* ✅ 20px avant CTA */
+    font-size: 0.95rem !important;
+    /* ✅ NEGATIVE margin */
+    margin-top: -0.5rem !important;
+    margin-bottom: 1.25rem !important;
   }
 }
 
