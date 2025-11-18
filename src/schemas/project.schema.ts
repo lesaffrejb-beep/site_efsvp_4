@@ -3,11 +3,13 @@ import type { Project, ProjectSector, ProjectStatus } from '../types/project';
 
 export const projectSchema = z.object<Project>({
   id: z.string().regex(/^[a-z0-9-]+$/),
+  slug: z.string().regex(/^[a-z0-9-]+$/),
   title: z.string().min(1),
   client: z.string().min(1),
   year: z.number().int().min(2020).max(2030),
   location: z.string().min(1),
   status: z.enum<ProjectStatus>(['delivered', 'in-progress']),
+  tags: z.array(z.string()),
   cover: z.object({
     image: z.string().optional(),
     initials: z.string().length(2),
@@ -34,6 +36,8 @@ export const projectSchema = z.object<Project>({
     'vie-associative',
   ]),
   themes: z.array(z.string()),
+  hasVideo: z.boolean().optional(),
+  hasAudio: z.boolean().optional(),
   details: z.object({
     format: z.string(),
     duration: z.string(),

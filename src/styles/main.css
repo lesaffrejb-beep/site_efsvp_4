@@ -3418,8 +3418,8 @@ button {
   display: flex;
   flex-wrap: wrap;
   gap: var(--project-tag-gap);
-  margin-top: var(--space-4);
-  margin-bottom: var(--space-4);
+  margin-top: 0;
+  margin-bottom: var(--space-3);
 }
 
 .project-card__tag {
@@ -3474,11 +3474,18 @@ button {
 
 .project-card__footer {
   display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-3);
+  padding-top: var(--space-5);
+  margin-top: auto;
+}
+
+.project-card__footer-row {
+  display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  padding-top: var(--space-5);
-  margin-top: auto;
 }
 
 .project-card__status {

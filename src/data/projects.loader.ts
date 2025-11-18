@@ -2,12 +2,31 @@ import projectsData from '../../content/projects.json';
 import { projectsSchema } from '@/schemas/project.schema';
 import type { Project, ProjectSector } from '@/types/project';
 
+const assetManifest = Object.keys(
+  import.meta.glob('../../public/assets/**/*', { eager: true })
+).map((key) => key.replace('../../public', ''));
+
+function assetExists(publicPath: string): boolean {
+  const normalized = publicPath.startsWith('/') ? publicPath : `/${publicPath}`;
+  return assetManifest.some((entry) => entry === normalized);
+}
+
+function collectGallery(slug: string): string[] {
+  const prefix = `/assets/images/projects/${slug}/gallery-`;
+  return assetManifest
+    .filter((entry) => entry.startsWith(prefix))
+    .sort()
+    .map((entry) => entry);
+}
+
 // Validation avec gestion d'erreur
 let validatedProjects: Project[] = [];
 
 function sanitizeProjectsData() {
   return projectsData.map((project) => ({
     ...project,
+    slug: project.slug || project.id,
+    tags: project.tags || [],
     media: {
       ...project.media,
       video: project.media?.video ?? undefined,
@@ -19,20 +38,32 @@ function sanitizeProjectsData() {
 }
 
 function normalizeProjectMedia(project: Project): Project {
+  const slug = project.slug || project.id;
+  const coverPath = `/assets/images/projects/${slug}/cover.webp`;
+  const gallery = project.media?.gallery?.length ? project.media.gallery : collectGallery(slug);
+  const videoPath = assetExists(`/assets/videos/projects/${slug}/teaser.mp4`)
+    ? `/assets/videos/projects/${slug}/teaser.mp4`
+    : project.media?.video;
+  const audioPath = assetExists(`/assets/audio/projects/${slug}/extrait-01.mp3`)
+    ? `/assets/audio/projects/${slug}/extrait-01.mp3`
+    : project.media?.audio;
   const coverImage = project.media?.coverImage || project.cover.image || '';
 
   const media = {
-    gallery: project.media?.gallery || [],
-    video: project.media?.video ?? null,
-    audio: project.media?.audio ?? null,
-    coverImage,
+    gallery,
+    video: videoPath ?? null,
+    audio: audioPath ?? null,
+    coverImage: assetExists(coverPath) ? coverPath : coverImage,
   } as Project['media'];
 
   const normalized: Project = {
     ...project,
+    id: slug,
+    slug,
+    tags: project.tags || [],
     cover: {
       ...project.cover,
-      ...(coverImage ? { image: coverImage } : {}),
+      ...(coverImage ? { image: assetExists(coverPath) ? coverPath : coverImage } : {}),
     },
     media,
   };

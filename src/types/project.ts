@@ -41,11 +41,13 @@ export const SECTOR_OPTIONS = [
 
 export interface Project {
   id: string;
+  slug: string;
   title: string;
   client: string;
   year: number;
   location: string;
   status: ProjectStatus;
+  tags: string[];
   cover: {
     image?: string;
     initials: string;
@@ -59,6 +61,8 @@ export interface Project {
   category: string;
   sector: ProjectSector;
   themes: string[];
+  hasVideo?: boolean;
+  hasAudio?: boolean;
   details: {
     format: string;
     duration: string;

@@ -216,16 +216,22 @@ function transformProject(raw: RawProject): Project {
   const sector = normalizeSector(raw.sector);
   const hasGallery = raw.gallery && raw.gallery.length > 0;
   const hasVideo = Boolean(raw.video);
-  const hasMedia = Boolean(hasGallery || hasVideo);
+  const slug = normalizeSlug(raw.title);
+  const coverImage =
+    raw.cover && raw.cover !== '(chemin de fichier ou lien)'
+      ? raw.cover
+      : `/assets/images/projects/${slug}/cover.webp`;
+  const gallery = hasGallery ? raw.gallery : [];
   return {
-    id: normalizeSlug(raw.title),
+    id: slug,
+    slug,
     title: raw.title,
     client: raw.client,
     year: Number.isFinite(raw.year) ? raw.year : new Date().getFullYear(),
     location: raw.location,
     status: raw.status,
     cover: {
-      image: raw.cover && raw.cover !== '(chemin de fichier ou lien)' ? raw.cover : undefined,
+      image: coverImage,
       initials: buildInitials(raw.title),
       gradient: sectorGradient(sector),
     },
@@ -233,7 +239,10 @@ function transformProject(raw: RawProject): Project {
     longDescription: raw.longDescription,
     category: raw.category || raw.format,
     sector,
+    tags: raw.themes.filter(Boolean),
     themes: raw.themes.filter(Boolean),
+    hasVideo,
+    hasAudio: false,
     details: {
       format: raw.format || raw.category,
       duration: raw.duration || '—',
@@ -241,10 +250,18 @@ function transformProject(raw: RawProject): Project {
       deliverables: raw.deliverables.length ? raw.deliverables : ['Livrables non spécifiés'],
     },
     team: raw.team,
-    media: hasMedia
+    media: {
+      coverImage,
+      gallery,
+      video: raw.video,
+      audio: undefined,
+    },
+    video: raw.video
       ? {
-          gallery: hasGallery ? raw.gallery : undefined,
-          video: raw.video,
+          enabled: true,
+          title: raw.title,
+          files: { mp4: raw.video },
+          description: raw.format,
         }
       : undefined,
   };

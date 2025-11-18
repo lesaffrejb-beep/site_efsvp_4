@@ -71,17 +71,21 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   tagline.className = 'project-card__tagline';
   tagline.textContent = project.shortDescription;
 
-  const tags = document.createElement('div');
-  tags.className = 'project-card__tags';
-  project.themes.slice(0, 3).forEach((theme) => {
-    const tag = document.createElement('span');
-    tag.className = 'project-card__tag';
-    tag.textContent = theme;
-    tags.appendChild(tag);
-  });
-
   const footer = document.createElement('div');
   footer.className = 'project-card__footer';
+
+  const tagsWrapper = document.createElement('div');
+  tagsWrapper.className = 'project-card__tags';
+  const tagsToRender = (project.tags && project.tags.length ? project.tags : project.themes).slice(0, 4);
+  tagsToRender.forEach((tagText) => {
+    const tag = document.createElement('span');
+    tag.className = 'project-card__tag';
+    tag.textContent = tagText;
+    tagsWrapper.appendChild(tag);
+  });
+
+  const footerRow = document.createElement('div');
+  footerRow.className = 'project-card__footer-row';
 
   const status = createProjectStatus(project.status);
   const link = document.createElement('button');
@@ -90,12 +94,16 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   link.textContent = 'Voir le projet';
   link.addEventListener('click', () => onSelect(project));
 
-  footer.appendChild(status);
-  footer.appendChild(link);
+  footerRow.appendChild(status);
+  footerRow.appendChild(link);
+
+  if (tagsToRender.length) {
+    footer.appendChild(tagsWrapper);
+  }
+  footer.appendChild(footerRow);
 
   body.appendChild(header);
   body.appendChild(tagline);
-  body.appendChild(tags);
   body.appendChild(footer);
 
   card.appendChild(visual);

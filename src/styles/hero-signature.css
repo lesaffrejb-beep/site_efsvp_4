@@ -81,62 +81,44 @@
    ======================================== */
 
 .hero.hero--signature {
-  /* ✅ FORCE 100vh - REMPLIR L'ÉCRAN COMPLÈTEMENT */
-  min-height: 100vh !important;
-  height: 100vh !important;
-  max-height: 100vh !important;
-
+  min-height: auto;
+  height: auto;
+  max-height: none;
   display: flex;
   align-items: center;
   justify-content: center;
   background: var(--color-hero-bg);
-
-  /* ✅ PADDING MINIMAL pour maximiser l'espace */
-  padding: clamp(2rem, 4vh, 3rem) clamp(1rem, 3vw, 2rem) !important;
-
+  padding: var(--space-16) clamp(1.5rem, 3vw, 3rem);
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  z-index: 1; /* Sous les sections suivantes (z-index: 10) */
+  z-index: 1;
   scroll-margin-top: var(--header-height);
 }
 
 .hero__inner {
-  width: 100%;
-  max-width: 1200px; /* Largeur accrue pour accueillir le SVG doublé */
+  width: min(100%, var(--layout-max-width, 72rem));
   margin: 0 auto;
   position: relative;
-}
-
-.hero__content {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  /* ✅ GAP À ZÉRO - on gère avec margins individuelles */
-  gap: 0 !important;
-
-  width: 100%;
-  max-width: 960px;
-  height: 100%;
-  justify-content: center;
+  gap: var(--space-8);
   text-align: center;
+}
 
-  /* ✅ PADDING MINIMAL */
-  padding: 0 !important;
-  margin: 0 auto !important;
-  position: relative;
+.hero__content {
+  display: contents;
 }
 
 .hero__animation {
   width: 100%;
-  max-width: clamp(800px, 85vw, 1400px); /* ✅ Cohérent avec wrapper */
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-3);
-  padding-bottom: 0; /* Pas de padding, géré par margin du wrapper */
+  gap: var(--space-4);
+  padding-bottom: 0;
 }
 
 /* ========================================
@@ -172,15 +154,10 @@
 
 .hero-signature-wrapper {
   position: relative;
-  width: 100%;
-  max-width: clamp(800px, 85vw, 1400px); /* ✅ SVG TRÈS GRANDE - Dribbble style */
+  width: min(100%, 56rem);
   margin-inline: auto;
-
   margin-top: 0 !important;
   margin-bottom: var(--space-2) !important;
-
-  transform: scale(1.2); /* ✅ 120% - domination visuelle */
-  transform-origin: center;
   padding: 0 !important;
 }
 
@@ -189,12 +166,11 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  max-height: none; /* ✅ Pas de limite de hauteur - laisser le SVG respirer */
+  max-height: none;
   overflow: visible;
   will-change: transform, opacity;
   backface-visibility: hidden;
-  transform: scale(1.2); /* ✅ Scale additionnel pour impact max */
-  transform-origin: center;
+  transform: none;
 }
 
 /* Classe d'initialisation pour masquer les paths pendant le setup JS */
@@ -257,7 +233,7 @@
   align-items: center;
 
   /* ✅ GAP MINIMAL entre texte et CTA */
-  gap: var(--space-3) !important;
+  gap: var(--space-4) !important;
 
   /* ✅ POSITION RELATIVE pour flow normal */
   position: relative;
@@ -432,31 +408,30 @@
 
 @media (max-width: 639px) {
   .hero.hero--signature {
-    /* ✅ GARDE 100vh sur mobile aussi */
-    min-height: 100vh !important;
-    height: 100vh !important;
-    padding: 1.5rem 1rem !important;
+    min-height: auto !important;
+    height: auto !important;
+    padding: var(--space-12) var(--space-6) !important;
   }
 
   .hero__content {
-    gap: 0 !important;
+    gap: var(--space-6) !important;
     padding: 0 !important;
   }
 
   .hero__animation {
-    max-width: 90vw;
+    max-width: 100%;
     padding-bottom: 0;
   }
 
   .hero-signature-wrapper {
-    max-width: 90vw !important;
-    transform: scale(1.15) !important;
-    margin-bottom: var(--space-2) !important;
+    max-width: min(100%, 32rem) !important;
+    transform: none !important;
+    margin-bottom: var(--space-3) !important;
   }
 
   .hero-signature-svg {
     max-height: none;
-    transform: scale(1.15) !important;
+    transform: none !important;
   }
 
   .hero__text-stack {
@@ -545,19 +520,19 @@
 
 @media (max-width: 475px) {
   .hero.hero--signature {
-    min-height: 100vh !important;
-    height: 100vh !important;
-    padding: 2rem 1.5rem 1.5rem !important;
+    min-height: auto !important;
+    height: auto !important;
+    padding: var(--space-12) var(--space-5) var(--space-10) !important;
   }
 
   .hero-signature-wrapper {
-    max-width: 95vw !important;
-    transform: scale(1.1) !important;
-    margin-bottom: var(--space-2) !important;
+    max-width: min(100%, 28rem) !important;
+    transform: none !important;
+    margin-bottom: var(--space-3) !important;
   }
 
   .hero-signature-svg {
-    transform: scale(1.1) !important;
+    transform: none !important;
   }
 
   .hero__text-stack {
@@ -631,11 +606,11 @@
    OPTION NUCLÉAIRE - FORCE 100VH STRICT
    ======================================== */
 
-/* Force absolue : le hero DOIT faire 100vh exactement */
-.hero,
-.hero.hero--signature,
-section.hero,
-section#hero {
+/* Force absolue : le hero DOIT faire 100vh exactement (opt-in) */
+.hero.force-fullscreen,
+.hero.hero--signature.force-fullscreen,
+section.hero.force-fullscreen,
+section#hero.force-fullscreen {
   /* Force 100vh strict avec overflow caché */
   height: 100vh !important;
   min-height: 100vh !important;

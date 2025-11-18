@@ -15,16 +15,14 @@ Issues: 8 critiques + 15 majeures
 
 GUIDE MÉDIAS PROJETS (slug)
 ──────────────────────────────────────────────────────────────────────────
-- Chaque projet suit le slug `id` de `content/projects.json` pour ranger ses médias.
-- Images : `public/assets/images/projects/<slug>/cover.jpg` (obligatoire) + `cover@2x.jpg` et `detail-01.jpg` (optionnel).
+- Chaque projet suit le slug (`id`) de `content/projects.json` pour ranger ses médias.
+- Images : `public/assets/images/projects/<slug>/cover.webp` (obligatoire) + `gallery-01.webp`… (optionnel).
 - Vidéo : `public/assets/videos/projects/<slug>/teaser.mp4` (optionnel).
-- Audio : `public/assets/audio/projects/<slug>/excerpt.mp3` (optionnel, dossier ignoré par Git car fichiers lourds).
-- Exemple avec `la-force-de-la-douceur` :
-  - Image principale : `/assets/images/projects/la-force-de-la-douceur/cover.jpg`
-  - Galerie : `/assets/images/projects/la-force-de-la-douceur/detail-01.jpg`
-  - Vidéo : `/assets/videos/projects/la-force-de-la-douceur/teaser.mp4`
-  - Audio : `/assets/audio/projects/la-force-de-la-douceur/excerpt.mp3`
-- Si seule l'image est disponible, ne déposer que `cover.jpg`. Nommer systématiquement `teaser.mp4` et `excerpt.mp3` pour les médias supplémentaires.
+- Audio : `public/assets/audio/projects/<slug>/extrait-01.mp3` (optionnel, dossier ignoré par Git car fichiers lourds).
+- Slugs normalisés : a2mo, agglo-bus, atelier-lacour, capeb, la-force-de-la-douceur, dis-moi-des-mots-d-amour, doue-en-anjou,
+  doue-en-sports, jardin-de-cocagne, forges-tout-feu-tout-flamme, seigneurs-de-clisson, moulin-de-brissac, don-quijote-de-la-francia,
+  anjour-et-nuit, etat-de-nature, sival, souffler-sur-les-braises.
+- Si seule l'image est disponible, ne déposer que `cover.webp`. Nommer systématiquement `teaser.mp4` et `extrait-01.mp3` pour les médias supplémentaires.
 
 ================================================================================
                     FICHIERS SOURCES (Maquette HTML)
