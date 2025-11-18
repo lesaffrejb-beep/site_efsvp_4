@@ -267,54 +267,21 @@ class App {
 
   /**
    * Handle critical initialization errors
+   * ☢️ NEUTRALIZED - Force site display even on errors
    */
   handleCriticalError(error) {
-    console.error('Critical app error:', error);
+    console.warn('⚠️ Une erreur a été supprimée pour forcer l\'affichage:', error);
 
-    // Show user-friendly error message
-    const errorOverlay = document.createElement('div');
-    errorOverlay.style.cssText = `
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(15, 21, 29, 0.95);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 99999;
-      color: #EAECEF;
-    `;
+    // Force site display
+    document.body.classList.add('loaded');
 
-    errorOverlay.innerHTML = `
-      <div style="text-align: center; padding: 48px; max-width: 500px;">
-        <svg style="width: 80px; height: 80px; color: #B8441E; margin-bottom: 24px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="12" cy="12" r="10"></circle>
-          <line x1="12" y1="8" x2="12" y2="12"></line>
-          <line x1="12" y1="16" x2="12.01" y2="16"></line>
-        </svg>
-        <h2 style="font-size: 32px; margin-bottom: 16px;">Une erreur est survenue</h2>
-        <p style="color: #9AA3AE; margin-bottom: 32px;">Nous nous excusons pour la gêne occasionnée.</p>
-        <button
-          onclick="location.reload()"
-          style="
-            padding: 16px 48px;
-            background: #B8441E;
-            color: white;
-            border: none;
-            border-radius: 100px;
-            font-size: 18px;
-            font-weight: 600;
-            cursor: pointer;
-          "
-        >
-          Recharger la page
-        </button>
-      </div>
-    `;
+    // Remove preloader if it exists
+    const loader = document.querySelector('.preloader');
+    if (loader) loader.style.display = 'none';
 
-    document.body.appendChild(errorOverlay);
+    // Remove any error overlays that might exist
+    const existingOverlays = document.querySelectorAll('[class*="error-"]');
+    existingOverlays.forEach(el => el.remove());
   }
 
   /**

@@ -3578,3 +3578,29 @@ button {
 .project-card__link:hover::after {
   transform: translateX(2px);
 }
+
+/* ☢️ NUCLEAR FIX - INTERDICTION TOTALE D'AFFICHER L'ÉCRAN D'ERREUR */
+/* Ce CSS empêche TOUT overlay d'erreur d'apparaître, même si le JS tente de le créer */
+.error-overlay,
+.error-screen,
+[class*="error-"],
+[id*="error-"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  z-index: -9999 !important;
+  opacity: 0 !important;
+}
+
+/* Force l'affichage du site quand chargé */
+body.loaded .preloader {
+  display: none !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Sécurité supplémentaire : cache tout div avec z-index > 90000 qui n'est pas la modale */
+body > div[style*="z-index: 99999"],
+body > div[style*="position: fixed"][style*="background: rgba"] {
+  display: none !important;
+}

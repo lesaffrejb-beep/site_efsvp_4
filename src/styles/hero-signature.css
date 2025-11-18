@@ -157,19 +157,22 @@
    SIGNATURE SVG - IMPOSANTE ET \u00c9L\u00c9GANTE
    ======================================== */
 
-/* ✅ WRAPPER IMPOSANT - 90vw pour présence maximale */
+/* ✅ WRAPPER IMPOSANT - 120vw NUCLEAR FIX - Centrage absolu Awwwards */
 .hero-signature-wrapper {
-  width: 90vw; /* Beaucoup plus gros comme demandé */
-  max-width: 1400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120vw !important; /* ☢️ Très large comme demandé */
+  max-width: none !important;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-inline: auto;
-  margin-top: 0 !important;
-  margin-bottom: var(--space-4) !important;
+  margin: 0 !important;
   padding: 0 !important;
   pointer-events: auto;
+  z-index: 1;
 }
 
 /* ✅ SVG SIGNATURE - Taille maximale avec overflow visible */
@@ -443,6 +446,7 @@
   }
 
   .hero-signature-wrapper {
+    position: static !important;
     max-width: 100% !important;
     width: 100% !important;
     transform: none !important;
@@ -615,6 +619,7 @@
   }
 
   .hero-signature-wrapper {
+    position: static !important;
     max-width: 100% !important;
     width: 100% !important;
     transform: none !important;
