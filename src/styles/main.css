@@ -128,8 +128,8 @@
   --btn-hero-cta-text: var(--text-inverse);
   --btn-hero-cta-border: color-mix(in srgb, var(--color-primary-600) 55%, rgba(255, 255, 255, 0.18));
   --btn-hero-cta-halo: color-mix(in srgb, var(--color-primary-300) 35%, transparent);
-  --btn-hero-cta-shadow: 0 18px 40px -12px color-mix(in srgb, var(--color-primary-700) 36%, rgba(12, 16, 29, 0.42));
-  --btn-hero-cta-shadow-hover: 0 24px 52px -12px color-mix(in srgb, var(--color-primary-500) 44%, rgba(12, 16, 29, 0.38));
+  --btn-hero-cta-shadow: 0 18px 40px -12px color-mix(in srgb, var(--color-primary-500) 42%, rgba(26, 35, 50, 0.35));
+  --btn-hero-cta-shadow-hover: 0 24px 52px -12px color-mix(in srgb, var(--color-primary-500) 55%, rgba(26, 35, 50, 0.32));
   --offer-featured-border: var(--color-primary-500);
   --project-tag-bg: color-mix(in srgb, var(--color-primary-50) 65%, var(--bg-primary) 35%);
   --project-tag-border: color-mix(in srgb, var(--color-primary-200) 55%, transparent);
@@ -2986,6 +2986,12 @@ button {
   transition: color var(--transition-base);
 }
 
+.footer__links--contact .footer__contact-link {
+  font-size: var(--text-sm);
+  font-weight: var(--font-medium);
+  color: rgba(255, 255, 255, 0.82);
+}
+
 .footer__contact-link:hover {
   color: var(--color-primary-300);
 }
@@ -3019,7 +3025,8 @@ button {
 }
 
 .footer__email-button .copy-email__text {
-  font-weight: inherit;
+  font-weight: var(--font-medium);
+  color: inherit;
 }
 
 .footer__bottom {

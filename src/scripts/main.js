@@ -732,7 +732,7 @@ class App {
         if (this.modules.smoothScroll) {
           this.modules.smoothScroll.scrollTo(projectsSection, {
             offset: -100,
-            duration: 1.2,
+            duration: 0.85,
           });
         } else {
           projectsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -751,7 +751,7 @@ class App {
               projectCard.classList.remove('is-highlighted');
             }, 2000);
           }
-        }, 1400); // Attendre un peu plus que la durée du scroll (1.2s)
+        }, 950); // Attendre un peu plus que la durée du scroll
       });
     });
   }
