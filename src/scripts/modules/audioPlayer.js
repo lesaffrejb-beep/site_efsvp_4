@@ -18,17 +18,26 @@ export class AudioPlayerManager {
     // Find all waveform containers from actual HTML
     const waveformContainers = document.querySelectorAll('[id^="waveform-"]');
 
-    waveformContainers.forEach((container, index) => {
-      this.createPlayer(container, index);
+    waveformContainers.forEach((container) => {
+      this.createPlayer(container);
     });
   }
 
-  createPlayer(container, index) {
+  createPlayer(container) {
     const waveformId = container.id;
     const playBtn = document.querySelector(`[data-audio="${waveformId.split('-')[1]}"]`);
 
     if (!playBtn) {
-      console.warn(`No play button found for ${waveformId}`);
+      if (import.meta?.env?.DEV) {
+        console.warn(`No play button found for ${waveformId}`);
+      }
+      return;
+    }
+
+    const audioUrl = this.getAudioUrl(container, playBtn);
+
+    if (!audioUrl) {
+      this.showFallback(container, playBtn);
       return;
     }
 
@@ -53,9 +62,6 @@ export class AudioPlayerManager {
         mediaControls: false,
         hideScrollbar: true,
       });
-
-      // Sample audio URL (replace with real URLs in production)
-      const audioUrl = `/assets/audio/sample-${index + 1}.mp3`;
 
       // Load audio with error handling
       wavesurfer.load(audioUrl);
@@ -126,7 +132,9 @@ export class AudioPlayerManager {
 
       // Error handling
       wavesurfer.on('error', (error) => {
-        console.error(`WaveSurfer error for ${waveformId}:`, error);
+        if (import.meta?.env?.DEV) {
+          console.error(`WaveSurfer error for ${waveformId}:`, error);
+        }
         this.showFallback(container, playBtn);
       });
 
@@ -138,9 +146,17 @@ export class AudioPlayerManager {
         container,
       });
     } catch (error) {
-      console.error(`Failed to create audio player for ${waveformId}:`, error);
+      if (import.meta?.env?.DEV) {
+        console.error(`Failed to create audio player for ${waveformId}:`, error);
+      }
       this.showFallback(container, playBtn);
     }
+  }
+
+  getAudioUrl(container, playBtn) {
+    const containerSrc = container?.dataset?.src?.trim();
+    const buttonSrc = playBtn?.dataset?.audioSrc?.trim();
+    return containerSrc || buttonSrc || '';
   }
 
   findRelatedElement(playBtn, selector) {
@@ -195,6 +211,8 @@ export class AudioPlayerManager {
   }
 
   showFallback(container, playBtn) {
+    if (!container) return;
+
     container.innerHTML = `
       <div class="waveform-fallback">
         <svg class="waveform-fallback__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -202,15 +220,18 @@ export class AudioPlayerManager {
           <circle cx="6" cy="18" r="3"></circle>
           <circle cx="18" cy="16" r="3"></circle>
         </svg>
-        <span class="waveform-fallback__text">Audio démo - Fichiers disponibles sur demande</span>
+        <span class="waveform-fallback__text">Audio bientôt disponible</span>
       </div>
     `;
 
     // Disable play button
     if (playBtn) {
       playBtn.disabled = true;
+      playBtn.setAttribute('aria-disabled', 'true');
+      playBtn.classList.add('is-disabled');
       playBtn.style.opacity = '0.5';
       playBtn.style.cursor = 'not-allowed';
+      playBtn.setAttribute('title', 'Audio bientôt disponible');
     }
   }
 

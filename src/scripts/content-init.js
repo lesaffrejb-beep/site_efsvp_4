@@ -119,6 +119,16 @@ export function initHighlightsContent() {
       if (title) title.textContent = player.title;
       if (client) client.textContent = player.client;
       if (duration && player.duration) duration.textContent = player.duration;
+
+      const waveform = playerEl.querySelector('.audio-player__waveform');
+      if (waveform) {
+        waveform.dataset.src = player.audioSrc || '';
+      }
+
+      const playButton = playerEl.querySelector('[data-audio]');
+      if (playButton) {
+        playButton.dataset.audioSrc = player.audioSrc || '';
+      }
     }
   });
 

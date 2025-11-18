@@ -17,21 +17,21 @@ export const highlightsContent = {
       title: `La force de la douceur`,
       client: `Département Maine-et-Loire · 2024`,
       duration: `3:45`,
-      audioSrc: ``, // TODO: chemin vers fichier audio
+      audioSrc: `https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3`,
     },
     {
       id: `audio-2`,
       type: `standard`,
       title: `Série promotionnelle`,
       client: `SIVAL · 2025`,
-      audioSrc: ``,
+      audioSrc: `https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3`,
     },
     {
       id: `audio-3`,
       type: `compact`,
       title: `Atelier Lacour`,
       client: `Métaphore forêt · 2024`,
-      audioSrc: ``,
+      audioSrc: ``, // TODO: brancher l'extrait audio le jour où le fichier est dispo
     },
   ],
 
