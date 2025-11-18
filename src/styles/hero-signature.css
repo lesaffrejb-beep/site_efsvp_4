@@ -48,8 +48,9 @@
   --hero-padding-bottom: var(--space-12);
   --hero-padding-inline: var(--space-6);
   /* Spacing réduit pour remonter le sous-titre + CTA près de la signature */
-  --hero-animation-to-baseline: clamp(var(--space-2), 0.9vh, var(--space-3));
-  --hero-baseline-to-cta: clamp(var(--space-2), 1vh, var(--space-3));
+  --hero-animation-to-baseline: clamp(var(--space-1), 0.65vh, var(--space-2));
+  --hero-baseline-to-cta: clamp(var(--space-1), 0.85vh, var(--space-2));
+  --hero-signature-stack-gap: clamp(var(--space-2), 1.2vh, var(--space-3));
 }
 
 /* ========================================
@@ -98,7 +99,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-2);
+  gap: var(--space-1);
   width: 100%;
   max-width: 960px;
   justify-content: flex-start;
@@ -148,6 +149,7 @@
   width: 100%;
   max-width: clamp(36rem, 86vw, 1400px); /* x2 en desktop, plus ample en responsive */
   margin-inline: auto;
+  margin-bottom: calc(var(--hero-signature-stack-gap) * -1);
 }
 
 .hero-signature-svg {
@@ -275,17 +277,17 @@
 
 .btn-hero:active {
   transform: translateY(0) scale(0.99);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--btn-hero-cta-shadow);
 }
 
 .btn-hero:focus-visible {
   outline: 2px solid var(--color-primary-400);
   outline-offset: 4px;
+  box-shadow: var(--btn-hero-cta-shadow);
 }
 
 .btn-hero--cta {
   box-shadow: var(--btn-hero-cta-shadow);
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
 }
 
 .hero-cta__label {
@@ -321,12 +323,13 @@
 
   .hero-signature-wrapper {
     max-width: clamp(26rem, 94vw, 1050px);
+    margin-bottom: calc(var(--space-2) * -0.5);
   }
 
   .hero__baseline,
   .hero-subtitle,
   .hero-signature-caption {
-    margin-top: clamp(var(--space-2), 2vh, var(--space-3));
+    margin-top: clamp(var(--space-1), 1.2vh, var(--space-2));
     font-size: 1rem; /* 16px */
     line-height: 1.5;
     max-width: 100%;
@@ -340,8 +343,9 @@
 
   /* Spacing mobile : ratio golden maintenu, valeurs réduites */
   :root {
-    --hero-animation-to-baseline: clamp(var(--space-2), 1.4vh, var(--space-3));
-    --hero-baseline-to-cta: clamp(var(--space-2), 1.2vh, var(--space-3));
+    --hero-animation-to-baseline: clamp(var(--space-1), 1vh, var(--space-2));
+    --hero-baseline-to-cta: clamp(var(--space-1), 1vh, var(--space-2));
+    --hero-signature-stack-gap: clamp(var(--space-2), 1vh, var(--space-3));
   }
 }
 
