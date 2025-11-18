@@ -22,8 +22,7 @@
     "sector": "btp",
     "themes": [
       "Concert interactif",
-      "30 ans & transmission",
-      "Mémoire des projets"
+      "Anniversaire & transmission"
     ],
     "details": {
       "format": "Concert interactif",
@@ -62,8 +61,8 @@
     "category": "vidéo de prévention diffusée dans les collèges",
     "sector": "transport",
     "themes": [
-      "Prévention mobilité",
-      "Collégiens voyageurs"
+      "Morceau sur mesure",
+      "Prévention routière"
     ],
     "details": {
       "format": "vidéo de prévention",
@@ -102,8 +101,8 @@
     "category": "concert live",
     "sector": "artisanat",
     "themes": [
-      "Anniversaire 25 ans",
-      "Transmission familiale"
+      "Morceau sur mesure",
+      "Anniversaire & transmission"
     ],
     "details": {
       "format": "concert live",
@@ -144,8 +143,8 @@
     "category": "concert live",
     "sector": "artisanat",
     "themes": [
-      "Artisanat patrimonial",
-      "Portrait de menuisier"
+      "Morceau sur mesure",
+      "Artisanat patrimonial"
     ],
     "details": {
       "format": "concert live",
@@ -186,7 +185,7 @@
     "sector": "institutionnel",
     "themes": [
       "Hymne territorial",
-      "Marque Maine-et-Loire"
+      "Marque Maine et Loire"
     ],
     "details": {
       "format": "vidéo promotionnelle",
@@ -224,8 +223,8 @@
     "category": "bande-son d’un spectacle de danse",
     "sector": "spectacle-vivant",
     "themes": [
-      "Santé & ALD",
-      "Bande-son danse"
+      "Bande-son de spectacle",
+      "Santé & ALD"
     ],
     "details": {
       "format": "bande-son d’un spectacle",
@@ -262,7 +261,7 @@
     "category": "musique",
     "sector": "patrimoine",
     "themes": [
-      "Patrimoine troglodytique",
+      "Morceau sur mesure",
       "Vœux institutionnels"
     ],
     "details": {
@@ -299,8 +298,8 @@
     "category": "musique",
     "sector": "institutionnel",
     "themes": [
-      "Associations sportives",
-      "Année olympique"
+      "Morceau sur mesure",
+      "Vie associative"
     ],
     "details": {
       "format": "musique",
@@ -339,8 +338,9 @@
     "category": "concert live et musiques enregistrées",
     "sector": "vie-associative",
     "themes": [
-      "Insertion solidaire",
-      "Anniversaire 25 ans"
+      "Concert sur mesure",
+      "Anniversaire",
+      "Vie associative"
     ],
     "details": {
       "format": "concert live et musique enregistrée",
@@ -380,8 +380,8 @@
     "category": "ciné-concert live",
     "sector": "institutionnel",
     "themes": [
-      "Ciné-concert en village",
-      "Légendes locales"
+      "Ciné-concert",
+      "Festival rural"
     ],
     "details": {
       "format": "ciné-concert live",
@@ -422,7 +422,7 @@
     "sector": "patrimoine",
     "themes": [
       "Déambulation historique",
-      "Saga médiévale"
+      "Spectacle médiéval"
     ],
     "details": {
       "format": "spectacle historique musical",
@@ -461,8 +461,8 @@
     "category": "musique jouée en live",
     "sector": "patrimoine",
     "themes": [
-      "Patrimoine rural",
-      "Rénovation loto du patrimoine"
+      "Morceau sur mesure",
+      "Patrimoine local"
     ],
     "details": {
       "format": "musique",
@@ -501,7 +501,8 @@
     "category": "spectacle déambulatoire",
     "sector": "spectacle-vivant",
     "themes": [
-      "Déambulation vignoble",
+      "Spectacle déambulatoire",
+      "Patrimoine vinicole",
       "Comédie chevaleresque"
     ],
     "details": {
@@ -540,8 +541,8 @@
     "category": "musique",
     "sector": "institutionnel",
     "themes": [
-      "Course nocturne",
-      "Célébration des 5 sens"
+      "Morceau sur mesure",
+      "Événement associatif"
     ],
     "details": {
       "format": "musique",
@@ -583,7 +584,7 @@
     "category": "spectacle",
     "sector": "environnement",
     "themes": [
-      "Zones humides",
+      "Spectacle",
       "Sensibilisation écologique"
     ],
     "details": {
@@ -624,8 +625,8 @@
     "category": "concert live",
     "sector": "environnement",
     "themes": [
-      "Saga agricole",
-      "Innovation maraîchère"
+      "Concert sur mesure",
+      "Saga agricole"
     ],
     "details": {
       "format": "concert live",
@@ -663,8 +664,8 @@
     "category": "concert live",
     "sector": "spectacle-vivant",
     "themes": [
-      "Vie affective seniors",
-      "Spectacle chorégraphique"
+      "Bande-son de spectacle",
+      "Vie affective seniors"
     ],
     "details": {
       "format": "bande-son d’un spectacle de danse",
@@ -704,10 +705,9 @@
     "category": "dîner-spectacle immersif",
     "sector": "spectacle-vivant",
     "themes": [
-      "patrimoine",
-      "gastronomie",
-      "spectacle vivant",
-      "première guerre mondiale"
+      "Dîner-spectacle",
+      "Expérience immersive",
+      "Patrimoine et gastronomie"
     ],
     "details": {
       "format": "Dîner-spectacle immersif",

@@ -118,6 +118,11 @@
 .hero__animation {
   width: 100%;
   max-width: clamp(36rem, 78vw, 1400px);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: clamp(var(--space-6), 8vh, var(--space-16));
 }
 
 /* ========================================
@@ -156,7 +161,7 @@
   width: 100%;
   max-width: clamp(36rem, 86vw, 1400px); /* x2 en desktop, plus ample en responsive */
   margin-inline: auto;
-  margin-bottom: calc(var(--hero-signature-stack-gap) * -1.25);
+  margin-bottom: 0;
 }
 
 .hero-signature-svg {
@@ -164,6 +169,7 @@
   width: 100%;
   height: auto;
   max-width: 100%;
+  max-height: clamp(420px, 60vh, 640px);
   overflow: visible;
 }
 
@@ -222,8 +228,13 @@
   flex-direction: column;
   align-items: center;
   gap: var(--hero-text-gap);
-  margin-top: calc(var(--hero-stack-overlap) * -1);
-  position: relative;
+  position: absolute;
+  bottom: clamp(var(--space-8), 8vh, var(--space-16));
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(100%, 720px);
+  margin-top: 0;
+  padding-inline: var(--space-4);
   z-index: 2;
 }
 
@@ -306,6 +317,7 @@
   box-shadow: var(--shadow-hero-cta);
 }
 
+.btn-hero:focus,
 .btn-hero:focus-visible {
   outline: 2px solid var(--color-primary-400);
   outline-offset: 4px;
@@ -324,12 +336,10 @@
 }
 
 .hero__cta.btn:hover,
-.hero__cta.btn:focus-visible {
-  box-shadow: var(--shadow-hero-cta-strong);
-}
-
+.hero__cta.btn:focus,
+.hero__cta.btn:focus-visible,
 .hero__cta.btn:active {
-  box-shadow: var(--shadow-hero-cta);
+  box-shadow: var(--shadow-hero-cta-strong);
 }
 
 .hero-cta__label {
@@ -361,6 +371,7 @@
 
   .hero__animation {
     max-width: clamp(24rem, 90vw, 1050px);
+    padding-bottom: var(--space-8);
   }
 
   .hero-signature-wrapper {
@@ -368,9 +379,17 @@
     margin-bottom: calc(var(--space-2) * -0.5);
   }
 
+  .hero-signature-svg {
+    max-height: clamp(260px, 46vh, 360px);
+  }
+
   .hero__text-stack {
-    margin-top: clamp(-0.75rem, -1.6vh, -0.25rem);
+    position: static;
+    transform: none;
+    width: 100%;
+    margin-top: clamp(var(--space-4), 4vh, var(--space-8));
     gap: clamp(0.4rem, 1vh, 0.75rem);
+    padding-inline: 0;
   }
 
   .hero__baseline,
