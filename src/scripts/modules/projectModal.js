@@ -1,3 +1,4 @@
+// LEGACY – non utilisé dans la version actuelle du site. À supprimer après vérification.
 /**
  * ============================================
  * PROJECT MODAL - Affichage des détails projets

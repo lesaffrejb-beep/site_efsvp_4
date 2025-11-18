@@ -1,3 +1,4 @@
+// LEGACY – non utilisé dans la version actuelle du site. À supprimer après vérification.
 export class KnowledgeVoicePlayer {
   constructor(options = {}) {
     this.buttonSelector = options.buttonSelector || '[data-voice-trigger]';

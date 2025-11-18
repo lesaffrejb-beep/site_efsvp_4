@@ -10,6 +10,9 @@ export class CookieConsent {
     this.rejectBtn = document.getElementById('cookie-reject');
     this.cookieName = 'efsvp_cookie_consent';
     this.cookieExpiry = 365; // 1 an
+    this.lastFocusedElement = null;
+
+    this.handleKeydown = this.handleKeydown.bind(this);
 
     this.init();
   }
@@ -37,21 +40,23 @@ export class CookieConsent {
     }
 
     // ESC key to close
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && this.banner.getAttribute('aria-hidden') === 'false') {
-        this.acceptCookies(); // Par défaut, accepter si ESC
-      }
-    });
+    document.addEventListener('keydown', this.handleKeydown);
   }
 
   showBanner() {
+    this.lastFocusedElement = document.activeElement;
     this.banner.setAttribute('aria-hidden', 'false');
     // Focus management for accessibility
-    this.acceptBtn?.focus();
+    (this.acceptBtn || this.rejectBtn)?.focus();
   }
 
   hideBanner() {
     this.banner.setAttribute('aria-hidden', 'true');
+    this.restoreFocus();
+  }
+
+  closeWithoutConsent() {
+    this.hideBanner();
   }
 
   acceptCookies() {
@@ -107,6 +112,32 @@ export class CookieConsent {
     const consent = new CookieConsent();
     const cookieValue = consent.getCookie('efsvp_cookie_consent');
     return cookieValue === 'accepted';
+  }
+
+  handleKeydown(e) {
+    if (e.key !== 'Escape') return;
+    if (!this.banner || this.banner.getAttribute('aria-hidden') === 'true') return;
+
+    e.preventDefault();
+    this.closeWithoutConsent();
+  }
+
+  restoreFocus() {
+    const previous = this.lastFocusedElement;
+    if (previous && typeof previous.focus === 'function') {
+      previous.focus();
+    } else {
+      const mainContent = document.querySelector('main');
+      if (mainContent) {
+        if (!mainContent.hasAttribute('tabindex')) {
+          mainContent.setAttribute('tabindex', '-1');
+        }
+        if (mainContent.tabIndex === -1) {
+          mainContent.focus();
+        }
+      }
+    }
+    this.lastFocusedElement = null;
   }
 }
 

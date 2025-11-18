@@ -23,17 +23,17 @@ function collectGallery(slug: string): string[] {
 let validatedProjects: Project[] = [];
 
 function sanitizeProjectsData() {
-  return projectsData.map((project) => ({
+  return (projectsData as Array<Partial<Project>>).map((project) => ({
     ...project,
-    slug: project.slug || project.id,
-    tags: project.tags || [],
+    slug: project?.slug || project?.id,
+    tags: project?.tags || [],
     media: {
-      ...project.media,
-      video: project.media?.video ?? undefined,
-      audio: project.media?.audio ?? undefined,
+      ...project?.media,
+      video: project?.media?.video ?? undefined,
+      audio: project?.media?.audio ?? undefined,
     },
-    video: project.video ?? undefined,
-    audio: project.audio ?? undefined,
+    video: project?.video ?? undefined,
+    audio: project?.audio ?? undefined,
   }));
 }
 

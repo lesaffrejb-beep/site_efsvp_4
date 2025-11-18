@@ -1,3 +1,4 @@
+// LEGACY – non utilisé dans la version actuelle du site. À supprimer après vérification.
 /**
  * BookHero - Hero 3D avec livre animé
  * Utilise Three.js pour créer un livre 3D avec mots-clés animés

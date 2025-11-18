@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { projectsSchema } from '../src/schemas/project.schema.ts';
+import { projectsSchema } from '../src/schemas/project.schema';
 import type { Project, ProjectSector, ProjectStatus } from '../src/types/project';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -271,17 +271,17 @@ function parseProjectsFile(filePath: string): Project[] {
   const content = fs.readFileSync(filePath, 'utf-8');
   const blocks = content
     .split('🟫 FICHE PROJET —')
-    .map((part) => part.trim())
-    .filter((part) => Boolean(part) && part.includes('1)'));
+    .map((part: string) => part.trim())
+    .filter((part: string) => Boolean(part) && part.includes('1)'));
 
-  const rawProjects = blocks.map((block) => parseRawProject(block));
-  rawProjects.forEach((project, index) => {
+  const rawProjects = blocks.map((block: string) => parseRawProject(block));
+  rawProjects.forEach((project: RawProject, index: number) => {
     if (!project.client || !project.title) {
       console.warn(`⚠️ Projet ${index + 1} manquant d'informations essentielles`, project);
     }
   });
 
-  const projects: Project[] = rawProjects.map((project) => transformProject(project));
+  const projects: Project[] = rawProjects.map((project: RawProject) => transformProject(project));
   return projectsSchema.parse(projects);
 }
 

@@ -1,3 +1,4 @@
+// LEGACY – non utilisé dans la version actuelle du site. À supprimer après vérification.
 /**
  * Collection de projets EfSVP (CMS-ready)
  * Décrit chaque histoire avec un modèle extensible

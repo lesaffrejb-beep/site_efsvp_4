@@ -8,11 +8,17 @@ export class ProjectModal {
   private overlay: HTMLElement | null;
   private currentAudioPlayer: any = null;
   private currentVideoPlayer: any = null;
+  private focusableElements: HTMLElement[] = [];
+  private keydownHandler: (event: KeyboardEvent) => void;
+  private triggerElement: HTMLElement | null = null;
+  private previousBodyOverflow = '';
 
   constructor() {
     this.modal = document.getElementById('project-modal');
     this.closeButton = document.getElementById('project-modal-close');
     this.overlay = this.modal?.querySelector('.modal-overlay') as HTMLElement | null;
+    this.keydownHandler = (event: KeyboardEvent) => this.handleKeydown(event);
+    this.applyModalAccessibilityAttributes();
     this.setModalAccessibility(false);
     this.attachEvents();
   }
@@ -20,15 +26,13 @@ export class ProjectModal {
   private attachEvents() {
     this.closeButton?.addEventListener('click', () => this.close());
     this.overlay?.addEventListener('click', () => this.close());
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && this.modal?.classList.contains('active')) {
-        this.close();
-      }
-    });
   }
 
-  open(project: Project) {
+  open(project: Project, triggerElement?: HTMLElement | null) {
     if (!this.modal) return;
+
+    this.triggerElement = triggerElement || (document.activeElement as HTMLElement | null);
+    this.previousBodyOverflow = document.body.style.overflow;
 
     const tagEl = document.getElementById('project-modal-tag');
     const titleEl = document.getElementById('project-modal-title');
@@ -110,8 +114,15 @@ export class ProjectModal {
 
     this.modal.classList.add('active');
     this.setModalAccessibility(true);
+    this.refreshFocusableElements();
+
+    const initialFocusTarget = this.focusableElements[0] || this.closeButton;
+    if (initialFocusTarget) {
+      initialFocusTarget.focus();
+    }
+
+    document.addEventListener('keydown', this.keydownHandler);
     document.body.style.overflow = 'hidden';
-    setTimeout(() => this.closeButton?.focus(), 100);
   }
 
   close() {
@@ -131,7 +142,13 @@ export class ProjectModal {
 
     this.modal.classList.remove('active');
     this.setModalAccessibility(false);
-    document.body.style.overflow = '';
+    document.removeEventListener('keydown', this.keydownHandler);
+    document.body.style.overflow = this.previousBodyOverflow;
+
+    if (this.triggerElement) {
+      this.triggerElement.focus();
+    }
+    this.triggerElement = null;
   }
 
   private setModalAccessibility(isOpen: boolean) {
@@ -143,6 +160,65 @@ export class ProjectModal {
       this.modal.removeAttribute('inert');
     } else {
       this.modal.setAttribute('inert', '');
+    }
+  }
+
+  private applyModalAccessibilityAttributes() {
+    if (!this.modal) return;
+
+    const labelledBy = this.modal.querySelector<HTMLElement>('#project-modal-title');
+    this.modal.setAttribute('role', 'dialog');
+    this.modal.setAttribute('aria-modal', 'true');
+    if (labelledBy?.id) {
+      this.modal.setAttribute('aria-labelledby', labelledBy.id);
+    }
+  }
+
+  private refreshFocusableElements() {
+    if (!this.modal) {
+      this.focusableElements = [];
+      return;
+    }
+
+    const selectors = [
+      'button:not([disabled])',
+      'a[href]',
+      'input:not([disabled])',
+      'select:not([disabled])',
+      'textarea:not([disabled])',
+      '[tabindex]:not([tabindex="-1"])',
+    ];
+
+    this.focusableElements = Array.from(
+      this.modal.querySelectorAll<HTMLElement>(selectors.join(','))
+    ).filter((el) => el.offsetParent !== null);
+  }
+
+  private handleKeydown(event: KeyboardEvent) {
+    if (!this.modal?.classList.contains('active')) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      this.close();
+      return;
+    }
+
+    if (event.key !== 'Tab') return;
+
+    this.refreshFocusableElements();
+    if (!this.focusableElements.length) return;
+
+    const first = this.focusableElements[0];
+    const last = this.focusableElements[this.focusableElements.length - 1];
+
+    if (event.shiftKey) {
+      if (document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      }
+    } else if (document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
     }
   }
 }

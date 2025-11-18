@@ -1,3 +1,4 @@
+// LEGACY – non utilisé dans la version actuelle du site. À supprimer après vérification.
 import { gsap } from 'gsap';
 
 const REDUCED_MOTION_QUERY = '(prefers-reduced-motion: reduce)';

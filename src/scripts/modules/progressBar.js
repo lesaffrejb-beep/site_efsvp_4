@@ -1,3 +1,4 @@
+// LEGACY – non utilisé dans la version actuelle du site. À supprimer après vérification.
 /**
  * Reading Progress Bar Premium
  * Barre de progression de lecture au scroll avec gradient premium

@@ -5,7 +5,9 @@ import { SectorFilter } from '@/components/projects/SectorFilter';
 import type { Project, ProjectSector } from '@/types/project';
 
 export function initProjectsApp() {
-  console.log('🚀 initProjectsApp: Démarrage');
+  if (import.meta.env.DEV) {
+    console.log('🚀 initProjectsApp: Démarrage');
+  }
 
   const FEATURED_ORDER = [
     'la-force-de-la-douceur',
@@ -48,19 +50,23 @@ export function initProjectsApp() {
   const projects = getAllProjects().sort(sortProjects);
   const sectors = getUniqueSectors();
 
-  console.log(`📊 initProjectsApp: ${projects.length} projets, ${sectors.length} secteurs uniques`, {
-    sectors,
-  });
+  if (import.meta.env.DEV) {
+    console.log(`📊 initProjectsApp: ${projects.length} projets, ${sectors.length} secteurs uniques`, {
+      sectors,
+    });
+  }
 
   const modal = new ProjectModal();
   const grid = new ProjectGrid({
     container: gridContainer as HTMLElement,
-    onSelect: (project: Project) => modal.open(project),
+    onSelect: (project: Project, trigger?: HTMLElement | null) => modal.open(project, trigger),
   });
 
   const handleFilterChange = (sector: ProjectSector | 'tous') => {
     const filtered = sector === 'tous' ? projects : projects.filter((project) => project.sector === sector);
-    console.log(`🔍 Filtrage: secteur="${sector}", ${filtered.length} projets affichés`);
+    if (import.meta.env.DEV) {
+      console.log(`🔍 Filtrage: secteur="${sector}", ${filtered.length} projets affichés`);
+    }
     grid.render(filtered);
   };
 
@@ -72,5 +78,7 @@ export function initProjectsApp() {
   });
 
   grid.render(projects);
-  console.log('✅ initProjectsApp: Rendu complet');
+  if (import.meta.env.DEV) {
+    console.log('✅ initProjectsApp: Rendu complet');
+  }
 }

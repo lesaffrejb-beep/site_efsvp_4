@@ -15,7 +15,7 @@ abstract class BaseSchema<T> {
     return this.validate(value, []);
   }
 
-  protected abstract validate(value: unknown, path: string[]): T;
+  public abstract validate(value: unknown, path: string[]): T;
 
   protected fail(message: string, path: string[]): never {
     const location = path.length ? ` at ${path.join('.')}` : '';
@@ -55,7 +55,7 @@ class StringSchema extends BaseSchema<string> {
     return this;
   }
 
-  protected validate(value: unknown, path: string[]): string {
+  public validate(value: unknown, path: string[]): string {
     if (typeof value !== 'string') {
       this.fail('Expected string', path);
     }
@@ -114,7 +114,7 @@ class NumberSchema extends BaseSchema<number> {
     return this;
   }
 
-  protected validate(value: unknown, path: string[]): number {
+  public validate(value: unknown, path: string[]): number {
     if (typeof value !== 'number' || Number.isNaN(value)) {
       this.fail('Expected number', path);
     }
@@ -140,7 +140,7 @@ class NumberSchema extends BaseSchema<number> {
 }
 
 class BooleanSchema extends BaseSchema<boolean> {
-  protected validate(value: unknown, path: string[]): boolean {
+  public validate(value: unknown, path: string[]): boolean {
     if (typeof value !== 'boolean') {
       this.fail('Expected boolean', path);
     }
@@ -157,7 +157,7 @@ class EnumSchema<T extends string> extends BaseSchema<T> {
     this.options = options;
   }
 
-  protected validate(value: unknown, path: string[]): T {
+  public validate(value: unknown, path: string[]): T {
     if (typeof value !== 'string' || !this.options.includes(value as T)) {
       this.fail(`Expected one of: ${this.options.join(', ')}`, path);
     }
@@ -174,7 +174,7 @@ class ArraySchema<T> extends BaseSchema<T[]> {
     this.schema = schema;
   }
 
-  protected validate(value: unknown, path: string[]): T[] {
+  public validate(value: unknown, path: string[]): T[] {
     if (!Array.isArray(value)) {
       this.fail('Expected array', path);
     }
@@ -191,7 +191,7 @@ class ObjectSchema<T extends Record<string, any>> extends BaseSchema<T> {
     this.shape = shape;
   }
 
-  protected validate(value: unknown, path: string[]): T {
+  public validate(value: unknown, path: string[]): T {
     if (typeof value !== 'object' || value === null || Array.isArray(value)) {
       this.fail('Expected object', path);
     }

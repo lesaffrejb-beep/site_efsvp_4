@@ -3,7 +3,7 @@ import { createProjectStatus } from './ProjectStatus';
 
 interface ProjectCardProps {
   project: Project;
-  onSelect: (project: Project) => void;
+  onSelect: (project: Project, trigger?: HTMLElement | null) => void;
 }
 
 export function createProjectCard({ project, onSelect }: ProjectCardProps): HTMLElement {
@@ -92,7 +92,7 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   link.type = 'button';
   link.className = 'project-card__link';
   link.textContent = 'Voir le projet';
-  link.addEventListener('click', () => onSelect(project));
+  link.addEventListener('click', (event) => onSelect(project, event.currentTarget as HTMLElement));
 
   footerRow.appendChild(status);
   footerRow.appendChild(link);
@@ -109,12 +109,13 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   card.appendChild(visual);
   card.appendChild(body);
 
-  const handleSelect = () => onSelect(project);
+  const handleSelect = (event?: Event) =>
+    onSelect(project, (event?.currentTarget as HTMLElement | null) || card);
   card.addEventListener('click', handleSelect);
   card.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.key === ' ') {
       event.preventDefault();
-      handleSelect();
+      handleSelect(event);
     }
   });
 

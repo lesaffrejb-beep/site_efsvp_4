@@ -15,6 +15,7 @@ export class FormValidator {
     this.successFeedback = null;
     this.defaultButtonLabel = 'Partagez votre histoire';
     this.defaultIconMarkup = '';
+    this.defaultFeedbackMessage = '';
     this.feedbackTimeout = null;
 
     if (!this.form) {
@@ -73,6 +74,10 @@ export class FormValidator {
     }
 
     if (this.successFeedback) {
+      const feedbackText = this.successFeedback.querySelector('.contact__feedback-text');
+      if (feedbackText) {
+        this.defaultFeedbackMessage = feedbackText.textContent || '';
+      }
       this.successFeedback.hidden = true;
       this.successFeedback.setAttribute('aria-hidden', 'true');
       this.successFeedback.classList.remove('is-visible');
@@ -326,14 +331,16 @@ export class FormValidator {
       const formData = new FormData(this.form);
       const data = Object.fromEntries(formData);
 
-      console.warn('📮 Form data:', data);
+      if (import.meta.env.DEV) {
+        console.info('📮 Formulaire validé côté front (simulation d\'envoi)');
+      }
 
       // Simulate API call (replace with real endpoint)
-      await this.submitToAPI(data);
+      const submissionResult = await this.submitToAPI(data);
 
       // Success
       this.setButtonState('success');
-      this.showSuccessFeedback(data);
+      this.showSuccessFeedback(data, submissionResult);
 
       // Reset form
       setTimeout(() => {
@@ -357,7 +364,7 @@ export class FormValidator {
 
   async submitToAPI(_data) {
     // Simulate network delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    await new Promise((resolve) => setTimeout(resolve, 800));
 
     // In production, replace with real API call:
     // const response = await fetch('/api/contact', {
@@ -372,8 +379,8 @@ export class FormValidator {
     //
     // return response.json();
 
-    // For now, just simulate success
-    return { success: true };
+    // En attendant le branchement backend, on annonce clairement la simulation
+    return { success: true, simulated: true, message: 'Message enregistré. Envoi final à brancher côté serveur.' };
   }
 
   setButtonState(state) {
@@ -438,7 +445,7 @@ export class FormValidator {
     }
   }
 
-  showSuccessFeedback(data = {}) {
+  showSuccessFeedback(data = {}, submissionMeta = {}) {
     if (!this.successFeedback) return;
 
     clearTimeout(this.feedbackTimeout);
@@ -457,6 +464,15 @@ export class FormValidator {
 
     this.successFeedback.hidden = false;
     this.successFeedback.setAttribute('aria-hidden', 'false');
+
+    const feedbackText = this.successFeedback.querySelector('.contact__feedback-text');
+    if (feedbackText) {
+      if (submissionMeta?.message) {
+        feedbackText.textContent = submissionMeta.message;
+      } else if (this.defaultFeedbackMessage) {
+        feedbackText.textContent = this.defaultFeedbackMessage;
+      }
+    }
 
     requestAnimationFrame(() => {
       this.successFeedback.classList.add('is-visible');

@@ -3,12 +3,12 @@ import { createProjectCard } from './ProjectCard';
 
 interface ProjectGridOptions {
   container: HTMLElement;
-  onSelect: (project: Project) => void;
+  onSelect: (project: Project, trigger?: HTMLElement | null) => void;
 }
 
 export class ProjectGrid {
   private container: HTMLElement;
-  private onSelect: (project: Project) => void;
+  private onSelect: (project: Project, trigger?: HTMLElement | null) => void;
 
   constructor(options: ProjectGridOptions) {
     this.container = options.container;

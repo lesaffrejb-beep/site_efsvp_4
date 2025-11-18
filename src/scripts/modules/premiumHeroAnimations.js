@@ -1,3 +1,4 @@
+// LEGACY – non utilisé dans la version actuelle du site. À supprimer après vérification.
 /**
  * Premium Hero Animations
  * Animations GSAP pour le hero premium (typewriter, logos, CTAs)

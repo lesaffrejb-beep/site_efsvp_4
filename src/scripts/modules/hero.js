@@ -1,3 +1,4 @@
+// LEGACY – non utilisé dans la version actuelle du site. À supprimer après vérification.
 /**
  * Signature Hero Manager
  * Gère l'animation de la signature manuscrite et les reveals associés.

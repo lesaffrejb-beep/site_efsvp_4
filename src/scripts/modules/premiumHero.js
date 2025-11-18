@@ -1,3 +1,4 @@
+// LEGACY – non utilisé dans la version actuelle du site. À supprimer après vérification.
 /**
  * PremiumHero - Hero 3D Premium avec objets flottants
  * Concept: "L'Encre Vivante" - Les mots prennent vie

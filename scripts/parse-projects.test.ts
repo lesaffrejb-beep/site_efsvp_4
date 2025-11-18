@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { normalizeSector } from './parse-projects.ts';
+import { normalizeSector } from './parse-projects';
 import type { ProjectSector } from '../src/types/project';
 
 const cases: Array<{ input: string; expected: ProjectSector }> = [
