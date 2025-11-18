@@ -532,7 +532,7 @@ export class FormValidator {
     const maxValue = parseInt(slider.max);
 
     const formatBudget = (value) =>
-      value >= maxValue ? `${maxValue.toLocaleString('fr-FR')} € et plus` : `~${value.toLocaleString('fr-FR')}€`;
+      value >= maxValue ? `${maxValue.toLocaleString('fr-FR')} € +` : `~${value.toLocaleString('fr-FR')}€`;
 
     const updateValue = () => {
       const value = parseInt(slider.value);
@@ -605,7 +605,7 @@ export class FormValidator {
       const maxValue = parseInt(slider.max);
       output.textContent =
         sliderValue >= maxValue
-          ? `${maxValue.toLocaleString('fr-FR')} € et plus`
+          ? `${maxValue.toLocaleString('fr-FR')} € +`
           : `~${sliderValue.toLocaleString('fr-FR')}€`;
 
       const percent = ((sliderValue - minValue) / (maxValue - minValue)) * 100;

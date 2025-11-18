@@ -127,13 +127,13 @@
   --btn-hero-cta-bg-hover: linear-gradient(135deg, var(--color-primary-600), var(--color-primary-500));
   --btn-hero-cta-text: var(--text-inverse);
   --btn-hero-cta-border: color-mix(in srgb, var(--color-primary-600) 55%, rgba(255, 255, 255, 0.18));
-  --btn-hero-cta-halo: color-mix(in srgb, var(--color-primary-300) 35%, transparent);
+  --btn-hero-cta-halo: color-mix(in srgb, var(--color-primary-300) 50%, transparent);
   --btn-hero-cta-shadow:
-    0 14px 36px -12px color-mix(in srgb, var(--color-primary-400) 65%, transparent),
-    0 0 0 1px color-mix(in srgb, var(--color-primary-200) 55%, transparent);
+    0 16px 40px -14px color-mix(in srgb, var(--color-primary-400) 80%, transparent),
+    0 0 0 2px color-mix(in srgb, var(--color-primary-200) 70%, transparent);
   --btn-hero-cta-shadow-hover:
-    0 18px 46px -10px color-mix(in srgb, var(--color-primary-500) 78%, transparent),
-    0 0 0 1px color-mix(in srgb, var(--color-primary-300) 60%, transparent);
+    0 22px 52px -12px color-mix(in srgb, var(--color-primary-500) 92%, transparent),
+    0 0 0 3px color-mix(in srgb, var(--color-primary-300) 75%, transparent);
   --offer-featured-border: var(--color-primary-500);
   --project-tag-bg: color-mix(in srgb, var(--color-primary-50) 65%, var(--bg-primary) 35%);
   --project-tag-border: color-mix(in srgb, var(--color-primary-200) 55%, transparent);
