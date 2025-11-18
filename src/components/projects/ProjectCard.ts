@@ -15,6 +15,12 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   card.dataset.status = project.status;
   card.id = `project-${project.id}`;
 
+  // Set accent color for description based on project theme
+  if (project.accentTheme) {
+    card.dataset.accentTheme = project.accentTheme;
+    card.style.setProperty('--project-accent-color', `var(--accent-${project.accentTheme}-dark)`);
+  }
+
   const visual = document.createElement('div');
   visual.className = 'project-card__visual';
 

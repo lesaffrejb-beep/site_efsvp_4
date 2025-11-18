@@ -148,6 +148,11 @@ export class ProjectModal {
     document.body.classList.add('modal-open');
     document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
+
+    // Stop Lenis smooth scroll when modal is open
+    if (typeof window !== 'undefined' && (window as any).lenis) {
+      (window as any).lenis.stop();
+    }
   }
 
   close() {
@@ -172,6 +177,11 @@ export class ProjectModal {
     document.body.style.overflow = this.previousBodyOverflow;
     document.documentElement.classList.remove('modal-open');
     document.body.classList.remove('modal-open');
+
+    // Restart Lenis smooth scroll when modal closes
+    if (typeof window !== 'undefined' && (window as any).lenis) {
+      (window as any).lenis.start();
+    }
 
     if (this.triggerElement) {
       this.triggerElement.focus();

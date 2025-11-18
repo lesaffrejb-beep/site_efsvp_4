@@ -54,6 +54,22 @@
   --color-info: #1971c2;
   --color-info-light: #d0ebff;
 
+  /* Project Accent Themes - For adaptive card descriptions */
+  --accent-terracotta: #b95a40;
+  --accent-terracotta-dark: #a04e37;
+  --accent-ambre: #f6aa1c;
+  --accent-ambre-dark: #d89416;
+  --accent-encre: #1a2332;
+  --accent-encre-dark: #0d1117;
+  --accent-sauge: #2d6e4f;
+  --accent-sauge-dark: #245a3f;
+  --accent-ocean: #1971c2;
+  --accent-ocean-dark: #155a96;
+  --accent-lavande: #7950f2;
+  --accent-lavande-dark: #6741d9;
+  --accent-coral: #f08c6e;
+  --accent-coral-dark: #d67d5f;
+
   /* Backgrounds */
   --bg-primary: #ffffff;
   --bg-secondary: #f8f9fa;
@@ -3422,7 +3438,8 @@ button {
 .project-card__tagline {
   font-size: var(--text-lg);
   font-weight: var(--font-medium);
-  color: color-mix(in srgb, var(--color-primary-600) 85%, var(--text-secondary) 15%);
+  color: var(--project-accent-color, color-mix(in srgb, var(--color-primary-600) 85%, var(--text-secondary) 15%));
+  transition: color 0.2s ease;
 }
 
 .project-card__content .project-card__tagline {

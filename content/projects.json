@@ -51,7 +51,8 @@
       "anniversaire & transmission"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "terracotta"
   },
   {
     "id": "agglo-bus",
@@ -104,7 +105,8 @@
       "prévention routière"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "ocean"
   },
   {
     "id": "atelier-lacour",
@@ -159,7 +161,8 @@
       "anniversaire & transmission"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "terracotta"
   },
   {
     "id": "capeb",
@@ -215,7 +218,8 @@
       "artisanat patrimonial"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "terracotta"
   },
   {
     "id": "la-force-de-la-douceur",
@@ -269,7 +273,8 @@
       "marque Maine et Loire"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "ocean"
   },
   {
     "id": "dis-moi-des-mots-d-amour",
@@ -322,7 +327,19 @@
     ],
     "videoSrc": "/assets/videos/projects/dis-moi-des-mots-d-amour/teaser_dis_moi_des_mots_damour.mp4",
     "hasVideo": true,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "coral",
+    "video": {
+      "enabled": true,
+      "title": "Teaser - Dis-moi des mots d'amour",
+      "duration": 120,
+      "files": {
+        "mp4": "/assets/videos/projects/dis-moi-des-mots-d-amour/teaser_dis_moi_des_mots_damour.mp4"
+      },
+      "poster": "/assets/images/projects/dis-moi-des-mots-d-amour/cover.webp",
+      "autoplay": false,
+      "description": "Teaser du spectacle Dis-moi des mots d'amour sur les Affections de Longue Durée"
+    }
   },
   {
     "id": "doue-en-anjou",
@@ -374,7 +391,8 @@
       "voeux institutionnels"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "encre"
   },
   {
     "id": "doue-en-sports",
@@ -425,7 +443,8 @@
       "vie associative"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "ocean"
   },
   {
     "id": "jardin-de-cocagne",
@@ -483,7 +502,8 @@
       "vie associative"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "sauge"
   },
   {
     "id": "forges-tout-feu-tout-flamme",
@@ -537,7 +557,8 @@
       "Festival rural"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "ocean"
   },
   {
     "id": "seigneurs-de-clisson",
@@ -592,7 +613,8 @@
       "spectacle médiéval"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "encre"
   },
   {
     "id": "moulin-de-brissac",
@@ -646,7 +668,8 @@
       "patrimoine local"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "encre"
   },
   {
     "id": "don-quijote-de-la-francia",
@@ -702,7 +725,8 @@
       "comédie chevaleresque"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "coral"
   },
   {
     "id": "anjour-et-nuit",
@@ -755,7 +779,8 @@
       "événement associatif"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "ocean"
   },
   {
     "id": "etat-de-nature",
@@ -812,7 +837,8 @@
       "sensibilisation écologique"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "sauge"
   },
   {
     "id": "sival",
@@ -867,7 +893,8 @@
       "saga agricole"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "sauge"
   },
   {
     "id": "souffler-sur-les-braises",
@@ -920,6 +947,7 @@
       "vie affective seniors"
     ],
     "hasVideo": false,
-    "hasAudio": false
+    "hasAudio": false,
+    "accentTheme": "coral"
   }
 ]
