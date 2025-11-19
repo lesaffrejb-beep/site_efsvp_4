@@ -221,6 +221,12 @@ class App {
       initProjectsApp();
     }
 
+    // Clients social proof line (hero)
+    if (document.querySelector('[data-clients-list]')) {
+      const { initClientsLine } = await import('./clients-line.ts');
+      initClientsLine();
+    }
+
     // Testimonials carousel
     if (document.querySelector('.testimonials__carousel')) {
       const { initTestimonialsBlock } = await import('./blocks/testimonials.js');

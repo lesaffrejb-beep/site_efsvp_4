@@ -1,4 +1,5 @@
 import { getAllProjects, getUniqueSectors } from '@/data/projects.loader';
+import { FEATURED_PROJECTS_ORDER } from '@/data/projectsOrder';
 import { ProjectGrid } from '@/components/projects/ProjectGrid';
 import { ProjectModal } from '@/components/projects/ProjectModal';
 import { SectorFilter } from '@/components/projects/SectorFilter';
@@ -9,19 +10,9 @@ export function initProjectsApp() {
     console.log('🚀 initProjectsApp: Démarrage');
   }
 
-  const FEATURED_ORDER = [
-    'la-force-de-la-douceur',
-    'sival',
-    'a2mo',
-    'atelier-lacour',
-    'le-jardin-de-cocagne',
-    'les-seigneurs-de-clisson',
-    'etat-de-nature',
-  ];
-
   const sortProjects = (a: Project, b: Project) => {
-    const indexA = FEATURED_ORDER.indexOf(a.id);
-    const indexB = FEATURED_ORDER.indexOf(b.id);
+    const indexA = FEATURED_PROJECTS_ORDER.indexOf(a.slug);
+    const indexB = FEATURED_PROJECTS_ORDER.indexOf(b.slug);
 
     const aFeatured = indexA !== -1;
     const bFeatured = indexB !== -1;
