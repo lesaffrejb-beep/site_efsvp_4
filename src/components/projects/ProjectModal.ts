@@ -97,8 +97,21 @@ export class ProjectModal {
     const audioContainer = document.getElementById('project-modal-audio');
     const videoContainer = document.getElementById('project-modal-video');
 
-    // Logique conditionnelle : vidéo OU audio (pas les deux)
-    if (hasProjectVideo(project)) {
+    // DEBUG: Log video path checking
+    console.log('🔍 Checking video at:', project?.video?.files?.mp4 || 'No video path');
+    console.log('✅ Video found?', hasProjectVideo(project));
+    console.log('📦 Project data:', { id: project.id, video: project.video });
+
+    // DEBUG: Force video for 'dis-moi-des-mots-d-amour' to test the player UI
+    if (project.id === 'dis-moi-des-mots-d-amour' && videoContainer) {
+      console.warn('⚠️ FORCING VIDEO DISPLAY FOR DEBUG');
+      videoContainer.style.display = 'block';
+      videoContainer.innerHTML = `<video controls width="100%" src="/assets/videos/projects/${project.id}/video.mp4"></video>`;
+      if (audioContainer) {
+        audioContainer.style.display = 'none';
+      }
+      // Skip normal video logic for this project
+    } else if (hasProjectVideo(project)) {
       // VIDÉO : prioritaire
       if (videoContainer) {
         videoContainer.style.display = 'block';

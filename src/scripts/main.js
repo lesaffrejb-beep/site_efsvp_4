@@ -252,6 +252,18 @@ class App {
       initHeroSignature();
     }
 
+    // FORCED ANIMATION RESET - Hero baseline & CTA
+    gsap.set([".hero__baseline", ".hero__cta"], { opacity: 0, y: 30 }); // Set initial state immediately
+    gsap.to([".hero__baseline", ".hero__cta"], {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power3.out",
+      stagger: 0.15,
+      delay: 0.5,
+      clearProps: "all" // Clean up after animation
+    });
+
     // Effet glow sur le CTA hero (après injection du contenu)
     this.initHeroGlow();
 
