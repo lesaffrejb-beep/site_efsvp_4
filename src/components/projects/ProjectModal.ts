@@ -8,6 +8,7 @@ export class ProjectModal {
   private overlay: HTMLElement | null;
   private currentAudioPlayer: any = null;
   private currentVideoPlayer: any = null;
+  private videoEventCleanups: Array<() => void> = [];
   private focusableElements: HTMLElement[] = [];
   private keydownHandler: (event: KeyboardEvent) => void;
   private triggerElement: HTMLElement | null = null;
@@ -146,6 +147,8 @@ export class ProjectModal {
   }
 
   private destroyCurrentMediaPlayers() {
+    this.cleanupVideoEventListeners();
+
     if (this.currentAudioPlayer) {
       destroyProjectAudioPlayer(this.currentAudioPlayer);
       this.currentAudioPlayer = null;
@@ -192,6 +195,8 @@ export class ProjectModal {
 
     if (videoContainer) {
       videoContainer.style.display = 'none';
+      videoContainer.classList.remove('is-loading');
+      videoContainer.removeAttribute('aria-busy');
       videoContainer.innerHTML = '';
     }
     if (audioContainer) {
@@ -205,12 +210,46 @@ export class ProjectModal {
         visualContainer.style.display = 'none';
       }
 
+      let videoSettled = false;
+      const settleVideoState = () => {
+        if (videoSettled) return;
+        videoSettled = true;
+        videoContainer.classList.remove('is-loading');
+        videoContainer.removeAttribute('aria-busy');
+        this.cleanupVideoEventListeners();
+      };
+
+      const fallbackToVisual = (event?: Event) => {
+        console.error(`[ProjectModal] Video fallback triggered for ${project.slug}`, event);
+        settleVideoState();
+        if (this.currentVideoPlayer) {
+          destroyProjectVideoPlayer(this.currentVideoPlayer);
+          this.currentVideoPlayer = null;
+        }
+        videoContainer.style.display = 'none';
+        videoContainer.innerHTML = '';
+        this.renderVisualFallback(visualContainer, project);
+      };
+
+      const handleVideoReady = () => {
+        settleVideoState();
+      };
+
+      const handleVideoError = (event: Event) => {
+        fallbackToVisual(event);
+      };
+
       videoContainer.style.display = 'block';
+      videoContainer.classList.add('is-loading');
+      videoContainer.setAttribute('aria-busy', 'true');
+
+      this.registerVideoContainerEvent(videoContainer, 'project-video-ready', handleVideoReady);
+      this.registerVideoContainerEvent(videoContainer, 'project-video-error', handleVideoError);
+
       this.currentVideoPlayer = createProjectVideoPlayer(videoContainer, project);
 
       if (!this.currentVideoPlayer) {
-        videoContainer.style.display = 'none';
-        this.renderVisualFallback(visualContainer, project);
+        fallbackToVisual();
       } else {
         return; // Priorité à la vidéo, ne pas initialiser l'audio
       }
@@ -220,6 +259,16 @@ export class ProjectModal {
       audioContainer.style.display = 'block';
       this.currentAudioPlayer = createProjectAudioPlayer(audioContainer, project);
     }
+  }
+
+  private registerVideoContainerEvent(container: HTMLElement, eventName: string, handler: EventListener) {
+    container.addEventListener(eventName, handler);
+    this.videoEventCleanups.push(() => container.removeEventListener(eventName, handler));
+  }
+
+  private cleanupVideoEventListeners() {
+    this.videoEventCleanups.forEach((cleanup) => cleanup());
+    this.videoEventCleanups = [];
   }
 
   private renderVisualFallback(visualContainer: HTMLElement | null, project: Project) {

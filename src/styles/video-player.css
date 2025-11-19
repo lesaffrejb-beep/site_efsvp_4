@@ -98,11 +98,16 @@
 .video-player__loading {
   position: absolute;
   inset: 0;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, 0.5);
   z-index: 10;
+}
+
+.video-player__loading.is-visible,
+.modal-video.is-loading .video-player__loading {
+  display: flex;
 }
 
 .video-player__spinner {
@@ -292,16 +297,6 @@
 .video-player__fullscreen-btn:focus-visible {
   outline: 2px solid var(--color-primary-500);
   outline-offset: 2px;
-}
-
-/* ===== Description (optionnel) ===== */
-.video-player__description {
-  margin-top: var(--space-3, 0.75rem);
-  padding-top: var(--space-3, 0.75rem);
-  border-top: 1px solid var(--border-subtle, rgba(0, 0, 0, 0.06));
-  font-size: var(--text-sm, 0.875rem);
-  color: var(--text-secondary, #6b7280);
-  line-height: 1.5;
 }
 
 /* ===== Error State ===== */

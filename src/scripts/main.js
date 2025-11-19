@@ -601,25 +601,30 @@ class App {
     // Conservé ici pour compatibilité avec anciens attributs
     const legacyElements = gsap.utils.toArray('[data-scroll]:not([data-reveal])');
 
-    if (legacyElements.length > 0) {
-      gsap.utils.toArray(legacyElements).forEach((element) => {
-        gsap.fromTo(
-          element,
-          { opacity: 0, y: 30 },
-          {
+    if (!legacyElements.length) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          gsap.to(entry.target, {
             opacity: 1,
             y: 0,
             duration: 0.6,
             ease: 'power2.out',
-            scrollTrigger: {
-              trigger: element,
-              start: 'top 85%',
-              toggleActions: 'play none none none',
-            },
-          }
-        );
-      });
-    }
+          });
+          obs.unobserve(entry.target);
+        });
+      },
+      { rootMargin: '0px 0px -10% 0px', threshold: 0.2 }
+    );
+
+    legacyElements.forEach((element) => {
+      gsap.set(element, { opacity: 0, y: 30 });
+      observer.observe(element);
+    });
   }
 
   // ========== FAQ ==========

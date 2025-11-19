@@ -6,6 +6,57 @@ const assetManifest = Object.keys(
   import.meta.glob('../../public/assets/**/*', { eager: true })
 ).map((key) => key.replace('../../public', ''));
 
+const COLOR_TOKEN_MAP: Record<string, string> = {
+  '--color-primary-300': '#f7b5a3',
+  '--color-primary-400': '#f08c6e',
+  '--color-primary-500': '#b95a40',
+  '--color-primary-600': '#a04e37',
+  '--color-primary-700': '#86402d',
+  '--color-neutral-700': '#28303a',
+  '--color-neutral-800': '#1a2332',
+  '--color-warning': '#f6aa1c',
+  '--color-info': '#1971c2',
+  '--color-success': '#2d6e4f',
+  '--color-success-light': '#d4edda',
+};
+
+function normalizeAssetPath(path?: string | null): string | null {
+  if (!path) return null;
+  return path.startsWith('/') ? path : `/${path}`;
+}
+
+function resolveColorToken(value?: string | null, fallback = '#1a2332'): string {
+  if (!value) return fallback;
+  const tokenMatch = value.match(/var\((--[^)]+)\)/);
+  if (tokenMatch) {
+    return COLOR_TOKEN_MAP[tokenMatch[1]] || fallback;
+  }
+  return value;
+}
+
+function createCoverPlaceholder(project: Partial<Project>): string {
+  const initials = (project?.cover?.initials || project?.title?.slice(0, 2) || 'PJ').toUpperCase();
+  const gradient = project?.cover?.gradient;
+  const fromColor = resolveColorToken(gradient?.from, '#1a2332');
+  const toColor = resolveColorToken(gradient?.to, '#b95a40');
+  const svg = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="${initials} placeholder">
+      <defs>
+        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="${fromColor}" />
+          <stop offset="100%" stop-color="${toColor}" />
+        </linearGradient>
+      </defs>
+      <rect width="800" height="600" rx="48" fill="url(#grad)" />
+      <text x="50%" y="55%" font-family="'Plus Jakarta Sans', 'Inter', sans-serif" font-size="180" font-weight="700" fill="#ffffff" text-anchor="middle" dominant-baseline="middle" opacity="0.85">
+        ${initials}
+      </text>
+    </svg>
+  `;
+
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`;
+}
+
 function assetExists(publicPath: string): boolean {
   const normalized = publicPath.startsWith('/') ? publicPath : `/${publicPath}`;
   return assetManifest.some((entry) => entry === normalized);
@@ -32,9 +83,11 @@ function sanitizeProjectsData() {
     const slug = project?.slug || project?.id || '';
     const coverFromAssets = slug ? findAssetByPrefix(`/assets/images/projects/${slug}/cover`) : null;
     const thumbFromAssets = slug ? findAssetByPrefix(`/assets/images/projects/${slug}/thumb`) : null;
-    const coverFromData = project?.media?.coverImage || project?.cover?.image || '';
-    const coverSrc = coverFromAssets || coverFromData;
-    const thumbnailSrc = thumbFromAssets || coverSrc;
+    const coverFromData = normalizeAssetPath(project?.media?.coverImage || project?.cover?.image || '');
+    const hasCoverFromData = coverFromData && assetExists(coverFromData);
+    const coverPlaceholder = createCoverPlaceholder(project);
+    const coverSrc = coverFromAssets || (hasCoverFromData ? coverFromData : coverPlaceholder);
+    const thumbnailSrc = thumbFromAssets || coverFromAssets || (hasCoverFromData ? coverFromData : coverPlaceholder);
 
     return {
       ...project,
@@ -44,6 +97,7 @@ function sanitizeProjectsData() {
       coverSrc,
       media: {
         ...project?.media,
+        coverImage: coverSrc,
         video: project?.media?.video ?? undefined,
         audio: project?.media?.audio ?? undefined,
       },

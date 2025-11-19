@@ -80,7 +80,7 @@ function renderVideoPlayerHTML(container, project) {
             </button>
           </div>
 
-          <div class="video-player__loading" data-video-loading style="display:none;">
+          <div class="video-player__loading" data-video-loading>
             <div class="video-player__spinner"></div>
           </div>
         </div>
@@ -140,7 +140,6 @@ function renderVideoPlayerHTML(container, project) {
           </button>
         </div>
 
-        ${video.description ? `<p class="video-player__description">${escapeHtml(video.description)}</p>` : ''}
       </div>
     </section>
   `;
@@ -304,12 +303,32 @@ function setupVideoEvents(container, playerInstance) {
   const bufferedBar = container.querySelector('[data-buffered]');
   const loadingEl = container.querySelector('[data-video-loading]');
   const overlay = container.querySelector('[data-video-overlay]');
+  let hasDispatchedReady = false;
+
+  const showLoading = () => {
+    loadingEl?.classList.add('is-visible');
+    container.classList.add('is-loading');
+  };
+
+  const hideLoading = () => {
+    loadingEl?.classList.remove('is-visible');
+    container.classList.remove('is-loading');
+  };
+
+  const dispatchReady = () => {
+    if (hasDispatchedReady) return;
+    hasDispatchedReady = true;
+    hideLoading();
+    container.dispatchEvent(new CustomEvent('project-video-ready', { bubbles: true }));
+  };
 
   video.addEventListener('loadedmetadata', () => {
     if (durationTimeEl) {
       durationTimeEl.textContent = formatDuration(video.duration);
     }
   });
+
+  video.addEventListener('loadeddata', dispatchReady);
 
   video.addEventListener('timeupdate', () => {
     if (currentTimeEl) {
@@ -348,16 +367,18 @@ function setupVideoEvents(container, playerInstance) {
   });
 
   video.addEventListener('waiting', () => {
-    if (loadingEl) loadingEl.style.display = 'flex';
+    showLoading();
   });
 
   video.addEventListener('canplay', () => {
-    if (loadingEl) loadingEl.style.display = 'none';
+    dispatchReady();
   });
 
   video.addEventListener('error', (e) => {
     console.error('[ProjectVideoPlayer] Video error:', e);
-    showVideoError(container.closest('.video-player'));
+    hideLoading();
+    container.dispatchEvent(new CustomEvent('project-video-error', { detail: { error: e }, bubbles: true }));
+    showVideoError(container);
   });
 }
 
@@ -484,9 +505,14 @@ function showOverlay(overlay) {
  * Affiche une erreur vidéo
  */
 function showVideoError(container) {
-  if (!container) return;
+  const target =
+    container?.classList?.contains('video-player')
+      ? container
+      : container?.querySelector?.('.video-player');
 
-  container.innerHTML = `
+  if (!target) return;
+
+  target.innerHTML = `
     <div class="video-player__error">
       <svg class="video-player__error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="12" cy="12" r="10"></circle>
@@ -507,17 +533,6 @@ function formatDuration(seconds) {
   const mins = Math.floor(seconds / 60);
   const secs = Math.floor(seconds % 60);
   return `${mins}:${secs.toString().padStart(2, '0')}`;
-}
-
-function escapeHtml(text) {
-  const map = {
-    '&': '&amp;',
-    '<': '&lt;',
-    '>': '&gt;',
-    '"': '&quot;',
-    "'": '&#039;',
-  };
-  return text.replace(/[&<>"']/g, (m) => map[m]);
 }
 
 /**
