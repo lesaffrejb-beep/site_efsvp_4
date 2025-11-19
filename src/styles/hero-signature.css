@@ -201,9 +201,10 @@
 .hero__baseline,
 .hero__cta {
   /* ✅ CRITICAL: Initial hidden state to prevent flash before GSAP animation */
-  opacity: 0 !important;
-  visibility: hidden !important;
-  transform: translateY(20px) !important;
+  /* FIXED: Removed !important to allow GSAP to override these values */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
   will-change: opacity, transform, visibility;
 }
 

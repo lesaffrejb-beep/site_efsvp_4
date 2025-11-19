@@ -20,6 +20,9 @@
   align-items: flex-start;
   justify-content: center;
 
+  /* ✅ FIXED: Ensure flex container can scroll properly */
+  min-height: 100vh;
+
   /* ✅ Padding to ensure content doesn't touch edges on mobile */
   padding: 2rem 1rem;
 
@@ -34,11 +37,13 @@
 
 /* ===== Overlay ===== */
 .modal-overlay {
-  position: absolute;
+  /* ✅ FIXED: Use fixed positioning so overlay stays in place during scroll */
+  position: fixed;
   inset: 0;
   background: rgba(26, 35, 50, 0.85);
   backdrop-filter: blur(8px);
   cursor: pointer;
+  z-index: 0;
 }
 
 /* ===== Modal Content Container - THE CONTENT WRAPPER ===== */
