@@ -3629,3 +3629,18 @@ main,
   visibility: visible !important;
   display: block !important;
 }
+
+/* 🚑 SAFETY NET : Force l'affichage du contenu si JS plante */
+body.loaded section,
+body.loaded .projects__grid,
+body.loaded .faq__list {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+/* S'assurer que la couleur de fond n'est pas blanche par accident */
+body {
+    background-color: var(--color-bg, #0f151d); /* Bleu nuit premium */
+    color: var(--color-text-light, #eaecef);
+}
