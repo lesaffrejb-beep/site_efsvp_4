@@ -147,7 +147,7 @@ export class HeroManager {
 
     timeline.to(this.signaturePath, {
       strokeDashoffset: 0,
-      duration: 2.5, // Slower animation for better effect
+      duration: 3.2, // Even slower for a very elegant, "handwritten" feel
       ease: 'power1.inOut'
     });
 

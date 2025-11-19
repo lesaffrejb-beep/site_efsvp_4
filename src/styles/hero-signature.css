@@ -2,48 +2,58 @@
 .hero {
     position: relative;
     width: 100%;
-    min-height: 100vh; /* Full height */
+    min-height: 100vh;
+    /* Full height */
     overflow: hidden;
-    display: flex; /* Flexbox for better centering control */
+    display: flex;
+    /* Flexbox for better centering control */
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-hero-bg, #f9f5ef); /* Fond parchemin clair */
-    color: var(--color-neutral-800, #1a2332); /* Texte sombre pour contraste */
+    background-color: var(--color-hero-bg, #f9f5ef);
+    /* Fond parchemin clair */
+    color: var(--color-neutral-800, #1a2332);
+    /* Texte sombre pour contraste */
     padding: var(--space-4);
 }
 
 /* COUCHE 1 : L'Animation SVG (Background) */
 .hero__animation {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    /* Changed from absolute to relative to be part of the flow */
     width: 100%;
-    height: 100%;
-    z-index: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    pointer-events: none; /* Laisse passer les clics */
+    pointer-events: none;
+    margin-bottom: var(--space-8);
+    /* Space between signature and text */
 }
 
 .hero-signature-wrapper {
     width: 90vw;
-    max-width: 1400px;
+    /* Large width for impact */
+    max-width: 1600px;
+    /* Increased max-width */
     display: flex;
     justify-content: center;
-    opacity: 1; /* Full opacity for clear reading */
+    opacity: 1;
 }
 
 .hero-signature-svg {
     width: 100%;
     height: auto;
-    max-height: 60vh; /* Limit height to avoid overflow */
+    max-height: 50vh;
+    /* Limit height to keep it balanced */
+    overflow: visible;
+    /* Allow strokes to go slightly outside if needed */
 }
 
 /* Paths de la signature : couleur sombre pour contraste sur fond clair */
 .hero-signature-path {
     stroke: var(--color-neutral-800, #1a2332);
-    stroke-width: 1.5;
+    stroke-width: 1.2;
+    /* Slightly thinner for elegance at large size */
     stroke-linecap: round;
     stroke-linejoin: round;
     fill: none;
@@ -52,7 +62,7 @@
 /* COUCHE 2 : Le Contenu Texte (Foreground) */
 .hero__inner {
     position: relative;
-    z-index: 10; /* Au-dessus du SVG */
+    z-index: 10;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -65,17 +75,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: var(--space-6); /* Espace élégant entre texte et bouton */
-    margin-top: var(--space-8); /* Rapproche baseline/CTA de la signature */
+    gap: var(--space-8);
+    /* Generous gap */
+    width: 100%;
+    max-width: 800px;
 }
 
 .hero__baseline {
-    font-family: var(--font-body);
-    font-size: clamp(1.1rem, 2vw, 1.5rem);
-    max-width: 600px;
-    line-height: 1.4;
-    color: var(--color-neutral-700, #28303a); /* Texte sombre sur fond clair */
+    font-family: var(--font-display);
+    /* Use display font for elegance */
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    /* Responsive large text */
+    font-weight: var(--font-light);
+    /* Lighter weight for sophistication */
+    line-height: 1.3;
+    color: var(--color-neutral-700, #28303a);
     margin: 0;
+    letter-spacing: -0.02em;
+    /* Tight tracking for display text */
 }
 
 /* Bouton CTA */
@@ -85,12 +102,19 @@
     --y: 50%;
     position: relative;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+    /* Bouncy transition */
+    padding: var(--btn-padding-lg);
+    /* Larger padding */
+    font-size: var(--text-lg);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
 }
 
 .hero__cta:hover {
-    box-shadow: 0 0 20px rgba(185, 90, 64, 0.4); /* Glow effect using primary color */
-    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -10px rgba(185, 90, 64, 0.5);
+    /* Stronger glow */
+    transform: translateY(-4px) scale(1.02);
 }
 
 .hero__cta::before {
@@ -99,9 +123,10 @@
     top: var(--y);
     left: var(--x);
     transform: translate(-50%, -50%);
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 50%);
+    width: 250%;
+    /* Larger glow area */
+    height: 250%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 60%);
     opacity: 0;
     transition: opacity 0.3s;
     pointer-events: none;
