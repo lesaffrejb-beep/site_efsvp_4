@@ -12,6 +12,7 @@ export class ProjectModal {
   private keydownHandler: (event: KeyboardEvent) => void;
   private triggerElement: HTMLElement | null = null;
   private previousBodyOverflow = '';
+  private lenisWasActive = false; // ✅ Track if Lenis was active before opening modal
 
   constructor() {
     this.modal = document.getElementById('project-modal');
@@ -155,6 +156,18 @@ export class ProjectModal {
 
     document.addEventListener('keydown', this.keydownHandler);
     document.body.style.overflow = 'hidden';
+
+    // ✅ CRITICAL FIX: Stop Lenis smooth scroll to allow modal scroll
+    // Lenis intercepts wheel/touch events globally, blocking modal scroll
+    // We must stop() it when modal opens and start() when it closes
+    const lenis = (window as any).lenis;
+    if (lenis && typeof lenis.stop === 'function') {
+      this.lenisWasActive = true;
+      lenis.stop();
+      if (import.meta.env.DEV) {
+        console.log('🔒 ProjectModal: Lenis stopped to allow modal scroll');
+      }
+    }
   }
 
   close() {
@@ -176,6 +189,19 @@ export class ProjectModal {
     this.setModalAccessibility(false);
     document.removeEventListener('keydown', this.keydownHandler);
     document.body.style.overflow = this.previousBodyOverflow;
+
+    // ✅ CRITICAL FIX: Restart Lenis smooth scroll after modal closes
+    // Only restart if it was active before opening the modal
+    if (this.lenisWasActive) {
+      const lenis = (window as any).lenis;
+      if (lenis && typeof lenis.start === 'function') {
+        lenis.start();
+        if (import.meta.env.DEV) {
+          console.log('🔓 ProjectModal: Lenis restarted after modal close');
+        }
+      }
+      this.lenisWasActive = false;
+    }
 
     if (this.triggerElement) {
       this.triggerElement.focus();
