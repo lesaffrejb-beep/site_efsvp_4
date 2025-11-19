@@ -570,6 +570,34 @@ class App {
 
     // Quick quote form (mini-formulaire)
     this.initQuickQuoteForm();
+
+    // Budget slider synchronization
+    this.initBudgetSlider();
+  }
+
+  // ========== BUDGET SLIDER ==========
+  initBudgetSlider() {
+    const slider = document.getElementById('budget');
+    const output = document.querySelector('.form__range-value');
+
+    if (!slider || !output) return;
+
+    const updateSlider = () => {
+      const value = parseInt(slider.value, 10);
+      const min = slider.min ? parseInt(slider.min, 10) : 0;
+      const max = slider.max ? parseInt(slider.max, 10) : 100;
+      const percentage = ((value - min) / (max - min)) * 100;
+
+      // Update text
+      output.textContent = `~${new Intl.NumberFormat('fr-FR').format(value)}€`;
+
+      // Update visual progress (CSS variable for gradient)
+      slider.style.setProperty('--value', `${percentage}%`);
+    };
+
+    slider.addEventListener('input', updateSlider);
+    // Initial call
+    updateSlider();
   }
 
   // ========== QUICK QUOTE FORM ==========

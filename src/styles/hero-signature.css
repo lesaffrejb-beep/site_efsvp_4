@@ -1,13 +1,16 @@
 /* --- HERO LAYOUT SYSTEM (Grid Stack) --- */
 .hero {
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    min-height: 100vh; /* Full height */
     overflow: hidden;
-    display: grid;
-    place-items: center; /* Centre tout le contenu de la grille */
+    display: flex; /* Flexbox for better centering control */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: var(--color-hero-bg, #f9f5ef); /* Fond parchemin clair */
     color: var(--color-neutral-800, #1a2332); /* Texte sombre pour contraste */
+    padding: var(--space-4);
 }
 
 /* COUCHE 1 : L'Animation SVG (Background) */
@@ -28,12 +31,13 @@
     max-width: 1400px;
     display: flex;
     justify-content: center;
-    opacity: 0.8; /* Légère transparence pour la lisibilité du texte */
+    opacity: 1; /* Full opacity for clear reading */
 }
 
 .hero-signature-svg {
     width: 100%;
     height: auto;
+    max-height: 60vh; /* Limit height to avoid overflow */
 }
 
 /* Paths de la signature : couleur sombre pour contraste sur fond clair */
@@ -42,6 +46,7 @@
     stroke-width: 1.5;
     stroke-linecap: round;
     stroke-linejoin: round;
+    fill: none;
 }
 
 /* COUCHE 2 : Le Contenu Texte (Foreground) */
@@ -49,7 +54,6 @@
     position: relative;
     z-index: 10; /* Au-dessus du SVG */
     width: 100%;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,18 +65,48 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.5rem; /* Espace élégant entre texte et bouton */
-    margin-top: 2rem; /* Rapproche baseline/CTA de la signature */
+    gap: var(--space-6); /* Espace élégant entre texte et bouton */
+    margin-top: var(--space-8); /* Rapproche baseline/CTA de la signature */
 }
 
 .hero__baseline {
+    font-family: var(--font-body);
     font-size: clamp(1.1rem, 2vw, 1.5rem);
     max-width: 600px;
     line-height: 1.4;
     color: var(--color-neutral-700, #28303a); /* Texte sombre sur fond clair */
+    margin: 0;
 }
 
 /* Bouton CTA */
 .hero__cta {
-    margin-top: 1rem;
+    /* Glow effect variables */
+    --x: 50%;
+    --y: 50%;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hero__cta:hover {
+    box-shadow: 0 0 20px rgba(185, 90, 64, 0.4); /* Glow effect using primary color */
+    transform: translateY(-2px);
+}
+
+.hero__cta::before {
+    content: '';
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.hero__cta:hover::before {
+    opacity: 1;
 }
