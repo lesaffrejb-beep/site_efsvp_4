@@ -12,6 +12,7 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   card.className = 'project-card card-lift';
   card.tabIndex = 0;
   card.dataset.projectId = project.id;
+  card.dataset.projectSlug = project.slug;
   card.dataset.sector = project.sector;
   card.dataset.status = project.status;
   card.id = `project-${project.id}`;
@@ -109,6 +110,7 @@ export function createProjectCard({ project, onSelect }: ProjectCardProps): HTML
   link.type = 'button';
   link.className = 'project-card__link';
   link.textContent = 'Voir le projet';
+  link.dataset.projectSlug = project.slug;
   link.addEventListener('click', (event) => onSelect(project, event.currentTarget as HTMLElement));
 
   footerRow.appendChild(status);

@@ -230,15 +230,16 @@
   <a href="#main" class="skip-link">Aller au contenu principal</a>
 
   <section id="hero" class="hero hero--signature" data-section="hero">
-    <div class="hero__animation">
-      <!-- Titre manuscrit -->
-      <div class="hero-signature-block">
-        <!-- H1 visible pour SEO -->
-        <h1 class="sr-only">En français s'il vous plaît</h1>
+    <div class="hero__inner">
+      <div class="hero__stack">
+        <!-- Titre manuscrit -->
+        <div class="hero-signature-block">
+          <!-- H1 visible pour SEO -->
+          <h1 class="sr-only">En français s'il vous plaît</h1>
 
-        <div class="hero-signature-wrapper">
-          <svg class="hero-signature-svg" viewBox="-24 150 140 70" role="img" aria-label="En français s'il vous plaît"
-            data-hero-signature preserveAspectRatio="xMidYMid meet">
+          <div class="hero-signature-wrapper">
+            <svg class="hero-signature-svg" viewBox="-24 150 140 70" role="img" aria-label="En français s'il vous plaît"
+              data-hero-signature preserveAspectRatio="xMidYMid meet">
             <defs>
               <g />
             </defs>
@@ -446,23 +447,28 @@
                 </g>
               </g>
             </g>
-          </svg>
+            </svg>
+          </div>
+        </div>
+
+        <div class="hero__text-stack">
+          <!-- Baseline : Centré, minimaliste -->
+          <p class="hero__baseline hero-subtitle" data-hero-baseline>
+            Studio de création narrative & musicale sur-mesure
+          </p>
+
+          <!-- CTA : Bouton pill centré -->
+          <a href="#projects" class="btn hero__cta button--hero-primary" data-hero-cta data-glow>
+            <span class="hero-cta__label">Découvrir nos projets</span>
+            <span class="hero-cta__ink-fill" aria-hidden="true"></span>
+          </a>
         </div>
       </div>
-    </div>
 
-    <div class="hero__text-stack">
-      <!-- Baseline : Centré, minimaliste -->
-      <p class="hero__baseline hero-subtitle" data-hero-baseline>
-        Studio de création narrative & musicale sur-mesure
-      </p>
-
-      <!-- CTA : Bouton pill centré -->
-      <a href="#projects" class="btn btn-hero btn-hero--cta hero__cta" data-hero-cta data-glow>
-        <span class="hero-cta__label">Découvrir nos projets</span>
-        <span class="hero-cta__ink-fill" aria-hidden="true"></span>
-      </a>
-    </div>
+      <div class="hero__support" data-clients-block>
+        <p class="social-proof__label">Ils nous ont fait confiance</p>
+        <ul class="client-badges" data-clients-list></ul>
+      </div>
     </div>
   </section>
 

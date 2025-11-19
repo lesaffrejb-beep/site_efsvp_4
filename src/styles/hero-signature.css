@@ -1,52 +1,63 @@
 /* --- HERO LAYOUT SYSTEM (Grid Stack) --- */
-.hero {
+.hero.hero--signature {
     position: relative;
     width: 100%;
-    min-height: 100vh;
-    /* Full height */
     overflow: hidden;
     display: flex;
-    /* Flexbox for better centering control */
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: var(--color-hero-bg, #f9f5ef);
-    /* Fond parchemin clair */
     color: var(--color-neutral-800, #1a2332);
-    /* Texte sombre pour contraste */
-    padding: var(--space-4);
+    padding: var(--space-8) var(--space-4);
 }
 
-/* COUCHE 1 : L'Animation SVG (Background) */
-.hero__animation {
+.hero__inner {
     position: relative;
-    /* Changed from absolute to relative to be part of the flow */
-    width: 100%;
+    z-index: 10;
+    width: min(100%, 70rem);
+    margin-inline: auto;
+    min-height: calc(100vh - var(--header-height, 5rem));
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    pointer-events: none;
-    margin-bottom: var(--space-8);
-    /* Space between signature and text */
+    gap: var(--space-12);
+    text-align: center;
+    padding-block: var(--space-12);
+}
+
+.hero__stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-10);
+    width: min(90vw, 68rem);
+}
+
+@media (max-width: 640px) {
+    .hero__inner {
+        min-height: auto;
+        padding-block: var(--space-10);
+        gap: var(--space-8);
+    }
+
+    .hero__stack {
+        gap: var(--space-6);
+    }
 }
 
 .hero-signature-wrapper {
-    width: 90vw;
-    /* Large width for impact */
-    max-width: 1600px;
-    /* Increased max-width */
-    display: flex;
-    justify-content: center;
+    width: min(80vw, 52rem);
+    max-width: 100%;
+    margin-inline: auto;
     opacity: 1;
 }
 
 .hero-signature-svg {
     width: 100%;
     height: auto;
-    max-height: 50vh;
-    /* Limit height to keep it balanced */
     overflow: visible;
-    /* Allow strokes to go slightly outside if needed */
 }
 
 /* Paths de la signature : couleur sombre pour contraste sur fond clair */
@@ -59,29 +70,13 @@
     fill: none;
 }
 
-/* COUCHE 2 : Le Contenu Texte (Foreground) */
-.hero__inner {
-    position: relative;
-    z-index: 10;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
 .hero__text-stack {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--space-6);
-    /* Keep elements close */
-    width: 100%;
-    max-width: 800px;
-    margin-top: 10vh;
-    /* Push text stack down but keep it balanced */
-    margin-bottom: var(--space-12);
+    width: min(100%, 40rem);
+    margin-inline: auto;
 }
 
 .hero__baseline {
@@ -96,28 +91,16 @@
     margin: 0;
     letter-spacing: -0.02em;
     /* Tight tracking for display text */
+    text-wrap: balance;
 }
 
 /* Bouton CTA */
 .hero__cta {
-    /* Glow effect variables */
     --x: 50%;
     --y: 50%;
     position: relative;
     overflow: hidden;
     transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
-    /* Bouncy transition */
-    padding: var(--btn-padding-lg);
-    /* Larger padding */
-    font-size: var(--text-lg);
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-}
-
-.hero__cta:hover {
-    box-shadow: 0 10px 30px -10px rgba(185, 90, 64, 0.5);
-    /* Stronger glow */
-    transform: translateY(-4px) scale(1.02);
 }
 
 .hero__cta::before {
@@ -137,4 +120,62 @@
 
 .hero__cta:hover::before {
     opacity: 1;
+}
+
+.button--hero-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    padding: var(--btn-padding-lg);
+    border-radius: var(--radius-full);
+    background: var(--btn-hero-cta-bg);
+    border: 1px solid var(--btn-hero-cta-border);
+    color: var(--btn-hero-cta-text);
+    box-shadow: var(--btn-hero-cta-shadow);
+    font-size: var(--text-lg);
+    font-weight: var(--font-semibold);
+    letter-spacing: 0.01em;
+    text-transform: none;
+}
+
+.button--hero-primary:hover {
+    background: var(--btn-hero-cta-bg-hover);
+    box-shadow: var(--btn-hero-cta-shadow-hover);
+    transform: translateY(-2px);
+}
+
+.button--hero-primary:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--color-neutral-900) 40%, var(--color-primary-200));
+    outline-offset: 3px;
+}
+
+.button--hero-primary:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-md, 0 6px 20px rgba(0, 0, 0, 0.15));
+}
+
+.hero__support {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.hero__support .client-badges {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+}
+
+@media (max-width: 480px) {
+    .hero-signature-wrapper {
+        width: min(92vw, 34rem);
+    }
+
+    .button--hero-primary {
+        width: 100%;
+        font-size: var(--text-base);
+    }
 }
