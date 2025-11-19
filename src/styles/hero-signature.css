@@ -169,14 +169,17 @@
 .hero-signature-wrapper {
   position: relative;
 
-  /* ✅ SIGNATURE SIZING - Maximized */
-  width: 92vw;
-  max-width: 1600px;
-
+  /* ✅ SIGNATURE SIZING - IMMENSE & CENTERED */
+  width: min(95vw, 1800px);
   margin: 0 auto;
   padding: 0;
   height: auto !important;
   max-height: none !important;
+
+  /* ✅ Perfect centering */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .hero-signature-svg {
@@ -184,18 +187,24 @@
   width: 100%;
   height: auto;
   max-width: 100%;
-  max-height: 50vh;
+  /* ✅ REMOVED max-height constraint to let signature be HUGE */
+  min-height: 150px;
   overflow: visible;
   will-change: transform, opacity;
   backface-visibility: hidden;
   transform: none;
+
+  /* ✅ Ensure proper aspect ratio is maintained */
+  object-fit: contain;
 }
 
 .hero__baseline,
 .hero__cta {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
+  /* ✅ CRITICAL: Initial hidden state to prevent flash before GSAP animation */
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transform: translateY(20px) !important;
+  will-change: opacity, transform, visibility;
 }
 
 /* Classe d'initialisation pour masquer les paths pendant le setup JS */

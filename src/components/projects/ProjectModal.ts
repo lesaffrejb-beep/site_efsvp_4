@@ -93,47 +93,56 @@ export class ProjectModal {
       statsContainer.style.display = stats.length ? 'block' : 'none';
     }
 
-    // Gestion des media players (PRIORITÉ: vidéo > audio)
+    // ✅ GESTION MEDIA DYNAMIQUE - Approche basée sur le SLUG
+    // Priorité : Vidéo > Audio
     const audioContainer = document.getElementById('project-modal-audio');
     const videoContainer = document.getElementById('project-modal-video');
 
-    // DEBUG: Log video path checking
-    console.log('🔍 Checking video at:', project?.video?.files?.mp4 || 'No video path');
-    console.log('✅ Video found?', hasProjectVideo(project));
-    console.log('📦 Project data:', { id: project.id, video: project.video });
+    // ✅ NOUVELLE APPROCHE : Vidéo dynamique basée sur le slug
+    // Construction du chemin : /assets/videos/projects/${slug}/video.mp4
+    const slug = project.id;
+    const videoPath = `/assets/videos/projects/${slug}/video.mp4`;
 
-    // DEBUG: Force video for 'dis-moi-des-mots-d-amour' to test the player UI
-    if (project.id === 'dis-moi-des-mots-d-amour' && videoContainer) {
-      console.warn('⚠️ FORCING VIDEO DISPLAY FOR DEBUG');
-      videoContainer.style.display = 'block';
-      videoContainer.innerHTML = `<video controls width="100%" src="/assets/videos/projects/${project.id}/video.mp4"></video>`;
-      if (audioContainer) {
-        audioContainer.style.display = 'none';
-      }
-      // Skip normal video logic for this project
-    } else if (hasProjectVideo(project)) {
-      // VIDÉO : prioritaire
-      if (videoContainer) {
-        videoContainer.style.display = 'block';
-        this.currentVideoPlayer = createProjectVideoPlayer(videoContainer, project);
-      }
-      if (audioContainer) {
-        audioContainer.style.display = 'none';
-      }
-    } else if (hasProjectAudio(project)) {
-      // AUDIO : si pas de vidéo
-      if (audioContainer) {
-        audioContainer.style.display = 'block';
-        this.currentAudioPlayer = createProjectAudioPlayer(audioContainer, project);
-      }
-      if (videoContainer) {
+    if (videoContainer) {
+      // Créer un élément vidéo simple avec gestion d'erreur
+      const videoElement = document.createElement('video');
+      videoElement.className = 'project-modal__video-player';
+      videoElement.controls = true;
+      videoElement.preload = 'metadata';
+      videoElement.playsInline = true;
+      videoElement.setAttribute('aria-label', `Vidéo du projet ${project.title}`);
+
+      const sourceElement = document.createElement('source');
+      sourceElement.src = videoPath;
+      sourceElement.type = 'video/mp4';
+      videoElement.appendChild(sourceElement);
+
+      // ✅ GESTION D'ERREUR : Si la vidéo n'existe pas (404), masquer le container
+      videoElement.onerror = () => {
+        console.log(`ℹ️ Aucune vidéo trouvée pour ${slug}`);
         videoContainer.style.display = 'none';
-      }
-    } else {
-      // AUCUN MEDIA
-      if (audioContainer) audioContainer.style.display = 'none';
-      if (videoContainer) videoContainer.style.display = 'none';
+
+        // Fallback vers audio si disponible
+        if (hasProjectAudio(project) && audioContainer) {
+          audioContainer.style.display = 'block';
+          this.currentAudioPlayer = createProjectAudioPlayer(audioContainer, project);
+        }
+      };
+
+      // ✅ SUCCESS : Si la vidéo charge, afficher le container et masquer audio
+      videoElement.onloadedmetadata = () => {
+        console.log(`✅ Vidéo chargée pour ${slug}`);
+        videoContainer.style.display = 'block';
+        if (audioContainer) audioContainer.style.display = 'none';
+      };
+
+      // Injecter le player
+      videoContainer.innerHTML = '';
+      videoContainer.appendChild(videoElement);
     }
+
+    // Si pas de vidéo ET qu'on a un audio, afficher l'audio
+    // (sera géré automatiquement par le onerror du vidéo)
 
     this.modal.classList.add('active');
     this.setModalAccessibility(true);

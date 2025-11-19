@@ -156,11 +156,18 @@
   cursor: pointer;
   padding: var(--space-1);
   border-radius: var(--radius-md);
-  z-index: var(--z-modal);
+  z-index: 9999; /* ✅ Ensure toggle stays above menu overlay */
   transition: transform var(--transition-fast), opacity var(--transition-fast);
+  position: relative; /* ✅ Ensure proper stacking context */
 }
 
-@media (min-width: 768px) {
+/* ✅ Focus state for accessibility */
+.nav__toggle:focus-visible {
+  outline: 2px solid var(--color-primary-400);
+  outline-offset: 4px;
+}
+
+@media (min-width: 1024px) {
   .nav__toggle {
     display: none;
   }
@@ -188,37 +195,43 @@
 }
 
 /* ===== MOBILE MENU - AWWWARDS PREMIUM ===== */
-@media (max-width: 767px) {
+@media (max-width: 1023px) {
   .nav__menu {
     /* ✅ FULL SCREEN OVERLAY */
     position: fixed;
     inset: 0;
     z-index: 9998;
 
-    /* ✅ DARK PREMIUM BACKGROUND */
+    /* ✅ DARK PREMIUM BACKGROUND - Pure dark, no transparency */
     background: #1a1a1a;
-    backdrop-filter: blur(20px);
+    /* ✅ Optional blur for glassmorphism effect - remove if causes issues */
+    backdrop-filter: blur(8px);
 
-    /* ✅ LAYOUT - Centered */
+    /* ✅ LAYOUT - Centered vertically and horizontally */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 2rem;
+    gap: 2rem;
 
-    /* ✅ ENTRANCE STATE */
-    transform: translateY(-4%);
+    /* ✅ ENTRANCE STATE - Hidden by default */
+    transform: translateY(-3%);
     opacity: 0;
+    visibility: hidden;
     pointer-events: none;
     transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                visibility 0.4s;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .nav__menu[aria-hidden="false"],
   .nav__menu.is-active {
     transform: translateY(0);
     opacity: 1;
+    visibility: visible; /* ✅ Essential for showing menu */
     pointer-events: auto;
   }
 

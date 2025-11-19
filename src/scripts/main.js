@@ -252,17 +252,9 @@ class App {
       initHeroSignature();
     }
 
-    // FORCED ANIMATION RESET - Hero baseline & CTA
-    gsap.set([".hero__baseline", ".hero__cta"], { autoAlpha: 0, y: 30 }); // Set initial state immediately
-    gsap.to([".hero__baseline", ".hero__cta"], {
-      autoAlpha: 1,
-      y: 0,
-      duration: 1,
-      ease: "power3.out",
-      stagger: 0.15,
-      delay: 0.5,
-      clearProps: "all" // Clean up after animation
-    });
+    // ✅ REMOVED - Conflicted with hero-signature.js animation timeline
+    // The hero-signature.js module handles all hero animations via a unified timeline
+    // Including signature paths, baseline, and CTA with proper initial states in CSS
 
     // Effet glow sur le CTA hero (après injection du contenu)
     this.initHeroGlow();

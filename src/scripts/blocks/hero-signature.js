@@ -161,11 +161,12 @@ function createPremiumTimeline({ pathMeta, cta, baseline, svg }) {
     masterTL.to(
       heroTextElements,
       {
-        opacity: 1,
+        autoAlpha: 1, // ✅ autoAlpha handles both opacity AND visibility
         y: 0,
         duration: 1.2,
         ease: 'power3.out',
         stagger: 0.2,
+        clearProps: 'willChange', // ✅ Clean up will-change after animation
       },
       signatureDuration + 0.2
     );
