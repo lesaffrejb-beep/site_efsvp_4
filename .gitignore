@@ -15,3 +15,6 @@ dist/
 # Audio assets (stored locally only)
 public/assets/audio/*
 !public/assets/audio/.gitkeep
+!public/assets/audio/projects/
+public/assets/audio/projects/*
+!public/assets/audio/projects/.gitkeep

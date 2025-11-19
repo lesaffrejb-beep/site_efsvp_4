@@ -888,6 +888,8 @@ document.addEventListener('keydown', (e) => {
     const modal = document.querySelector('.modal.active');
     if (modal) {
       modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
     }
 
     const menu = document.querySelector('.nav__menu.active');

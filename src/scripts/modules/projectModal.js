@@ -9,6 +9,25 @@
 
 import { projectsBySlug } from '../../content/projects/index.js';
 
+async function checkAssetExists(path) {
+  try {
+    const response = await fetch(path, { method: 'HEAD' });
+    return response.ok;
+  } catch (error) {
+    console.warn('ProjectModal: unable to verify asset', path, error);
+    return false;
+  }
+}
+
+function getProjectCoverImage(project) {
+  if (!project?.cover) return null;
+  if (typeof project.cover === 'string') return project.cover;
+  if (typeof project.cover === 'object') {
+    return project.cover.image || project.cover.src || null;
+  }
+  return null;
+}
+
 const SECTOR_LABELS = {
   artisanat: 'Artisanat',
   btp: 'BTP',
@@ -30,6 +49,7 @@ export class ProjectModal {
     this.projectCards = [];
     this.currentProject = null;
     this.projectsData = projectsBySlug;
+    this.mediaRequestId = 0;
 
     this.init();
   }
@@ -130,6 +150,8 @@ export class ProjectModal {
     }
 
     this.currentProject = projectId;
+    this.mediaRequestId += 1;
+    const mediaRequestId = this.mediaRequestId;
 
     // Remplir le contenu
     const tagEl = document.getElementById('project-modal-tag');
@@ -138,6 +160,9 @@ export class ProjectModal {
     const descEl = document.getElementById('project-modal-description');
     const statsEl = document.getElementById('project-modal-stats');
     const statsContentEl = document.getElementById('project-modal-stats-content');
+    const visualEl = document.getElementById('project-modal-visual');
+    const videoEl = document.getElementById('project-modal-video');
+    const audioEl = document.getElementById('project-modal-audio');
 
     if (tagEl) tagEl.textContent = project.format || 'Projet';
     if (titleEl) titleEl.textContent = project.title;
@@ -161,6 +186,19 @@ export class ProjectModal {
       taglineEl.textContent = project.tagline || '';
       taglineEl.style.display = project.tagline ? 'block' : 'none';
     }
+
+    if (visualEl) {
+      const coverImage = getProjectCoverImage(project);
+      const visualImg = visualEl.querySelector('img');
+      if (coverImage && visualImg) {
+        visualImg.src = coverImage;
+        visualImg.alt = `${project.title} – ${project.location || project.client}`;
+      }
+      visualEl.dataset.hasCover = coverImage ? 'true' : 'false';
+      visualEl.style.display = coverImage ? 'block' : 'none';
+    }
+
+    this.resetMediaContainers(videoEl, audioEl);
 
     if (descEl) {
       descEl.innerHTML = '';
@@ -209,6 +247,95 @@ export class ProjectModal {
     setTimeout(() => {
       this.closeBtn?.focus();
     }, 100);
+
+    this.updateMediaAssets(project, mediaRequestId, { visualEl, videoEl, audioEl });
+  }
+
+  resetMediaContainers(videoEl, audioEl) {
+    const videoContainer = videoEl || document.getElementById('project-modal-video');
+    const audioContainer = audioEl || document.getElementById('project-modal-audio');
+
+    if (videoContainer) {
+      const existingVideo = videoContainer.querySelector('video');
+      if (existingVideo && typeof existingVideo.pause === 'function') {
+        existingVideo.pause();
+        existingVideo.currentTime = 0;
+      }
+      videoContainer.innerHTML = '';
+      videoContainer.style.display = 'none';
+    }
+
+    if (audioContainer) {
+      const existingAudio = audioContainer.querySelector('audio');
+      if (existingAudio && typeof existingAudio.pause === 'function') {
+        existingAudio.pause();
+        existingAudio.currentTime = 0;
+      }
+      audioContainer.innerHTML = '';
+      audioContainer.style.display = 'none';
+    }
+  }
+
+  async updateMediaAssets(project, requestId, containers = {}) {
+    const { visualEl = document.getElementById('project-modal-visual'), videoEl = document.getElementById('project-modal-video'), audioEl = document.getElementById('project-modal-audio') } = containers;
+
+    const slug = project.slug || project.id || this.currentProject;
+    if (!slug) {
+      return;
+    }
+
+    const mp4Path = `/assets/videos/projects/${slug}/video.mp4`;
+    const webmPath = `/assets/videos/projects/${slug}/video.webm`;
+    const audioPath = `/assets/audio/projects/${slug}/audio.mp3`;
+
+    const [mp4Exists, webmExists, audioExists] = await Promise.all([
+      checkAssetExists(mp4Path),
+      checkAssetExists(webmPath),
+      checkAssetExists(audioPath),
+    ]);
+
+    if (requestId !== this.mediaRequestId) {
+      return;
+    }
+
+    const videoSource = mp4Exists ? mp4Path : webmExists ? webmPath : null;
+    if (videoSource && videoEl) {
+      const videoElement = document.createElement('video');
+      videoElement.className = 'project-modal__video-player';
+      videoElement.controls = true;
+      videoElement.preload = 'metadata';
+      videoElement.playsInline = true;
+      videoElement.setAttribute('aria-label', `Vidéo du projet ${project.title}`);
+
+      const sourceElement = document.createElement('source');
+      sourceElement.src = videoSource;
+      sourceElement.type = `video/${mp4Exists ? 'mp4' : 'webm'}`;
+      videoElement.appendChild(sourceElement);
+
+      videoEl.innerHTML = '';
+      videoEl.appendChild(videoElement);
+      videoEl.style.display = 'block';
+
+      if (visualEl) {
+        visualEl.style.display = 'none';
+      }
+    } else if (visualEl) {
+      const hasCover = visualEl.dataset?.hasCover !== 'false';
+      visualEl.style.display = hasCover ? 'block' : 'none';
+    }
+
+    if (audioExists && audioEl) {
+      const audioElement = document.createElement('audio');
+      audioElement.className = 'project-modal__audio-player';
+      audioElement.controls = true;
+      audioElement.preload = 'metadata';
+      audioElement.src = audioPath;
+      audioElement.setAttribute('aria-label', `Audio du projet ${project.title}`);
+
+      audioEl.innerHTML = '';
+      audioEl.appendChild(audioElement);
+      audioEl.style.display = 'block';
+    }
   }
 
   buildProjectDetails(project) {
@@ -244,6 +371,7 @@ export class ProjectModal {
   }
 
   closeModal() {
+    this.resetMediaContainers();
     this.modal?.classList.remove('active');
     this.modal?.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
