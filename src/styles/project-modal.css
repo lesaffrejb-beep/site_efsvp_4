@@ -167,6 +167,37 @@
   object-fit: cover;
 }
 
+.modal-video,
+.modal-audio {
+  display: none;
+  width: 100%;
+  padding: var(--space-4);
+  background: var(--bg-secondary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.project-modal__video-player {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  background: black;
+}
+
+.project-modal__video-player:focus-visible,
+.project-modal__audio-player:focus-visible {
+  outline: 2px solid var(--color-primary-400);
+  outline-offset: 4px;
+}
+
+.project-modal__audio-player {
+  width: 100%;
+  border-radius: var(--radius-full);
+  background: var(--bg-primary);
+  padding: var(--space-2);
+}
+
 .modal-description {
   font-size: var(--text-base);
   line-height: var(--leading-relaxed);
