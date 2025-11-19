@@ -9,16 +9,6 @@
 
 import { projectsBySlug } from '../../content/projects/index.js';
 
-async function checkAssetExists(path) {
-  try {
-    const response = await fetch(path, { method: 'HEAD' });
-    return response.ok;
-  } catch (error) {
-    console.warn('ProjectModal: unable to verify asset', path, error);
-    return false;
-  }
-}
-
 function getProjectCoverImage(project) {
   if (!project?.cover) return null;
   if (typeof project.cover === 'string') return project.cover;
@@ -276,7 +266,7 @@ export class ProjectModal {
     }
   }
 
-  async updateMediaAssets(project, requestId, containers = {}) {
+  updateMediaAssets(project, requestId, containers = {}) {
     const { visualEl = document.getElementById('project-modal-visual'), videoEl = document.getElementById('project-modal-video'), audioEl = document.getElementById('project-modal-audio') } = containers;
 
     const slug = project.slug || project.id || this.currentProject;
@@ -284,32 +274,12 @@ export class ProjectModal {
       return;
     }
 
-    const mp4Path = `/assets/videos/projects/${slug}/video.mp4`;
-    const webmPath = `/assets/videos/projects/${slug}/video.webm`;
+    // Dynamic path construction based on project slug
+    const videoPath = `/assets/videos/projects/${slug}/video.mp4`;
     const audioPath = `/assets/audio/projects/${slug}/audio.mp3`;
 
-    console.log('Checking video path:', mp4Path);
-    console.log('Checking fallback video path:', webmPath);
-
-    const [mp4Exists, webmExists, audioExists] = await Promise.all([
-      checkAssetExists(mp4Path),
-      checkAssetExists(webmPath),
-      checkAssetExists(audioPath),
-    ]);
-
-    if (requestId !== this.mediaRequestId) {
-      return;
-    }
-
-    const isForceVideoProject = slug === 'dis-moi-des-mots-d-amour';
-    if (isForceVideoProject) {
-      console.warn('ProjectModal: forcing video display for debug on slug', slug);
-    }
-
-    const videoSource = mp4Exists ? mp4Path : webmExists ? webmPath : null;
-    const resolvedVideoSource = isForceVideoProject ? mp4Path : videoSource;
-
-    if (resolvedVideoSource && videoEl) {
+    // Video handling with onerror fallback
+    if (videoEl) {
       const videoElement = document.createElement('video');
       videoElement.className = 'project-modal__video-player';
       videoElement.controls = true;
@@ -318,23 +288,36 @@ export class ProjectModal {
       videoElement.setAttribute('aria-label', `Vidéo du projet ${project.title}`);
 
       const sourceElement = document.createElement('source');
-      sourceElement.src = resolvedVideoSource;
-      sourceElement.type = `video/${mp4Exists || isForceVideoProject ? 'mp4' : 'webm'}`;
+      sourceElement.src = videoPath;
+      sourceElement.type = 'video/mp4';
       videoElement.appendChild(sourceElement);
+
+      // Error handling: if video doesn't exist (404), hide container
+      videoElement.onerror = () => {
+        if (requestId !== this.mediaRequestId) return;
+        videoEl.style.display = 'none';
+        // Show visual fallback if available
+        if (visualEl) {
+          const hasCover = visualEl.dataset?.hasCover !== 'false';
+          visualEl.style.display = hasCover ? 'block' : 'none';
+        }
+      };
+
+      // On successful load, hide visual and show video
+      videoElement.onloadedmetadata = () => {
+        if (requestId !== this.mediaRequestId) return;
+        videoEl.style.display = 'block';
+        if (visualEl) {
+          visualEl.style.display = 'none';
+        }
+      };
 
       videoEl.innerHTML = '';
       videoEl.appendChild(videoElement);
-      videoEl.style.display = 'block';
-
-      if (visualEl) {
-        visualEl.style.display = 'none';
-      }
-    } else if (visualEl) {
-      const hasCover = visualEl.dataset?.hasCover !== 'false';
-      visualEl.style.display = hasCover ? 'block' : 'none';
     }
 
-    if (audioExists && audioEl) {
+    // Audio handling with onerror fallback
+    if (audioEl) {
       const audioElement = document.createElement('audio');
       audioElement.className = 'project-modal__audio-player';
       audioElement.controls = true;
@@ -342,9 +325,20 @@ export class ProjectModal {
       audioElement.src = audioPath;
       audioElement.setAttribute('aria-label', `Audio du projet ${project.title}`);
 
+      // Error handling: if audio doesn't exist (404), hide container
+      audioElement.onerror = () => {
+        if (requestId !== this.mediaRequestId) return;
+        audioEl.style.display = 'none';
+      };
+
+      // On successful load, show audio player
+      audioElement.onloadedmetadata = () => {
+        if (requestId !== this.mediaRequestId) return;
+        audioEl.style.display = 'block';
+      };
+
       audioEl.innerHTML = '';
       audioEl.appendChild(audioElement);
-      audioEl.style.display = 'block';
     }
   }
 

@@ -193,10 +193,10 @@
     /* ✅ FULL SCREEN OVERLAY */
     position: fixed;
     inset: 0;
-    z-index: 90;
+    z-index: 9998;
 
     /* ✅ DARK PREMIUM BACKGROUND */
-    background: var(--color-bg-dark, #2B3945);
+    background: #1a1a1a;
     backdrop-filter: blur(20px);
 
     /* ✅ LAYOUT - Centered */

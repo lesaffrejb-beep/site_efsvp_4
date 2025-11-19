@@ -169,9 +169,9 @@
 .hero-signature-wrapper {
   position: relative;
 
-  /* ✅ SIGNATURE SIZING - Make it HUGE */
-  width: 90%;
-  max-width: 1400px;
+  /* ✅ SIGNATURE SIZING - Maximized */
+  width: 92vw;
+  max-width: 1600px;
 
   margin: 0 auto;
   padding: 0;
@@ -194,6 +194,7 @@
 .hero__baseline,
 .hero__cta {
   opacity: 0;
+  visibility: hidden;
   transform: translateY(20px);
 }
 
