@@ -14,6 +14,9 @@ export class ProjectModal {
   private triggerElement: HTMLElement | null = null;
   private previousBodyOverflow = '';
   private lenisWasActive = false; // ✅ Track if Lenis was active before opening modal
+  private wheelHandler: ((e: WheelEvent) => void) | null = null;
+  private touchHandler: ((e: TouchEvent) => void) | null = null;
+  private lastTouchY = 0;
 
   constructor() {
     this.modal = document.getElementById('project-modal');
@@ -115,6 +118,11 @@ export class ProjectModal {
         console.log('🔒 ProjectModal: Lenis stopped to allow modal scroll');
       }
     }
+
+    // ✅ CRITICAL FIX: Force modal scroll with high-priority listeners
+    // Even after lenis.stop(), Lenis keeps listeners that can block scroll
+    // This ensures scroll works by intercepting events BEFORE Lenis
+    this.enableModalScroll();
   }
 
   close() {
@@ -126,6 +134,9 @@ export class ProjectModal {
     this.setModalAccessibility(false);
     document.removeEventListener('keydown', this.keydownHandler);
     document.body.style.overflow = this.previousBodyOverflow;
+
+    // ✅ CRITICAL FIX: Remove forced scroll handlers
+    this.disableModalScroll();
 
     // ✅ CRITICAL FIX: Restart Lenis smooth scroll after modal closes
     // Only restart if it was active before opening the modal
@@ -363,6 +374,90 @@ export class ProjectModal {
     } else if (document.activeElement === last) {
       event.preventDefault();
       first.focus();
+    }
+  }
+
+  /**
+   * ✅ CRITICAL FIX: Force modal scroll even when Lenis is blocking events
+   * Attaches high-priority listeners in CAPTURE phase to intercept wheel/touch
+   * before Lenis can block them. This ensures modal scroll works on desktop + mobile.
+   */
+  private enableModalScroll() {
+    if (!this.modal) return;
+
+    // Force scroll on wheel events (desktop)
+    this.wheelHandler = (e: WheelEvent) => {
+      if (!this.modal?.classList.contains('active')) return;
+
+      // Only handle if event target is within modal content
+      const target = e.target as Node;
+      if (!this.modal.contains(target)) return;
+
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Apply scroll delta directly to modal
+      this.modal.scrollTop += e.deltaY;
+
+      if (import.meta.env.DEV) {
+        console.log('🎯 Forced modal scroll (wheel):', e.deltaY, '→ scrollTop:', this.modal.scrollTop);
+      }
+    };
+
+    // Force scroll on touch events (mobile)
+    this.touchHandler = (e: TouchEvent) => {
+      if (!this.modal?.classList.contains('active')) return;
+
+      const target = e.target as Node;
+      if (!this.modal.contains(target)) return;
+
+      if (e.type === 'touchstart') {
+        this.lastTouchY = e.touches[0].clientY;
+      } else if (e.type === 'touchmove') {
+        const touch = e.touches[0];
+        const deltaY = this.lastTouchY - touch.clientY;
+        this.modal.scrollTop += deltaY;
+        this.lastTouchY = touch.clientY;
+
+        // Prevent default to stop Lenis from interfering
+        if (Math.abs(deltaY) > 1) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+
+        if (import.meta.env.DEV) {
+          console.log('🎯 Forced modal scroll (touch):', deltaY, '→ scrollTop:', this.modal.scrollTop);
+        }
+      }
+    };
+
+    // Attach in CAPTURE phase with passive: false to intercept before Lenis
+    window.addEventListener('wheel', this.wheelHandler, { capture: true, passive: false });
+    window.addEventListener('touchstart', this.touchHandler, { capture: true, passive: true });
+    window.addEventListener('touchmove', this.touchHandler, { capture: true, passive: false });
+
+    if (import.meta.env.DEV) {
+      console.log('🔧 ProjectModal: Forced scroll handlers attached');
+    }
+  }
+
+  /**
+   * Remove forced scroll handlers when modal closes
+   */
+  private disableModalScroll() {
+    if (this.wheelHandler) {
+      window.removeEventListener('wheel', this.wheelHandler, { capture: true } as any);
+      this.wheelHandler = null;
+    }
+
+    if (this.touchHandler) {
+      window.removeEventListener('touchstart', this.touchHandler, { capture: true } as any);
+      window.removeEventListener('touchmove', this.touchHandler, { capture: true } as any);
+      this.touchHandler = null;
+    }
+
+    if (import.meta.env.DEV) {
+      console.log('🔧 ProjectModal: Forced scroll handlers removed');
     }
   }
 }

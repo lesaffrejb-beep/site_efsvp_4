@@ -312,7 +312,14 @@
     "media": {
       "coverImage": "/assets/images/projects/dis-moi-des-mots-d-amour/cover.webp",
       "gallery": [],
-      "video": null,
+      "video": {
+        "enabled": true,
+        "files": {
+          "mp4": "/assets/videos/projects/dis-moi-des-mots-d-amour/video.mp4"
+        },
+        "duration": 0,
+        "poster": "/assets/images/projects/dis-moi-des-mots-d-amour/cover_dis_moi_des_mots_damour.webp"
+      },
       "audio": null
     },
     "slug": "dis-moi-des-mots-d-amour",
@@ -320,7 +327,15 @@
       "bande-son de spectacle",
       "santé & ALD"
     ],
-    "hasVideo": false,
+    "video": {
+      "enabled": true,
+      "files": {
+        "mp4": "/assets/videos/projects/dis-moi-des-mots-d-amour/video.mp4"
+      },
+      "duration": 0,
+      "poster": "/assets/images/projects/dis-moi-des-mots-d-amour/cover_dis_moi_des_mots_damour.webp"
+    },
+    "hasVideo": true,
     "hasAudio": false
   },
   {
