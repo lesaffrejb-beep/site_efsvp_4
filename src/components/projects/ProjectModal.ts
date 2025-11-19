@@ -42,6 +42,8 @@ export class ProjectModal {
     const statsContainer = document.getElementById('project-modal-stats');
     const statsGrid = document.getElementById('project-modal-stats-content');
     const visualContainer = document.getElementById('project-modal-visual');
+    const videoContainer = document.getElementById('project-modal-video');
+    const audioContainer = document.getElementById('project-modal-audio');
     const visualImage = visualContainer?.querySelector('img');
 
     if (tagEl) tagEl.textContent = project.category;
@@ -86,60 +88,8 @@ export class ProjectModal {
       statsContainer.style.display = stats.length ? 'block' : 'none';
     }
 
-    // ✅ NOUVELLE LOGIQUE : VIDÉO REMPLACE L'IMAGE DANS LE CONTAINER VISUEL
-    // Stratégie : Tenter de charger la vidéo → Si succès : remplacer l'image | Si échec : garder l'image
-    const slug = project.id;
-    const videoPath = `/assets/videos/projects/${slug}/video.mp4`;
-    const audioContainer = document.getElementById('project-modal-audio');
-
-    if (visualContainer) {
-      // Créer un élément vidéo de test
-      const videoEl = document.createElement('video');
-      videoEl.className = 'project-modal__visual-video';
-      videoEl.src = videoPath;
-      videoEl.controls = true;
-      videoEl.playsInline = true;
-      videoEl.preload = 'metadata';
-      videoEl.setAttribute('aria-label', `Vidéo du projet ${project.title}`);
-
-      // ✅ SUCCESS : Si la vidéo charge → remplacer l'image par la vidéo
-      videoEl.onloadedmetadata = () => {
-        console.log(`✅ Vidéo trouvée pour "${project.title}" (${slug}), remplacement de l'image`);
-        visualContainer.innerHTML = '';
-        visualContainer.appendChild(videoEl);
-        visualContainer.style.display = 'block';
-
-        // Masquer audio si présent (priorité à la vidéo)
-        if (audioContainer) audioContainer.style.display = 'none';
-      };
-
-      // ✅ FALLBACK : Si la vidéo échoue → afficher l'image
-      videoEl.onerror = () => {
-        console.log(`ℹ️ Aucune vidéo pour "${project.title}" (${slug}), utilisation de l'image`);
-
-        // Afficher l'image (fallback)
-        if (project.coverSrc) {
-          visualContainer.innerHTML = '';
-          const imgEl = document.createElement('img');
-          imgEl.src = project.coverSrc;
-          imgEl.alt = `${project.title} – ${project.location}`;
-          visualContainer.appendChild(imgEl);
-          visualContainer.style.display = 'block';
-        } else {
-          visualContainer.style.display = 'none';
-        }
-
-        // Afficher audio si disponible (uniquement si pas de vidéo)
-        if (hasProjectAudio(project) && audioContainer) {
-          audioContainer.style.display = 'block';
-          this.currentAudioPlayer = createProjectAudioPlayer(audioContainer, project);
-        }
-      };
-
-      // Déclencher le chargement en injectant l'élément vidéo
-      visualContainer.innerHTML = '';
-      visualContainer.appendChild(videoEl);
-    }
+    this.destroyCurrentMediaPlayers();
+    this.setupProjectMedia({ project, visualContainer, visualImage, videoContainer, audioContainer });
 
     this.modal.classList.add('active');
     this.setModalAccessibility(true);
@@ -169,17 +119,7 @@ export class ProjectModal {
   close() {
     if (!this.modal) return;
 
-    // Détruire l'audio player s'il existe
-    if (this.currentAudioPlayer) {
-      destroyProjectAudioPlayer(this.currentAudioPlayer);
-      this.currentAudioPlayer = null;
-    }
-
-    // Détruire le video player s'il existe
-    if (this.currentVideoPlayer) {
-      destroyProjectVideoPlayer(this.currentVideoPlayer);
-      this.currentVideoPlayer = null;
-    }
+    this.destroyCurrentMediaPlayers();
 
     this.modal.classList.remove('active');
     this.setModalAccessibility(false);
@@ -203,6 +143,107 @@ export class ProjectModal {
       this.triggerElement.focus();
     }
     this.triggerElement = null;
+  }
+
+  private destroyCurrentMediaPlayers() {
+    if (this.currentAudioPlayer) {
+      destroyProjectAudioPlayer(this.currentAudioPlayer);
+      this.currentAudioPlayer = null;
+    }
+
+    if (this.currentVideoPlayer) {
+      destroyProjectVideoPlayer(this.currentVideoPlayer);
+      this.currentVideoPlayer = null;
+    }
+  }
+
+  private setupProjectMedia({
+    project,
+    visualContainer,
+    visualImage,
+    videoContainer,
+    audioContainer,
+  }: {
+    project: Project;
+    visualContainer: HTMLElement | null;
+    visualImage: HTMLImageElement | null | undefined;
+    videoContainer: HTMLElement | null;
+    audioContainer: HTMLElement | null;
+  }) {
+    let visualEl = visualImage ?? null;
+
+    if (visualContainer && project.coverSrc) {
+      if (!visualEl) {
+        visualEl = document.createElement('img');
+        visualEl.loading = 'lazy';
+        visualContainer.innerHTML = '';
+        visualContainer.appendChild(visualEl);
+      }
+
+      const altParts = [project.title, project.location].filter(Boolean).join(' – ');
+      visualEl.src = project.coverSrc;
+      visualEl.alt = altParts || project.title;
+      visualContainer.style.display = 'block';
+      visualContainer.removeAttribute('aria-hidden');
+    } else if (visualContainer) {
+      visualContainer.style.display = 'none';
+      visualContainer.setAttribute('aria-hidden', 'true');
+    }
+
+    if (videoContainer) {
+      videoContainer.style.display = 'none';
+      videoContainer.innerHTML = '';
+    }
+    if (audioContainer) {
+      audioContainer.style.display = 'none';
+      audioContainer.innerHTML = '';
+    }
+
+    if (videoContainer && hasProjectVideo(project)) {
+      visualContainer?.setAttribute('aria-hidden', 'true');
+      if (visualContainer) {
+        visualContainer.style.display = 'none';
+      }
+
+      videoContainer.style.display = 'block';
+      this.currentVideoPlayer = createProjectVideoPlayer(videoContainer, project);
+
+      if (!this.currentVideoPlayer) {
+        videoContainer.style.display = 'none';
+        this.renderVisualFallback(visualContainer, project);
+      } else {
+        return; // Priorité à la vidéo, ne pas initialiser l'audio
+      }
+    }
+
+    if (audioContainer && hasProjectAudio(project)) {
+      audioContainer.style.display = 'block';
+      this.currentAudioPlayer = createProjectAudioPlayer(audioContainer, project);
+    }
+  }
+
+  private renderVisualFallback(visualContainer: HTMLElement | null, project: Project) {
+    if (!visualContainer || !project.coverSrc) {
+      if (visualContainer) {
+        visualContainer.style.display = 'none';
+        visualContainer.setAttribute('aria-hidden', 'true');
+      }
+      return;
+    }
+
+    let visualImage = visualContainer.querySelector('img');
+    if (!visualImage) {
+      visualImage = document.createElement('img');
+      visualImage.loading = 'lazy';
+      visualContainer.innerHTML = '';
+      visualContainer.appendChild(visualImage);
+    }
+
+    const altParts = [project.title, project.location].filter(Boolean).join(' – ');
+    visualImage.src = project.coverSrc;
+    visualImage.alt = altParts || project.title;
+    visualContainer.style.display = 'block';
+    visualContainer.removeAttribute('aria-hidden');
   }
 
   private setModalAccessibility(isOpen: boolean) {

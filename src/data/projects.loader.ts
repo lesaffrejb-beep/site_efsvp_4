@@ -53,15 +53,32 @@ function sanitizeProjectsData() {
   });
 }
 
+function resolveProjectVideo(slug: string, fallback?: string | null): string | null {
+  const candidateVideos = [
+    `/assets/videos/projects/${slug}/teaser.mp4`,
+    `/assets/videos/projects/${slug}/video.mp4`,
+  ];
+
+  const directMatch = candidateVideos.find((path) => assetExists(path));
+  if (directMatch) {
+    return directMatch;
+  }
+
+  const autoDetected = findAssetByPrefix(`/assets/videos/projects/${slug}/`);
+  if (autoDetected && autoDetected.endsWith('.mp4')) {
+    return autoDetected;
+  }
+
+  return fallback ?? null;
+}
+
 function normalizeProjectMedia(project: Project): Project {
   const slug = project.slug || project.id;
   const coverPath = `/assets/images/projects/${slug}/cover.webp`;
   const resolvedCoverSrc = project.coverSrc || findAssetByPrefix(`/assets/images/projects/${slug}/cover`) || project.cover.image || '';
   const resolvedThumbnailSrc = project.thumbnailSrc || findAssetByPrefix(`/assets/images/projects/${slug}/thumb`) || resolvedCoverSrc;
   const gallery = project.media?.gallery?.length ? project.media.gallery : collectGallery(slug);
-  const videoPath = assetExists(`/assets/videos/projects/${slug}/teaser.mp4`)
-    ? `/assets/videos/projects/${slug}/teaser.mp4`
-    : project.media?.video;
+  const videoPath = resolveProjectVideo(slug, project.media?.video ?? project.video?.files?.mp4 ?? null);
   const audioPath = assetExists(`/assets/audio/projects/${slug}/extrait-01.mp3`)
     ? `/assets/audio/projects/${slug}/extrait-01.mp3`
     : project.media?.audio;
