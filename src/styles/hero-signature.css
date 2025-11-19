@@ -81,7 +81,7 @@
    ======================================== */
 
 .hero.hero--signature {
-  min-height: calc(100vh - var(--header-height));
+  min-height: 100svh;
   height: auto;
   max-height: none;
   display: flex;
@@ -102,8 +102,9 @@
   margin: 0 auto;
   position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
   gap: var(--space-6);
   text-align: center;
 }
