@@ -3433,6 +3433,7 @@ button {
   font-size: var(--text-base);
   color: var(--text-secondary);
   line-height: var(--leading-relaxed);
+  flex-grow: 1;
 }
 
 .project-card__tags {
