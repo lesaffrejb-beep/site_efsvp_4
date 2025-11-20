@@ -9,7 +9,12 @@ export class ProjectModal {
   private focusableElements: HTMLElement[] = [];
   private keydownHandler: (event: KeyboardEvent) => void;
   private triggerElement: HTMLElement | null = null;
+  private lenisWasActive = false;
   private previousBodyOverflow = '';
+  private previousBodyPosition = '';
+  private previousBodyTop = '';
+  private previousBodyWidth = '';
+  private savedScrollY = 0;
 
   constructor() {
     this.modal = document.getElementById('project-modal');
@@ -42,7 +47,26 @@ export class ProjectModal {
     }
 
     this.triggerElement = triggerElement || (document.activeElement as HTMLElement | null);
+
+    this.savedScrollY = window.scrollY || window.pageYOffset || 0;
+
     this.previousBodyOverflow = document.body.style.overflow;
+    this.previousBodyPosition = document.body.style.position;
+    this.previousBodyTop = document.body.style.top;
+    this.previousBodyWidth = document.body.style.width;
+
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${this.savedScrollY}px`;
+    document.body.style.width = '100%';
+
+    const lenis = (window as any).lenis;
+    if (lenis && typeof lenis.stop === 'function') {
+      this.lenisWasActive = true;
+      lenis.stop();
+    } else {
+      this.lenisWasActive = false;
+    }
 
     const tagEl = document.getElementById('project-modal-tag');
     const titleEl = document.getElementById('project-modal-title');
@@ -110,8 +134,6 @@ export class ProjectModal {
     }
 
     document.addEventListener('keydown', this.keydownHandler);
-
-    document.body.style.overflow = 'hidden';
   }
 
   close() {
@@ -124,6 +146,17 @@ export class ProjectModal {
     document.removeEventListener('keydown', this.keydownHandler);
 
     document.body.style.overflow = this.previousBodyOverflow;
+    document.body.style.position = this.previousBodyPosition;
+    document.body.style.top = this.previousBodyTop;
+    document.body.style.width = this.previousBodyWidth;
+
+    window.scrollTo(0, this.savedScrollY || 0);
+
+    const lenis = (window as any).lenis;
+    if (this.lenisWasActive && lenis && typeof lenis.start === 'function') {
+      lenis.start();
+    }
+    this.lenisWasActive = false;
 
     if (this.triggerElement) {
       this.triggerElement.focus();
