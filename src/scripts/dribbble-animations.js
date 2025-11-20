@@ -89,9 +89,22 @@ const initSmoothScroll = () => {
         // Fermer le menu mobile si ouvert
         const navMenu = document.getElementById('nav-menu');
         const navToggle = document.getElementById('nav-toggle');
+        const navOverlay = document.querySelector('[data-nav-overlay]');
         if (navMenu && navMenu.classList.contains('nav__menu--open')) {
           navMenu.classList.remove('nav__menu--open');
           navToggle?.setAttribute('aria-expanded', 'false');
+          navOverlay?.classList.remove('nav__overlay--visible');
+
+          // Fallback scroll restore if nav menu was locking the body
+          const lockedOffset = parseInt(document.body.style.top || '0', 10);
+          document.body.classList.remove('nav--open');
+          document.body.style.position = '';
+          document.body.style.top = '';
+          document.body.style.width = '';
+
+          if (!Number.isNaN(lockedOffset) && lockedOffset !== 0) {
+            window.scrollTo(0, Math.abs(lockedOffset));
+          }
         }
       }
     });

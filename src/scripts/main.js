@@ -780,12 +780,5 @@ document.addEventListener('keydown', (e) => {
       modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     }
-
-    const menu = document.querySelector('.nav__menu.active');
-    if (menu) {
-      document.getElementById('nav-toggle')?.setAttribute('aria-expanded', 'false');
-      menu.classList.remove('active');
-      document.body.style.overflow = '';
-    }
   }
 });
