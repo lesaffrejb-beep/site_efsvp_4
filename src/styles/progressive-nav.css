@@ -220,17 +220,15 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    /* ✅ FIX: Removed visibility from transition to avoid CSS/JS conflicts */
-    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-                transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    /* ✅ FIX: No CSS transition - GSAP handles all animations for smooth control */
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
 
   .nav__menu[aria-hidden="false"],
   .nav__menu.is-active {
-    transform: translateY(0);
-    opacity: 1;
+    /* ✅ GSAP will handle transform and opacity animations */
+    /* CSS just defines the final state */
     visibility: visible; /* ✅ Essential for showing menu */
     pointer-events: auto;
   }
