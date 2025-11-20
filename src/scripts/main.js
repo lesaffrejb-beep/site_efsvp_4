@@ -469,9 +469,39 @@ class App {
       const closeMenu = () => {
         navToggle.setAttribute('aria-expanded', 'false');
         navToggle.setAttribute('aria-label', 'Ouvrir le menu');
-        navMenu.classList.remove('active', 'is-active');
-        syncMenuAccessibility(false);
-        navOverlay?.classList.remove('is-active');
+
+        // ✅ GSAP EXIT ANIMATION - Smooth fade out
+        gsap.to(navMenu, {
+          opacity: 0,
+          duration: 0.3,
+          ease: 'power2.in',
+          onComplete: () => {
+            navMenu.classList.remove('active', 'is-active');
+            syncMenuAccessibility(false);
+            gsap.set(navMenu, { visibility: 'hidden' });
+          }
+        });
+
+        gsap.to('.nav__item', {
+          y: 30,
+          opacity: 0,
+          duration: 0.3,
+          stagger: 0.05,
+          ease: 'power2.in'
+        });
+
+        // Animate overlay fade out
+        if (navOverlay) {
+          gsap.to(navOverlay, {
+            opacity: 0,
+            duration: 0.3,
+            ease: 'power2.in',
+            onComplete: () => {
+              navOverlay.classList.remove('is-active');
+            }
+          });
+        }
+
         document.body.classList.remove('menu-open');
         document.body.style.overflow = '';
       };
@@ -481,7 +511,6 @@ class App {
         navToggle.setAttribute('aria-label', 'Fermer le menu');
         navMenu.classList.add('is-active');
         syncMenuAccessibility(true);
-        navOverlay?.classList.add('is-active');
         document.body.classList.add('menu-open');
         document.body.style.overflow = 'hidden';
 
@@ -491,6 +520,15 @@ class App {
         gsap.set('.nav__item', { y: 50, opacity: 0 });
 
         // Animate overlay fade in
+        if (navOverlay) {
+          navOverlay.classList.add('is-active');
+          gsap.fromTo(navOverlay,
+            { opacity: 0 },
+            { opacity: 1, duration: 0.3, ease: 'power2.out' }
+          );
+        }
+
+        // Animate menu fade in
         gsap.to(navMenu, {
           opacity: 1,
           duration: 0.4,

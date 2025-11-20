@@ -15,10 +15,8 @@ export class ProjectModal {
   private triggerElement: HTMLElement | null = null;
   private previousBodyOverflow = '';
   private lenisWasActive = false; // ✅ Track if Lenis was active before opening modal
-  private preventBackgroundScrollHandler: (event: Event) => void;
 
   constructor() {
-    this.preventBackgroundScrollHandler = (event: Event) => this.handlePreventBackgroundScroll(event);
     this.modal = document.getElementById('project-modal');
     this.closeButton = document.getElementById('project-modal-close');
     this.overlay = this.modal?.querySelector('.modal-overlay') as HTMLElement | null;
@@ -128,18 +126,8 @@ export class ProjectModal {
       devLog('🔒 ProjectModal: Lenis stopped to allow modal scroll');
     }
 
-    // ✅ FALLBACK: Si Lenis n'est pas défini, appliquer overflow hidden + prevent scroll handlers
-    // Ajouter un handler robuste pour bloquer le scroll du fond sur desktop
+    // ✅ SIMPLIFIED: Just block body scroll - modal handles its own scrolling
     document.body.style.overflow = 'hidden';
-
-    // Attacher les handlers pour empêcher le scroll de fond (wheel + touchmove)
-    // passive: false permet d'appeler preventDefault()
-    document.addEventListener('wheel', this.preventBackgroundScrollHandler, { passive: false });
-    document.addEventListener('touchmove', this.preventBackgroundScrollHandler, { passive: false });
-
-    if (!lenis) {
-      devLog('🔒 ProjectModal: Fallback scroll prevention active (Lenis not found)');
-    }
   }
 
   close() {
@@ -150,10 +138,6 @@ export class ProjectModal {
     this.modal.classList.remove('active');
     this.setModalAccessibility(false);
     document.removeEventListener('keydown', this.keydownHandler);
-
-    // ✅ Retirer les handlers de prévention du scroll de fond
-    document.removeEventListener('wheel', this.preventBackgroundScrollHandler);
-    document.removeEventListener('touchmove', this.preventBackgroundScrollHandler);
 
     // ✅ Restaurer l'overflow du body
     document.body.style.overflow = this.previousBodyOverflow;
@@ -393,26 +377,5 @@ export class ProjectModal {
       event.preventDefault();
       first.focus();
     }
-  }
-
-  /**
-   * ✅ Handler pour empêcher le scroll de fond pendant que la modal est ouverte
-   * Laisse passer le scroll si l'event vient de l'intérieur de la modal
-   * Sinon, bloque le scroll pour éviter que le fond ne défile
-   */
-  private handlePreventBackgroundScroll(event: Event) {
-    if (!this.modal?.classList.contains('active')) return;
-
-    const target = event.target as HTMLElement | null;
-    if (!target) return;
-
-    // ✅ FIX: Use closest() for more robust detection
-    // If the event originated inside the modal, allow it
-    if (target.closest('.project-modal')) {
-      return;
-    }
-
-    // Otherwise, prevent background scroll
-    event.preventDefault();
   }
 }

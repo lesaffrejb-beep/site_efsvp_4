@@ -16,7 +16,21 @@ import { gsap } from 'gsap';
  */
 export function createProjectVideoPlayer(container, project) {
   if (!project?.video?.enabled || !project?.video?.files?.mp4) {
+    if (import.meta.env.DEV) {
+      console.log('[ProjectVideoPlayer] Video not available:', {
+        enabled: project?.video?.enabled,
+        hasMp4: !!project?.video?.files?.mp4,
+        projectSlug: project?.slug
+      });
+    }
     return null;
+  }
+
+  if (import.meta.env.DEV) {
+    console.log('[ProjectVideoPlayer] Initializing for:', {
+      slug: project.slug,
+      videoPath: project.video.files.mp4
+    });
   }
 
   // Render le HTML du player
@@ -25,7 +39,7 @@ export function createProjectVideoPlayer(container, project) {
   // Initialise le player
   const videoElement = container.querySelector(`#video-${project.id}`);
   if (!videoElement) {
-    console.error('[ProjectVideoPlayer] Video element not found');
+    console.error('[ProjectVideoPlayer] Video element not found after render');
     return null;
   }
 
@@ -34,7 +48,7 @@ export function createProjectVideoPlayer(container, project) {
     return playerInstance;
   } catch (error) {
     console.error('[ProjectVideoPlayer] Initialization error:', error);
-    showVideoError(container);
+    showVideoError(container, project);
     return null;
   }
 }
@@ -163,7 +177,7 @@ function initVideoPlayer(container, videoElement, project) {
   attachVideoControls(container, playerInstance, project);
 
   // Gestion des events vidéo
-  setupVideoEvents(container, playerInstance);
+  setupVideoEvents(container, playerInstance, project);
 
   // Autoplay si demandé
   if (video.autoplay) {
@@ -293,7 +307,7 @@ function attachVideoControls(container, playerInstance, _project) {
 /**
  * Setup video events
  */
-function setupVideoEvents(container, playerInstance) {
+function setupVideoEvents(container, playerInstance, project) {
   const { video } = playerInstance;
   const playBtn = container.querySelector('[data-play-btn]');
   const currentTimeEl = container.querySelector('[data-current-time]');
@@ -374,10 +388,29 @@ function setupVideoEvents(container, playerInstance) {
   });
 
   video.addEventListener('error', (e) => {
-    console.error('[ProjectVideoPlayer] Video error:', e);
+    const errorDetails = {
+      code: video.error?.code,
+      message: video.error?.message,
+      src: video.currentSrc || video.src,
+      networkState: video.networkState,
+      readyState: video.readyState
+    };
+
+    console.error('[ProjectVideoPlayer] Video loading error:', errorDetails);
+
+    if (import.meta.env.DEV) {
+      const errorMessages = {
+        1: 'MEDIA_ERR_ABORTED - Chargement abandonné par l\'utilisateur',
+        2: 'MEDIA_ERR_NETWORK - Erreur réseau lors du chargement',
+        3: 'MEDIA_ERR_DECODE - Erreur de décodage de la vidéo',
+        4: 'MEDIA_ERR_SRC_NOT_SUPPORTED - Format non supporté ou fichier introuvable'
+      };
+      console.error('Détails:', errorMessages[video.error?.code] || 'Erreur inconnue');
+    }
+
     hideLoading();
-    container.dispatchEvent(new CustomEvent('project-video-error', { detail: { error: e }, bubbles: true }));
-    showVideoError(container);
+    container.dispatchEvent(new CustomEvent('project-video-error', { detail: { error: e, ...errorDetails }, bubbles: true }));
+    showVideoError(container, project);
   });
 }
 
@@ -503,7 +536,7 @@ function showOverlay(overlay) {
 /**
  * Affiche une erreur vidéo
  */
-function showVideoError(container) {
+function showVideoError(container, project) {
   const target =
     container?.classList?.contains('video-player')
       ? container
@@ -511,16 +544,35 @@ function showVideoError(container) {
 
   if (!target) return;
 
+  const debugInfo = import.meta.env.DEV && project
+    ? `<small style="color: #999; font-size: 0.875rem; margin-top: 0.5rem;">DEV: Projet "${project.slug}" - Vidéo: ${project.video?.files?.mp4 || 'non définie'}</small>`
+    : '';
+
   target.innerHTML = `
-    <div class="video-player__error">
-      <svg class="video-player__error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <div class="video-player__error" style="
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+      text-align: center;
+      background: rgba(0,0,0,0.05);
+      border-radius: 1rem;
+      min-height: 200px;
+    ">
+      <svg class="video-player__error-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width: 48px; height: 48px; color: #999; margin-bottom: 1rem;">
         <circle cx="12" cy="12" r="10"></circle>
         <line x1="12" y1="8" x2="12" y2="12"></line>
         <line x1="12" y1="16" x2="12.01" y2="16"></line>
       </svg>
-      <span class="video-player__error-text">Impossible de charger la vidéo</span>
+      <span class="video-player__error-text" style="color: #666; font-size: 1rem;">Impossible de charger la vidéo</span>
+      ${debugInfo}
     </div>
   `;
+
+  if (import.meta.env.DEV) {
+    console.warn('[ProjectVideoPlayer] Affichage de l\'erreur vidéo pour:', project?.slug);
+  }
 }
 
 /**
