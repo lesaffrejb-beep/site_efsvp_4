@@ -9,7 +9,8 @@ import { createProjectAudioPlayer, hasProjectAudio, destroyProjectAudioPlayer } 
  * - The modal renders these normalized Project objects: details + cover image by default,
  *   optional HTML5 video/audio players only when the loader confirmed a real asset.
  * - Opening locks the background scroll (and Lenis if present), focuses the modal, and scrolls
- *   only inside .project-modal. Closing restores body styles and the exact previous scroll offset.
+ *   only inside .project-modal. Closing removes the lock class and restores the exact previous
+ *   scroll offset.
  */
 
 export class ProjectModal {
@@ -21,10 +22,6 @@ export class ProjectModal {
   private keydownHandler: (event: KeyboardEvent) => void;
   private triggerElement: HTMLElement | null = null;
   private lenisWasActive = false;
-  private previousBodyOverflow = '';
-  private previousBodyPosition = '';
-  private previousBodyTop = '';
-  private previousBodyWidth = '';
   private savedScrollY = 0;
 
   constructor() {
@@ -59,18 +56,10 @@ export class ProjectModal {
 
     this.triggerElement = triggerElement || (document.activeElement as HTMLElement | null);
 
+    // Sauvegarde de la position de scroll actuelle
     this.savedScrollY = window.scrollY || window.pageYOffset || 0;
 
-    this.previousBodyOverflow = document.body.style.overflow;
-    this.previousBodyPosition = document.body.style.position;
-    this.previousBodyTop = document.body.style.top;
-    this.previousBodyWidth = document.body.style.width;
-
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${this.savedScrollY}px`;
-    document.body.style.width = '100%';
-
+    // Gestion Lenis
     const lenis = (window as any).lenis;
     if (lenis && typeof lenis.stop === 'function') {
       this.lenisWasActive = true;
@@ -78,6 +67,9 @@ export class ProjectModal {
     } else {
       this.lenisWasActive = false;
     }
+
+    // Lock scroll via une classe sur le body
+    document.body.classList.add('project-modal-open');
 
     const tagEl = document.getElementById('project-modal-tag');
     const titleEl = document.getElementById('project-modal-title');
@@ -150,24 +142,33 @@ export class ProjectModal {
   close() {
     if (!this.modal) return;
 
+    // Retirer le lock CSS
+    document.body.classList.remove('project-modal-open');
+
+    // Restaure le scroll global
+    const lenis = (window as any).lenis;
+    if (this.lenisWasActive && lenis && typeof lenis.start === 'function') {
+      this.lenisWasActive = false;
+      // Lenis a souvent sa propre API de scrollTo. Utilise-la si dispo.
+      if (typeof lenis.scrollTo === 'function') {
+        lenis.start();
+        lenis.scrollTo(this.savedScrollY, { immediate: true });
+      } else {
+        lenis.start();
+        window.scrollTo(0, this.savedScrollY || 0);
+      }
+    } else {
+      // Pas de Lenis → on utilise le scroll natif
+      window.scrollTo(0, this.savedScrollY || 0);
+    }
+
+    this.lenisWasActive = false;
+
     this.destroyCurrentMediaPlayers();
 
     this.modal.classList.remove('active');
     this.setModalAccessibility(false);
     document.removeEventListener('keydown', this.keydownHandler);
-
-    document.body.style.overflow = this.previousBodyOverflow;
-    document.body.style.position = this.previousBodyPosition;
-    document.body.style.top = this.previousBodyTop;
-    document.body.style.width = this.previousBodyWidth;
-
-    window.scrollTo(0, this.savedScrollY || 0);
-
-    const lenis = (window as any).lenis;
-    if (this.lenisWasActive && lenis && typeof lenis.start === 'function') {
-      lenis.start();
-    }
-    this.lenisWasActive = false;
 
     if (this.triggerElement) {
       this.triggerElement.focus();

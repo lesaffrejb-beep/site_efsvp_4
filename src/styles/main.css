@@ -251,6 +251,12 @@ body {
   overflow-x: hidden;
 }
 
+body.project-modal-open {
+  overflow: hidden;
+  overscroll-behavior: contain;
+  touch-action: none;
+}
+
 /* ============================================
    3. TYPOGRAPHY BASE
    ============================================ */
