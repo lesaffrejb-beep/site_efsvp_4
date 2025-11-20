@@ -36,6 +36,18 @@ export class ProjectModal {
   open(project: Project, triggerElement?: HTMLElement | null) {
     if (!this.modal) return;
 
+    // 🔍 DIAGNOSTIC LOG - Données du projet au moment de l'ouverture de la modal
+    if (import.meta.env.DEV) {
+      console.log('[MODAL DEBUG]', {
+        slug: project.slug,
+        media: project.media,
+        video: project.video,
+        audio: project.audio,
+        hasVideo: project.media?.video,
+        hasAudio: project.media?.audio,
+      });
+    }
+
     this.triggerElement = triggerElement || (document.activeElement as HTMLElement | null);
     this.previousBodyOverflow = document.body.style.overflow;
 
