@@ -128,19 +128,21 @@ function sanitizeProjectsData() {
 }
 
 function resolveProjectVideo(slug: string, fallback?: string | null): string | null {
-  // ⚠️ IMPORTANT: import.meta.glob ne détecte pas les fichiers .mp4 volumineux
-  // On construit l'URL de manière déterministe et on laisse le système de fallback
-  // dans ProjectModal gérer les erreurs de chargement
   const folder = getProjectFolder(slug);
   const standardPath = `/assets/videos/projects/${folder}/video.mp4`;
 
-  // Si un fallback explicite est fourni, on le préfère
-  if (fallback) {
-    return fallback;
+  // On priorise un fallback explicite uniquement s'il pointe vers un fichier existant
+  const normalizedFallback = normalizeAssetPath(fallback || undefined);
+  if (normalizedFallback && assetExists(normalizedFallback)) {
+    return normalizedFallback;
   }
 
-  // Sinon on retourne l'URL standard (le player gérera l'erreur si le fichier n'existe pas)
-  return standardPath;
+  // Sinon, on ne retourne le chemin standard que si le MP4 est réellement présent
+  if (assetExists(standardPath)) {
+    return standardPath;
+  }
+
+  return null;
 }
 
 function normalizeProjectMedia(project: Project): Project {
@@ -158,7 +160,7 @@ function normalizeProjectMedia(project: Project): Project {
 
   const media = {
     gallery,
-    video: videoPath ?? null,
+    ...(videoPath ? { video: videoPath } : {}),
     audio: audioPath ?? null,
     coverImage: assetExists(coverPath) ? coverPath : coverImage,
   } as Project['media'];
