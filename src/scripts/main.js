@@ -486,8 +486,8 @@ class App {
         document.body.style.overflow = 'hidden';
 
         // ✅ GSAP ENTRANCE ANIMATION - AWWWARDS Style
-        // Reset initial state
-        gsap.set(navMenu, { opacity: 0 });
+        // Reset initial state + ensure visibility
+        gsap.set(navMenu, { opacity: 0, visibility: 'visible' });
         gsap.set('.nav__item', { y: 50, opacity: 0 });
 
         // Animate overlay fade in
