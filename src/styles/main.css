@@ -253,8 +253,6 @@ body {
 
 body.project-modal-open {
   overflow: hidden;
-  overscroll-behavior: contain;
-  touch-action: none;
 }
 
 /* ============================================
