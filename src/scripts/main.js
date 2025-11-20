@@ -19,6 +19,7 @@ import { LazyLoadManager } from './modules/lazyLoad.js';
 import { FormValidator } from './modules/formValidator.js';
 import { AnimationsManager } from './modules/animations.js';
 import { ProgressiveNav } from './modules/progressiveNav.js';
+import { initNavMenu } from './modules/navMenu.js';
 import { ProcessReveal } from './modules/processReveal.js';
 import { CookieConsent } from './modules/cookieConsent.js';
 import { CopyEmail } from './modules/copyEmail.js';
@@ -404,11 +405,7 @@ class App {
   // ========== NAVIGATION ==========
   initNavigation() {
     const nav = document.getElementById('nav');
-    const navToggle = document.getElementById('nav-toggle');
-    const navMenu = document.getElementById('nav-menu');
-    const navOverlay = document.getElementById('nav-overlay');
 
-    // Show on scroll
     window.addEventListener('scroll', () => {
       const currentScroll = window.pageYOffset;
 
@@ -419,184 +416,10 @@ class App {
       }
     });
 
-    // Update active nav link based on scroll position
     this.updateActiveNavLink();
     window.addEventListener('scroll', () => this.updateActiveNavLink());
 
-    // Mobile menu avec focus trap
-    if (navToggle && navMenu) {
-      const desktopMedia = window.matchMedia('(min-width: 1024px)');
-      const isDesktopView = () => desktopMedia.matches;
-
-      const syncMenuAccessibility = (isOpen) => {
-        const ariaHidden = isDesktopView() ? 'false' : isOpen ? 'false' : 'true';
-        navMenu.setAttribute('aria-hidden', ariaHidden);
-
-        if (!isDesktopView()) {
-          if (isOpen) {
-            navMenu.removeAttribute('inert');
-          } else {
-            navMenu.setAttribute('inert', '');
-          }
-        } else {
-          navMenu.removeAttribute('inert');
-        }
-
-        navOverlay?.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-      };
-
-      // Initialiser l'état du menu en fonction du viewport
-      syncMenuAccessibility(false);
-
-      let focusableElements = [];
-      let firstFocusable = null;
-      let lastFocusable = null;
-
-      const updateFocusableElements = () => {
-        focusableElements = Array.from(navMenu.querySelectorAll('a[href], button:not([disabled])'));
-        firstFocusable = focusableElements[0];
-        lastFocusable = focusableElements[focusableElements.length - 1];
-      };
-
-      const closeMenu = () => {
-        navToggle.setAttribute('aria-expanded', 'false');
-        navToggle.setAttribute('aria-label', 'Ouvrir le menu');
-
-        // ✅ GSAP EXIT ANIMATION - Smooth fade out
-        gsap.to(navMenu, {
-          opacity: 0,
-          duration: 0.3,
-          ease: 'power2.in',
-          onComplete: () => {
-            navMenu.classList.remove('active', 'is-active');
-            syncMenuAccessibility(false);
-            gsap.set(navMenu, { visibility: 'hidden' });
-          }
-        });
-
-        gsap.to('.nav__item', {
-          y: 30,
-          opacity: 0,
-          duration: 0.3,
-          stagger: 0.05,
-          ease: 'power2.in'
-        });
-
-        // Animate overlay fade out
-        if (navOverlay) {
-          gsap.to(navOverlay, {
-            opacity: 0,
-            duration: 0.3,
-            ease: 'power2.in',
-            onComplete: () => {
-              navOverlay.classList.remove('is-active');
-            }
-          });
-        }
-
-        document.body.classList.remove('menu-open');
-        document.body.style.overflow = '';
-      };
-
-      const openMenu = () => {
-        navToggle.setAttribute('aria-expanded', 'true');
-        navToggle.setAttribute('aria-label', 'Fermer le menu');
-        navMenu.classList.add('is-active');
-        syncMenuAccessibility(true);
-        document.body.classList.add('menu-open');
-        document.body.style.overflow = 'hidden';
-
-        // ✅ GSAP ENTRANCE ANIMATION - AWWWARDS Style
-        // Reset initial state + ensure visibility
-        gsap.set(navMenu, { opacity: 0, visibility: 'visible' });
-        gsap.set('.nav__item', { y: 50, opacity: 0 });
-
-        // Animate overlay fade in
-        if (navOverlay) {
-          navOverlay.classList.add('is-active');
-          gsap.fromTo(navOverlay,
-            { opacity: 0 },
-            { opacity: 1, duration: 0.3, ease: 'power2.out' }
-          );
-        }
-
-        // Animate menu fade in
-        gsap.to(navMenu, {
-          opacity: 1,
-          duration: 0.4,
-          ease: 'power2.out'
-        });
-
-        // Animate links with stagger
-        gsap.to('.nav__item', {
-          y: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.1,
-          ease: 'power3.out',
-          delay: 0.1
-        });
-
-        updateFocusableElements();
-        setTimeout(() => firstFocusable?.focus(), 600); // Wait for animation
-      };
-
-      navToggle.addEventListener('click', () => {
-        const isOpen = navMenu.classList.contains('is-active');
-
-        if (isOpen) {
-          closeMenu();
-          navToggle.focus();
-        } else {
-          openMenu();
-        }
-      });
-
-      navOverlay?.addEventListener('click', closeMenu);
-
-      // Close menu on resize to desktop
-      desktopMedia.addEventListener('change', (event) => {
-        syncMenuAccessibility(navMenu.classList.contains('is-active'));
-
-        if (event.matches) {
-          closeMenu();
-          navMenu.classList.remove('is-active');
-        }
-      });
-
-      document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && navMenu.classList.contains('is-active')) {
-          event.preventDefault();
-          closeMenu();
-          navToggle.focus();
-        }
-      });
-
-      // Focus trap: empêcher Tab de sortir du menu mobile
-      navMenu.addEventListener('keydown', (e) => {
-        if (e.key !== 'Tab' || !navMenu.classList.contains('is-active')) return;
-
-        if (e.shiftKey) {
-          // Shift + Tab
-          if (document.activeElement === firstFocusable) {
-            e.preventDefault();
-            lastFocusable?.focus();
-          }
-        } else {
-          // Tab
-          if (document.activeElement === lastFocusable) {
-            e.preventDefault();
-            firstFocusable?.focus();
-          }
-        }
-      });
-
-      navMenu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-          closeMenu();
-        });
-      });
-    }
+    initNavMenu();
   }
 
   // Update aria-current on navigation links
