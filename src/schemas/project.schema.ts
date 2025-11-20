@@ -1,4 +1,4 @@
-import { z } from '../utils/zod-lite';
+import { z } from '../utils/zod-lite.ts';
 import type { Project, ProjectSector, ProjectStatus } from '../types/project';
 
 export const projectSchema = z.object<Project>({

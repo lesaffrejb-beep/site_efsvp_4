@@ -10,7 +10,7 @@ import { siteContent } from '../data/content.js';
 import { highlightsContent } from '../content/highlights.js';
 import { casesContent } from '../content/cases.js';
 import { servicesContent } from '../content/services.js';
-import { portfolioContent } from '../content/portfolio.js';
+// import { portfolioContent } from '../content/portfolio.js';
 import { processContent } from '../content/process.js';
 import { testimonialsContent } from '../content/testimonials.js';
 import { statsContent } from '../content/stats.js';
@@ -107,7 +107,7 @@ export function initHighlightsContent() {
 
   // Audio players - on injecte uniquement les textes, pas les players audio eux-mêmes
   // (les players sont gérés par le module audioPlayer.js)
-  audioPlayers.forEach((player, index) => {
+  audioPlayers.forEach((player, _index) => {
     const playerEl = document.querySelector(`[data-audio-id="${player.id}"]`);
     if (playerEl) {
       const badge = playerEl.querySelector('.audio-player__badge');

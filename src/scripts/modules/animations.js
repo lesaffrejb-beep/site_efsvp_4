@@ -222,7 +222,7 @@ export class AnimationsManager {
     const glowElements = gsap.utils.toArray('[data-glow]');
 
     glowElements.forEach((element) => {
-      element.addEventListener('mouseenter', (e) => {
+      element.addEventListener('mouseenter', (_e) => {
         gsap.to(element, {
           boxShadow: '0 20px 40px rgba(232, 146, 79, 0.3)',
           duration: 0.3,

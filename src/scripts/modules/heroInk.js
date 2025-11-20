@@ -139,7 +139,7 @@ function applyFinalState(signature, cta, inkFill, inkDrop, inkTrail, baseline) {
  */
 export function initHeroInk() {
   const signature = document.querySelector('[data-hero-signature]');
-  const inkSystem = document.querySelector('[data-ink-system]');
+  // const inkSystem = document.querySelector('[data-ink-system]');
   const inkDrop = document.querySelector('[data-ink-drop]');
   const inkTrail = document.querySelector('[data-ink-trail]');
   const trailPath = inkTrail?.querySelector('.ink-trail__path');

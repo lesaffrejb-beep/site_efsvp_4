@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { projectsSchema } from '../src/schemas/project.schema';
+import { projectsSchema } from '../src/schemas/project.schema.ts';
 import type { Project, ProjectSector, ProjectStatus } from '../src/types/project';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -230,6 +230,8 @@ function transformProject(raw: RawProject): Project {
     year: Number.isFinite(raw.year) ? raw.year : new Date().getFullYear(),
     location: raw.location,
     status: raw.status,
+    thumbnailSrc: coverImage,
+    coverSrc: coverImage,
     cover: {
       image: coverImage,
       initials: buildInitials(raw.title),
