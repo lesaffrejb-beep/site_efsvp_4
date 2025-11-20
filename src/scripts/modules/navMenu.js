@@ -2,8 +2,8 @@
  * NAV REFACTOR NOTES:
  * - HTML structure: nav[data-role="main-nav"] with desktop links list cloned into the mobile panel (#nav-menu).
  * - Previous state: burger interaction relied on CSS/GSAP classes without robust scroll lock or focus handling.
- * - Key fixes: explicit open/close helpers, body.nav-open scroll lock, overlay & ESC closing, link-based closing,
- *   focus return on close, and resize guard above 1024px.
+ * - Key fixes: explicit open/close helpers, body.nav--open scroll lock with restored scroll position, overlay & ESC
+ *   closing, link-based closing, focus return on close, and resize guard above 1024px.
  */
 
 const BREAKPOINT_DESKTOP = 1024;
@@ -16,6 +16,7 @@ const SELECTORS = {
   desktopLinks: '[data-nav-links]',
   mobileLinks: '[data-nav-links-mobile]',
   link: '.nav__link',
+  close: '.nav__menu-close',
 };
 
 export function initNavMenu() {
@@ -27,11 +28,13 @@ export function initNavMenu() {
   const navOverlay = nav.querySelector(SELECTORS.overlay);
   const desktopLinks = nav.querySelector(SELECTORS.desktopLinks);
   const mobileLinks = nav.querySelector(SELECTORS.mobileLinks);
+  const closeButton = nav.querySelector(SELECTORS.close);
 
   if (!navToggle || !navMenu || !navOverlay || !desktopLinks || !mobileLinks) return;
 
   let isOpen = false;
   let previousFocus = null;
+  let savedScrollY = 0;
 
   syncMobileLinks(desktopLinks, mobileLinks);
 
@@ -39,14 +42,30 @@ export function initNavMenu() {
     return navMenu.querySelectorAll(SELECTORS.link);
   }
 
+  function lockBodyScroll() {
+    savedScrollY = window.scrollY;
+    document.body.classList.add('nav--open');
+    document.body.style.top = `-${savedScrollY}px`;
+    document.body.style.width = '100%';
+    document.body.style.position = 'fixed';
+  }
+
+  function unlockBodyScroll() {
+    document.body.classList.remove('nav--open');
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, savedScrollY);
+  }
+
   function openNav() {
     if (isOpen) return;
     isOpen = true;
     previousFocus = document.activeElement;
 
-    document.body.classList.add('nav-open');
-    navMenu.classList.add('is-open');
-    navOverlay.classList.add('is-open');
+    lockBodyScroll();
+    navMenu.classList.add('nav__menu--open');
+    navOverlay.classList.add('nav__overlay--visible');
 
     navToggle.setAttribute('aria-expanded', 'true');
     navToggle.setAttribute('aria-label', 'Fermer le menu');
@@ -54,18 +73,16 @@ export function initNavMenu() {
     navOverlay.setAttribute('aria-hidden', 'false');
 
     const firstLink = getMobileLinks()[0];
-    if (firstLink) {
-      firstLink.focus({ preventScroll: true });
-    }
+    (firstLink || closeButton || navMenu).focus({ preventScroll: true });
   }
 
   function closeNav() {
     if (!isOpen) return;
     isOpen = false;
 
-    document.body.classList.remove('nav-open');
-    navMenu.classList.remove('is-open');
-    navOverlay.classList.remove('is-open');
+    unlockBodyScroll();
+    navMenu.classList.remove('nav__menu--open');
+    navOverlay.classList.remove('nav__overlay--visible');
 
     navToggle.setAttribute('aria-expanded', 'false');
     navToggle.setAttribute('aria-label', 'Ouvrir le menu');
@@ -98,7 +115,9 @@ export function initNavMenu() {
 
     if (event.key !== 'Tab') return;
 
-    const focusableItems = Array.from(navMenu.querySelectorAll('a, button'));
+    const focusableItems = Array.from(
+      navMenu.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])')
+    ).filter((el) => !el.hasAttribute('disabled'));
     if (!focusableItems.length) return;
 
     const firstItem = focusableItems[0];
@@ -121,11 +140,17 @@ export function initNavMenu() {
 
   navToggle.addEventListener('click', toggleNav);
   navOverlay.addEventListener('click', closeNav);
+  closeButton?.addEventListener('click', closeNav);
   document.addEventListener('keydown', handleKeydown);
 
   navMenu.addEventListener('click', (event) => {
     const link = event.target.closest(SELECTORS.link);
     if (link) {
+      closeNav();
+      return;
+    }
+
+    if (event.target === navMenu) {
       closeNav();
     }
   });

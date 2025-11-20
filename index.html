@@ -271,6 +271,7 @@
 
           <button
             class="nav__toggle"
+            id="nav-toggle"
             type="button"
             aria-label="Ouvrir le menu"
             aria-expanded="false"
@@ -283,10 +284,27 @@
         </div>
       </div>
 
-      <div id="nav-menu" class="nav__menu" aria-hidden="true">
-        <ul class="nav__links nav__links--mobile" data-nav-links-mobile></ul>
-        <div class="nav__menu-cta">
-          <a href="#contact" class="btn btn--primary nav__cta-mobile">Partagez votre histoire</a>
+      <div
+        id="nav-menu"
+        class="nav__menu"
+        aria-hidden="true"
+        aria-modal="true"
+        role="dialog"
+        aria-label="Menu principal"
+      >
+        <div class="nav__menu-header">
+          <span class="nav__menu-title">En français s'il vous plaît</span>
+          <button type="button" class="nav__menu-close" aria-label="Fermer le menu">
+            <span class="nav__menu-close-line"></span>
+            <span class="nav__menu-close-line"></span>
+          </button>
+        </div>
+
+        <div class="nav__menu-content">
+          <ul class="nav__links nav__links--mobile" data-nav-links-mobile></ul>
+          <div class="nav__menu-cta">
+            <a href="#contact" class="btn btn--primary nav__cta-mobile">Partagez votre histoire</a>
+          </div>
         </div>
       </div>
 

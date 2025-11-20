@@ -2,7 +2,7 @@
  * Progressive navigation & full-screen mobile menu
  * NAV REFACTOR NOTES:
  * - HTML: single nav with .nav__links desktop list cloned into a mobile panel (#nav-menu) with overlay.
- * - Old JS: burger logic missing and scroll locking relied on body.menu-open; replaced with explicit nav-open toggling.
+ * - Old JS: burger logic missing and scroll locking relied on body.menu-open; replaced with explicit nav--open toggling.
  * - Old CSS issues: mix of GSAP-driven states + fixed positioning that blocked stacking; simplified to class toggles,
  *   CSS-driven animations, and clear z-index layering.
  */
@@ -202,84 +202,132 @@
   .nav__menu {
     position: fixed;
     inset: 0;
-    z-index: var(--z-modal);
+    z-index: calc(var(--z-modal) + 10);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: var(--space-4);
-    padding: var(--space-6);
-
+    padding: var(--space-6) var(--space-5);
+    gap: var(--space-6);
+    overflow-y: auto;
+    backdrop-filter: blur(14px);
     background: linear-gradient(
-      155deg,
-      color-mix(in srgb, var(--ink-surface) 88%, #ffffff 12%) 0%,
-      color-mix(in srgb, var(--ink-surface-strong) 80%, #ffffff 20%) 100%
+      180deg,
+      color-mix(in srgb, var(--ink-900, #0b1b34) 92%, transparent) 0%,
+      color-mix(in srgb, var(--ink-surface-strong, #0c1b33) 86%, rgba(0, 0, 0, 0.12)) 100%
     );
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--ink-border);
-    box-shadow: var(--shadow-2xl);
-
+    color: var(--text-inverse);
     opacity: 0;
     transform: translateY(-8px);
     pointer-events: none;
     visibility: hidden;
-
     transition:
-      opacity var(--transition-base),
-      transform var(--transition-base),
-      visibility 0s linear var(--transition-base);
+      opacity var(--transition-slow),
+      transform var(--transition-slow),
+      visibility 0s linear var(--transition-slow);
   }
 
-  .nav__menu.is-open {
+  .nav__menu.nav__menu--open {
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
     visibility: visible;
     transition:
-      opacity var(--transition-base),
-      transform var(--transition-base),
+      opacity var(--transition-slow),
+      transform var(--transition-slow),
       visibility 0s;
+  }
+
+  .nav__menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding-bottom: var(--space-4);
+    border-bottom: 1px solid color-mix(in srgb, var(--ink-border) 80%, transparent);
+  }
+
+  .nav__menu-title {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 3vw, 1.125rem);
+    letter-spacing: var(--tracking-tight);
+    text-transform: uppercase;
+  }
+
+  .nav__menu-close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-full);
+    border: 1px solid color-mix(in srgb, var(--ink-300, #8fb0e8) 28%, transparent);
+    background: color-mix(in srgb, rgba(255, 255, 255, 0.08) 80%, var(--ink-surface) 20%);
+    cursor: pointer;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+  }
+
+  .nav__menu-close:hover {
+    background: color-mix(in srgb, rgba(255, 255, 255, 0.14) 90%, var(--ink-surface) 10%);
+    transform: translateY(-1px);
+  }
+
+  .nav__menu-close:focus-visible {
+    outline: 2px solid var(--color-primary-400);
+    outline-offset: 3px;
+  }
+
+  .nav__menu-close-line {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 18px;
+    height: 2px;
+    background: var(--text-inverse);
+    border-radius: var(--radius-full);
+    transform: translate(-50%, -50%);
+  }
+
+  .nav__menu-close-line:first-child {
+    transform: translate(-50%, -50%) rotate(45deg);
+  }
+
+  .nav__menu-close-line:last-child {
+    transform: translate(-50%, -50%) rotate(-45deg);
+  }
+
+  .nav__menu-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-8);
   }
 
   .nav__links--mobile {
     flex-direction: column;
     align-items: center;
-    gap: var(--space-4);
+    gap: var(--space-6);
+    text-align: center;
   }
 
   .nav__links--mobile .nav__link {
-    font-size: clamp(1.4rem, 4vw, 2rem);
-    font-weight: 600;
-    letter-spacing: 0.08em;
+    font-size: clamp(1.15rem, 3.6vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     text-align: center;
-    color: var(--ink-on-paper);
-    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    color: color-mix(in srgb, #ffffff 90%, var(--ink-surface) 10%);
+    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
   }
 
   .nav__links--mobile .nav__item {
-    opacity: 0;
-    transform: translateY(16px);
-    transition:
-      opacity 0.4s cubic-bezier(0.33, 1, 0.68, 1),
-      transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
-  }
-
-  .nav__menu.is-open .nav__item {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
-
-  /* Simple stagger */
-  .nav__menu.is-open .nav__item:nth-child(1) { transition-delay: 0.05s; }
-  .nav__menu.is-open .nav__item:nth-child(2) { transition-delay: 0.1s; }
-  .nav__menu.is-open .nav__item:nth-child(3) { transition-delay: 0.15s; }
-  .nav__menu.is-open .nav__item:nth-child(4) { transition-delay: 0.2s; }
-  .nav__menu.is-open .nav__item:nth-child(5) { transition-delay: 0.25s; }
-  .nav__menu.is-open .nav__item:nth-child(6) { transition-delay: 0.3s; }
 
   .nav__menu-cta {
-    margin-top: var(--space-6);
+    margin-top: auto;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -302,23 +350,26 @@
 .nav__overlay {
   position: fixed;
   inset: 0;
-  z-index: calc(var(--z-modal) - 1);
-  background: color-mix(in srgb, var(--ink-deep) 68%, rgba(0, 0, 0, 0.3));
+  z-index: var(--z-modal);
+  background: color-mix(in srgb, var(--ink-deep) 78%, rgba(0, 0, 0, 0.38));
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity var(--transition-base), visibility 0s linear var(--transition-base);
+  transition: opacity var(--transition-slow), visibility 0s linear var(--transition-slow);
 }
 
-.nav__overlay.is-open {
+.nav__overlay.nav__overlay--visible {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
-  transition: opacity var(--transition-base), visibility 0s;
+  transition: opacity var(--transition-slow), visibility 0s;
 }
 
 /* ===== Scroll Lock ===== */
-body.nav-open {
+body.nav--open {
+  position: fixed;
+  inset: 0;
+  width: 100%;
   overflow: hidden;
 }
 
