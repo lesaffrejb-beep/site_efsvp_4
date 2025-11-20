@@ -21,8 +21,8 @@ export class ProjectModal {
   private focusableElements: HTMLElement[] = [];
   private keydownHandler: (event: KeyboardEvent) => void;
   private triggerElement: HTMLElement | null = null;
-  private lenisWasActive = false;
-  private savedScrollY = 0;
+  private lenisWasActive: boolean = false;
+  private savedScrollY: number = 0;
 
   constructor() {
     this.modal = document.getElementById('project-modal');
@@ -59,7 +59,7 @@ export class ProjectModal {
     // Sauvegarde de la position de scroll actuelle
     this.savedScrollY = window.scrollY || window.pageYOffset || 0;
 
-    // Gestion Lenis
+    // Gestion Lenis (smooth scroll global)
     const lenis = (window as any).lenis;
     if (lenis && typeof lenis.stop === 'function') {
       this.lenisWasActive = true;
@@ -68,7 +68,13 @@ export class ProjectModal {
       this.lenisWasActive = false;
     }
 
-    // Lock scroll via une classe sur le body
+    // Lock du body avec le pattern "position: fixed"
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${this.savedScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+    document.body.style.overflow = 'hidden';
     document.body.classList.add('project-modal-open');
 
     const tagEl = document.getElementById('project-modal-tag');
@@ -142,27 +148,36 @@ export class ProjectModal {
   close() {
     if (!this.modal) return;
 
-    // Retirer le lock CSS
+    // Retire la classe CSS
     document.body.classList.remove('project-modal-open');
 
-    // Restaure le scroll global
+    // On récupère la valeur sauvegardée
+    const scrollY = this.savedScrollY || 0;
+
+    // On libère le body AVANT de scroller
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    document.body.style.overflow = '';
+
+    // Restaure le scroll avec ou sans Lenis
     const lenis = (window as any).lenis;
-    if (this.lenisWasActive && lenis && typeof lenis.start === 'function') {
+
+    if (this.lenisWasActive && lenis) {
       this.lenisWasActive = false;
-      // Lenis a souvent sa propre API de scrollTo. Utilise-la si dispo.
+      if (typeof lenis.start === 'function') {
+        lenis.start();
+      }
       if (typeof lenis.scrollTo === 'function') {
-        lenis.start();
-        lenis.scrollTo(this.savedScrollY, { immediate: true });
+        lenis.scrollTo(scrollY, { immediate: true });
       } else {
-        lenis.start();
-        window.scrollTo(0, this.savedScrollY || 0);
+        window.scrollTo(0, scrollY);
       }
     } else {
-      // Pas de Lenis → on utilise le scroll natif
-      window.scrollTo(0, this.savedScrollY || 0);
+      window.scrollTo(0, scrollY);
     }
-
-    this.lenisWasActive = false;
 
     this.destroyCurrentMediaPlayers();
 
@@ -204,11 +219,7 @@ export class ProjectModal {
     audioContainer: HTMLElement | null;
   }) {
     // ✅ SIMPLIFIED: Détection unifiée de la source vidéo
-    const videoSrc =
-      project.media?.video ||
-      project.video?.files?.mp4 ||
-      null;
-    const hasVideo = Boolean(videoSrc);
+    const videoSrc = project.media?.video || project.video?.files?.mp4;
 
     let visualEl = visualImage ?? null;
 
@@ -242,7 +253,7 @@ export class ProjectModal {
     }
 
     // ✅ Logique vidéo simplifiée : player natif HTML5 uniquement si une vidéo existe réellement
-    if (videoContainer && hasVideo) {
+    if (videoContainer && videoSrc) {
       if (visualContainer) {
         visualContainer.style.display = 'none';
         visualContainer.setAttribute('aria-hidden', 'true');

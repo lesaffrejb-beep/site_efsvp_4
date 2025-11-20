@@ -131,18 +131,13 @@ function resolveProjectVideo(slug: string, fallback?: string | null): string | n
   const folder = getProjectFolder(slug);
   const standardPath = `/assets/videos/projects/${folder}/video.mp4`;
 
-  // On priorise un fallback explicite uniquement s'il pointe vers un fichier existant
-  const normalizedFallback = normalizeAssetPath(fallback || undefined);
-  if (normalizedFallback && assetExists(normalizedFallback)) {
-    return normalizedFallback;
+  // Si un chemin explicite est donné dans le JSON, on le garde tel quel
+  if (fallback) {
+    return assetExists(fallback) ? fallback : null;
   }
 
-  // Sinon, on ne retourne le chemin standard que si le MP4 est réellement présent
-  if (assetExists(standardPath)) {
-    return standardPath;
-  }
-
-  return null;
+  // Sinon, on ne renvoie le chemin standard QUE si le fichier existe réellement
+  return assetExists(standardPath) ? standardPath : null;
 }
 
 function normalizeProjectMedia(project: Project): Project {
@@ -160,7 +155,7 @@ function normalizeProjectMedia(project: Project): Project {
 
   const media = {
     gallery,
-    ...(videoPath ? { video: videoPath } : {}),
+    video: videoPath ?? null,
     audio: audioPath ?? null,
     coverImage: assetExists(coverPath) ? coverPath : coverImage,
   } as Project['media'];
@@ -179,11 +174,11 @@ function normalizeProjectMedia(project: Project): Project {
     media,
   };
 
-  if (!project.video && media.video) {
+  if (!project.video && videoPath) {
     normalized.video = {
       enabled: true,
       title: project.title,
-      files: { mp4: media.video },
+      files: { mp4: videoPath },
       description: project.details?.format,
     };
   }
