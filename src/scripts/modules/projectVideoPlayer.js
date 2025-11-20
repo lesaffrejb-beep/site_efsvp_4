@@ -17,7 +17,7 @@ import { gsap } from 'gsap';
 export function createProjectVideoPlayer(container, project) {
   if (!project?.video?.enabled || !project?.video?.files?.mp4) {
     if (import.meta.env.DEV) {
-      console.log('[ProjectVideoPlayer] Video not available:', {
+      console.warn('[ProjectVideoPlayer] Video not available:', {
         enabled: project?.video?.enabled,
         hasMp4: !!project?.video?.files?.mp4,
         projectSlug: project?.slug
@@ -27,7 +27,7 @@ export function createProjectVideoPlayer(container, project) {
   }
 
   if (import.meta.env.DEV) {
-    console.log('[ProjectVideoPlayer] Initializing for:', {
+    console.warn('[ProjectVideoPlayer] Initializing for:', {
       slug: project.slug,
       videoPath: project.video.files.mp4
     });

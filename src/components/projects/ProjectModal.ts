@@ -186,6 +186,12 @@ export class ProjectModal {
     videoContainer: HTMLElement | null;
     audioContainer: HTMLElement | null;
   }) {
+    // ✅ SIMPLIFIED: Détection unifiée de la source vidéo
+    const videoSrc =
+      project.media?.video ||
+      project.video?.files?.mp4 ||
+      null;
+
     let visualEl = visualImage ?? null;
 
     if (visualContainer && project.coverSrc) {
@@ -217,11 +223,30 @@ export class ProjectModal {
       audioContainer.innerHTML = '';
     }
 
-    if (videoContainer && hasProjectVideo(project)) {
-      visualContainer?.setAttribute('aria-hidden', 'true');
+    // ✅ SIMPLIFIED: Logique vidéo simplifiée et fiable
+    if (videoContainer && videoSrc) {
+      // Masquer l'image statique
       if (visualContainer) {
         visualContainer.style.display = 'none';
+        visualContainer.setAttribute('aria-hidden', 'true');
       }
+
+      // Afficher le conteneur vidéo
+      videoContainer.style.display = 'block';
+      videoContainer.removeAttribute('aria-hidden');
+
+      // S'assurer que le projet passé au player contient un champ video complet
+      const projectWithVideo = {
+        ...project,
+        video: {
+          enabled: true,
+          title: project.video?.title || project.title,
+          description: project.video?.description || project.details?.format || '',
+          files: {
+            mp4: videoSrc,
+          },
+        },
+      };
 
       let videoSettled = false;
       const settleVideoState = () => {
@@ -252,19 +277,20 @@ export class ProjectModal {
         fallbackToVisual(event);
       };
 
-      videoContainer.style.display = 'block';
       videoContainer.classList.add('is-loading');
       videoContainer.setAttribute('aria-busy', 'true');
 
       this.registerVideoContainerEvent(videoContainer, 'project-video-ready', handleVideoReady);
       this.registerVideoContainerEvent(videoContainer, 'project-video-error', handleVideoError);
 
-      this.currentVideoPlayer = createProjectVideoPlayer(videoContainer, project);
+      this.currentVideoPlayer = createProjectVideoPlayer(videoContainer, projectWithVideo);
 
-      if (!this.currentVideoPlayer) {
-        fallbackToVisual();
+      if (this.currentVideoPlayer) {
+        // Priorité à la vidéo, on ne touche pas à l'audio ici
+        return;
       } else {
-        return; // Priorité à la vidéo, ne pas initialiser l'audio
+        // Si, pour une raison quelconque, le player échoue, on retombe sur l'image
+        fallbackToVisual();
       }
     }
 
