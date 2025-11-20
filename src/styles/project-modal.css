@@ -16,17 +16,15 @@
   padding: var(--space-8) var(--space-4);
   width: 100%;
   min-height: 100vh;
-  overflow-y: auto;       /* c'est LA où ça scrolle */
+  overflow-y: auto;      /* SCROLL ICI */
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-  opacity: 0;
-  transition: opacity var(--transition-slow);
+  background: var(--overlay-backdrop, rgba(15, 23, 42, 0.6));
 }
 
 .project-modal.active {
   display: flex;
-  opacity: 1;
 }
 
 /* ===== Overlay ===== */
@@ -44,24 +42,16 @@
 .modal-container {
   position: relative;
   width: min(960px, 100%);
-  height: auto;
-  min-height: 0;
-  max-height: none;       /* IMPORTANT : pas de max-height qui coupe */
   margin-inline: auto;
   margin-block: 0;
   background: var(--bg-primary);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-2xl);
-  overflow: visible; /* ✅ FIXED: Pas de scroll ici, le scroll se fait sur .project-modal */
+  overflow: visible;     /* PAS DE SCROLL INTERNE */
   display: flex;
   flex-direction: column;
-  transform: scale(0.95);
-  transition: transform var(--transition-slow);
-  z-index: 1;
-}
-
-.project-modal.active .modal-container {
-  transform: scale(1);
+  height: auto;
+  max-height: none;
 }
 
 /* ===== Close Button ===== */
@@ -293,8 +283,6 @@
   }
 
   .modal-container {
-    height: auto;
-    max-height: none;
     border-radius: var(--radius-xl);
   }
 
