@@ -16,7 +16,7 @@
   padding: var(--space-8) var(--space-4);
   width: 100%;
   min-height: 100vh;
-  overflow-y: auto;
+  overflow-y: auto;       /* c'est LA où ça scrolle */
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
@@ -46,7 +46,7 @@
   width: min(960px, 100%);
   height: auto;
   min-height: 0;
-  max-height: none; /* ✅ FIXED: Pas de max-height pour permettre au contenu de s'étendre */
+  max-height: none;       /* IMPORTANT : pas de max-height qui coupe */
   margin-inline: auto;
   margin-block: 0;
   background: var(--bg-primary);
@@ -293,8 +293,6 @@
   }
 
   .modal-container {
-    /* ✅ FIX: Removed max-height to allow full content scrolling on mobile */
-    /* max-height: calc(100vh - 2 * var(--space-4)); */
     height: auto;
     max-height: none;
     border-radius: var(--radius-xl);
@@ -333,7 +331,3 @@
   }
 }
 
-/* Lock body scroll when modal is open */
-body:has(.project-modal.active) {
-  overflow: hidden;
-}
