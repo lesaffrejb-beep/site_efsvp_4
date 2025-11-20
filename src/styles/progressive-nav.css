@@ -14,15 +14,24 @@
   left: 0;
   right: 0;
   z-index: var(--z-fixed);
-  background: color-mix(in srgb, var(--ink-deep) 90%, transparent);
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--ink-deep) 94%, transparent) 0%,
+    color-mix(in srgb, var(--ink-800, #13264a) 88%, transparent) 100%
+  );
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid color-mix(in srgb, var(--ink-deep) 40%, transparent);
+  border-bottom: 1px solid var(--ink-border);
+  box-shadow: var(--shadow-lg);
   transition: transform var(--transition-base), background var(--transition-base);
   will-change: transform;
 }
 
 .nav.visible {
-  background: color-mix(in srgb, var(--ink-deep) 96%, transparent);
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--ink-deep) 92%, transparent) 0%,
+    color-mix(in srgb, var(--ink-700, #244c85) 90%, transparent) 100%
+  );
   box-shadow: var(--shadow-xl);
 }
 
@@ -92,7 +101,7 @@
 .nav__link {
   font-size: var(--text-base);
   font-weight: var(--font-medium);
-  color: rgba(255, 255, 255, 0.86);
+  color: color-mix(in srgb, #ffffff 88%, var(--ink-surface) 12%);
   text-decoration: none;
   padding: var(--space-2) 0;
   transition: color var(--transition-base), transform var(--transition-fast);
@@ -135,8 +144,8 @@
   width: 38px;
   height: 38px;
   padding: var(--space-2);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: color-mix(in srgb, var(--ink-surface) 45%, rgba(255, 255, 255, 0.12));
+  border: 1px solid color-mix(in srgb, var(--ink-300, #9abff5) 35%, transparent);
   border-radius: var(--radius-xl);
   cursor: pointer;
   transition: transform var(--transition-fast), background var(--transition-fast);
@@ -201,8 +210,14 @@
     gap: var(--space-4);
     padding: var(--space-6);
 
-    background: color-mix(in srgb, var(--ink-deep) 70%, transparent);
-    backdrop-filter: blur(14px);
+    background: linear-gradient(
+      155deg,
+      color-mix(in srgb, var(--ink-surface) 88%, #ffffff 12%) 0%,
+      color-mix(in srgb, var(--ink-surface-strong) 80%, #ffffff 20%) 100%
+    );
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--ink-border);
+    box-shadow: var(--shadow-2xl);
 
     opacity: 0;
     transform: translateY(-8px);
@@ -239,6 +254,7 @@
     text-transform: uppercase;
     text-align: center;
     color: var(--ink-on-paper);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   }
 
   .nav__links--mobile .nav__item {
@@ -287,7 +303,7 @@
   position: fixed;
   inset: 0;
   z-index: calc(var(--z-modal) - 1);
-  background: rgba(0, 0, 0, 0.45);
+  background: color-mix(in srgb, var(--ink-deep) 68%, rgba(0, 0, 0, 0.3));
   opacity: 0;
   visibility: hidden;
   pointer-events: none;

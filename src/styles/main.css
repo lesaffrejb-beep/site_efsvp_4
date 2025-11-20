@@ -44,6 +44,23 @@
   --color-neutral-800: #1a2332; /* Base */
   --color-neutral-900: #0d1117;
 
+  /* Ink Blues - contrast & navigation surfaces */
+  --ink-50: #f1f5ff;
+  --ink-100: #e3edff;
+  --ink-200: #c6dcff;
+  --ink-300: #9abff5;
+  --ink-400: #6d9fe5;
+  --ink-500: #3d7ed0;
+  --ink-600: #2f64ad;
+  --ink-700: #244c85;
+  --ink-800: #193861;
+  --ink-900: #0f253f;
+  --ink-deep: #0c1b2e;
+  --ink-on-paper: #0b1530;
+  --ink-surface: #eef3fb;
+  --ink-surface-strong: #dfe8f7;
+  --ink-border: color-mix(in srgb, var(--ink-600) 14%, transparent);
+
   /* Semantic Colors */
   --color-success: #2d6e4f;
   --color-success-light: #d4edda;
@@ -373,6 +390,19 @@ button {
     padding-top: var(--section-spacing-lg);
     padding-bottom: var(--section-spacing-lg);
   }
+}
+
+/* Section surface - restore blue contrast and readability */
+main > section:not(.section--dark):not(.contact) {
+  background: linear-gradient(
+    180deg,
+    var(--ink-surface) 0%,
+    color-mix(in srgb, var(--bg-primary) 90%, #ffffff 10%) 68%
+  );
+  border-top: 1px solid var(--ink-border);
+  border-bottom: 1px solid color-mix(in srgb, var(--ink-border) 70%, transparent);
+  position: relative;
+  isolation: isolate;
 }
 
 /* Section Dark */
