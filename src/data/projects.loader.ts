@@ -1,6 +1,7 @@
 import projectsData from '../../content/projects.json';
 import { projectsSchema } from '@/schemas/project.schema';
 import type { Project, ProjectSector } from '@/types/project';
+import { devLog } from '@/scripts/utils/logger';
 
 const assetManifest = Object.keys(
   import.meta.glob('../../public/assets/**/*', { eager: true })
@@ -179,7 +180,7 @@ function normalizeProjectMedia(project: Project): Project {
 try {
   const rawProjects = sanitizeProjectsData();
   validatedProjects = projectsSchema.parse(rawProjects).map(normalizeProjectMedia);
-  console.log(`✅ Projects loader: ${validatedProjects.length} projets chargés et validés`);
+  devLog(`✅ Projects loader: ${validatedProjects.length} projets chargés et validés`);
 } catch (error) {
   console.error('❌ Projects loader: Erreur de validation des projets', error);
   validatedProjects = [];

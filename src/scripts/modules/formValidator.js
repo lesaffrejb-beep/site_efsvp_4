@@ -5,6 +5,7 @@
  */
 
 import { gsap } from 'gsap';
+import { devLog } from '../utils/logger.js';
 
 export class FormValidator {
   constructor(formElement) {
@@ -331,9 +332,7 @@ export class FormValidator {
       const formData = new FormData(this.form);
       const data = Object.fromEntries(formData);
 
-      if (import.meta.env.DEV) {
-        console.info('📮 Formulaire validé côté front (simulation d\'envoi)');
-      }
+      devLog('📮 Formulaire validé côté front (simulation d\'envoi)');
 
       // Simulate API call (replace with real endpoint)
       const submissionResult = await this.submitToAPI(data);

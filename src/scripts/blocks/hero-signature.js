@@ -17,9 +17,7 @@
  */
 
 import { gsap } from 'gsap';
-
-// Mode debug : mettre à true pour logger les étapes
-const DEBUG = false;
+import { devLog } from '../utils/logger.js';
 
 /**
  * Initialise l'animation complète du hero
@@ -30,13 +28,13 @@ export function initHeroSignature() {
   // ===================================
   const svg = document.querySelector('[data-hero-signature]');
   if (!svg) {
-    if (DEBUG) console.warn('❌ Hero signature SVG not found');
+    console.warn('❌ Hero signature SVG not found');
     return;
   }
 
   const paths = svg.querySelectorAll('.hero-signature-path');
   if (!paths.length) {
-    if (DEBUG) console.warn('❌ Hero signature paths not found');
+    console.warn('❌ Hero signature paths not found');
     return;
   }
 
@@ -44,7 +42,7 @@ export function initHeroSignature() {
   const cta = document.querySelector('[data-hero-cta]');
 
   if (!cta) {
-    if (DEBUG) console.warn('❌ Hero CTA not found');
+    console.warn('❌ Hero CTA not found');
     return;
   }
 
@@ -81,13 +79,11 @@ export function initHeroSignature() {
     pathMeta.push({ path, length });
   });
 
-  if (DEBUG) {
-    console.log('✅ Hero signature initialized', {
-      pathCount: pathMeta.length,
-      hasBaseline: !!baseline,
-      hasCTA: !!cta,
-    });
-  }
+  devLog('✅ Hero signature initialized', {
+    pathCount: pathMeta.length,
+    hasBaseline: !!baseline,
+    hasCTA: !!cta,
+  });
 
   // ===================================
   // \u00c9TAPE 5 : CR\u00c9ER LA TIMELINE PREMIUM
@@ -148,9 +144,7 @@ function createPremiumTimeline({ pathMeta, cta, baseline, svg }) {
     signatureDuration = Math.max(signatureDuration, startTime + duration);
   });
 
-  if (DEBUG) {
-    console.log('⏱️ Signature duration:', signatureDuration);
-  }
+  devLog('⏱️ Signature duration:', signatureDuration);
 
   // ===================================
   // S\u00c9QUENCE 2 : BASELINE + CTA FADE IN VIA FROM/TO
@@ -184,9 +178,7 @@ function createPremiumTimeline({ pathMeta, cta, baseline, svg }) {
     if (baseline) baseline.style.willChange = 'auto';
     if (cta) cta.style.willChange = 'auto';
 
-    if (DEBUG) {
-      console.log('✅ Hero animation complete - Performance cleanup done');
-    }
+    devLog('✅ Hero animation complete - Performance cleanup done');
   });
 
   return masterTL;
@@ -216,9 +208,7 @@ function applyFinalState({ paths, baseline, cta, svg }) {
   // Retirer la classe d'initialisation
   svg.classList.remove('is-initializing');
 
-  if (DEBUG) {
-    console.log('✅ Hero signature - Final state applied (reduced motion)');
-  }
+  devLog('✅ Hero signature - Final state applied (reduced motion)');
 }
 
 /**
@@ -259,7 +249,5 @@ function initCursorSpotlight(button) {
     button.style.setProperty('--mouse-y', '50%');
   });
 
-  if (DEBUG) {
-    console.log('✅ Cursor spotlight initialized on button');
-  }
+  devLog('✅ Cursor spotlight initialized on button');
 }

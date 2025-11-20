@@ -25,6 +25,7 @@ import { CopyEmail } from './modules/copyEmail.js';
 import { FAQ } from './modules/faq.js';
 import { initAllContent } from './content-init.js';
 import { initPortfolioBlock } from './blocks/portfolio.js';
+import { devLog } from './utils/logger.js';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -99,7 +100,7 @@ class App {
       // 7. Start
       this.start();
 
-      console.log('✅ EfSVP Premium Site - Loaded successfully');
+      devLog('✅ EfSVP Premium Site - Loaded successfully');
     } catch (error) {
       console.error('❌ Critical initialization error:', error);
       this.handleCriticalError(error);
@@ -391,11 +392,10 @@ class App {
         const connectTime = perfData.responseEnd - perfData.requestStart;
         const renderTime = perfData.domComplete - perfData.domLoading;
 
-        console.group('📊 Performance Metrics');
-        console.log(`⏱️  Page Load Time: ${pageLoadTime}ms`);
-        console.log(`🔌 Connection Time: ${connectTime}ms`);
-        console.log(`🎨 Render Time: ${renderTime}ms`);
-        console.groupEnd();
+        devLog('📊 Performance Metrics');
+        devLog(`⏱️  Page Load Time: ${pageLoadTime}ms`);
+        devLog(`🔌 Connection Time: ${connectTime}ms`);
+        devLog(`🎨 Render Time: ${renderTime}ms`);
 
         // Log to analytics (if available)
         if (window.gtag) {
@@ -931,5 +931,3 @@ document.addEventListener('keydown', (e) => {
     }
   }
 });
-
-console.log('🔥 EfSVP Premium Site - Loaded');

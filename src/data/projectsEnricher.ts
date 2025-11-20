@@ -7,6 +7,7 @@
  */
 
 import type { Project } from '@/types/project';
+import { devLog } from '@/scripts/utils/logger';
 
 const ASSETS_BASE_PATH = '/assets/projects';
 
@@ -31,12 +32,12 @@ export async function enrichProject(project: Project): Promise<Project> {
         id: project.id,
       };
 
-      console.log(`✅ [ProjectsEnricher] Enriched project ${project.id} with metadata.json`);
+      devLog(`✅ [ProjectsEnricher] Enriched project ${project.id} with metadata.json`);
       return addAssetPaths(enriched);
     }
   } catch (error) {
     // Pas grave si le metadata n'existe pas
-    console.log(`ℹ️  [ProjectsEnricher] No metadata.json for project ${project.id}`);
+    devLog(`ℹ️  [ProjectsEnricher] No metadata.json for project ${project.id}`);
   }
 
   // Pas de metadata, juste ajouter les chemins assets

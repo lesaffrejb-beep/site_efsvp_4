@@ -17,7 +17,6 @@ import { gsap } from 'gsap';
  */
 export function createProjectAudioPlayer(container, project) {
   if (!project?.audio?.enabled || !project?.audio?.files?.mp3) {
-    console.log(`[ProjectAudioPlayer] No audio for project ${project?.id}`);
     return null;
   }
 

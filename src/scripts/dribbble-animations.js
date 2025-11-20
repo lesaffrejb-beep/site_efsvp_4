@@ -3,6 +3,8 @@
  * Scroll reveals, micro-interactions, et animations premium
  */
 
+import { devLog } from './utils/logger.js';
+
 // ========================================
 // 1. SCROLL REVEAL ANIMATIONS
 // ========================================
@@ -341,14 +343,14 @@ const logPerformance = () => {
         const connectTime = perfData.responseEnd - perfData.requestStart;
         const renderTime = perfData.domComplete - perfData.domLoading;
 
-        console.log('🎨 Dribbble-Grade Performance Metrics:');
-        console.log(`⏱️  Page Load Time: ${pageLoadTime}ms`);
-        console.log(`🔌 Connect Time: ${connectTime}ms`);
-        console.log(`🎭 Render Time: ${renderTime}ms`);
+        devLog('🎨 Dribbble-Grade Performance Metrics:');
+        devLog(`⏱️  Page Load Time: ${pageLoadTime}ms`);
+        devLog(`🔌 Connect Time: ${connectTime}ms`);
+        devLog(`🎭 Render Time: ${renderTime}ms`);
 
         // Objectif: < 2000ms pour Dribbble-grade
         if (pageLoadTime < 2000) {
-          console.log('✅ Dribbble-grade performance achieved!');
+          devLog('✅ Dribbble-grade performance achieved!');
         } else {
           console.warn('⚠️  Performance optimization needed');
         }
@@ -362,7 +364,7 @@ const logPerformance = () => {
 // ========================================
 
 const initDribbbleGrade = () => {
-  console.log('🎨 Initializing Dribbble-Grade animations...');
+  devLog('🎨 Initializing Dribbble-Grade animations...');
 
   const isMainAppActive = Boolean(window.__EFVSP_APP_ACTIVE);
 
@@ -377,8 +379,6 @@ const initDribbbleGrade = () => {
     initLazyLoading();
     initPreloader();
     initBackToTop();
-  } else {
-    console.info('Dribbble animations: skipping legacy behaviors (main orchestrator active)');
   }
 
   // Enhancement animations
@@ -389,7 +389,7 @@ const initDribbbleGrade = () => {
   // Performance
   logPerformance();
 
-  console.log('✨ Dribbble-Grade ready!');
+  devLog('✨ Dribbble-Grade ready!');
 };
 
 // Démarrer quand le DOM est prêt

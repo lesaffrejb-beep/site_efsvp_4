@@ -1,6 +1,7 @@
 import { SECTOR_LABELS, type Project } from '@/types/project';
 import { createProjectAudioPlayer, hasProjectAudio, destroyProjectAudioPlayer } from '@/scripts/modules/projectAudioPlayer';
 import { createProjectVideoPlayer, hasProjectVideo, destroyProjectVideoPlayer } from '@/scripts/modules/projectVideoPlayer';
+import { devLog } from '@/scripts/utils/logger';
 
 export class ProjectModal {
   private modal: HTMLElement | null;
@@ -112,9 +113,7 @@ export class ProjectModal {
     if (lenis && typeof lenis.stop === 'function') {
       this.lenisWasActive = true;
       lenis.stop();
-      if (import.meta.env.DEV) {
-        console.log('🔒 ProjectModal: Lenis stopped to allow modal scroll');
-      }
+      devLog('🔒 ProjectModal: Lenis stopped to allow modal scroll');
     }
 
     // ✅ FALLBACK: Si Lenis n'est pas défini, appliquer overflow hidden + prevent scroll handlers
@@ -126,8 +125,8 @@ export class ProjectModal {
     document.addEventListener('wheel', this.preventBackgroundScrollHandler, { passive: false });
     document.addEventListener('touchmove', this.preventBackgroundScrollHandler, { passive: false });
 
-    if (import.meta.env.DEV && !lenis) {
-      console.log('🔒 ProjectModal: Fallback scroll prevention active (Lenis not found)');
+    if (!lenis) {
+      devLog('🔒 ProjectModal: Fallback scroll prevention active (Lenis not found)');
     }
   }
 
@@ -153,9 +152,7 @@ export class ProjectModal {
       const lenis = (window as any).lenis;
       if (lenis && typeof lenis.start === 'function') {
         lenis.start();
-        if (import.meta.env.DEV) {
-          console.log('🔓 ProjectModal: Lenis restarted after modal close');
-        }
+        devLog('🔓 ProjectModal: Lenis restarted after modal close');
       }
       this.lenisWasActive = false;
     }
