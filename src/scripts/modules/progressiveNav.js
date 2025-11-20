@@ -6,6 +6,7 @@
  */
 
 import { gsap } from 'gsap';
+import { devLog } from '../utils/logger.js';
 
 export class ProgressiveNav {
   constructor() {
@@ -26,7 +27,7 @@ export class ProgressiveNav {
   init() {
     this.createProgressBar();
     this.attachScrollListener();
-    console.log('✅ Progressive Navigation initialized');
+    devLog('✅ Progressive Navigation initialized');
   }
 
   createProgressBar() {

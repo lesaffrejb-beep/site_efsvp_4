@@ -16,7 +16,6 @@ import { gsap } from 'gsap';
  */
 export function createProjectVideoPlayer(container, project) {
   if (!project?.video?.enabled || !project?.video?.files?.mp4) {
-    console.log(`[ProjectVideoPlayer] No video for project ${project?.id}`);
     return null;
   }
 
@@ -169,8 +168,8 @@ function initVideoPlayer(container, videoElement, project) {
   // Autoplay si demandé
   if (video.autoplay) {
     setTimeout(() => {
-      videoElement.play().catch((error) => {
-        console.log('[ProjectVideoPlayer] Autoplay prevented:', error);
+      videoElement.play().catch(() => {
+        // Autoplay silently prevented by browser
       });
     }, 500);
   }

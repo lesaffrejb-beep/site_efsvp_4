@@ -3,6 +3,8 @@
  * Animations, formulaire, tracking
  */
 
+import { devLog } from './utils/logger.js';
+
 // ===== FADE-IN PROGRESSIF AU SCROLL =====
 function initScrollReveal() {
   const observerOptions = {
@@ -172,8 +174,6 @@ function trackEvent(eventName, eventParams = {}) {
   if (typeof gtag === 'function') {
     gtag('event', eventName, eventParams);
   }
-  // Fallback console pour debug
-  console.log('Event tracked:', eventName, eventParams);
 }
 
 function initTracking() {
@@ -249,7 +249,6 @@ function addAnimationStyles() {
 // ===== INITIALISATION =====
 function initComponentsEfsvp() {
   if (window.__EFVSP_APP_ACTIVE) {
-    console.info('EfSVP components skipped: main app orchestrator active');
     return;
   }
 
@@ -259,7 +258,7 @@ function initComponentsEfsvp() {
   initSmoothScroll();
   initTracking();
 
-  console.log('✅ EfSVP Components initialized');
+  devLog('✅ EfSVP Components initialized');
 }
 
 // Auto-init au chargement du DOM

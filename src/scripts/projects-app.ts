@@ -3,11 +3,10 @@ import { ProjectGrid } from '@/components/projects/ProjectGrid';
 import { ProjectModal } from '@/components/projects/ProjectModal';
 import { SectorFilter } from '@/components/projects/SectorFilter';
 import type { Project, ProjectSector } from '@/types/project';
+import { devLog } from '@/scripts/utils/logger';
 
 export function initProjectsApp() {
-  if (import.meta.env.DEV) {
-    console.log('🚀 initProjectsApp: Démarrage');
-  }
+  devLog('🚀 initProjectsApp: Démarrage');
 
   const FEATURED_ORDER = [
     'la-force-de-la-douceur',
@@ -50,11 +49,9 @@ export function initProjectsApp() {
   const projects = getAllProjects().sort(sortProjects);
   const sectors = getUniqueSectors();
 
-  if (import.meta.env.DEV) {
-    console.log(`📊 initProjectsApp: ${projects.length} projets, ${sectors.length} secteurs uniques`, {
-      sectors,
-    });
-  }
+  devLog(`📊 initProjectsApp: ${projects.length} projets, ${sectors.length} secteurs uniques`, {
+    sectors,
+  });
 
   const modal = new ProjectModal();
   const grid = new ProjectGrid({
@@ -64,9 +61,7 @@ export function initProjectsApp() {
 
   const handleFilterChange = (sector: ProjectSector | 'tous') => {
     const filtered = sector === 'tous' ? projects : projects.filter((project) => project.sector === sector);
-    if (import.meta.env.DEV) {
-      console.log(`🔍 Filtrage: secteur="${sector}", ${filtered.length} projets affichés`);
-    }
+    devLog(`🔍 Filtrage: secteur="${sector}", ${filtered.length} projets affichés`);
     grid.render(filtered);
   };
 
@@ -78,7 +73,5 @@ export function initProjectsApp() {
   });
 
   grid.render(projects);
-  if (import.meta.env.DEV) {
-    console.log('✅ initProjectsApp: Rendu complet');
-  }
+  devLog('✅ initProjectsApp: Rendu complet');
 }

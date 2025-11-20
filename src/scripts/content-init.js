@@ -5,6 +5,7 @@
  * ============================================
  */
 
+import { devLog } from './utils/logger.js';
 import { homeContent } from '../content/home.js';
 import { siteContent } from '../data/content.js';
 import { highlightsContent } from '../content/highlights.js';
@@ -252,7 +253,6 @@ export function initServicesContent() {
 export function initPortfolioContent() {
   // Les titres et métriques sont déjà dans le HTML statique
   // Le rendu des projets et filtres est géré par initProjectsApp() (TypeScript)
-  console.log('📦 Portfolio: Rendu délégué au système TypeScript (initProjectsApp)');
   return;
 }
 
@@ -465,7 +465,7 @@ export function initFaqContent() {
       faqContainer.appendChild(article);
     });
 
-    console.log(`✅ FAQ: ${items.length} questions générées`);
+    devLog(`✅ FAQ: ${items.length} questions générées`);
   } else {
     console.warn('⚠️ FAQ: Aucune question ou container introuvable');
   }
@@ -621,7 +621,7 @@ export function initAllContent() {
     initFooterContent();
     initCookieContent();
 
-    console.log('✅ Content layer initialized successfully');
+    devLog('✅ Content layer initialized successfully');
   } catch (error) {
     console.error('❌ Error initializing content layer:', error);
   }

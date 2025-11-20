@@ -31,7 +31,7 @@ export const highlightsContent = {
       type: `compact`,
       title: `Atelier Lacour`,
       client: `Métaphore forêt · 2024`,
-      audioSrc: ``, // TODO: brancher l'extrait audio le jour où le fichier est dispo
+      // audioSrc: '', // à activer si un extrait audio est disponible
     },
   ],
 

@@ -68,6 +68,9 @@ export function normalizeSector(raw: string): ProjectSector {
     text.includes('collectivit')
   )
     return 'territoire';
+
+  // Fallback pour secteur inconnu
+  console.warn(`⚠️ Secteur inconnu "${raw}", fallback à "territoire"`);
   return 'territoire';
 }
 
