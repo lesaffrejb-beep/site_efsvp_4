@@ -1,6 +1,17 @@
 import { SECTOR_LABELS, type Project } from '@/types/project';
 import { createProjectAudioPlayer, hasProjectAudio, destroyProjectAudioPlayer } from '@/scripts/modules/projectAudioPlayer';
 
+/**
+ * Project modal lifecycle overview
+ * - Content lives in content/projects.json and is normalized in src/data/projects.loader.ts
+ *   (cover/thumbnail resolution, slug → assets folder mapping, and strict asset existence checks
+ *   for media like /assets/videos/projects/<folder>/video.mp4).
+ * - The modal renders these normalized Project objects: details + cover image by default,
+ *   optional HTML5 video/audio players only when the loader confirmed a real asset.
+ * - Opening locks the background scroll (and Lenis if present), focuses the modal, and scrolls
+ *   only inside .project-modal. Closing restores body styles and the exact previous scroll offset.
+ */
+
 export class ProjectModal {
   private modal: HTMLElement | null;
   private closeButton: HTMLElement | null;
@@ -196,6 +207,7 @@ export class ProjectModal {
       project.media?.video ||
       project.video?.files?.mp4 ||
       null;
+    const hasVideo = Boolean(videoSrc);
 
     let visualEl = visualImage ?? null;
 
@@ -228,8 +240,8 @@ export class ProjectModal {
       audioContainer.innerHTML = '';
     }
 
-    // ✅ Logique vidéo simplifiée : player natif HTML5
-    if (videoContainer && videoSrc) {
+    // ✅ Logique vidéo simplifiée : player natif HTML5 uniquement si une vidéo existe réellement
+    if (videoContainer && hasVideo) {
       if (visualContainer) {
         visualContainer.style.display = 'none';
         visualContainer.setAttribute('aria-hidden', 'true');
@@ -256,6 +268,20 @@ export class ProjectModal {
       </video>
     </div>
   `;
+
+      const videoEl = videoContainer.querySelector('video');
+      if (videoEl) {
+        const handleVideoError = () => {
+          videoContainer.style.display = 'none';
+          videoContainer.setAttribute('aria-hidden', 'true');
+          if (visualContainer) {
+            visualContainer.style.display = 'block';
+            visualContainer.removeAttribute('aria-hidden');
+          }
+        };
+
+        videoEl.addEventListener('error', handleVideoError, { once: true });
+      }
 
       return;
     }
