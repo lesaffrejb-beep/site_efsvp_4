@@ -251,7 +251,7 @@ export class ErrorHandler {
     }, 300);
   }
 
-  addToastStyles(toast) {
+  addToastStyles(_toast) {
     if (!document.getElementById('error-toast-styles')) {
       const style = document.createElement('style');
       style.id = 'error-toast-styles';
@@ -409,14 +409,12 @@ export class ErrorHandler {
 
     // Or send to custom endpoint
     if (navigator.sendBeacon) {
-      const data = JSON.stringify({
-        type: 'error',
-        ...errorInfo,
-        userAgent: navigator.userAgent,
-        url: window.location.href,
-      });
-
-      // navigator.sendBeacon('/api/errors', data);
+      // navigator.sendBeacon('/api/errors', JSON.stringify({
+      //   type: 'error',
+      //   ...errorInfo,
+      //   userAgent: navigator.userAgent,
+      //   url: window.location.href,
+      // }));
     }
   }
 

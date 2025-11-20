@@ -181,15 +181,15 @@ function initVideoPlayer(container, videoElement, project) {
 /**
  * Attache les contrôles du player
  */
-function attachVideoControls(container, playerInstance, project) {
+function attachVideoControls(container, playerInstance, _project) {
   const { video } = playerInstance;
   const playBtn = container.querySelector('[data-play-btn]');
   const playOverlay = container.querySelector('[data-play-overlay]');
   const volumeBtn = container.querySelector('[data-volume-btn]');
   const fullscreenBtn = container.querySelector('[data-fullscreen-btn]');
   const timeline = container.querySelector('[data-timeline]');
-  const currentTimeEl = container.querySelector('[data-current-time]');
-  const durationTimeEl = container.querySelector('[data-duration-time]');
+  // const currentTimeEl = container.querySelector('[data-current-time]');
+  // const durationTimeEl = container.querySelector('[data-duration-time]');
   const overlay = container.querySelector('[data-video-overlay]');
 
   // Play/Pause button
@@ -403,7 +403,7 @@ function togglePlayPause(playerInstance, container) {
 /**
  * Toggle fullscreen
  */
-function toggleFullscreen(element, button) {
+function toggleFullscreen(element, _button) {
   if (!document.fullscreenElement) {
     element.requestFullscreen().catch((err) => {
       console.error('[ProjectVideoPlayer] Fullscreen error:', err);

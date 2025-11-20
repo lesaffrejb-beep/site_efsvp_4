@@ -158,7 +158,7 @@ function initWaveSurfer(container, project) {
 /**
  * Attache les contrôles du player
  */
-function attachPlayerControls(container, wavesurfer, project) {
+function attachPlayerControls(container, wavesurfer, _project) {
   const playBtn = container.querySelector('[data-play-btn]');
   const volumeBtn = container.querySelector('[data-volume-btn]');
   const currentTimeEl = container.querySelector('.audio-player__current');

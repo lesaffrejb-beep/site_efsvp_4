@@ -1,18 +1,24 @@
 [
   {
     "id": "a2mo",
+    "slug": "a2mo",
     "title": "A2MO",
     "client": "A2MO",
     "year": 2025,
     "location": "Saint Brévin les Pins",
     "status": "delivered",
+    "tags": [
+      "construction et évolution d’une entreprise"
+    ],
+    "thumbnailSrc": "/assets/images/projects/a2mo/cover.webp",
+    "coverSrc": "/assets/images/projects/a2mo/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/a2mo/cover.webp",
       "initials": "A2",
       "gradient": {
         "from": "var(--color-neutral-700)",
         "to": "var(--color-primary-500)"
-      },
-      "image": "/assets/images/projects/a2mo/cover.webp"
+      }
     },
     "shortDescription": "Dans un couloir, 12 portes. Chacune d’elle ouvre sur un moment de vie, un souvenir, un projet d’A2MO. Commande d’un concert live pour les 30 ans et le départ du fondateur de l’entreprise.",
     "longDescription": [
@@ -22,9 +28,10 @@
     "category": "concert interactif",
     "sector": "btp",
     "themes": [
-      "concert interactif",
-      "anniversaire & transmission"
+      "construction et évolution d’une entreprise"
     ],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "Concert interactif",
       "duration": "20 minutes",
@@ -41,32 +48,29 @@
     ],
     "media": {
       "coverImage": "/assets/images/projects/a2mo/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "a2mo",
-    "tags": [
-      "concert interactif",
-      "anniversaire & transmission"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "gallery": []
+    }
   },
   {
-    "id": "agglo-bus",
+    "id": "agglobus",
+    "slug": "agglobus",
     "title": "Agglo’bus",
     "client": "Communauté d’Agglomération Saumur Val de Loire / Ogalo Mobilités",
     "year": 2023,
     "location": "Saumur",
     "status": "delivered",
+    "tags": [
+      "prévention"
+    ],
+    "thumbnailSrc": "/assets/images/projects/agglobus/cover.webp",
+    "coverSrc": "/assets/images/projects/agglobus/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/agglobus/cover.webp",
       "initials": "AG",
       "gradient": {
         "from": "var(--color-info)",
         "to": "var(--color-primary-300)"
-      },
-      "image": "/assets/images/projects/agglo-bus/cover.webp"
+      }
     },
     "shortDescription": "L’histoire de Théo et Léa prenant le bus pour la première fois lors de leur rentrée en sixième. Musique de prévention routière sur les bons usages pour prendre le car.",
     "longDescription": [
@@ -76,9 +80,10 @@
     "category": "vidéo de prévention diffusée dans les collèges",
     "sector": "mobilite",
     "themes": [
-      "morceau sur mesure",
-      "prévention routière"
+      "prévention"
     ],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "vidéo de prévention",
       "duration": "3 minutes",
@@ -93,33 +98,28 @@
       "Arthur CHARRIER"
     ],
     "media": {
-      "coverImage": "/assets/images/projects/agglo-bus/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "agglo-bus",
-    "tags": [
-      "morceau sur mesure",
-      "prévention routière"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "coverImage": "/assets/images/projects/agglobus/cover.webp",
+      "gallery": []
+    }
   },
   {
     "id": "atelier-lacour",
+    "slug": "atelier-lacour",
     "title": "Atelier Lacour",
     "client": "Atelier Lacour",
     "year": 2024,
     "location": "Trélazé",
     "status": "delivered",
+    "tags": [],
+    "thumbnailSrc": "/assets/images/projects/atelier-lacour/cover.webp",
+    "coverSrc": "/assets/images/projects/atelier-lacour/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/atelier-lacour/cover.webp",
       "initials": "AT",
       "gradient": {
         "from": "var(--color-primary-400)",
         "to": "var(--color-primary-700)"
-      },
-      "image": "/assets/images/projects/atelier-lacour/cover.webp"
+      }
     },
     "shortDescription": "Chaque entreprise est une forêt qui grandit, affronte des tempêtes et s’épanouit. Le récit de la vie de l’Atelier Lacour pour ses 25 ans.",
     "longDescription": [
@@ -129,10 +129,9 @@
     ],
     "category": "concert live",
     "sector": "artisanat",
-    "themes": [
-      "morceau sur mesure",
-      "anniversaire & transmission"
-    ],
+    "themes": [],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "concert live",
       "duration": "7 minutes",
@@ -149,32 +148,27 @@
     ],
     "media": {
       "coverImage": "/assets/images/projects/atelier-lacour/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "atelier-lacour",
-    "tags": [
-      "morceau sur mesure",
-      "anniversaire & transmission"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "gallery": []
+    }
   },
   {
     "id": "capeb",
+    "slug": "capeb",
     "title": "CAPEB",
     "client": "CAPEB Pays de la Loire",
     "year": 2023,
     "location": "Brissac Loire Aubance",
     "status": "delivered",
+    "tags": [],
+    "thumbnailSrc": "/assets/images/projects/capeb/cover.webp",
+    "coverSrc": "/assets/images/projects/capeb/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/capeb/cover.webp",
       "initials": "CA",
       "gradient": {
         "from": "var(--color-primary-400)",
         "to": "var(--color-primary-700)"
-      },
-      "image": "/assets/images/projects/capeb/cover.webp"
+      }
     },
     "shortDescription": "La vie de Guillaume, de sa jeunesse et ses débuts dans la menuiserie à son départ à la retraite en léguant son entreprise à sa fille. Texte pour raconter ce qu’est la vraie vie d’un artisan du patrimoine.",
     "longDescription": [
@@ -185,10 +179,9 @@
     ],
     "category": "concert live",
     "sector": "artisanat",
-    "themes": [
-      "morceau sur mesure",
-      "artisanat patrimonial"
-    ],
+    "themes": [],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "concert live",
       "duration": "10 minutes",
@@ -205,32 +198,27 @@
     ],
     "media": {
       "coverImage": "/assets/images/projects/capeb/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "capeb",
-    "tags": [
-      "morceau sur mesure",
-      "artisanat patrimonial"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "gallery": []
+    }
   },
   {
     "id": "la-force-de-la-douceur",
+    "slug": "la-force-de-la-douceur",
     "title": "La force de la douceur",
     "client": "Département du Maine et Loire",
     "year": 2024,
     "location": "Angers",
     "status": "delivered",
+    "tags": [],
+    "thumbnailSrc": "/assets/images/projects/la-force-de-la-douceur/cover.webp",
+    "coverSrc": "/assets/images/projects/la-force-de-la-douceur/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/la-force-de-la-douceur/cover.webp",
       "initials": "LA",
       "gradient": {
         "from": "var(--color-info)",
         "to": "var(--color-neutral-700)"
-      },
-      "image": "/assets/images/projects/la-force-de-la-douceur/cover.webp"
+      }
     },
     "shortDescription": "L’hymne pour la nouvelle marque de l’Anjou : la force de la douceur.",
     "longDescription": [
@@ -240,10 +228,9 @@
     ],
     "category": "texte et voix pour une vidéo de promotion",
     "sector": "territoire",
-    "themes": [
-      "Hymne territorial",
-      "marque Maine et Loire"
-    ],
+    "themes": [],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "vidéo promotionnelle",
       "duration": "1 minute 30",
@@ -259,32 +246,29 @@
     ],
     "media": {
       "coverImage": "/assets/images/projects/la-force-de-la-douceur/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "la-force-de-la-douceur",
-    "tags": [
-      "Hymne territorial",
-      "marque Maine et Loire"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "gallery": []
+    }
   },
   {
-    "id": "dis-moi-des-mots-d-amour",
+    "id": "dis-moi-des-mots-damour",
+    "slug": "dis-moi-des-mots-damour",
     "title": "Dis-moi des mots d’amour",
     "client": "Théâtre de la Jeune Plume",
     "year": 2022,
     "location": "Angers",
     "status": "delivered",
+    "tags": [
+      "ALD"
+    ],
+    "thumbnailSrc": "/assets/images/projects/dis-moi-des-mots-damour/cover.webp",
+    "coverSrc": "/assets/images/projects/dis-moi-des-mots-damour/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/dis-moi-des-mots-damour/cover.webp",
       "initials": "DI",
       "gradient": {
         "from": "var(--color-primary-500)",
         "to": "var(--color-warning)"
-      },
-      "image": "/assets/images/projects/dis-moi-des-mots-d-amour/cover.webp"
+      }
     },
     "shortDescription": "Les ALD touchent 11 millions de personnes en France. Dis-moi des mots d’amour essaye de remettre sur le devant de la scène ce sujet trop souvent tabou. Écriture de la bande-son d’un spectacle de danse sur les Affections de Longue Durée.",
     "longDescription": [
@@ -294,9 +278,10 @@
     "category": "bande-son d’un spectacle de danse",
     "sector": "spectacle-vivant",
     "themes": [
-      "bande-son de spectacle",
-      "santé & ALD"
+      "ALD"
     ],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "bande-son d’un spectacle",
       "duration": "45 minutes",
@@ -310,33 +295,30 @@
       "Arthur CHARRIER"
     ],
     "media": {
-      "coverImage": "/assets/images/projects/dis-moi-des-mots-d-amour/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "dis-moi-des-mots-d-amour",
-    "tags": [
-      "bande-son de spectacle",
-      "santé & ALD"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "coverImage": "/assets/images/projects/dis-moi-des-mots-damour/cover.webp",
+      "gallery": []
+    }
   },
   {
-    "id": "doue-en-anjou",
+    "id": "doue-en-anjou-ou-culture-et-patrimoine-se-rencontrent",
+    "slug": "doue-en-anjou-ou-culture-et-patrimoine-se-rencontrent",
     "title": "Doué-en-Anjou, où culture et patrimoine se rencontrent",
     "client": "Commune de Doué en Anjou / Terre de pixels",
     "year": 2022,
     "location": "Doué en Anjou",
     "status": "delivered",
+    "tags": [
+      "culture et patrimoine"
+    ],
+    "thumbnailSrc": "/assets/images/projects/doue-en-anjou-ou-culture-et-patrimoine-se-rencontrent/cover.webp",
+    "coverSrc": "/assets/images/projects/doue-en-anjou-ou-culture-et-patrimoine-se-rencontrent/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/doue-en-anjou-ou-culture-et-patrimoine-se-rencontrent/cover.webp",
       "initials": "DO",
       "gradient": {
         "from": "var(--color-neutral-800)",
         "to": "var(--color-primary-600)"
-      },
-      "image": "/assets/images/projects/doue-en-anjou/cover.webp"
+      }
     },
     "shortDescription": "Culture et patrimoine sont souvent les deux faces d’une même pièce. C’est le cas à Doué en Anjou où l’un ne peut aller sans l’autre. Musique enregistrée pour les voeux 2022 de la mairie.",
     "longDescription": [
@@ -346,9 +328,10 @@
     "category": "musique",
     "sector": "patrimoine",
     "themes": [
-      "morceau sur mesure",
-      "voeux institutionnels"
+      "culture et patrimoine"
     ],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "musique",
       "duration": "4 minutes",
@@ -362,33 +345,30 @@
       "Arthur CHARRIER"
     ],
     "media": {
-      "coverImage": "/assets/images/projects/doue-en-anjou/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "doue-en-anjou",
-    "tags": [
-      "morceau sur mesure",
-      "voeux institutionnels"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "coverImage": "/assets/images/projects/doue-en-anjou-ou-culture-et-patrimoine-se-rencontrent/cover.webp",
+      "gallery": []
+    }
   },
   {
     "id": "doue-en-sports",
+    "slug": "doue-en-sports",
     "title": "Doué en sports !",
     "client": "Commune de Doué en Anjou / Terre de pixels",
     "year": 2024,
     "location": "Doué en Anjou",
     "status": "delivered",
+    "tags": [
+      "sport"
+    ],
+    "thumbnailSrc": "/assets/images/projects/doue-en-sports/cover.webp",
+    "coverSrc": "/assets/images/projects/doue-en-sports/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/doue-en-sports/cover.webp",
       "initials": "DO",
       "gradient": {
         "from": "var(--color-info)",
         "to": "var(--color-neutral-700)"
-      },
-      "image": "/assets/images/projects/doue-en-sports/cover.webp"
+      }
     },
     "shortDescription": "Pour l’année des Jeux Olympiques de Paris, la ville de Doué-en-Anjou nous commande un texte pour faire la promotion des associations et des personnes faisant vivre la vie sportive de leur commune.",
     "longDescription": [
@@ -397,9 +377,10 @@
     "category": "musique",
     "sector": "territoire",
     "themes": [
-      "morceau sur mesure",
-      "vie associative"
+      "sport"
     ],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "musique",
       "duration": "3 minutes",
@@ -414,32 +395,29 @@
     ],
     "media": {
       "coverImage": "/assets/images/projects/doue-en-sports/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "doue-en-sports",
-    "tags": [
-      "morceau sur mesure",
-      "vie associative"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "gallery": []
+    }
   },
   {
-    "id": "jardin-de-cocagne",
+    "id": "le-jardin-de-cocagne",
+    "slug": "le-jardin-de-cocagne",
     "title": "Le Jardin de Cocagne",
     "client": "Jardin de Cocagne Angevin",
     "year": 2024,
     "location": "Angers",
     "status": "delivered",
+    "tags": [
+      "solidarité et insertion"
+    ],
+    "thumbnailSrc": "/assets/images/projects/le-jardin-de-cocagne/cover.webp",
+    "coverSrc": "/assets/images/projects/le-jardin-de-cocagne/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/le-jardin-de-cocagne/cover.webp",
       "initials": "LE",
       "gradient": {
         "from": "var(--color-primary-300)",
         "to": "var(--color-success)"
-      },
-      "image": "/assets/images/projects/jardin-de-cocagne/cover.webp"
+      }
     },
     "shortDescription": "Rendre hommage à la résilience. C’était l’objectif de cette commande. 3 récits, 3 personnages, 3 chemins différents convergeant en un point : Le jardin de Cocagne angevin. Commande pour les 25 ans de l’association.",
     "longDescription": [
@@ -451,10 +429,10 @@
     "category": "concert live et musiques enregistrées",
     "sector": "economie-sociale",
     "themes": [
-      "concert sur mesure",
-      "anniversaire",
-      "vie associative"
+      "solidarité et insertion"
     ],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "concert live et musique enregistrée",
       "duration": "15 minutes",
@@ -470,34 +448,30 @@
       "Arthur CHARRIER"
     ],
     "media": {
-      "coverImage": "/assets/images/projects/jardin-de-cocagne/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "jardin-de-cocagne",
-    "tags": [
-      "concert sur mesure",
-      "anniversaire",
-      "vie associative"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "coverImage": "/assets/images/projects/le-jardin-de-cocagne/cover.webp",
+      "gallery": []
+    }
   },
   {
     "id": "forges-tout-feu-tout-flamme",
+    "slug": "forges-tout-feu-tout-flamme",
     "title": "Forges, tout feu tout flamme",
     "client": "Comité des fêtes de la commune de Forges",
     "year": 2025,
     "location": "Forges",
     "status": "delivered",
+    "tags": [
+      "vie locale"
+    ],
+    "thumbnailSrc": "/assets/images/projects/forges-tout-feu-tout-flamme/cover.webp",
+    "coverSrc": "/assets/images/projects/forges-tout-feu-tout-flamme/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/forges-tout-feu-tout-flamme/cover.webp",
       "initials": "FO",
       "gradient": {
         "from": "var(--color-info)",
         "to": "var(--color-neutral-700)"
-      },
-      "image": "/assets/images/projects/forges-tout-feu-tout-flamme/cover.webp"
+      }
     },
     "shortDescription": "Le projet : un ciné-concert avec une projection sur l’Église de Forges. Un concert avec une histoire sur mesure pour découvrir les légendes de ce hameau, mis en image par Terre de Pixels.",
     "longDescription": [
@@ -508,9 +482,10 @@
     "category": "ciné-concert live",
     "sector": "territoire",
     "themes": [
-      "Ciné-concert",
-      "Festival rural"
+      "vie locale"
     ],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "ciné-concert live",
       "duration": "10 minutes",
@@ -526,32 +501,29 @@
     ],
     "media": {
       "coverImage": "/assets/images/projects/forges-tout-feu-tout-flamme/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "forges-tout-feu-tout-flamme",
-    "tags": [
-      "Ciné-concert",
-      "Festival rural"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "gallery": []
+    }
   },
   {
-    "id": "seigneurs-de-clisson",
+    "id": "les-seigneurs-de-clisson",
+    "slug": "les-seigneurs-de-clisson",
     "title": "Les Seigneurs de Clisson",
     "client": "Commune de Clisson",
     "year": 2023,
     "location": "Clisson",
     "status": "delivered",
+    "tags": [
+      "histoire de Clisson"
+    ],
+    "thumbnailSrc": "/assets/images/projects/les-seigneurs-de-clisson/cover.webp",
+    "coverSrc": "/assets/images/projects/les-seigneurs-de-clisson/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/les-seigneurs-de-clisson/cover.webp",
       "initials": "LE",
       "gradient": {
         "from": "var(--color-neutral-800)",
         "to": "var(--color-primary-600)"
-      },
-      "image": "/assets/images/projects/seigneurs-de-clisson/cover.webp"
+      }
     },
     "shortDescription": "L’histoire vraie de François Ier d’Avaugour et sa prise de pouvoir à Clisson au XVe siècle avec trahisons et duels. Commande d’une visite historique musicale de la ville de Clisson.",
     "longDescription": [
@@ -563,9 +535,10 @@
     "category": "spectacle historique musical",
     "sector": "patrimoine",
     "themes": [
-      "déambulation historique",
-      "spectacle médiéval"
+      "histoire de Clisson"
     ],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "spectacle historique musical",
       "duration": "1 heure",
@@ -580,33 +553,30 @@
       "Arthur CHARRIER"
     ],
     "media": {
-      "coverImage": "/assets/images/projects/seigneurs-de-clisson/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "seigneurs-de-clisson",
-    "tags": [
-      "déambulation historique",
-      "spectacle médiéval"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "coverImage": "/assets/images/projects/les-seigneurs-de-clisson/cover.webp",
+      "gallery": []
+    }
   },
   {
-    "id": "moulin-de-brissac",
+    "id": "le-moulin-de-brissac",
+    "slug": "le-moulin-de-brissac",
     "title": "Le Moulin de Brissac",
     "client": "Commune de Brissac Loire Aubance",
     "year": 2023,
     "location": "Brissac Loire Aubance",
     "status": "delivered",
+    "tags": [
+      "Moulin de Brissac"
+    ],
+    "thumbnailSrc": "/assets/images/projects/le-moulin-de-brissac/cover.webp",
+    "coverSrc": "/assets/images/projects/le-moulin-de-brissac/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/le-moulin-de-brissac/cover.webp",
       "initials": "LE",
       "gradient": {
         "from": "var(--color-neutral-800)",
         "to": "var(--color-primary-600)"
-      },
-      "image": "/assets/images/projects/moulin-de-brissac/cover.webp"
+      }
     },
     "shortDescription": "En 2023, le moulin du Pavé de Brissac reçoit le prix du loto du patrimoine permettant sa rénovation. Pour l’occasion, la mairie nous demande un texte pour célébrer cet objet patrimonial symbolique de leur ville.",
     "longDescription": [
@@ -617,9 +587,10 @@
     "category": "musique jouée en live",
     "sector": "patrimoine",
     "themes": [
-      "morceau sur mesure",
-      "patrimoine local"
+      "Moulin de Brissac"
     ],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "musique",
       "duration": "3 minutes",
@@ -634,33 +605,28 @@
       "Arthur CHARRIER"
     ],
     "media": {
-      "coverImage": "/assets/images/projects/moulin-de-brissac/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "moulin-de-brissac",
-    "tags": [
-      "morceau sur mesure",
-      "patrimoine local"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "coverImage": "/assets/images/projects/le-moulin-de-brissac/cover.webp",
+      "gallery": []
+    }
   },
   {
     "id": "don-quijote-de-la-francia",
+    "slug": "don-quijote-de-la-francia",
     "title": "Don Quijote de la Francia",
     "client": "Commune de Brissac Loire Aubance",
     "year": 2023,
     "location": "Brissac Loire Aubance",
     "status": "delivered",
+    "tags": [],
+    "thumbnailSrc": "/assets/images/projects/don-quijote-de-la-francia/cover.webp",
+    "coverSrc": "/assets/images/projects/don-quijote-de-la-francia/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/don-quijote-de-la-francia/cover.webp",
       "initials": "DO",
       "gradient": {
         "from": "var(--color-primary-500)",
         "to": "var(--color-warning)"
-      },
-      "image": "/assets/images/projects/don-quijote-de-la-francia/cover.webp"
+      }
     },
     "shortDescription": "Et si Don Quijote était venu s’installer dans le vignoble brissacois après ses aventures hispaniques ? Spectacle déambulatoire commandé par la ville de Brissac pour les Journées Européennes du Patrimoine.",
     "longDescription": [
@@ -670,11 +636,9 @@
     ],
     "category": "spectacle déambulatoire",
     "sector": "spectacle-vivant",
-    "themes": [
-      "spectacle déambulatoire",
-      "patrimoine vinicole",
-      "comédie chevaleresque"
-    ],
+    "themes": [],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "spectacle déambulatoire",
       "duration": "1h 30",
@@ -690,33 +654,27 @@
     ],
     "media": {
       "coverImage": "/assets/images/projects/don-quijote-de-la-francia/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "don-quijote-de-la-francia",
-    "tags": [
-      "spectacle déambulatoire",
-      "patrimoine vinicole",
-      "comédie chevaleresque"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "gallery": []
+    }
   },
   {
     "id": "anjour-et-nuit",
+    "slug": "anjour-et-nuit",
     "title": "Anjou’r et nuit",
     "client": "Commune de Brissac Loire Aubance",
     "year": 2023,
     "location": "Brissac Loire Aubance",
     "status": "delivered",
+    "tags": [],
+    "thumbnailSrc": "/assets/images/projects/anjour-et-nuit/cover.webp",
+    "coverSrc": "/assets/images/projects/anjour-et-nuit/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/anjour-et-nuit/cover.webp",
       "initials": "AN",
       "gradient": {
         "from": "var(--color-info)",
         "to": "var(--color-neutral-700)"
-      },
-      "image": "/assets/images/projects/anjour-et-nuit/cover.webp"
+      }
     },
     "shortDescription": "Nous n’avions encore jamais écrit pour une course à pied, c’est chose faite. Texte pour célébrer les 5 sens avant le début de la course nocturne d’Anjou’r et nuit.",
     "longDescription": [
@@ -725,10 +683,9 @@
     ],
     "category": "musique",
     "sector": "territoire",
-    "themes": [
-      "morceau sur mesure",
-      "événement associatif"
-    ],
+    "themes": [],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "musique",
       "duration": "3 minutes",
@@ -744,32 +701,27 @@
     ],
     "media": {
       "coverImage": "/assets/images/projects/anjour-et-nuit/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "anjour-et-nuit",
-    "tags": [
-      "morceau sur mesure",
-      "événement associatif"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "gallery": []
+    }
   },
   {
     "id": "etat-de-nature",
+    "slug": "etat-de-nature",
     "title": "État de Nature",
     "client": "PNR Loire Anjou Touraine",
     "year": 2023,
     "location": "Partout en France",
     "status": "delivered",
+    "tags": [],
+    "thumbnailSrc": "/assets/images/projects/etat-de-nature/cover.webp",
+    "coverSrc": "/assets/images/projects/etat-de-nature/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/etat-de-nature/cover.webp",
       "initials": "TA",
       "gradient": {
         "from": "var(--color-success)",
         "to": "var(--color-success-light)"
-      },
-      "image": "/assets/images/projects/etat-de-nature/cover.webp"
+      }
     },
     "shortDescription": "Dans État de nature, la Rainette, le Héron, les poissons-chats, les castors ou les libellules sont tous des citoyens d'une société bien établie. Nous découvrons cette société au fil de 15 tableaux, 15 chapitres à la rencontre d’une zone humide, ses habitants et ses enjeux.",
     "longDescription": [
@@ -782,10 +734,9 @@
     ],
     "category": "spectacle",
     "sector": "environnement",
-    "themes": [
-      "spectacle",
-      "sensibilisation écologique"
-    ],
+    "themes": [],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "spectacle",
       "duration": "1heure",
@@ -801,32 +752,27 @@
     ],
     "media": {
       "coverImage": "/assets/images/projects/etat-de-nature/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "etat-de-nature",
-    "tags": [
-      "spectacle",
-      "sensibilisation écologique"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "gallery": []
+    }
   },
   {
     "id": "sival",
+    "slug": "sival",
     "title": "SIVAL",
     "client": "Destination Angers / SIVAL",
     "year": 2025,
     "location": "Angers",
     "status": "delivered",
+    "tags": [],
+    "thumbnailSrc": "/assets/images/projects/sival/cover.webp",
+    "coverSrc": "/assets/images/projects/sival/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/sival/cover.webp",
       "initials": "SI",
       "gradient": {
         "from": "var(--color-success)",
         "to": "var(--color-primary-500)"
-      },
-      "image": "/assets/images/projects/sival/cover.webp"
+      }
     },
     "shortDescription": "L’histoire d’un jeune garçon découvrant le métier d’agriculteur à travers son papi.\nCommande surprise pour le départ du président et les 25 ans du SIVAL : Bruno Dupont.",
     "longDescription": [
@@ -837,10 +783,9 @@
     ],
     "category": "concert live",
     "sector": "agriculture",
-    "themes": [
-      "concert sur mesure",
-      "saga agricole"
-    ],
+    "themes": [],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "concert live",
       "duration": "15 minutes",
@@ -856,32 +801,27 @@
     ],
     "media": {
       "coverImage": "/assets/images/projects/sival/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "sival",
-    "tags": [
-      "concert sur mesure",
-      "saga agricole"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "gallery": []
+    }
   },
   {
     "id": "souffler-sur-les-braises",
+    "slug": "souffler-sur-les-braises",
     "title": "Souffler sur les braises",
     "client": "Théâtre de la jeune plume",
     "year": 2023,
     "location": "Chinon",
     "status": "delivered",
+    "tags": [],
+    "thumbnailSrc": "/assets/images/projects/souffler-sur-les-braises/cover.webp",
+    "coverSrc": "/assets/images/projects/souffler-sur-les-braises/cover.webp",
     "cover": {
+      "image": "/assets/images/projects/souffler-sur-les-braises/cover.webp",
       "initials": "SO",
       "gradient": {
         "from": "var(--color-primary-500)",
         "to": "var(--color-warning)"
-      },
-      "image": "/assets/images/projects/souffler-sur-les-braises/cover.webp"
+      }
     },
     "shortDescription": "16 couples, 16 facettes d’humanité à 20 ans que nous retrouvons…. plusieurs décennies plus tard. Commande d’une bande-son pour un spectacle sur la vie affective et sexuelle des personnes de plus de 60 ans.",
     "longDescription": [
@@ -890,10 +830,9 @@
     ],
     "category": "concert live",
     "sector": "spectacle-vivant",
-    "themes": [
-      "bande-son de spectacle",
-      "vie affective seniors"
-    ],
+    "themes": [],
+    "hasVideo": false,
+    "hasAudio": false,
     "details": {
       "format": "bande-son d’un spectacle de danse",
       "duration": "45 minutes",
@@ -909,16 +848,7 @@
     ],
     "media": {
       "coverImage": "/assets/images/projects/souffler-sur-les-braises/cover.webp",
-      "gallery": [],
-      "video": null,
-      "audio": null
-    },
-    "slug": "souffler-sur-les-braises",
-    "tags": [
-      "bande-son de spectacle",
-      "vie affective seniors"
-    ],
-    "hasVideo": false,
-    "hasAudio": false
+      "gallery": []
+    }
   }
 ]

@@ -37,7 +37,6 @@ const initNavbarScroll = () => {
   const nav = document.querySelector('.nav');
   if (!nav) return;
 
-  let lastScroll = 0;
   const threshold = 50;
 
   window.addEventListener('scroll', () => {
@@ -56,8 +55,6 @@ const initNavbarScroll = () => {
     // } else {
     //   nav.style.transform = 'translateY(0)';
     // }
-
-    lastScroll = currentScroll;
   });
 };
 
@@ -300,39 +297,10 @@ const initPreloader = () => {
 // 10. CURSOR PERSONNALISÉ (Optionnel)
 // ========================================
 
-const initCustomCursor = () => {
-  // Désactivé par défaut - Activer si souhaité
-  return;
-
-  const cursor = document.createElement('div');
-  cursor.classList.add('custom-cursor');
-  cursor.style.cssText = `
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--brand-primary);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.2s ease;
-    mix-blend-mode: difference;
-  `;
-  document.body.appendChild(cursor);
-
-  document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX - 10 + 'px';
-    cursor.style.top = e.clientY - 10 + 'px';
-  });
-
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'scale(1.5)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'scale(1)';
-    });
-  });
-};
+// const initCustomCursor = () => {
+//   // Désactivé par défaut - Activer si souhaité
+//   return;
+// };
 
 // ========================================
 // 11. BACK TO TOP BUTTON

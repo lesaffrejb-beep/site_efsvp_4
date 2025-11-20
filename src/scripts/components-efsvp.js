@@ -84,7 +84,7 @@ function initContactForm() {
       } else {
         throw new Error("Erreur lors de l'envoi");
       }
-    } catch (error) {
+    } catch {
       form.classList.remove('submitting');
       showErrorMessage(
         'Une erreur est survenue. Veuillez réessayer ou nous contacter directement.'
@@ -199,8 +199,8 @@ function initTracking() {
   }
 
   // Scroll depth
-  let scrollDepths = [25, 50, 75, 100];
-  let trackedDepths = [];
+  const scrollDepths = [25, 50, 75, 100];
+  const trackedDepths = [];
 
   window.addEventListener('scroll', () => {
     const scrollPercent =
