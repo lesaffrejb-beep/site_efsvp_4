@@ -1,26 +1,28 @@
 /**
- * ============================================
- * PROGRESSIVE NAVIGATION & SCROLL PROGRESS
- * Navigation qui se cache au scroll + barre de progression
- * ============================================
+ * Progressive navigation & full-screen mobile menu
+ * NAV REFACTOR NOTES:
+ * - HTML: single nav with .nav__links desktop list cloned into a mobile panel (#nav-menu) with overlay.
+ * - Old JS: burger logic missing and scroll locking relied on body.menu-open; replaced with explicit nav-open toggling.
+ * - Old CSS issues: mix of GSAP-driven states + fixed positioning that blocked stacking; simplified to class toggles,
+ *   CSS-driven animations, and clear z-index layering.
  */
 
-/* ===== Navigation Container ===== */
+/* ===== Base Navigation ===== */
 .nav {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: var(--z-fixed);
-  background: rgba(26, 35, 50, 0.92);
+  background: color-mix(in srgb, var(--ink-deep) 90%, transparent);
   backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border-color-inverse);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-bottom: 1px solid color-mix(in srgb, var(--ink-deep) 40%, transparent);
+  transition: transform var(--transition-base), background var(--transition-base);
   will-change: transform;
 }
 
 .nav.visible {
-  background: rgba(26, 35, 50, 0.97);
+  background: color-mix(in srgb, var(--ink-deep) 96%, transparent);
   box-shadow: var(--shadow-xl);
 }
 
@@ -28,7 +30,7 @@
   transform: translateY(-100%);
 }
 
-.nav__container {
+.nav__inner {
   max-width: 1280px;
   margin: 0 auto;
   padding: var(--space-4) var(--container-padding);
@@ -39,68 +41,41 @@
 }
 
 @media (min-width: 1024px) {
-  .nav__container {
+  .nav__inner {
     padding-left: var(--container-padding-lg);
     padding-right: var(--container-padding-lg);
     gap: var(--space-8);
   }
 }
 
-  .nav__logo {
-    font-family: var(--font-display);
-    font-size: var(--text-xl);
-    font-weight: var(--font-bold);
-    color: var(--text-inverse);
-    text-decoration: none;
-    transition: color var(--transition-base);
-  }
-
-  .nav__logo:hover {
-    color: var(--color-primary-300);
-  }
-
-  .nav__logo-text {
-    display: inline-block;
-    font-size: var(--text-lg);
-    font-weight: var(--font-semibold);
-    letter-spacing: var(--tracking-tight);
-    white-space: nowrap;
-    transition: color var(--transition-fast);
-  }
-
-  .nav__logo:hover .nav__logo-text {
-    color: var(--color-primary-300);
-  }
-
-  @media (max-width: 640px) {
-    .nav__logo-text {
-      font-size: var(--text-base);
-    }
-  }
-
-.nav__actions {
-  display: flex;
+.nav__brand {
+  display: inline-flex;
   align-items: center;
-  gap: var(--space-4);
-  justify-self: end;
+  gap: var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--text-inverse);
+  text-decoration: none;
+  transition: color var(--transition-base);
 }
 
-.nav__menu {
-  display: none;
-  justify-self: center;
+.nav__brand:hover {
+  color: var(--terracotta-300, var(--color-primary-300));
 }
 
-@media (min-width: 1024px) {
-  .nav__menu {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-8);
-    width: 100%;
+.nav__brand-text {
+  letter-spacing: var(--tracking-tight);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .nav__brand-text {
+    font-size: var(--text-base);
   }
 }
 
-.nav__list {
+.nav__links {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,30 +83,37 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 100%;
 }
 
-.nav__item {
-  margin: 0;
+.nav__links--desktop {
+  width: 100%;
 }
 
 .nav__link {
   font-size: var(--text-base);
   font-weight: var(--font-medium);
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.86);
   text-decoration: none;
-  transition: color var(--transition-base);
   padding: var(--space-2) 0;
+  transition: color var(--transition-base), transform var(--transition-fast);
 }
 
 .nav__link:hover {
-  color: var(--color-primary-300);
+  color: var(--terracotta-200, var(--color-primary-300));
+  transform: translateY(-1px);
 }
 
 .nav__link:focus-visible {
   outline: 2px solid var(--color-primary-500);
   outline-offset: 4px;
   border-radius: var(--radius-xs);
+}
+
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  justify-self: end;
 }
 
 .nav__cta {
@@ -144,27 +126,31 @@
   }
 }
 
-/* Mobile Menu Toggle */
+/* ===== Toggle (Hamburger) ===== */
 .nav__toggle {
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 21px;
-  background: none;
-  border: none;
+  justify-content: center;
+  gap: 6px;
+  width: 38px;
+  height: 38px;
+  padding: var(--space-2);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-xl);
   cursor: pointer;
-  padding: var(--space-1);
-  border-radius: var(--radius-md);
-  z-index: 9999; /* ✅ Ensure toggle stays above menu overlay */
-  transition: transform var(--transition-fast), opacity var(--transition-fast);
-  position: relative; /* ✅ Ensure proper stacking context */
+  transition: transform var(--transition-fast), background var(--transition-fast);
+  position: relative;
+  z-index: var(--z-modal);
 }
 
-/* ✅ Focus state for accessibility */
 .nav__toggle:focus-visible {
   outline: 2px solid var(--color-primary-400);
-  outline-offset: 4px;
+  outline-offset: 3px;
+}
+
+.nav__toggle:hover {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 @media (min-width: 1024px) {
@@ -173,211 +159,185 @@
   }
 }
 
-.nav__toggle span {
+.nav__toggle-line {
   display: block;
   width: 100%;
   height: 2px;
   background: var(--text-inverse);
-  border-radius: var(--radius-xs);
-  transition: all var(--transition-base);
+  border-radius: var(--radius-full);
+  transition: transform var(--transition-base), opacity var(--transition-base);
 }
 
-.nav__toggle[aria-expanded="true"] span:nth-child(1) {
-  transform: translateY(9px) rotate(45deg);
+.nav__toggle[aria-expanded="true"] .nav__toggle-line:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
 }
 
-.nav__toggle[aria-expanded="true"] span:nth-child(2) {
+.nav__toggle[aria-expanded="true"] .nav__toggle-line:nth-child(2) {
   opacity: 0;
 }
 
-.nav__toggle[aria-expanded="true"] span:nth-child(3) {
-  transform: translateY(-10px) rotate(-45deg);
+.nav__toggle[aria-expanded="true"] .nav__toggle-line:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
-/* ===== MOBILE MENU - AWWWARDS PREMIUM ===== */
+/* ===== Mobile Menu Panel ===== */
+.nav__menu {
+  display: none;
+}
+
 @media (max-width: 1023px) {
+  .nav__links--desktop {
+    display: none;
+  }
+
   .nav__menu {
-    /* ✅ FULL SCREEN OVERLAY */
     position: fixed;
     inset: 0;
-    z-index: 9998;
-
-    /* ✅ DARK PREMIUM BACKGROUND - Pure dark, no transparency */
-    background: #1a1a1a;
-    /* ✅ Optional blur for glassmorphism effect - remove if causes issues */
-    backdrop-filter: blur(8px);
-
-    /* ✅ LAYOUT - Centered vertically and horizontally */
+    z-index: var(--z-modal);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
-    gap: 2rem;
+    gap: var(--space-4);
+    padding: var(--space-6);
 
-    /* ✅ ENTRANCE STATE - Hidden by default */
-    transform: translateY(-3%);
+    background: color-mix(in srgb, var(--ink-deep) 70%, transparent);
+    backdrop-filter: blur(14px);
+
     opacity: 0;
-    visibility: hidden;
+    transform: translateY(-8px);
     pointer-events: none;
-    /* ✅ FIX: No CSS transition - GSAP handles all animations for smooth control */
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    visibility: hidden;
+
+    transition:
+      opacity var(--transition-base),
+      transform var(--transition-base),
+      visibility 0s linear var(--transition-base);
   }
 
-  .nav__menu[aria-hidden="false"],
-  .nav__menu.is-active {
-    /* ✅ GSAP will handle transform and opacity animations */
-    /* CSS just defines the final state */
-    visibility: visible; /* ✅ Essential for showing menu */
+  .nav__menu.is-open {
+    opacity: 1;
+    transform: translateY(0);
     pointer-events: auto;
+    visibility: visible;
+    transition:
+      opacity var(--transition-base),
+      transform var(--transition-base),
+      visibility 0s;
   }
 
-  /* ✅ LINKS LIST - Centered */
-  .nav__list {
+  .nav__links--mobile {
     flex-direction: column;
     align-items: center;
-    gap: var(--space-6);
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    gap: var(--space-4);
   }
 
-  /* ✅ TYPOGRAPHY - HUGE Display Font */
-  .nav__link {
-    font-family: var(--font-display, 'Outfit', sans-serif);
-    font-size: clamp(2.5rem, 8vw, 3rem);
-    font-weight: var(--font-bold, 700);
-    color: rgba(255, 255, 255, 0.95);
+  .nav__links--mobile .nav__link {
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     text-align: center;
-    text-decoration: none;
-    letter-spacing: -0.02em;
-    transition: color 0.3s ease, transform 0.2s ease;
-    display: block;
+    color: var(--ink-on-paper);
   }
 
-  .nav__link:hover {
-    color: var(--color-primary-300, #E8924F);
-    transform: translateX(8px);
+  .nav__links--mobile .nav__item {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.4s cubic-bezier(0.33, 1, 0.68, 1),
+      transform 0.4s cubic-bezier(0.33, 1, 0.68, 1);
   }
 
-  /* ✅ CTA INTEGRATION - Premium Hero Style */
+  .nav__menu.is-open .nav__item {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Simple stagger */
+  .nav__menu.is-open .nav__item:nth-child(1) { transition-delay: 0.05s; }
+  .nav__menu.is-open .nav__item:nth-child(2) { transition-delay: 0.1s; }
+  .nav__menu.is-open .nav__item:nth-child(3) { transition-delay: 0.15s; }
+  .nav__menu.is-open .nav__item:nth-child(4) { transition-delay: 0.2s; }
+  .nav__menu.is-open .nav__item:nth-child(5) { transition-delay: 0.25s; }
+  .nav__menu.is-open .nav__item:nth-child(6) { transition-delay: 0.3s; }
+
   .nav__menu-cta {
-    margin-top: 3rem;
+    margin-top: var(--space-6);
     width: 100%;
     display: flex;
     justify-content: center;
   }
 
   .nav__cta-mobile {
-    /* Primary CTA style */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem 2rem;
+    gap: var(--space-2);
+    padding: var(--space-3) var(--space-6);
     min-height: 48px;
-
-    background: var(--color-primary, #E07855);
-    color: white;
-    font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
-    font-size: 1.125rem;
-    font-weight: 600;
+    border-radius: var(--radius-2xl);
     text-decoration: none;
-    border-radius: 100px;
-    border: 1px solid var(--color-primary, #E07855);
-    cursor: pointer;
-
-    /* Orange glow */
-    box-shadow:
-      0 4px 16px rgba(232, 146, 79, 0.3),
-      0 8px 32px rgba(232, 146, 79, 0.2);
-
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .nav__cta-mobile:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow:
-      0 6px 24px rgba(232, 146, 79, 0.4),
-      0 12px 48px rgba(232, 146, 79, 0.3);
+    font-weight: 600;
   }
 }
 
-@media (min-width: 1024px) {
-  .nav__menu-cta {
-    display: none;
-  }
-}
-
-/* Overlay for mobile menu */
+/* ===== Overlay ===== */
 .nav__overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: color-mix(in srgb, var(--color-neutral-900) 55%, transparent);
+  inset: 0;
+  z-index: calc(var(--z-modal) - 1);
+  background: rgba(0, 0, 0, 0.45);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity var(--transition-base), visibility var(--transition-base);
-  z-index: var(--z-modal-backdrop);
+  transition: opacity var(--transition-base), visibility 0s linear var(--transition-base);
 }
 
-.nav__overlay[aria-hidden="false"],
-.nav__overlay.is-active {
+.nav__overlay.is-open {
   opacity: 1;
   visibility: visible;
   pointer-events: auto;
+  transition: opacity var(--transition-base), visibility 0s;
 }
 
-@media (min-width: 768px) {
-  .nav__overlay {
-    display: none;
-  }
+/* ===== Scroll Lock ===== */
+body.nav-open {
+  overflow: hidden;
 }
 
 /* ===== Scroll Progress Bar ===== */
-  .scroll-progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(
-      90deg,
-      var(--color-primary-500) 0%,
-      var(--color-primary-400) 50%,
-      var(--color-primary-300) 100%
-    );
-    z-index: var(--z-tooltip);
-    transition: transform 0.2s ease-out, opacity 0.3s ease;
-    opacity: 0;
-    transform-origin: left;
-    transform: scaleX(0);
-    box-shadow: var(--shadow-primary);
-    pointer-events: none;
-  }
+.scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(
+    90deg,
+    var(--color-primary-500) 0%,
+    var(--color-primary-400) 50%,
+    var(--color-primary-300) 100%
+  );
+  z-index: var(--z-tooltip);
+  transition: transform 0.2s ease-out, opacity 0.3s ease;
+  opacity: 0;
+  transform-origin: left;
+  transform: scaleX(0);
+  box-shadow: var(--shadow-primary);
+  pointer-events: none;
+}
 
 .scroll-progress-bar.visible {
   opacity: 1;
 }
 
-/* ===== Smooth Transitions ===== */
+/* ===== Reduced Motion ===== */
 @media (prefers-reduced-motion: reduce) {
-  .nav {
-    transition: none;
-  }
-
+  .nav,
+  .nav__menu,
+  .nav__toggle-line,
   .scroll-progress-bar {
-    transition: none;
-  }
-
-  .nav__menu {
-    transition: none;
-  }
-
-  .nav__toggle span {
     transition: none;
   }
 }
@@ -390,35 +350,5 @@
 
   .scroll-progress-bar {
     height: 3px;
-  }
-}
-
-/* ===== Fix mobile menu z-index and positioning ===== */
-@media (max-width: 767px) {
-  .nav__menu {
-    z-index: var(--z-modal);
-  }
-
-  .nav__overlay {
-    z-index: var(--z-modal-backdrop);
-  }
-
-  /* S'assurer que le body n'a pas de transform ou filter qui pourraient créer un contexte d'empilement */
-  body.menu-open {
-    position: fixed;
-    width: 100%;
-    overflow: hidden;
-  }
-
-  /* S'assurer que les sections principales ne sont pas superposées */
-  main {
-    position: relative;
-    z-index: var(--z-base);
-    background: var(--bg-primary);
-  }
-
-  /* Ajouter un petit padding-top aux sections pour compenser le header fixe */
-  section:not(.hero) {
-    scroll-margin-top: 80px;
   }
 }

@@ -251,56 +251,46 @@
     <!-- ============================================
          NAVIGATION
          ============================================ -->
-    <nav class="nav" id="nav" aria-label="Navigation principale">
-      <div class="nav__container">
-        <a href="#hero" class="nav__logo" aria-label="Retour à l'accueil">
-          <span class="nav__logo-text">En français s'il vous plaît</span>
+    <nav class="nav" id="nav" data-role="main-nav" aria-label="Navigation principale">
+      <div class="nav__inner">
+        <a href="#hero" class="nav__brand" aria-label="Retour à l'accueil">
+          <span class="nav__brand-text">En français s'il vous plaît</span>
         </a>
-        <div class="nav__menu" id="nav-menu" role="navigation" aria-label="Sections principales" aria-hidden="true">
-          <ul class="nav__list">
-            <li class="nav__item">
-              <a href="#hero" class="nav__link">Accueil</a>
-            </li>
-            <li class="nav__item">
-              <a href="#projects" class="nav__link">Projets</a>
-            </li>
-            <li class="nav__item">
-              <a href="#process" class="nav__link">Process</a>
-            </li>
-            <li class="nav__item">
-              <a href="#offers" class="nav__link">Offres</a>
-            </li>
-            <li class="nav__item">
-              <a href="#faq" class="nav__link">FAQ</a>
-            </li>
-            <li class="nav__item">
-              <a href="#contact" class="nav__link">Contact</a>
-            </li>
-          </ul>
 
-          <div class="nav__menu-cta">
-            <a href="#contact" class="btn btn--primary nav__cta-mobile">Partagez votre histoire</a>
-          </div>
-        </div>
+        <ul class="nav__links nav__links--desktop" data-nav-links>
+          <li class="nav__item"><a href="#hero" class="nav__link">Accueil</a></li>
+          <li class="nav__item"><a href="#offers" class="nav__link">Offres</a></li>
+          <li class="nav__item"><a href="#projects" class="nav__link">Projets</a></li>
+          <li class="nav__item"><a href="#process" class="nav__link">Process</a></li>
+          <li class="nav__item"><a href="#faq" class="nav__link">FAQ</a></li>
+          <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+        </ul>
 
         <div class="nav__actions">
           <a href="#contact" class="btn btn--primary nav__cta">Partagez votre histoire</a>
 
-          <!-- Mobile Toggle -->
           <button
             class="nav__toggle"
-            id="nav-toggle"
+            type="button"
             aria-label="Ouvrir le menu"
-            aria-controls="nav-menu"
             aria-expanded="false"
+            aria-controls="nav-menu"
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            <span class="nav__toggle-line"></span>
+            <span class="nav__toggle-line"></span>
+            <span class="nav__toggle-line"></span>
           </button>
         </div>
       </div>
-      <div class="nav__overlay" id="nav-overlay" aria-hidden="true"></div>
+
+      <div id="nav-menu" class="nav__menu" aria-hidden="true">
+        <ul class="nav__links nav__links--mobile" data-nav-links-mobile></ul>
+        <div class="nav__menu-cta">
+          <a href="#contact" class="btn btn--primary nav__cta-mobile">Partagez votre histoire</a>
+        </div>
+      </div>
+
+      <div class="nav__overlay" data-nav-overlay aria-hidden="true"></div>
     </nav>
 
     <!-- Skip to main content (Accessibility) -->
