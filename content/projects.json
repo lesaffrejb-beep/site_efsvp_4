@@ -252,7 +252,7 @@
   {
     "id": "dis-moi-des-mots-damour",
     "slug": "dis-moi-des-mots-damour",
-    "title": "Dis-moi des mots d’amour",
+    "title": "Dis-moi des mots d'amour",
     "client": "Théâtre de la Jeune Plume",
     "year": 2022,
     "location": "Angers",
@@ -270,20 +270,20 @@
         "to": "var(--color-warning)"
       }
     },
-    "shortDescription": "Les ALD touchent 11 millions de personnes en France. Dis-moi des mots d’amour essaye de remettre sur le devant de la scène ce sujet trop souvent tabou. Écriture de la bande-son d’un spectacle de danse sur les Affections de Longue Durée.",
+    "shortDescription": "Les ALD touchent 11 millions de personnes en France. Dis-moi des mots d'amour essaye de remettre sur le devant de la scène ce sujet trop souvent tabou. Écriture de la bande-son d'un spectacle de danse sur les Affections de Longue Durée.",
     "longDescription": [
       "En novembre 2021, le théâtre de la Jeune Plume nous commande une bande-son pour leur prochain spectacle parlant des Affections de Longue Durée. La forme est particulière : deux danseurs sur scène qui interprètent la bande-son que nous écrivons.",
-      "Né d’une commande de l’association Sport Santé dans le Pays du Chinonais, le spectacle «Dis-moi des mots d’amour» aborde la question des affections de longue durée, de l’annonce à l’acceptation.\nUne façon originale de questionner ces moments où, quand la maladie frappe à la porte, pour le patient, la famille, les amis, les aidants, chaque jour devient une conquête."
+      "Né d'une commande de l'association Sport Santé dans le Pays du Chinonais, le spectacle «Dis-moi des mots d'amour» aborde la question des affections de longue durée, de l'annonce à l'acceptation.\nUne façon originale de questionner ces moments où, quand la maladie frappe à la porte, pour le patient, la famille, les amis, les aidants, chaque jour devient une conquête."
     ],
-    "category": "bande-son d’un spectacle de danse",
+    "category": "bande-son d'un spectacle de danse",
     "sector": "spectacle-vivant",
     "themes": [
       "ALD"
     ],
-    "hasVideo": false,
+    "hasVideo": true,
     "hasAudio": false,
     "details": {
-      "format": "bande-son d’un spectacle",
+      "format": "bande-son d'un spectacle",
       "duration": "45 minutes",
       "audience": "tous publics",
       "deliverables": [
@@ -296,7 +296,16 @@
     ],
     "media": {
       "coverImage": "/assets/images/projects/dis-moi-des-mots-damour/cover.webp",
+      "video": "/assets/videos/projects/dis-moi-des-mots-d-amour/video.mp4",
       "gallery": []
+    },
+    "video": {
+      "enabled": true,
+      "title": "Dis-moi des mots d'amour",
+      "files": {
+        "mp4": "/assets/videos/projects/dis-moi-des-mots-d-amour/video.mp4"
+      },
+      "description": "Bande-son / captation pour le spectacle."
     }
   },
   {

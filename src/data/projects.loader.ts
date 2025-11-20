@@ -20,6 +20,23 @@ const COLOR_TOKEN_MAP: Record<string, string> = {
   '--color-success-light': '#d4edda',
 };
 
+// ✅ FIX: Mapping slug → folder for projects with different folder names
+// Some project slugs use shorter / nicer folder names in the assets tree.
+// This mapping lets us keep human-readable folder names without breaking the data pipeline.
+const SLUG_TO_FOLDER_MAP: Record<string, string> = {
+  'doue-en-anjou-ou-culture-et-patrimoine-se-rencontrent': 'doue-en-anjou',
+  'le-jardin-de-cocagne': 'jardin-de-cocagne',
+  'le-moulin-de-brissac': 'moulin-de-brissac',
+  'les-seigneurs-de-clisson': 'seigneurs-de-clisson',
+  'agglobus': 'agglo-bus',
+  'dis-moi-des-mots-damour': 'dis-moi-des-mots-d-amour',
+  // Add more exceptions here if needed in the future
+};
+
+function getProjectFolder(slug: string): string {
+  return SLUG_TO_FOLDER_MAP[slug] || slug;
+}
+
 function normalizeAssetPath(path?: string | null): string | null {
   if (!path) return null;
   return path.startsWith('/') ? path : `/${path}`;
@@ -68,7 +85,8 @@ function findAssetByPrefix(prefix: string): string | null {
 }
 
 function collectGallery(slug: string): string[] {
-  const prefix = `/assets/images/projects/${slug}/gallery-`;
+  const folder = getProjectFolder(slug);
+  const prefix = `/assets/images/projects/${folder}/gallery-`;
   return assetManifest
     .filter((entry) => entry.startsWith(prefix))
     .sort()
@@ -81,8 +99,9 @@ let validatedProjects: Project[] = [];
 function sanitizeProjectsData() {
   return (projectsData as Array<Partial<Project>>).map((project) => {
     const slug = project?.slug || project?.id || '';
-    const coverFromAssets = slug ? findAssetByPrefix(`/assets/images/projects/${slug}/cover`) : null;
-    const thumbFromAssets = slug ? findAssetByPrefix(`/assets/images/projects/${slug}/thumb`) : null;
+    const folder = slug ? getProjectFolder(slug) : '';
+    const coverFromAssets = folder ? findAssetByPrefix(`/assets/images/projects/${folder}/cover`) : null;
+    const thumbFromAssets = folder ? findAssetByPrefix(`/assets/images/projects/${folder}/thumb`) : null;
     const coverFromData = normalizeAssetPath(project?.media?.coverImage || project?.cover?.image || '');
     const hasCoverFromData = coverFromData && assetExists(coverFromData);
     const coverPlaceholder = createCoverPlaceholder(project);
@@ -111,7 +130,8 @@ function resolveProjectVideo(slug: string, fallback?: string | null): string | n
   // ⚠️ IMPORTANT: import.meta.glob ne détecte pas les fichiers .mp4 volumineux
   // On construit l'URL de manière déterministe et on laisse le système de fallback
   // dans ProjectModal gérer les erreurs de chargement
-  const standardPath = `/assets/videos/projects/${slug}/video.mp4`;
+  const folder = getProjectFolder(slug);
+  const standardPath = `/assets/videos/projects/${folder}/video.mp4`;
 
   // Si un fallback explicite est fourni, on le préfère
   if (fallback) {
@@ -124,13 +144,14 @@ function resolveProjectVideo(slug: string, fallback?: string | null): string | n
 
 function normalizeProjectMedia(project: Project): Project {
   const slug = project.slug || project.id;
-  const coverPath = `/assets/images/projects/${slug}/cover.webp`;
-  const resolvedCoverSrc = project.coverSrc || findAssetByPrefix(`/assets/images/projects/${slug}/cover`) || project.cover.image || '';
-  const resolvedThumbnailSrc = project.thumbnailSrc || findAssetByPrefix(`/assets/images/projects/${slug}/thumb`) || resolvedCoverSrc;
+  const folder = getProjectFolder(slug);
+  const coverPath = `/assets/images/projects/${folder}/cover.webp`;
+  const resolvedCoverSrc = project.coverSrc || findAssetByPrefix(`/assets/images/projects/${folder}/cover`) || project.cover.image || '';
+  const resolvedThumbnailSrc = project.thumbnailSrc || findAssetByPrefix(`/assets/images/projects/${folder}/thumb`) || resolvedCoverSrc;
   const gallery = project.media?.gallery?.length ? project.media.gallery : collectGallery(slug);
   const videoPath = resolveProjectVideo(slug, project.media?.video ?? project.video?.files?.mp4 ?? null);
-  const audioPath = assetExists(`/assets/audio/projects/${slug}/extrait-01.mp3`)
-    ? `/assets/audio/projects/${slug}/extrait-01.mp3`
+  const audioPath = assetExists(`/assets/audio/projects/${folder}/extrait-01.mp3`)
+    ? `/assets/audio/projects/${folder}/extrait-01.mp3`
     : project.media?.audio;
   const coverImage = resolvedCoverSrc || project.media?.coverImage || project.cover.image || '';
 

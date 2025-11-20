@@ -394,16 +394,16 @@ export class ProjectModal {
   private handlePreventBackgroundScroll(event: Event) {
     if (!this.modal?.classList.contains('active')) return;
 
-    // Vérifier si l'event provient de l'intérieur de la modal
-    const target = event.target as HTMLElement;
-    const isInsideModal = this.modal.contains(target);
+    const target = event.target as HTMLElement | null;
+    if (!target) return;
 
-    // Si l'event vient de l'intérieur de la modal, laisser passer le scroll
-    if (isInsideModal) {
+    // ✅ FIX: Use closest() for more robust detection
+    // If the event originated inside the modal, allow it
+    if (target.closest('.project-modal')) {
       return;
     }
 
-    // Sinon, bloquer le scroll de fond
+    // Otherwise, prevent background scroll
     event.preventDefault();
   }
 }
