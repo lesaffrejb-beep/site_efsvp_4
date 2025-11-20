@@ -296,6 +296,7 @@
     /* ✅ FIX: Removed max-height to allow full content scrolling on mobile */
     /* max-height: calc(100vh - 2 * var(--space-4)); */
     height: auto;
+    max-height: none;
     border-radius: var(--radius-xl);
   }
 

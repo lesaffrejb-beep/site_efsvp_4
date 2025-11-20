@@ -1,20 +1,15 @@
 import { SECTOR_LABELS, type Project } from '@/types/project';
 import { createProjectAudioPlayer, hasProjectAudio, destroyProjectAudioPlayer } from '@/scripts/modules/projectAudioPlayer';
-import { createProjectVideoPlayer, hasProjectVideo, destroyProjectVideoPlayer } from '@/scripts/modules/projectVideoPlayer';
-import { devLog } from '@/scripts/utils/logger';
 
 export class ProjectModal {
   private modal: HTMLElement | null;
   private closeButton: HTMLElement | null;
   private overlay: HTMLElement | null;
   private currentAudioPlayer: any = null;
-  private currentVideoPlayer: any = null;
-  private videoEventCleanups: Array<() => void> = [];
   private focusableElements: HTMLElement[] = [];
   private keydownHandler: (event: KeyboardEvent) => void;
   private triggerElement: HTMLElement | null = null;
   private previousBodyOverflow = '';
-  private lenisWasActive = false; // ✅ Track if Lenis was active before opening modal
 
   constructor() {
     this.modal = document.getElementById('project-modal');
@@ -116,17 +111,6 @@ export class ProjectModal {
 
     document.addEventListener('keydown', this.keydownHandler);
 
-    // ✅ CRITICAL FIX: Stop Lenis smooth scroll to allow modal scroll
-    // Lenis intercepts wheel/touch events globally, blocking modal scroll
-    // We must stop() it when modal opens and start() when it closes
-    const lenis = (window as any).lenis;
-    if (lenis && typeof lenis.stop === 'function') {
-      this.lenisWasActive = true;
-      lenis.stop();
-      devLog('🔒 ProjectModal: Lenis stopped to allow modal scroll');
-    }
-
-    // ✅ SIMPLIFIED: Just block body scroll - modal handles its own scrolling
     document.body.style.overflow = 'hidden';
   }
 
@@ -139,19 +123,7 @@ export class ProjectModal {
     this.setModalAccessibility(false);
     document.removeEventListener('keydown', this.keydownHandler);
 
-    // ✅ Restaurer l'overflow du body
     document.body.style.overflow = this.previousBodyOverflow;
-
-    // ✅ CRITICAL FIX: Restart Lenis smooth scroll after modal closes
-    // Only restart if it was active before opening the modal
-    if (this.lenisWasActive) {
-      const lenis = (window as any).lenis;
-      if (lenis && typeof lenis.start === 'function') {
-        lenis.start();
-        devLog('🔓 ProjectModal: Lenis restarted after modal close');
-      }
-      this.lenisWasActive = false;
-    }
 
     if (this.triggerElement) {
       this.triggerElement.focus();
@@ -160,16 +132,16 @@ export class ProjectModal {
   }
 
   private destroyCurrentMediaPlayers() {
-    this.cleanupVideoEventListeners();
-
     if (this.currentAudioPlayer) {
       destroyProjectAudioPlayer(this.currentAudioPlayer);
       this.currentAudioPlayer = null;
     }
 
-    if (this.currentVideoPlayer) {
-      destroyProjectVideoPlayer(this.currentVideoPlayer);
-      this.currentVideoPlayer = null;
+    const videoContainer = document.getElementById('project-modal-video');
+    if (videoContainer) {
+      videoContainer.innerHTML = '';
+      videoContainer.style.display = 'none';
+      videoContainer.setAttribute('aria-hidden', 'true');
     }
   }
 
@@ -223,115 +195,42 @@ export class ProjectModal {
       audioContainer.innerHTML = '';
     }
 
-    // ✅ SIMPLIFIED: Logique vidéo simplifiée et fiable
+    // ✅ Logique vidéo simplifiée : player natif HTML5
     if (videoContainer && videoSrc) {
-      // Masquer l'image statique
       if (visualContainer) {
         visualContainer.style.display = 'none';
         visualContainer.setAttribute('aria-hidden', 'true');
       }
 
-      // Afficher le conteneur vidéo
       videoContainer.style.display = 'block';
       videoContainer.removeAttribute('aria-hidden');
+      videoContainer.innerHTML = `
+    <div class="project-video-fallback">
+      <video
+        controls
+        playsinline
+        preload="metadata"
+        style="
+          width: 100%;
+          height: auto;
+          border-radius: var(--radius-xl);
+          background: #000;
+          display: block;
+        "
+      >
+        <source src="${videoSrc}" type="video/mp4" />
+        Votre navigateur ne supporte pas la vidéo.
+      </video>
+    </div>
+  `;
 
-      // S'assurer que le projet passé au player contient un champ video complet
-      const projectWithVideo = {
-        ...project,
-        video: {
-          enabled: true,
-          title: project.video?.title || project.title,
-          description: project.video?.description || project.details?.format || '',
-          files: {
-            mp4: videoSrc,
-          },
-        },
-      };
-
-      let videoSettled = false;
-      const settleVideoState = () => {
-        if (videoSettled) return;
-        videoSettled = true;
-        videoContainer.classList.remove('is-loading');
-        videoContainer.removeAttribute('aria-busy');
-        this.cleanupVideoEventListeners();
-      };
-
-      const fallbackToVisual = (event?: Event) => {
-        console.error(`[ProjectModal] Video fallback triggered for ${project.slug}`, event);
-        settleVideoState();
-        if (this.currentVideoPlayer) {
-          destroyProjectVideoPlayer(this.currentVideoPlayer);
-          this.currentVideoPlayer = null;
-        }
-        videoContainer.style.display = 'none';
-        videoContainer.innerHTML = '';
-        this.renderVisualFallback(visualContainer, project);
-      };
-
-      const handleVideoReady = () => {
-        settleVideoState();
-      };
-
-      const handleVideoError = (event: Event) => {
-        fallbackToVisual(event);
-      };
-
-      videoContainer.classList.add('is-loading');
-      videoContainer.setAttribute('aria-busy', 'true');
-
-      this.registerVideoContainerEvent(videoContainer, 'project-video-ready', handleVideoReady);
-      this.registerVideoContainerEvent(videoContainer, 'project-video-error', handleVideoError);
-
-      this.currentVideoPlayer = createProjectVideoPlayer(videoContainer, projectWithVideo);
-
-      if (this.currentVideoPlayer) {
-        // Priorité à la vidéo, on ne touche pas à l'audio ici
-        return;
-      } else {
-        // Si, pour une raison quelconque, le player échoue, on retombe sur l'image
-        fallbackToVisual();
-      }
+      return;
     }
 
     if (audioContainer && hasProjectAudio(project)) {
       audioContainer.style.display = 'block';
       this.currentAudioPlayer = createProjectAudioPlayer(audioContainer, project);
     }
-  }
-
-  private registerVideoContainerEvent(container: HTMLElement, eventName: string, handler: EventListener) {
-    container.addEventListener(eventName, handler);
-    this.videoEventCleanups.push(() => container.removeEventListener(eventName, handler));
-  }
-
-  private cleanupVideoEventListeners() {
-    this.videoEventCleanups.forEach((cleanup) => cleanup());
-    this.videoEventCleanups = [];
-  }
-
-  private renderVisualFallback(visualContainer: HTMLElement | null, project: Project) {
-    if (!visualContainer || !project.coverSrc) {
-      if (visualContainer) {
-        visualContainer.style.display = 'none';
-        visualContainer.setAttribute('aria-hidden', 'true');
-      }
-      return;
-    }
-
-    let visualImage = visualContainer.querySelector('img');
-    if (!visualImage) {
-      visualImage = document.createElement('img');
-      visualImage.loading = 'lazy';
-      visualContainer.innerHTML = '';
-      visualContainer.appendChild(visualImage);
-    }
-
-    const altParts = [project.title, project.location].filter(Boolean).join(' – ');
-    visualImage.src = project.coverSrc;
-    visualImage.alt = altParts || project.title;
-    visualContainer.style.display = 'block';
-    visualContainer.removeAttribute('aria-hidden');
   }
 
   private setModalAccessibility(isOpen: boolean) {
