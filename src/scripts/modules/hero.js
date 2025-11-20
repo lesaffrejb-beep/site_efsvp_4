@@ -227,11 +227,8 @@ export class HeroManager {
       const target = document.querySelector(targetSelector);
       if (!target) return;
 
-      if (window.lenis) {
-        window.lenis.scrollTo(target, { offset: -80, duration: 1.2 });
-      } else {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top, behavior: 'smooth' });
     });
   }
 

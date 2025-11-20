@@ -8,9 +8,8 @@ import { createProjectAudioPlayer, hasProjectAudio, destroyProjectAudioPlayer } 
  *   for media like /assets/videos/projects/<folder>/video.mp4).
  * - The modal renders these normalized Project objects: details + cover image by default,
  *   optional HTML5 video/audio players only when the loader confirmed a real asset.
- * - Opening locks the background scroll (and Lenis if present), focuses the modal, and scrolls
- *   only inside .project-modal. Closing removes the lock class and restores the exact previous
- *   scroll offset.
+ * - Opening locks the background scroll via a simple body class, focuses the modal, and scrolls
+ *   only inside .project-modal. Closing removes the lock class and restores focus to the trigger.
  */
 
 export class ProjectModal {
@@ -21,8 +20,6 @@ export class ProjectModal {
   private focusableElements: HTMLElement[] = [];
   private keydownHandler: (event: KeyboardEvent) => void;
   private triggerElement: HTMLElement | null = null;
-  private lenisWasActive: boolean = false;
-  private savedScrollY: number = 0;
 
   constructor() {
     this.modal = document.getElementById('project-modal');
@@ -54,27 +51,8 @@ export class ProjectModal {
       });
     }
 
-    this.triggerElement = triggerElement || (document.activeElement as HTMLElement | null);
+    this.triggerElement = triggerElement ?? null;
 
-    // Sauvegarde de la position de scroll actuelle
-    this.savedScrollY = window.scrollY || window.pageYOffset || 0;
-
-    // Gestion Lenis (smooth scroll global)
-    const lenis = (window as any).lenis;
-    if (lenis && typeof lenis.stop === 'function') {
-      this.lenisWasActive = true;
-      lenis.stop();
-    } else {
-      this.lenisWasActive = false;
-    }
-
-    // Lock du body avec le pattern "position: fixed"
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${this.savedScrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-    document.body.style.overflow = 'hidden';
     document.body.classList.add('project-modal-open');
 
     const tagEl = document.getElementById('project-modal-tag');
@@ -134,6 +112,7 @@ export class ProjectModal {
     this.setupProjectMedia({ project, visualContainer, visualImage, videoContainer, audioContainer });
 
     this.modal.classList.add('active');
+    (this.modal as HTMLElement).scrollTop = 0;
     this.setModalAccessibility(true);
     this.refreshFocusableElements();
 
@@ -148,44 +127,14 @@ export class ProjectModal {
   close() {
     if (!this.modal) return;
 
-    // Retire la classe CSS
+    this.modal.classList.remove('active');
     document.body.classList.remove('project-modal-open');
 
-    // On récupère la valeur sauvegardée
-    const scrollY = this.savedScrollY || 0;
-
-    // On libère le body AVANT de scroller
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.width = '';
-    document.body.style.overflow = '';
-
-    // Restaure le scroll avec ou sans Lenis
-    const lenis = (window as any).lenis;
-
-    if (this.lenisWasActive && lenis) {
-      this.lenisWasActive = false;
-      if (typeof lenis.start === 'function') {
-        lenis.start();
-      }
-      if (typeof lenis.scrollTo === 'function') {
-        lenis.scrollTo(scrollY, { immediate: true });
-      } else {
-        window.scrollTo(0, scrollY);
-      }
-    } else {
-      window.scrollTo(0, scrollY);
-    }
-
     this.destroyCurrentMediaPlayers();
-
-    this.modal.classList.remove('active');
     this.setModalAccessibility(false);
     document.removeEventListener('keydown', this.keydownHandler);
 
-    if (this.triggerElement) {
+    if (this.triggerElement && typeof this.triggerElement.focus === 'function') {
       this.triggerElement.focus();
     }
     this.triggerElement = null;
@@ -219,7 +168,7 @@ export class ProjectModal {
     audioContainer: HTMLElement | null;
   }) {
     // ✅ SIMPLIFIED: Détection unifiée de la source vidéo
-    const videoSrc = project.media?.video || project.video?.files?.mp4;
+    const videoSrc = project.media?.video || project.video?.files?.mp4 || null;
 
     let visualEl = visualImage ?? null;
 

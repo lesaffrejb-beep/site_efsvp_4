@@ -212,14 +212,9 @@ class App {
     // Cookie Consent (RGPD/CNIL) - Initialize early
     this.modules.cookieConsent = new CookieConsent();
 
-    // Smooth Scroll (Lenis)
-    if (!this.prefersReducedMotion && !this.hasCoarsePointer) {
-      const { SmoothScroll } = await import('./modules/smoothScroll.js');
-      this.modules.smoothScroll = new SmoothScroll();
-      if (this.modules.smoothScroll.lenis) {
-        window.lenis = this.modules.smoothScroll.lenis; // Global access
-      }
-    }
+    // Native scroll helper (no Lenis)
+    const { SmoothScroll } = await import('./modules/smoothScroll.js');
+    this.modules.smoothScroll = new SmoothScroll();
 
     // Reading Progress Bar Premium (REMPLACÉ par ProgressiveNav)
     // this.modules.progressBar = new ProgressBar();
@@ -317,9 +312,6 @@ class App {
     // S'assurer qu'on arrive en haut de page si pas de hash dans l'URL
     if (!window.location.hash) {
       window.scrollTo(0, 0);
-      if (this.modules.smoothScroll?.lenis) {
-        this.modules.smoothScroll.lenis.scrollTo(0, { immediate: true });
-      }
     }
 
     // Performance monitoring
@@ -840,7 +832,11 @@ class App {
       });
 
       backToTop.addEventListener('click', () => {
-        this.modules.smoothScroll.scrollTo(0, { duration: 2 });
+        if (this.modules.smoothScroll) {
+          this.modules.smoothScroll.scrollTo(0, { behavior: 'smooth' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
       });
     }
   }
@@ -869,8 +865,10 @@ class App {
         if (contactSection && this.modules.smoothScroll) {
           this.modules.smoothScroll.scrollTo(contactSection, {
             offset: -80,
-            duration: 1.2,
           });
+        } else if (contactSection) {
+          const top = contactSection.getBoundingClientRect().top + window.pageYOffset - 80;
+          window.scrollTo({ top, behavior: 'smooth' });
         }
       });
     }
@@ -910,7 +908,6 @@ class App {
           if (this.modules.smoothScroll) {
             this.modules.smoothScroll.scrollTo(targetSection, {
               offset: -100,
-              duration: 1.5,
             });
           } else {
             // Fallback if smooth scroll not available

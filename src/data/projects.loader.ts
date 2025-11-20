@@ -131,12 +131,12 @@ function resolveProjectVideo(slug: string, fallback?: string | null): string | n
   const folder = getProjectFolder(slug);
   const standardPath = `/assets/videos/projects/${folder}/video.mp4`;
 
-  // Si un chemin explicite est donné dans le JSON, on le garde tel quel
+  // Si un chemin explicite est défini dans le JSON, on le garde seulement s'il pointe vers un asset réel
   if (fallback) {
     return assetExists(fallback) ? fallback : null;
   }
 
-  // Sinon, on ne renvoie le chemin standard QUE si le fichier existe réellement
+  // Sinon, on ne renvoie le chemin standard QUE si le mp4 existe réellement
   return assetExists(standardPath) ? standardPath : null;
 }
 
@@ -174,13 +174,20 @@ function normalizeProjectMedia(project: Project): Project {
     media,
   };
 
-  if (!project.video && videoPath) {
-    normalized.video = {
-      enabled: true,
-      title: project.title,
-      files: { mp4: videoPath },
-      description: project.details?.format,
-    };
+  if (videoPath) {
+    normalized.video = project.video
+      ? {
+          ...project.video,
+          files: { ...project.video.files, mp4: videoPath },
+        }
+      : {
+          enabled: true,
+          title: project.title,
+          files: { mp4: videoPath },
+          description: project.details?.format,
+        };
+  } else {
+    normalized.video = undefined;
   }
 
   if (!project.audio && media.audio) {
